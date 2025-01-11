@@ -40,7 +40,7 @@ jobs:
           AWS_REGION: ${{ secrets.AWS_REGION }}
         run: |
           echo "AWS Region: $AWS_REGION" # This line will log the region for verification
-          aws s3 sync out s3://directimpactempowerment.org --acl public-read --region $AWS_REGION
+          aws s3 sync out s3://directimpactempowerment.org 
 
       - name: Invalidate CloudFront Cache
         env:
