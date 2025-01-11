@@ -45,7 +45,7 @@ export function VolunteerCTA() {
                 SUBMIT YOUR APPLICATION NOW
               </p>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 relative z-10">
-                Join Our Team as a
+                Join Our Team as a s
                 <br />
                 Volunteer
               </h2>
