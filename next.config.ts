@@ -2,7 +2,7 @@
 const nextConfig = {
   output: 'export',
   images: {
-    domains: ['images.unsplash.com'],
+    domains: ['directimpactempowerment.org', 'images.unsplash.com'],
   },
 }
 
