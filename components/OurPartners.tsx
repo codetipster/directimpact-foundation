@@ -186,7 +186,8 @@ export function OurPartners() {
                     alt={partner.name}
                     width={120}
                     height={40}
-                    className="h-16 w-auto" // Changed from h-8 to h-16
+                    className="h-16 w-auto" 
+                    unoptimized
                   />
                 </motion.div>
               ))}

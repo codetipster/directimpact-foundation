@@ -2,8 +2,10 @@
 const nextConfig = {
   output: 'export',
   images: {
-    domains: ['directimpactempowerment.org', 'images.unsplash.com'],
-  },
+    unoptimized: true,
+    loader: 'custom',
+    loaderFile: './app/image-loader.js',
+  }
 }
 
-export default nextConfig
+module.exports = nextConfig
