@@ -78,7 +78,7 @@ export function Footer() {
               <div className="flex items-start gap-3">
                 <Mail className="w-5 h-5 text-[#693B2E] mt-1" />
                 <div>
-                  <p className="font-medium">Email</p>
+                  <p className="font-medium">Email:</p>
                   <a 
                     href="mailto:contact@example.com"
                     className="text-gray-600 hover:text-[#693B2E] transition-colors"
