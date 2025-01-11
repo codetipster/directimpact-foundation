@@ -73,7 +73,7 @@ export function Footer() {
 
           {/* Contact Information */}
           <div className="md:col-span-4 lg:col-span-4">
-            <h3 className="font-semibold text-lg mb-4">Contact</h3>
+            <h3 className="font-semibold text-lg mb-4">Contacts</h3>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <Mail className="w-5 h-5 text-[#693B2E] mt-1" />
