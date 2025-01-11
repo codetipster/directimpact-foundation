@@ -1,135 +1,172 @@
 'use client'
 
-import { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { Check } from 'lucide-react'
-import Image from 'next/image'
+import { useState, useEffect, useRef } from 'react'
+//import { Button } from '@/components/ui/button'
+import { Users, GraduationCap, Briefcase, Heart, LineChart } from 'lucide-react'
+import { motion, useInView } from 'framer-motion'
 
-const metrics = [
-  { value: '10,000+', label: 'People Impacted' },
-  { value: '15,000+', label: 'Volunteer Hours' },
-  { value: '17M+', label: 'Funds Raised' },
+const challenges = [
+  {
+    icon: Users,
+    title: "Youth Unemployment",
+    stat: "60%",
+    description: "of unemployed people in Africa are youth",
+    color: "#B5D858"
+  },
+  {
+    icon: GraduationCap,
+    title: "Education Access",
+    stat: "1 in 3",
+    description: "young people in developing countries lacks access to quality education",
+    color: "#59B7E7"
+  },
+  {
+    icon: Briefcase,
+    title: "Skills Impact",
+    stat: "70%",
+    description: "more likely to secure sustainable jobs with vocational training",
+    color: "#693B2E"
+  },
+  {
+    icon: LineChart,
+    title: "Economic Growth",
+    stat: "10x",
+    description: "return in economic growth for every $1 invested in youth skills",
+    color: "#B5D858"
+  },
+  {
+    icon: Heart,
+    title: "Gender Gap",
+    stat: "1.5x",
+    description: "young women are more likely to be unemployed than young men",
+    color: "#59B7E7"
+  }
 ]
 
-const partners = [
-  { name: 'Cloud', logo: '/cloud-logo.svg' },
-  { name: 'Ebooks', logo: '/ebooks-logo.svg' },
-  { name: 'Penta', logo: '/penta-logo.svg' },
-  { name: 'Cactus', logo: '/cactus-logo.svg' },
-  { name: 'Nextmove', logo: '/nextmove-logo.svg' },
-]
+function CountUpAnimation({ target, duration = 2000 }: { target: number, duration?: number }) {
+  const [count, setCount] = useState(0)
+  const [isVisible, setIsVisible] = useState(false)
+  const elementRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    if (elementRef.current) {
+      observer.observe(elementRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!isVisible) return
+
+    let startTime: number
+    let animationFrame: number
+
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime
+      const progress = (currentTime - startTime) / duration
+
+      if (progress < 1) {
+        setCount(Math.min(target * progress, target))
+        animationFrame = requestAnimationFrame(animate)
+      } else {
+        setCount(target)
+      }
+    }
+
+    animationFrame = requestAnimationFrame(animate)
+
+    return () => cancelAnimationFrame(animationFrame)
+  }, [target, duration, isVisible])
+
+  return <div ref={elementRef}>{Math.round(count)}</div>
+}
 
 export function ImpactMetrics() {
-  const [email, setEmail] = useState('')
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // TODO: Implement newsletter subscription
-    console.log('Subscribe:', email)
-    setEmail('')
-  }
+  const containerRef = useRef(null)
+  const isInView = useInView(containerRef, { once: true })
 
   return (
-    <section className="py-20">
+    <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        {/* Heading */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Updates from Our Fight Against Poverty
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4">
+            The Challenge We Face
           </h2>
-          <p className="text-[#693B2E]">
-            Poverty Spotlight: Stories of Impact and Change
+          <p className="text-gray-600">
+            Understanding the scale of youth unemployment and lack of opportunities helps
+            us create targeted solutions for sustainable change.
           </p>
         </div>
 
-        {/* Newsletter Form */}
-        <div className="max-w-xl mx-auto mb-20">
-          <form 
-            onSubmit={handleSubmit}
-            className="bg-[#F2E5E5] p-8 rounded-lg flex gap-4"
-          >
-            <input
-              type="email"
-              placeholder="Enter your email address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="flex-1 px-4 py-2 rounded-md border-0 focus:ring-2 focus:ring-[#693B2E]"
-              required
-            />
-            <Button 
-              type="submit"
-              className="bg-[#693B2E] hover:bg-[#693B2E]/90 whitespace-nowrap"
+        {/* Challenges Grid */}
+        <div 
+          ref={containerRef}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
+        >
+          {challenges.map((challenge, index) => (
+            <motion.div
+              key={challenge.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow"
             >
-              Submit
-            </Button>
-          </form>
-        </div>
-
-        {/* Metrics */}
-        <div className="grid md:grid-cols-3 gap-8 mb-20">
-          {metrics.map((metric) => (
-            <div 
-              key={metric.label}
-              className="flex items-center justify-center gap-4"
-            >
-              <div className="w-6 h-6 rounded-full bg-[#693B2E]/10 flex items-center justify-center">
-                <Check className="w-4 h-4 text-[#693B2E]" />
+              <div className="flex flex-col items-center text-center">
+                <div 
+                  className="w-16 h-16 rounded-full flex items-center justify-center mb-4"
+                  style={{ backgroundColor: `${challenge.color}10` }}
+                >
+                  <challenge.icon 
+                    className="w-8 h-8"
+                    style={{ color: challenge.color }}
+                  />
+                </div>
+                <h3 className="text-xl font-bold mb-2">{challenge.title}</h3>
+                <div className="text-4xl font-bold mb-2" style={{ color: challenge.color }}>
+                  {challenge.stat.includes('%') ? (
+                    <div className="flex items-center">
+                      <CountUpAnimation 
+                        target={parseInt(challenge.stat)} 
+                      />
+                      <span>%</span>
+                    </div>
+                  ) : (
+                    challenge.stat
+                  )}
+                </div>
+                <p className="text-gray-600">{challenge.description}</p>
               </div>
-              <div className="text-center sm:text-left">
-                <div className="font-bold text-2xl">{metric.value}</div>
-                <div className="text-gray-600">{metric.label}</div>
-              </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
-        {/* Partners */}
-        <div className="bg-[#F2E5E5] py-12 px-4 rounded-lg relative overflow-hidden">
-          {/* Background Pattern */}
-          <div className="absolute inset-0 overflow-hidden opacity-10">
-            <svg
-              className="absolute w-full h-full text-black"
-              viewBox="0 0 100 100"
-              preserveAspectRatio="none"
-            >
-              <pattern
-                id="zigzag"
-                width="10"
-                height="10"
-                patternUnits="userSpaceOnUse"
-                patternTransform="rotate(-10)"
-              >
-                <path
-                  d="M 0 5 L 5 0 L 10 5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                />
-              </pattern>
-              <rect width="100%" height="100%" fill="url(#zigzag)" />
-            </svg>
-          </div>
-
-          <div className="relative">
-            <p className="text-center font-semibold mb-8">
-              Organisations that Support Our Cause
-            </p>
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-              {partners.map((partner) => (
-                <Image
-                  key={partner.name}
-                  src={partner.logo}
-                  alt={partner.name}
-                  width={120}
-                  height={40}
-                  className="h-8 w-auto"
-                />
-              ))}
-            </div>
-          </div>
-        </div>
+        {/* Call to Action */}
+        {/* <div className="mt-16 text-center">
+          <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+            Together, we can create meaningful change. Join us in our mission to empower
+            youth through education, training, and sustainable opportunities.
+          </p>
+          <Button 
+            size="lg"
+            className="bg-[#B5D858] hover:bg-[#B5D858]/90"
+          >
+            Join Our Mission
+          </Button>
+        </div> */}
       </div>
     </section>
   )
 }
+
 

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Facebook, Twitter, Instagram, Phone, Mail, MapPin, Send } from 'lucide-react'
+import { Facebook, Twitter, Instagram, Phone, Mail, MapPin} from 'lucide-react'
 import { FaTiktok, FaWhatsapp } from 'react-icons/fa'
 
 const navigationLinks = [
@@ -107,9 +107,8 @@ export function Footer() {
                 <div>
                   <p className="font-medium">Address</p>
                   <p className="text-gray-600">
-                    234 Location Ave District
-                    <br />
-                    Palm Beach Fl 33419
+                    Lagos, Nigeria
+                    
                   </p>
                 </div>
               </div>

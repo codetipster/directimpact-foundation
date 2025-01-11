@@ -59,7 +59,7 @@ export function TestimonialsSection() {
         <div className="max-w-4xl mx-auto">
           <div className="relative bg-[#F2E5E5] rounded-lg p-8 md:p-12">
             {/* Quote Mark */}
-            <div className="absolute top-8 left-8 text-6xl text-[#693B2E] font-serif">"</div>
+            <div className="absolute top-8 left-8 text-6xl text-[#693B2E] font-serif"></div>
 
             <div className="grid md:grid-cols-2 gap-8 items-center">
               {/* Image */}
@@ -87,7 +87,7 @@ export function TestimonialsSection() {
 
                 {/* Quote */}
                 <blockquote className="text-2xl md:text-3xl font-bold mb-6">
-                  "{testimonials[currentSlide].quote}"
+                  {testimonials[currentSlide].quote}
                 </blockquote>
 
                 {/* Author */}

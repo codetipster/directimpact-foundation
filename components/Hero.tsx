@@ -3,11 +3,11 @@ import Image from 'next/image'
 
 export function Hero() {
   return (
-    <div className="relative bg-[#F2E5E5]">
+    <div className="relative bg-[#59B7E7]/5">
       {/* Decorative Pattern */}
       <div className="absolute inset-0 overflow-hidden">
         <svg
-          className="absolute w-full h-full text-white/10"
+          className="absolute w-full h-full text-[#B5D858]/10"
           viewBox="0 0 100 100"
           preserveAspectRatio="none"
         >
@@ -32,8 +32,8 @@ export function Hero() {
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[calc(100vh-5rem)] py-20">
           <div className="relative z-10">
-            <p className="text-[#693B2E] mb-4">Direct Impact Empowerment Foundations</p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+            <p className="text-black mb-4">Direct Impact Empowerment Foundations</p>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#59B7E7] mb-6">
               Empowering Futures,
               <br />
               Transforming Lives
@@ -45,7 +45,7 @@ export function Hero() {
             </p>
             <Button
               size="lg"
-              className="bg-[#693B2E] hover:bg-[#693B2E]/90"
+              className="bg-[#B5D858] hover:bg-[#59B7E7]/90"
             >
               Explore Causes
             </Button>
@@ -54,7 +54,7 @@ export function Hero() {
           <div className="relative">
             <div className="relative aspect-[4/5] w-full max-w-xl mx-auto">
               <Image
-                src="/hero-image.jpg"
+                src="/hero.jpg"
                 alt="Young boy in yellow and white clothing"
                 fill
                 className="object-cover rounded-lg"
