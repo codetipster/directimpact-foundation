@@ -6,7 +6,6 @@ const navItems = [
   { label: 'Home', href: '/' },
   { label: 'About Us', href: '/about' },
   { label: 'Causes', href: '/causes' },
-  { label: 'Donate', href: '/donate' },
   { label: 'Insights', href: '/insights' },
   { label: 'Contact', href: '/contact' },
 ]
@@ -18,11 +17,11 @@ export function Navigation() {
         <nav className="flex items-center justify-between h-20">
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src="/logo.png"
+              src="/oldlogo.jpeg"
               alt="HopeHarbor"
-              width={40}
-              height={40}
-              className="w-10 h-10"
+              width={80}
+              height={80}
+              className="w-30 h-30"
               unoptimized
             />
             {/* <span className="text-xl font-semibold">DirectImpact</span> */}
@@ -45,13 +44,18 @@ export function Navigation() {
               variant="default"
               className="bg-[#B5D858] hover:bg-[#B5D858]/90 text-xl"
             >
-              Donate
+              <Link href="/donate">
+                DONATE
+              </Link>
             </Button>
             <Button
               variant="secondary"
               className="bg-[#59B7E7] hover:bg-[#59B7E7]/90 text-white"
+              asChild
             >
-              Become a Volunteer
+              <Link href="/volunteer">
+                Become a Volunteer
+              </Link>
             </Button>
           </div>
         </nav>
