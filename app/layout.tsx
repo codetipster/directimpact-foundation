@@ -7,8 +7,8 @@ import type { Metadata } from 'next'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'HopeHarbor - Uniting Hearts, Changing Lives Together',
-  description: 'Empowering communities through hope and support',
+  title: 'DirectImpact Empowerement Foundation - Empowering Lives, Transforming Communities',
+  description: 'Empowering communities through skills and support',
 }
 
 export default function RootLayout({

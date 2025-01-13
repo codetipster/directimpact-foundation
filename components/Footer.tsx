@@ -7,7 +7,7 @@ const navigationLinks = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
   { label: 'Donate', href: '/donate' },
-  { label: 'Insights', href: '/insights' },
+  //{ label: 'Insights', href: '/insights' },
   { label: 'Contact', href: '/contact' },
 ]
 

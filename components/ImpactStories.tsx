@@ -1,163 +1,129 @@
 'use client'
 
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-//import { Button } from '@/components/ui/button'
-import { ChevronRight, Users, GraduationCap, Briefcase } from 'lucide-react'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform, MotionValue } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
 
-const initiatives = [
+interface Activity {
+  title: string
+  description: string
+  image: string
+  slug: string
+}
+
+interface ActivityCardProps {
+  activity: Activity
+  scrollYProgress: MotionValue<number>
+  index: number
+  total: number
+}
+
+const activities: Activity[] = [
   {
-    id: 1,
-    title: "Skills Training",
-    icon: GraduationCap,
-    stat: "500+",
-    description: "Youth trained annually in vocational skills",
-    story: {
-      name: "Sarah Johnson",
-      role: "Web Developer",
-      quote: "The training program gave me the skills and confidence to pursue my dream career in tech.",
-      image: "/placeholder.svg",
-      impact: "Now earning 3x her previous income"
-    }
+    title: "Specialist Fashion Design Training",
+    description: "The foundation is training youths in advanced fashion design techniques, equipping them with technical and entrepreneurial skills to meet both local and global demands.",
+    image: "/fashion.jpg",
+    slug: "fashion-design-training"
   },
   {
-    id: 2,
-    title: "Business Incubation",
-    icon: Briefcase,
-    stat: "200+",
-    description: "Small businesses launched through microloans",
-    story: {
-      name: "Michael Chen",
-      role: "Entrepreneur",
-      quote: "With the microloan and mentorship, I was able to start my sustainable farming business.",
-      image: "/placeholder.svg",
-      impact: "Created jobs for 12 other youth"
-    }
+    title: "Business Incubation and Acceleration",
+    description: "They are establishing a business incubation and acceleration program to support graduates with mentorship, advanced training, and resources to scale their businesses effectively.",
+    image: "/bizness.jpg",
+    slug: "business-incubation"
   },
   {
-    id: 3,
-    title: "Community Impact",
-    icon: Users,
-    stat: "50+",
-    description: "Partner communities empowered",
-    story: {
-      name: "Maria Rodriguez",
-      role: "Community Leader",
-      quote: "Our village has transformed through the youth empowerment programs.",
-      image: "/placeholder.svg",
-      impact: "Youth unemployment reduced by 40%"
-    }
+    title: "Micro-Credit Scheme",
+    description: "The foundation is preparing to launch a micro-credit program to provide accessible funding to graduates, enabling them to purchase essential equipment and start their businesses.",
+    image: "/micro.jpg",
+    slug: "micro-credit"
   }
 ]
 
-
-
-export function ImpactStories() {
-  const [activeInitiative, setActiveInitiative] = useState(initiatives[0])
-  
+const ActivityCard = ({ activity, scrollYProgress, index, total }: ActivityCardProps) => {
+  const y = useTransform(
+    scrollYProgress,
+    // Adjust the input range to make cards stack more gradually
+    [index / (total + 1), (index + 1) / (total + 1)],
+    ['80vh', '0vh']
+  )
 
   return (
-    <section className="py-20 bg-[#59B7E7]/5">
-      <div className="container mx-auto px-4">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-2xl md:text-5xl font-bold mb-4">
-            How We&apos;re Making a Difference
-          </h2>
-          <p className="text-gray-600">
-            Through targeted programs and initiatives, we&apos;re creating lasting change
-            in communities across Africa.
+    <motion.div
+      className="absolute w-full max-w-5xl mx-4 aspect-[16/7]"
+      style={{
+        y,
+        zIndex: index
+      }}
+    >
+      <Link 
+        href={`/activities/${activity.slug}`}
+        className="block w-full h-full relative rounded-2xl overflow-hidden group cursor-pointer"
+      >
+        <Image
+          src={activity.image}
+          alt={activity.title}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-black/50 backdrop-blur-sm transition-all duration-300 group-hover:bg-black/40" />
+        <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-center items-center text-center text-white">
+          <h3 className="text-2xl md:text-4xl font-bold mb-4 max-w-2xl transition-transform duration-300 group-hover:scale-105">
+            {activity.title}
+          </h3>
+          <p className="text-white/90 max-w-2xl text-sm md:text-base">
+            {activity.description}
           </p>
         </div>
+      </Link>
+    </motion.div>
+  )
+}
 
-        {/* Impact Timeline */}
-        <div className="grid lg:grid-cols-2 gap-12 mb-20">
-          {/* Initiatives List */}
-          <div className="space-y-4">
-            {initiatives.map((initiative) => (
-              <motion.div
-                key={initiative.id}
-                className={`p-6 rounded-lg cursor-pointer transition-all ${
-                  activeInitiative.id === initiative.id
-                    ? 'bg-[#B5D858] text-white'
-                    : 'bg-white hover:bg-[#B5D858]/10'
-                }`}
-                onClick={() => setActiveInitiative(initiative)}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <div className="flex items-center gap-4">
-                  <div className="p-3 rounded-full bg-white/20">
-                    <initiative.icon className="w-6 h-6" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold">{initiative.title}</h3>
-                    <p className={
-                      activeInitiative.id === initiative.id
-                        ? 'text-white/80'
-                        : 'text-gray-600'
-                    }>
-                      {initiative.description}
-                    </p>
-                  </div>
-                  <ChevronRight className={`w-6 h-6 transition-transform ${
-                    activeInitiative.id === initiative.id ? 'rotate-90' : ''
-                  }`} />
-                </div>
-              </motion.div>
-            ))}
+const ImpactStories = () => {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['90px start', 'end end']  // Offset by 15px from the top
+  })
+
+  return (
+    <section className="bg-white">
+      <div 
+        ref={containerRef} 
+        className="relative h-[400vh]" // Increased height for smoother scrolling
+      >
+        <div className="sticky top-[90px]"> {/* Match the 15px offset */}
+          <div className="py-8">
+            <div className="text-center max-w-3xl mx-auto px-4">
+              <h2 className="text-sm uppercase tracking-wider text-green-500 mb-2">
+                Our Activities
+              </h2>
+              <h3 className="text-4xl md:text-5xl font-bold mb-4">
+                Key Programs & Initiatives
+              </h3>
+              <p className="text-gray-600">
+                Discover how we&apos;re making a difference through our comprehensive programs
+                and sustainable initiatives.
+              </p>
+            </div>
           </div>
 
-          {/* Success Story */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeInitiative.id}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              className="bg-white rounded-lg p-6 shadow-lg"
-            >
-              <div className="relative aspect-[16/9] rounded-lg overflow-hidden mb-6">
-                <Image
-                  src={activeInitiative.story.image}
-                  alt={activeInitiative.story.name}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="space-y-4">
-                <div className="flex items-center gap-4">
-                  <div className="flex-1">
-                    <h4 className="text-xl font-bold">{activeInitiative.story.name}</h4>
-                    <p className="text-[#B5D858]">{activeInitiative.story.role}</p>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-3xl font-bold text-[#59B7E7]">
-                      {activeInitiative.stat}
-                    </div>
-                    <p className="text-sm text-gray-600">Impact Number</p>
-                  </div>
-                </div>
-                <blockquote className="text-gray-600 italic">
-                  &quot;{activeInitiative.story.quote}&quot;
-                </blockquote>
-                <div className="bg-[#B5D858]/10 p-4 rounded-lg">
-                  <p className="text-[#693B2E] font-semibold">
-                    Impact: {activeInitiative.story.impact}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
+          <div className="h-[700px] flex items-center justify-center overflow-hidden bg-[#F3F7EA]">
+            {activities.map((activity, index) => (
+              <ActivityCard
+                key={activity.title}
+                activity={activity}
+                scrollYProgress={scrollYProgress}
+                index={index}
+                total={activities.length}
+              />
+            ))}
+          </div>
         </div>
-
-        {/* Impact Map */}
-        
-        {/* Call to Action */}
-        
       </div>
     </section>
   )
 }
 
+export default ImpactStories
