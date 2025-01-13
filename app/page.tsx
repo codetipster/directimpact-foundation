@@ -1,10 +1,10 @@
 import { Hero } from '@/components/Hero'
 import { ImpactMetrics } from '@/components/ImpactMetrics'
-import { VideoSection } from '@/components/VideoSection'
+//import { VideoSection } from '@/components/VideoSection'
 //import { TestimonialsSection } from '@/components/TestimonialsSection'
 import { VolunteerCTA } from '@/components/VolunteerCTA'
 import { DonationFeatures } from '@/components/DonationFeatures'
-import { TeamSection } from '@/components/TeamSection'
+//import { TeamSection } from '@/components/TeamSection'
 import ImpactStories from '@/components/ImpactStories'
 import { OurPartners } from '@/components/OurPartners'
 
@@ -15,8 +15,8 @@ export default function Home() {
       <ImpactMetrics />
       <ImpactStories />
       <OurPartners />
-      <VideoSection />
-      <TeamSection />
+      {/* <VideoSection /> */}
+      {/* <TeamSection /> */}
       {/* <TestimonialsSection /> */}
       <DonationFeatures />
       <VolunteerCTA />

@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 
 const people = [
@@ -88,19 +89,20 @@ export function AboutHero() {
               Transforming Lives
             </h2>
             <h1 className="text-5xl font-bold mb-6">
-              Our Impact <span className="text-[#B5D858]">by the</span>
-              <br />
-              Numbers
+              Meet the Heart of Our Mission <br /><span className="text-[#B5D858]">Our journey
+                to making a difference </span> 
             </h1>
             <p className="text-white/80 mb-8">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse varius enim in eros elementum tristique.
+            Together, we’re shaping a future where every youth can thrive and contribute meaningfully to society.
+              
             </p>
-            <Button 
-              className="bg-[#B5D858] hover:bg-[#B5D858]/90 text-black rounded-full px-8"
-            >
-              Donate To Our Cause
-            </Button>
+            <Link href="/donate">
+              <Button 
+                className="bg-[#B5D858] hover:bg-[#B5D858]/90 text-black rounded-full px-8"
+              >
+                Donate To Our Cause
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
