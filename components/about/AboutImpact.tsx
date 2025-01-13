@@ -7,13 +7,13 @@ import { Users, Home, TrendingUp } from 'lucide-react'
 const impacts = [
   {
     icon: Users,
-    stat: '500+',
+    stat: '30+',
     label: 'Youth Empowered',
     description: 'Training and equipping individuals with employable skills.',
   },
   {
     icon: Home,
-    stat: '10,000+',
+    stat: '100+',
     label: 'Households Impacted',
     description: 'Lifting families out of poverty through ripple effects of empowerment.',
   },
