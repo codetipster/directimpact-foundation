@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { Heart } from 'lucide-react'
+import Link from 'next/link'
 
 export function DonationHero() {
   return (
@@ -24,7 +25,9 @@ export function DonationHero() {
               size="lg"
               className="border-[#59B7E7] text-[#59B7E7] hover:bg-[#59B7E7]/10"
             >
-              Learn More About Us
+              <Link href="/volunteer">
+                Learn More About Us
+              </Link>
             </Button>
           </div>
         </div>

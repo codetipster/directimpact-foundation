@@ -13,11 +13,18 @@ import {
 import { Copy } from 'lucide-react'
 import { toast } from 'sonner'
 
-const bankDetails = {
-  accountNumber: '3004683145',
-  accountName: 'Direct Impact Empowerment Foundation',
-  bankName: 'United Bank For Africa (UBA)'
-}
+const bankDetails = [
+  {
+    accountNumber: '3004683145',
+    accountName: 'Direct Impact Empowerment Foundation',
+    bankName: 'United Bank For Africa (UBA)',
+  },
+  {
+    accountNumber: '1027681829',
+    accountName: 'Direct Impact',
+    bankName: 'United Bank For Africa (UBA)',
+  },
+]
 
 export function DonationOptions() {
   const [copied, setCopied] = useState('')
@@ -54,57 +61,66 @@ export function DonationOptions() {
                     </div>
                      
                     <div className="grid gap-4">
-                      <div className="p-4 rounded-lg bg-[#59B7E7]/5 flex justify-between items-center">
-                        <div>
-                          <p className="text-sm text-gray-500">Account Number</p>
-                          <p className="font-medium">{bankDetails.accountNumber}</p>
-                        </div>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="hover:bg-[#59B7E7]/10"
-                          onClick={() => handleCopy(bankDetails.accountNumber, 'Account number')}
+                      {bankDetails.map((details, index) => (
+                        <div
+                          key={index}
+                          className="p-4 rounded-lg bg-[#59B7E7]/5 flex justify-between items-center"
                         >
-                          <Copy className={`w-4 h-4 ${copied === bankDetails.accountNumber ? 'text-[#B5D858]' : 'text-gray-500'}`} />
-                        </Button>
-                      </div>
+                          <div>
+                            <p className="text-sm text-gray-500">Account Number</p>
+                            <p className="font-medium">{details.accountNumber}</p>
+                          </div>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="hover:bg-[#59B7E7]/10"
+                            onClick={() =>
+                              handleCopy(details.accountNumber, 'Account number')
+                            }
+                          >
+                            <Copy
+                              className={`w-4 h-4 ${
+                                copied === details.accountNumber
+                                  ? 'text-[#B5D858]'
+                                  : 'text-gray-500'
+                              }`}
+                            />
+                          </Button>
 
-                      <div className="p-4 rounded-lg bg-[#59B7E7]/5 flex justify-between items-center">
-                        <div>
-                          <p className="text-sm text-gray-500">Account Name</p>
-                          <p className="font-medium">{bankDetails.accountName}</p>
-                        </div>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="hover:bg-[#59B7E7]/10"
-                          onClick={() => handleCopy(bankDetails.accountName, 'Account name')}
-                        >
-                          <Copy className={`w-4 h-4 ${copied === bankDetails.accountName ? 'text-[#B5D858]' : 'text-gray-500'}`} />
-                        </Button>
-                      </div>
+                          <div>
+                            <p className="text-sm text-gray-500">Account Name</p>
+                            <p className="font-medium">{details.accountName}</p>
+                          </div>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="hover:bg-[#59B7E7]/10"
+                            onClick={() =>
+                              handleCopy(details.accountName, 'Account name')
+                            }
+                          >
+                            <Copy
+                              className={`w-4 h-4 ${
+                                copied === details.accountName
+                                  ? 'text-[#B5D858]'
+                                  : 'text-gray-500'
+                              }`}
+                            />
+                          </Button>
 
-                      <div className="p-4 rounded-lg bg-[#59B7E7]/5 flex justify-between items-center">
-                        <div>
-                          <p className="text-sm text-gray-500">Bank Name</p>
-                          <p className="font-medium">{bankDetails.bankName}</p>
+                          <div>
+                            <p className="text-sm text-gray-500">Bank Name</p>
+                            <p className="font-medium">{details.bankName}</p>
+                          </div>
+                          <Image
+                            src="/logoUBA.jpeg"
+                            alt="Bank Logo"
+                            width={200}
+                            height={100}
+                            className="mr-2"
+                          />
                         </div>
-                        <Image
-                          src="/logoUBA.jpeg"
-                          alt="PayPal"
-                          width={200}
-                          height={100}
-                          className="mr-2"
-                        />
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="hover:bg-[#59B7E7]/10"
-                          onClick={() => handleCopy(bankDetails.bankName, 'Bank name')}
-                        >
-                          <Copy className={`w-4 h-4 ${copied === bankDetails.bankName ? 'text-[#B5D858]' : 'text-gray-500'}`} />
-                        </Button>
-                      </div>
+                      ))}
                     </div>
                   </div>
                 </CardContent>
@@ -144,4 +160,3 @@ export function DonationOptions() {
     </section>
   )
 }
-

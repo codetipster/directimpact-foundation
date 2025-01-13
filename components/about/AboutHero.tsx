@@ -7,15 +7,15 @@ import { useEffect, useRef } from 'react'
 
 const people = [
   {
-    image: "https://images.unsplash.com/photo-1543466835-00a7907e9de1",
-    name: "Max",
-    location: "Lagos, Nigeria",
+    image: "/me.jpeg",
+    name: "Sam",
+    location: "Tech",
     position: "-bottom-10 -right-10" // Bottom Right
   },
   {
-    image: "https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13",
-    name: "Luna",
-    location: "Abuja, Nigeria",
+    image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba",
+    name: "Team",
+    location: "support",
     position: "-top-10 -right-10" // Top Right
   },
   {
@@ -25,9 +25,9 @@ const people = [
     position: "-bottom-10 -left-10" // Bottom Left
   },
   {
-    image: "/me.jpeg",
-    name: "Sam",
-    location: "Tech support",
+    image: "/pesin.png",
+    name: "Femi",
+    location: "Operations",
     position: "-top-10 -left-10" // Top Left
   }
 ]
