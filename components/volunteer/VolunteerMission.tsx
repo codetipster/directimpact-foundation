@@ -1,20 +1,19 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { Button } from '@/components/ui/button'
 import { Hand, Target } from 'lucide-react'
 
 const impactCards = [
   {
-    title: 'We help Nepal',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    image: 'https://images.unsplash.com/photo-1544461772-722f499fa5aa',
-    link: '/causes/nepal'
+    title: 'Welfare Support for Vulnerable Families',
+    description: 'Our welfare programs provide essentials like food, medical assistance, and financial aid to families struggling to make ends meet',
+    image: '/wellfare.jpg',
+    
   },
   {
-    title: 'We help India',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    image: 'https://images.unsplash.com/photo-1535732759880-bbd5c7265e3f',
-    link: '/causes/india'
+    title: 'Building Sustainable Communities',
+    description: 'Our approach includes mentoring young people, providing remedial education, and connecting them with opportunities to access local and global markets. ',
+    image: '/community.jpg',
+    
   }
 ]
 
@@ -93,14 +92,7 @@ export function VolunteerMission() {
                     <p className="text-white/90 mb-4">
                       {card.description}
                     </p>
-                    <Button
-                      asChild
-                      className="w-fit bg-[#B5D858] hover:bg-[#B5D858]/90"
-                    >
-                      <Link href={card.link}>
-                        READ MORE
-                      </Link>
-                    </Button>
+                    
                   </div>
                 </div>
               </div>

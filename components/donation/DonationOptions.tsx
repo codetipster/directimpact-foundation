@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import {
@@ -15,13 +16,15 @@ import { toast } from 'sonner'
 
 const bankDetails = [
   {
+    label: "Dollar Account",
     accountNumber: '3004683145',
     accountName: 'Direct Impact Empowerment Foundation',
     bankName: 'United Bank For Africa (UBA)',
   },
   {
+    label: "Naira Account",
     accountNumber: '1027681829',
-    accountName: 'Direct Impact',
+    accountName: 'Direct Impact Empowerment Foundation',
     bankName: 'United Bank For Africa (UBA)',
   },
 ]
@@ -66,7 +69,8 @@ export function DonationOptions() {
                           key={index}
                           className="p-4 rounded-lg bg-[#59B7E7]/5 flex justify-between items-center"
                         >
-                          <div>
+                          <div className="flex flex-col gap-1">
+                            <span className="text-sm font-medium text-[#59B7E7]">{details.label}</span>
                             <p className="text-sm text-gray-500">Account Number</p>
                             <p className="font-medium">{details.accountNumber}</p>
                           </div>
@@ -87,7 +91,7 @@ export function DonationOptions() {
                             />
                           </Button>
 
-                          <div>
+                          <div className="flex flex-col gap-1">
                             <p className="text-sm text-gray-500">Account Name</p>
                             <p className="font-medium">{details.accountName}</p>
                           </div>
@@ -108,7 +112,7 @@ export function DonationOptions() {
                             />
                           </Button>
 
-                          <div>
+                          <div className="flex flex-col gap-1">
                             <p className="text-sm text-gray-500">Bank Name</p>
                             <p className="font-medium">{details.bankName}</p>
                           </div>
@@ -132,22 +136,32 @@ export function DonationOptions() {
                 <CardContent className="p-6">
                   <div className="text-center space-y-6">
                     <p className="text-gray-600">
-                      Convenient and secure. Click the button below to make a one-time or 
+                      Scan the QR code below or click the button to make a one-time or 
                       recurring donation through PayPal.
                     </p>
-                    <div className="flex justify-center">
+                    <div className="flex flex-col items-center gap-6">
+                      <Image
+                        src="/barcode.png"
+                        alt="PayPal QR Code"
+                        width={200}
+                        height={200}
+                        className="rounded-lg"
+                      />
                       <Button 
                         size="lg"
                         className="bg-[#B5D858] hover:bg-[#59B7E7] transition-colors"
+                        asChild
                       >
-                        <Image
-                          src="/paypal.png"
-                          alt="PayPal"
-                          width={80}
-                          height={20}
-                          className="mr-2"
-                        />
-                        Donate
+                        <Link href="https://paypal.me/DirectImpactEmpowerm?country.x=GB&locale.x=en_GB" target="_blank" rel="noopener noreferrer">
+                          <Image
+                            src="/paypal.png"
+                            alt="PayPal"
+                            width={80}
+                            height={20}
+                            className="mr-2"
+                          />
+                          Donate
+                        </Link>
                       </Button>
                     </div>
                   </div>
@@ -160,3 +174,4 @@ export function DonationOptions() {
     </section>
   )
 }
+

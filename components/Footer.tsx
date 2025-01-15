@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Facebook, Twitter, Instagram, Phone, Mail, MapPin } from 'lucide-react'
+import { Facebook, Phone, Mail, MapPin, Youtube } from 'lucide-react'
 import { FaTiktok, FaWhatsapp } from 'react-icons/fa'
 
 const navigationLinks = [
@@ -12,11 +12,12 @@ const navigationLinks = [
 ]
 
 const socialLinks = [
-  { icon: Facebook, href: '#', label: 'Facebook' },
-  { icon: Twitter, href: '#', label: 'Twitter' },
-  { icon: Instagram, href: '#', label: 'Instagram' },
-  { icon: FaTiktok, href: '#', label: 'TikTok' },
+  { icon: Facebook, href: 'https://www.facebook.com/profile.php?id=61560752956530&mibextid=ZbWKwL', label: 'Facebook' },
+  //{ icon: Twitter, href: '#', label: 'Twitter' },
+  //{ icon: Instagram, href: '#', label: 'Instagram' },
+  { icon: FaTiktok, href: 'https://vm.tiktok.com/ZNeK1bxUh/', label: 'TikTok' },
   { icon: FaWhatsapp, href: '#', label: 'WhatsApp' },
+  { icon: Youtube, href: 'https://www.youtube.com/@DirectImpactempowerment', label: 'YouTube' },
 ]
 
 export function Footer() {

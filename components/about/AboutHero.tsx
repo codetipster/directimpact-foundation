@@ -13,15 +13,15 @@ const people = [
     position: "-bottom-10 -right-10" // Bottom Right
   },
   {
-    image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba",
-    name: "Team",
+    image: "/you.jpg",
+    name: "You",
     location: "support",
     position: "-top-10 -right-10" // Top Right
   },
   {
-    image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba",
-    name: "Charlie",
-    location: "Ibadan, Nigeria",
+    image: "/reuben.jpeg",
+    name: "Reuben",
+    location: "CEO",
     position: "-bottom-10 -left-10" // Bottom Left
   },
   {

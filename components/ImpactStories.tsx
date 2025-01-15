@@ -21,7 +21,7 @@ interface ActivityCardProps {
 
 const activities: Activity[] = [
   {
-    title: "Specialist Fashion Design Training",
+    title: "Specialist Fashion Design Training  (Training Center in Progress!)",
     description: "The foundation is training youths in advanced fashion design techniques, equipping them with technical and entrepreneurial skills to meet both local and global demands.",
     image: "/fashion.jpg",
     slug: "fashion-design-training"

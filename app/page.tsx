@@ -6,6 +6,7 @@ import { VolunteerCTA } from '@/components/VolunteerCTA'
 import { DonationFeatures } from '@/components/DonationFeatures'
 //import { TeamSection } from '@/components/TeamSection'
 import ImpactStories from '@/components/ImpactStories'
+import { AboutImpact } from '@/components/about/AboutImpact'
 import { OurPartners } from '@/components/OurPartners'
 
 export default function Home() {
@@ -14,11 +15,13 @@ export default function Home() {
       <Hero />
       <ImpactMetrics />
       <ImpactStories />
-      <OurPartners />
+      {/* <OurPartners /> */}
       {/* <VideoSection /> */}
       {/* <TeamSection /> */}
       {/* <TestimonialsSection /> */}
+      <AboutImpact />
       <DonationFeatures />
+      <OurPartners />
       <VolunteerCTA />
     </main>
   )
