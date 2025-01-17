@@ -132,7 +132,8 @@ export function Footer() {
                 <div>
                   <p className="font-medium text-[#59B7E7]">Address</p>
                   <p className="text-gray-600">
-                    Lagos, Nigeria
+                    21 Bale Street, Apata <br />
+                    Ibadan, Nigeria
                   </p>
                 </div>
               </div>

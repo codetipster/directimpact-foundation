@@ -11,7 +11,7 @@ const causes = [
     icon: HomeIcon,
     title: "Welfare Support for Vulnerable Families",
     summary: "We are committed to supporting underprivileged families by addressing their immediate needs. Our welfare programs provide essentials like food, medical assistance, and financial aid to families struggling to make ends meet. This cause is central to our mission of alleviating poverty and ensuring that no one is left behind. Your support helps us extend a lifeline to those who need it the most.",
-    image: "/causes.avif",
+    image: "/rpa.jpeg",
     phase: 1
   },
   {
@@ -25,7 +25,7 @@ const causes = [
     icon: Briefcase,
     title: "Micro-Credit Support for Entrepreneurs",
     summary: "Access to funding is a significant barrier for many aspiring entrepreneurs. Our micro-credit scheme is designed to provide interest-free loans and startup resources to graduates of our programs. By enabling them to purchase equipment and start their businesses, we aim to foster a culture of entrepreneurship and drive economic growth within their communities.",
-    image: "/loans.jpg",
+    image: "/sew.jpg",
     phase: 2
   },
   {
