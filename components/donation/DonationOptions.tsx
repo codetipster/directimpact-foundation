@@ -16,14 +16,26 @@ import { toast } from 'sonner'
 
 const bankDetails = [
   {
-    label: "Dollar Account",
-    accountNumber: '3004683145',
+    label: "Naira Account",
+    accountNumber: '1027681829',
     accountName: 'Direct Impact Empowerment Foundation',
     bankName: 'United Bank For Africa (UBA)',
   },
   {
-    label: "Naira Account",
-    accountNumber: '1027681829',
+    label: "Euro Account - Swift code; UNAFNGLA206",
+    accountNumber: '3004685730',
+    accountName: 'Direct Impact Empowerment Foundation',
+    bankName: 'United Bank For Africa (UBA)',
+  },
+  {
+    label: "Pounds Account - Swift code; UNAFNGLA206",
+    accountNumber: '3004685589',
+    accountName: 'Direct Impact Empowerment Foundation',
+    bankName: 'United Bank For Africa (UBA)',
+  },
+  {
+    label: "Dollar Account - Swift code; UNAFNGLA206",
+    accountNumber: '3004683145',
     accountName: 'Direct Impact Empowerment Foundation',
     bankName: 'United Bank For Africa (UBA)',
   },

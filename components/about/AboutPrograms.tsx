@@ -18,8 +18,8 @@ const programs = [
   },
   {
     icon: GraduationCap,
-    title: 'Foundational Education',
-    description: 'Delivering remedial courses in Mathematics, English, and Business fundamentals to ensure holistic development.',
+    title: 'Self-Reliance initiatives',
+    description: 'Providing support to vulnerable individuals by helping them establish small-scale startup businesses, enabling them to achieve financial independence to sustain themselves',
   },
   {
     icon: Users,
