@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export function VolunteerCTA() {
   return (
@@ -49,12 +50,14 @@ export function VolunteerCTA() {
                 <br />
                 Volunteer
               </h2>
-              <Button
-                variant="secondary"
-                className="bg-[#59B7E7] hover:bg-[#F2E5E5]/90 text-[#ffffff] w-fit relative z-10"
-              >
-                Apply Now
-              </Button>
+                <Link href="/volunteer" passHref>
+                <Button
+                  variant="secondary"
+                  className="bg-[#59B7E7] hover:bg-[#F2E5E5]/90 text-[#ffffff] w-fit relative z-10"
+                >
+                  Apply Now
+                </Button>
+                </Link>
             </div>
 
             {/* Right Image */}

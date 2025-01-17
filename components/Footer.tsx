@@ -144,7 +144,7 @@ export function Footer() {
         <div className="mt-12 pt-8 border-t border-[#59B7E7]/20">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-gray-600">
-              Copyright © {new Date().getFullYear()} DirectImpact Foundation | All Rights Reserved
+              Copyright © {new Date().getFullYear()} DirectImpact Empowerment Foundation | All Rights Reserved
             </p>
             <div className="flex gap-4">
               <Link href="/privacy" className="text-gray-600 hover:text-[#B5D858] transition-colors">
