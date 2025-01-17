@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 //import { Button } from '@/components/ui/button'
-import { Users, GraduationCap, Briefcase, Heart, LineChart } from 'lucide-react'
+import { Users, GraduationCap, Briefcase, LineChart } from 'lucide-react'
 import { motion, useInView } from 'framer-motion'
 
 const challenges = [
@@ -33,13 +33,6 @@ const challenges = [
     stat: "10x",
     description: "return in economic growth for every $1 invested in youth skills",
     color: "#B5D858"
-  },
-  {
-    icon: Heart,
-    title: "Gender Gap",
-    stat: "1.5x",
-    description: "young women are more likely to be unemployed than young men",
-    color: "#59B7E7"
   }
 ]
 
