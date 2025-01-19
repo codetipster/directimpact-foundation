@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 export function VolunteerHero() {
   const handleJoinClick = () => {
-    window.open('https://wa.me/1234567890', '_blank')
+    window.open('https://chat.whatsapp.com/EksNIVwQLKc7reZXdGuGnR', '_blank')
   }
 
   return (
