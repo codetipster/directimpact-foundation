@@ -10,25 +10,25 @@ const people = [
     image: "/me.jpeg",
     name: "Sam",
     location: "Tech",
-    position: "-bottom-10 -right-10" // Bottom Right
+    position: "-bottom-5 -right-25" // Bottom Right
   },
   {
-    image: "/you.jpg",
-    name: "You",
-    location: "support",
-    position: "-top-10 -right-10" // Top Right
+    image: "/devco.jpeg",
+    name: "Rosemarie",
+    location: "Development Coordinator", 
+    position: "-top-[-220] -right-25" // Top Right
   },
   {
     image: "/reuben.jpeg",
     name: "Reuben",
     location: "CEO",
-    position: "-bottom-10 -left-10" // Bottom Left
+    position: "-bottom-10 -left-25" // Bottom Left
   },
   {
     image: "/pesin.png",
     name: "Femi",
     location: "Operations",
-    position: "-top-10 -left-10" // Top Left
+    position: "-bottom-10 -left-25" // Top Left
   }
 ]
 
