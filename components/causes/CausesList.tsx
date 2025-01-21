@@ -30,9 +30,9 @@ const causes = [
   },
   {
     icon: Building2,
-    title: "Building Sustainable Communities",
-    summary: "Beyond immediate support, we are committed to creating long-term change by fostering sustainable community development. Our approach includes mentoring young people, providing remedial education, and connecting them with opportunities to access local and global markets. Together, we can create resilient communities where everyone has the opportunity to thrive.",
-    image: "/community.jpg",
+    title: "Spreading Love and Hope | Supporting the Vulnerable During Festive Seasons",
+    summary: "At Direct Impact Empowerment we believe that no one should feel left behind, especially during festive periods. That’s why we reach out to the underprivileged and vulnerable in our community to spread joy and provide relief.Our initiative focuses on supplying essential food items and financial support, ensuring families can celebrate the season with dignity and happiness. Each contribution makes a meaningful difference in the lives of those who need it most.",
+    image: "/love.jpeg",
     phase: 2
   }
 ]
