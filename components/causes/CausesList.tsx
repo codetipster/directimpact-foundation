@@ -18,7 +18,7 @@ const causes = [
     icon: Users,
     title: "Tackling Youth Unemployment",
     summary: "Youth unemployment is a pressing issue, and we aim to address it through innovative programs. Our focus is on equipping young individuals with the skills and resources they need to succeed in the workforce. Through initiatives like specialist fashion design training and business incubation, we empower youth to become self-reliant and economically productive. Unfortunately, this phase is yet to take off due to funding limitations, but with your support, we can turn this vision into reality.",
-    image: "/unemploy.jpg",
+    image: "/tailor.jpg",
     phase: 2
   },
   {
