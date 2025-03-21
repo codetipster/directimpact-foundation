@@ -90,9 +90,9 @@ const slides = [
     image: "/global.jpeg"
   },
   {
-    title: "Thriving Communities,\nResilient Economies\nFor All",
-    subtitle: "Youth and Community Advancement Initiative",
-    description: "Our mission is to tackle youth unemployment by integrating micro-credit schemes and business incubation, fostering economic stability, and enabling lasting societal progress.",
+    title: "Caring for the Forgotten: Supporting the Elderly and Vulnerable",
+    subtitle: "Community Care and Support Initiative",
+description: "Compassionate Care, Dignified Lives\nOur mission is to support the very elderly and vulnerable, often forgotten behind closed doors, by addressing their medical needs and welfare. We are committed to providing personalised care, fostering dignity, and ensuring they are not left behind in society’s progress. Together, we create a community where everyone is valued and cared for",
     image: "/community.jpg"
   }
 ];

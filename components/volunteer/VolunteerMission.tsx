@@ -10,8 +10,8 @@ const impactCards = [
     
   },
   {
-    title: 'Building Sustainable Communities',
-    description: 'Our approach includes mentoring young people, providing remedial education, and connecting them with opportunities to access local and global markets. ',
+    title: 'Ensuring Care and Sustenance',
+    description: 'Caring for the Forgotten: We are dedicated to looking out for the vulnerable in our community to ensure they are not neglected. By addressing their medical needs and providing food support, we strive to create a compassionate environment where everyone is cared for and valued. Together, we work to bring hope and dignity to those who need it most.',
     image: '/community.jpg',
     
   }
