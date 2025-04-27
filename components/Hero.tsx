@@ -48,7 +48,7 @@ export function Hero() {
   useEffect(() => {
     const timer = setInterval(nextSlide, 5000)
     return () => clearInterval(timer)
-  }, [])
+  }, [nextSlide])
 
   return (
     <div className="relative bg-[#59B7E7]/5">

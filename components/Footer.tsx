@@ -3,13 +3,13 @@ import Image from "next/image"
 import { Facebook, Phone, Mail, MapPin, Youtube } from "lucide-react"
 import { FaTiktok, FaWhatsapp } from "react-icons/fa"
 
-const navigationLinks = [
+/* const navigationLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Donate", href: "/donate" },
   //{ label: 'Insights', href: '/insights' },
   { label: "Contact", href: "/contact" },
-]
+] */
 
 const socialLinks = [
   {
