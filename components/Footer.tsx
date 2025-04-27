@@ -74,22 +74,7 @@ export function Footer() {
 
           {/* Navigation */}
           <div className="md:col-span-4 lg:col-span-3">
-            <h3 className="font-semibold text-lg mb-4 text-[#59B7E7]">Navigation</h3>
-            <nav className="flex flex-col gap-3">
-              {navigationLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-gray-600 hover:text-[#B5D858] transition-colors flex items-center gap-2"
-                >
-                  <span
-                    className="w-1.5 h-1.5 rounded-full bg-[#B5D858] opacity-0 transition-opacity 
-                    group-hover:opacity-100"
-                  ></span>
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
+            
           </div>
 
           {/* Contact Information */}
@@ -159,9 +144,14 @@ export function Footer() {
         {/* Copyright */}
         <div className="mt-12 pt-8 border-t border-[#59B7E7]/20">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-gray-600">
-              Copyright © {new Date().getFullYear()} Direct Impact Empowerment Foundation | All Rights Reserved
-            </p>
+          <p className="text-gray-600">
+            Copyright © {new Date().getFullYear()} Direct Impact Empowerment Foundation | All Rights Reserved
+            <br />
+            <span className="text-sm mt-1 inline-block text-[#59B7E7]">
+              Direct Impact Empowerment is a registered charity in Switzerland [CHE-415.427.651] and in Nigeria
+              [CAC/IT/7420254]
+            </span>
+          </p>
             <div className="flex gap-4">
               <Link href="/privacy" className="text-gray-600 hover:text-[#B5D858] transition-colors">
                 Privacy Policy

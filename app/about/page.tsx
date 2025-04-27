@@ -6,6 +6,7 @@ import { AboutPrograms } from '../../components/about/AboutPrograms'
 import { AboutImpact } from '../../components/about/AboutImpact'
 import { AboutStory } from '../../components/about/AboutStory'
 import { AboutPartners } from '../../components/about/AboutPartners'
+import { Popup } from '../../components/about/Popup' 
 
 export const metadata: Metadata = {
   title: 'About Us - DirectImpact Empowerment Foundation',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <main>
+       <Popup />
       <AboutHero />
       <AboutMission />
       <AboutValues />
