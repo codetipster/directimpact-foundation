@@ -16,7 +16,7 @@ const people = [
     image: "/devco.jpeg",
     name: "Rosemarie",
     location: "Development Coordinator", 
-    position: "-top-[-220] -right-25" // Top Right
+    position: "-top-[-200] -right-25" // Top Right
   },
   {
     image: "/reuben.jpeg",

@@ -12,7 +12,7 @@ export function AboutStory() {
                 <p>
                   Direct Impact Empowerment Foundation was born out of a desire to 
                   address the challenges of unemployment and poverty in Nigeria. Our 
-                  founders, led by Eka Oga Reuben, saw the immense potential in youth 
+                  founder, led by Eka Oga Reuben, saw the immense potential in youth 
                   across Apata, Ibadan, and envisioned a future where every young person 
                   had access to meaningful opportunities.
                 </p>
