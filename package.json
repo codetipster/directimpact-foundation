@@ -5,11 +5,10 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "export": "next export",
     "start": "next start",
     "lint": "next lint",
     "clean": "rm -rf .next out",
-    "deploy": "npm run clean && next build && next export && aws s3 sync out s3://directimpactempowerment.org --acl public-read --delete && aws cloudfront create-invalidation --distribution-id YOUR_DISTRIBUTION_ID --paths \"/*\""
+    "deploy": "npm run clean && next build && aws s3 sync out s3://directimpactempowerment.org --acl public-read --delete && aws cloudfront create-invalidation --distribution-id E3GB7CH29DCI1Z --paths \"/*\""
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.1",
