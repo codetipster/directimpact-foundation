@@ -12,12 +12,7 @@ const people = [
     location: "Tech",
     position: "-bottom-5 -right-25" // Bottom Right
   },
-  {
-    image: "/devco.jpeg",
-    name: "Rosemarie",
-    location: "Development Coordinator", 
-    position: "-top-[-200] -right-25" // Top Right
-  },
+ 
   {
     image: "/reuben.jpeg",
     name: "Reuben",
