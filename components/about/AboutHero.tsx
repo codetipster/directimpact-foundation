@@ -6,26 +6,33 @@ import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 
 const people = [
-  {
-    image: "/me.jpeg",
-    name: "Sam",
-    location: "Tech",
-    position: "-bottom-5 -right-25" // Bottom Right
-  },
- 
-  {
-    image: "/reuben.jpeg",
-    name: "Reuben",
-    location: "CEO",
-    position: "-bottom-10 -left-25" // Bottom Left
-  },
+  
   {
     image: "/pesin.png",
     name: "Femi",
     location: "Operations",
-    position: "-bottom-10 -left-25" // Top Left
-  }
+    position: "-bottom-2 -left-2" // Bottom Left
+  },
+  {
+    image: "/devco.jpeg",
+    name: "Rosemarie",
+    location: "Development Coordinator", 
+    position: "-bottom-2 -left-2" 
+  },
+  {
+    image: "/me.jpeg",
+    name: "Sam",
+    location: "Tech",
+    position: "-bottom-2 -left-2" // Bottom Right
+  },
+  {
+    image: "/reuben.jpeg",
+    name: "Reuben",
+    location: "CEO",
+    position: "-bottom-2 -left-2" // Bottom Left
+  },
 ]
+
 
 export function AboutHero() {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -67,9 +74,9 @@ export function AboutHero() {
                       className="object-cover aspect-square"
                     />
                   </div>
-                  <div className={`absolute ${person.position} bg-[#F3F7EA]/95 backdrop-blur-sm rounded-lg p-6 z-10`}>
-                    <div className="text-2xl font-bold">{person.name}</div>
-                    <div className="text-sm text-gray-600">
+                  <div className={`absolute ${person.position} bg-[#F3F7EA]/95 backdrop-blur-sm rounded-md p-2 z-10 shadow-lg border border-white/20`}>
+                    <div className="text-sm font-semibold text-gray-800">{person.name}</div>
+                    <div className="text-xs text-gray-600 leading-tight">
                       {person.location}
                     </div>
                   </div>
