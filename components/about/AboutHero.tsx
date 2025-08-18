@@ -41,7 +41,7 @@ export function AboutHero() {
                 to making a difference </span> 
             </h1>
             <p className="text-white/80 mb-8 text-lg">
-            Together, we're shaping a future where every youth can thrive and contribute meaningfully to society.
+            Together, we&apos;re shaping a future where every youth can thrive and contribute meaningfully to society.
             </p>
             <Link href="/donate">
               <Button 
