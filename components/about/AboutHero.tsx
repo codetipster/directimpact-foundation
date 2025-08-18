@@ -5,35 +5,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 
-const people = [
-  
-  {
-    image: "/pesin.png",
-    name: "Femi",
-    location: "Operations",
-    position: "-bottom-2 -left-2" // Bottom Left
-  },
-  {
-    image: "/devco.jpeg",
-    name: "Rosemarie",
-    location: "Development Coordinator", 
-    position: "-bottom-2 -left-2" 
-  },
-  {
-    image: "/me.jpeg",
-    name: "Sam",
-    location: "Tech",
-    position: "-bottom-2 -left-2" // Bottom Right
-  },
-  {
-    image: "/reuben.jpeg",
-    name: "Reuben",
-    location: "CEO",
-    position: "-bottom-2 -left-2" // Bottom Left
-  },
-]
-
-
 export function AboutHero() {
   const videoRef = useRef<HTMLVideoElement>(null)
 
@@ -46,7 +17,7 @@ export function AboutHero() {
   }, [])
 
   return (
-    <section className="relative min-h-screen bg-black py-20 overflow-hidden">
+    <section className="relative bg-black py-16 overflow-hidden">
       {/* Background Video with Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -59,33 +30,8 @@ export function AboutHero() {
       </div>
 
       <div className="container relative z-10 mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Side - Image Collage with Stats */}
-          <div className="relative">
-            <div className="grid grid-cols-2 gap-12">
-              {people.map((person, index) => (
-                <div key={index} className="relative">
-                  <div className="rounded-2xl overflow-hidden bg-white/5 backdrop-blur-sm">
-                    <Image
-                      src={person.image}
-                      alt={`${person.name} - Rescue dog from ${person.location}`}
-                      width={400}
-                      height={400}
-                      className="object-cover aspect-square"
-                    />
-                  </div>
-                  <div className={`absolute ${person.position} bg-[#F3F7EA]/95 backdrop-blur-sm rounded-md p-2 z-10 shadow-lg border border-white/20`}>
-                    <div className="text-sm font-semibold text-gray-800">{person.name}</div>
-                    <div className="text-xs text-gray-600 leading-tight">
-                      {person.location}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right Side - Content */}
+        <div className="max-w-4xl mx-auto text-center">
+          {/* Content */}
           <div className="text-white">
             <h2 className="uppercase tracking-wider mb-4">
               Transforming Lives
@@ -94,9 +40,8 @@ export function AboutHero() {
               Meet the Heart of Our Mission <br /><span className="text-[#B5D858]">Our journey
                 to making a difference </span> 
             </h1>
-            <p className="text-white/80 mb-8">
-            Together, we’re shaping a future where every youth can thrive and contribute meaningfully to society.
-              
+            <p className="text-white/80 mb-8 text-lg">
+            Together, we're shaping a future where every youth can thrive and contribute meaningfully to society.
             </p>
             <Link href="/donate">
               <Button 
