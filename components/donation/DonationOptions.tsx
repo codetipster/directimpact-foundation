@@ -20,24 +20,15 @@ const bankDetails = [
     accountNumber: '1027681829',
     accountName: 'Direct Impact Empowerment Foundation',
     bankName: 'United Bank For Africa (UBA)',
+    bankLogo: '/logoUBA.jpeg',
   },
   {
-    label: "Euro Account - Swift code; UNAFNGLA206",
-    accountNumber: '3004685730',
+    label: "FOR INTERNATIONAL DONATIONS",
+    accountNumber: 'CH94 83019 DIRECTIMP002',
     accountName: 'Direct Impact Empowerment Foundation',
-    bankName: 'United Bank For Africa (UBA)',
-  },
-  {
-    label: "Pounds Account - Swift code; UNAFNGLA206",
-    accountNumber: '3004685589',
-    accountName: 'Direct Impact Empowerment Foundation',
-    bankName: 'United Bank For Africa (UBA)',
-  },
-  {
-    label: "Dollar Account - Swift code; UNAFNGLA206",
-    accountNumber: '3004683145',
-    accountName: 'Direct Impact Empowerment Foundation',
-    bankName: 'United Bank For Africa (UBA)',
+    bankName: 'Yapeal AG',
+    swiftCode: 'YAPECHZ2',
+    bankLogo: null, // No logo for Yapeal AG
   },
 ]
 
@@ -85,13 +76,15 @@ export function DonationOptions() {
                           <div className="grid grid-cols-1 md:hidden gap-4">
                             <div className="flex items-center justify-between">
                               <span className="text-sm font-medium text-[#59B7E7]">{details.label}</span>
-                              <Image
-                                src="/logoUBA.jpeg"
-                                alt="Bank Logo"
-                                width={80}
-                                height={40}
-                                className="object-contain"
-                              />
+                              {details.bankLogo && (
+                                <Image
+                                  src={details.bankLogo}
+                                  alt="Bank Logo"
+                                  width={80}
+                                  height={40}
+                                  className="object-contain"
+                                />
+                              )}
                             </div>
                             
                             <div className="flex items-center justify-between">
@@ -142,6 +135,29 @@ export function DonationOptions() {
                                 <p className="font-medium">{details.bankName}</p>
                               </div>
                             </div>
+
+                            {details.swiftCode && (
+                              <div className="flex items-center justify-between">
+                                <div className="flex flex-col gap-1">
+                                  <p className="text-sm text-gray-500">BIC / SWIFT</p>
+                                  <p className="font-medium">{details.swiftCode}</p>
+                                </div>
+                                <Button
+                                  variant="ghost"
+                                  size="icon"
+                                  className="hover:bg-[#59B7E7]/10"
+                                  onClick={() => handleCopy(details.swiftCode, 'SWIFT code')}
+                                >
+                                  <Copy
+                                    className={`w-4 h-4 ${
+                                      copied === details.swiftCode
+                                        ? 'text-[#B5D858]'
+                                        : 'text-gray-500'
+                                    }`}
+                                  />
+                                </Button>
+                              </div>
+                            )}
                           </div>
 
                           {/* Desktop Layout */}
@@ -189,13 +205,23 @@ export function DonationOptions() {
                               <p className="text-sm text-gray-500">Bank Name</p>
                               <p className="font-medium">{details.bankName}</p>
                             </div>
-                            <Image
-                              src="/logoUBA.jpeg"
-                              alt="Bank Logo"
-                              width={200}
-                              height={100}
-                              className="mr-2"
-                            />
+
+                            {details.swiftCode && (
+                              <div className="flex flex-col gap-1">
+                                <p className="text-sm text-gray-500">BIC / SWIFT</p>
+                                <p className="font-medium">{details.swiftCode}</p>
+                              </div>
+                            )}
+
+                            {details.bankLogo && (
+                              <Image
+                                src={details.bankLogo}
+                                alt="Bank Logo"
+                                width={200}
+                                height={100}
+                                className="mr-2"
+                              />
+                            )}
                           </div>
                         </div>
                       ))}
