@@ -1,7 +1,7 @@
 
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
@@ -33,11 +33,11 @@ export function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     if (!isAnimating) {
       setCurrentSlide((prev) => (prev + 1) % slides.length)
     }
-  }
+  }, [isAnimating])
 
   const prevSlide = () => {
     if (!isAnimating) {

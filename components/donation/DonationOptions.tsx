@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Copy, Mail } from 'lucide-react'
@@ -108,7 +107,7 @@ export function DonationOptions() {
                 <div className="text-center mb-6">
                   <h3 className="text-2xl font-bold mb-4">🇨🇭 Donate in Switzerland (CHF)</h3>
                   <p className="text-gray-600 mb-6">
-                    If you're based in Switzerland, you can easily donate by scanning the QR-bill or using the bank details below.
+                    If you&apos;re based in Switzerland, you can easily donate by scanning the QR-bill or using the bank details below.
                   </p>
                 </div>
 
@@ -237,7 +236,7 @@ export function DonationOptions() {
                 <div className="text-center mb-6">
                   <h3 className="text-2xl font-bold mb-4">🌍 Donate from Outside Switzerland (International Transfers)</h3>
                   <p className="text-gray-600 mb-6">
-                    If you're outside Switzerland, please use these international (SWIFT) transfer details.
+                    If you&apos;re outside Switzerland, please use these international (SWIFT) transfer details.
                   </p>
                 </div>
 
@@ -356,7 +355,7 @@ export function DonationOptions() {
                   </div>
                   <h3 className="text-xl font-semibold mb-4">Donation Receipt & Anonymous Donations</h3>
                   <p className="text-gray-600 mb-4">
-                    If you'd like a donation receipt or prefer to remain anonymous, please email:
+                    If you&apos;d like a donation receipt or prefer to remain anonymous, please email:
                   </p>
                   <div className="flex items-center justify-center gap-2">
                     <Button
