@@ -14,10 +14,8 @@ export function DonationHero() {
             Transform Lives with Your Generosity
           </h1>
           <p className="text-lg text-gray-600 mb-8">
-            Your support can empower youth, uplift communities, and create a sustainable future. 
-            Every contribution helps us provide specialized training, business incubation, and 
-            micro-credit access to young individuals striving to overcome poverty and unemployment. 
-            Together, we can turn potential into progress.
+            We believe in a world where no one is invisible.
+            Your support helps us reach the forgotten, empower the willing, and heal the broken.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 

@@ -5,32 +5,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '@/components/ui/tabs'
-import { Copy } from 'lucide-react'
+import { Copy, Mail } from 'lucide-react'
 import { toast } from 'sonner'
-
-const bankDetails = [
-  {
-    label: "Naira Account",
-    accountNumber: '1027681829',
-    accountName: 'Direct Impact Empowerment Foundation',
-    bankName: 'United Bank For Africa (UBA)',
-    bankLogo: '/logoUBA.jpeg',
-  },
-  {
-    label: "FOR INTERNATIONAL DONATIONS",
-    accountNumber: 'CH94 83019 DIRECTIMP002',
-    accountName: 'Direct Impact Empowerment Foundation',
-    bankName: 'Yapeal AG',
-    swiftCode: 'YAPECHZ2',
-    bankLogo: null, // No logo for Yapeal AG
-  },
-]
 
 export function DonationOptions() {
   const [copied, setCopied] = useState('')
@@ -48,227 +24,354 @@ export function DonationOptions() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">How to Donate</h2>
 
-          <Tabs defaultValue="bank" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 mb-8">
-              <TabsTrigger value="bank">Bank Transfer</TabsTrigger>
-              <TabsTrigger value="paypal">PayPal</TabsTrigger>
-            </TabsList>
+          <div className="space-y-8">
+            {/* Nigerian Account Section */}
+            <Card>
+              <CardContent className="p-6">
+                <div className="text-center mb-6">
+                  <h3 className="text-2xl font-bold mb-4">🇳🇬 Donate in Nigeria (NGN)</h3>
+                  <p className="text-gray-600 mb-6">
+                    For donations within Nigeria, you can transfer directly to our United Bank for Africa (UBA) account.
+                  </p>
+                </div>
 
-            <TabsContent value="bank">
-              <Card>
-                <CardContent className="p-6">
-                  <div className="space-y-6">
-                    <div className="text-center mb-8">
-                      <p className="text-gray-600 mb-4">
-                        Support us directly by transferring funds to the account details below. 
-                        You can choose a one-time donation or set up recurring contributions 
-                        to support our ongoing programs.
-                      </p>
-                    </div>
-                     
-                    <div className="grid gap-4">
-                      {bankDetails.map((details, index) => (
-                        <div
-                          key={index}
-                          className="p-4 rounded-lg bg-[#59B7E7]/5"
-                        >
-                          {/* Mobile Layout */}
-                          <div className="grid grid-cols-1 md:hidden gap-4">
-                            <div className="flex items-center justify-between">
-                              <span className="text-sm font-medium text-[#59B7E7]">{details.label}</span>
-                              {details.bankLogo && (
-                                <Image
-                                  src={details.bankLogo}
-                                  alt="Bank Logo"
-                                  width={80}
-                                  height={40}
-                                  className="object-contain"
-                                />
-                              )}
-                            </div>
-                            
-                            <div className="flex items-center justify-between">
-                              <div className="flex flex-col gap-1">
-                                <p className="text-sm text-gray-500">Account Number</p>
-                                <p className="font-medium">{details.accountNumber}</p>
-                              </div>
-                              <Button
-                                variant="ghost"
-                                size="icon"
-                                className="hover:bg-[#59B7E7]/10"
-                                onClick={() => handleCopy(details.accountNumber, 'Account number')}
-                              >
-                                <Copy
-                                  className={`w-4 h-4 ${
-                                    copied === details.accountNumber
-                                      ? 'text-[#B5D858]'
-                                      : 'text-gray-500'
-                                  }`}
-                                />
-                              </Button>
-                            </div>
+                <div className="flex justify-center mb-6">
+                  <Image
+                    src="/logoUBA.jpeg"
+                    alt="UBA Bank Logo"
+                    width={200}
+                    height={100}
+                    className="object-contain"
+                  />
+                </div>
 
-                            <div className="flex items-center justify-between">
-                              <div className="flex flex-col gap-1">
-                                <p className="text-sm text-gray-500">Account Name</p>
-                                <p className="font-medium">{details.accountName}</p>
-                              </div>
-                              <Button
-                                variant="ghost"
-                                size="icon"
-                                className="hover:bg-[#59B7E7]/10"
-                                onClick={() => handleCopy(details.accountName, 'Account name')}
-                              >
-                                <Copy
-                                  className={`w-4 h-4 ${
-                                    copied === details.accountName
-                                      ? 'text-[#B5D858]'
-                                      : 'text-gray-500'
-                                  }`}
-                                />
-                              </Button>
-                            </div>
-
-                            <div className="flex items-center justify-between">
-                              <div className="flex flex-col gap-1">
-                                <p className="text-sm text-gray-500">Bank Name</p>
-                                <p className="font-medium">{details.bankName}</p>
-                              </div>
-                            </div>
-
-                            {details.swiftCode && (
-                              <div className="flex items-center justify-between">
-                                <div className="flex flex-col gap-1">
-                                  <p className="text-sm text-gray-500">BIC / SWIFT</p>
-                                  <p className="font-medium">{details.swiftCode}</p>
-                                </div>
-                                <Button
-                                  variant="ghost"
-                                  size="icon"
-                                  className="hover:bg-[#59B7E7]/10"
-                                  onClick={() => handleCopy(details.swiftCode, 'SWIFT code')}
-                                >
-                                  <Copy
-                                    className={`w-4 h-4 ${
-                                      copied === details.swiftCode
-                                        ? 'text-[#B5D858]'
-                                        : 'text-gray-500'
-                                    }`}
-                                  />
-                                </Button>
-                              </div>
-                            )}
-                          </div>
-
-                          {/* Desktop Layout */}
-                          <div className="hidden md:flex justify-between items-center">
-                            <div className="flex flex-col gap-1">
-                              <span className="text-sm font-medium text-[#59B7E7]">{details.label}</span>
-                              <p className="text-sm text-gray-500">Account Number</p>
-                              <p className="font-medium">{details.accountNumber}</p>
-                            </div>
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              className="hover:bg-[#59B7E7]/10"
-                              onClick={() => handleCopy(details.accountNumber, 'Account number')}
-                            >
-                              <Copy
-                                className={`w-4 h-4 ${
-                                  copied === details.accountNumber
-                                    ? 'text-[#B5D858]'
-                                    : 'text-gray-500'
-                                }`}
-                              />
-                            </Button>
-
-                            <div className="flex flex-col gap-1">
-                              <p className="text-sm text-gray-500">Account Name</p>
-                              <p className="font-medium">{details.accountName}</p>
-                            </div>
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              className="hover:bg-[#59B7E7]/10"
-                              onClick={() => handleCopy(details.accountName, 'Account name')}
-                            >
-                              <Copy
-                                className={`w-4 h-4 ${
-                                  copied === details.accountName
-                                    ? 'text-[#B5D858]'
-                                    : 'text-gray-500'
-                                }`}
-                              />
-                            </Button>
-
-                            <div className="flex flex-col gap-1">
-                              <p className="text-sm text-gray-500">Bank Name</p>
-                              <p className="font-medium">{details.bankName}</p>
-                            </div>
-
-                            {details.swiftCode && (
-                              <div className="flex flex-col gap-1">
-                                <p className="text-sm text-gray-500">BIC / SWIFT</p>
-                                <p className="font-medium">{details.swiftCode}</p>
-                              </div>
-                            )}
-
-                            {details.bankLogo && (
-                              <Image
-                                src={details.bankLogo}
-                                alt="Bank Logo"
-                                width={200}
-                                height={100}
-                                className="mr-2"
-                              />
-                            )}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="paypal">
-              <Card>
-                <CardContent className="p-6">
-                  <div className="text-center space-y-6">
-                    <p className="text-gray-600">
-                      Scan the QR code below or click the button to make a one-time or 
-                      recurring donation through PayPal.
-                    </p>
-                    <div className="flex flex-col items-center gap-6">
-                      <Image
-                        src="/barcode.png"
-                        alt="PayPal QR Code"
-                        width={200}
-                        height={200}
-                        className="rounded-lg"
-                      />
-                      <Button 
-                        size="lg"
-                        className="bg-[#B5D858] hover:bg-[#59B7E7] transition-colors"
-                        asChild
+                <div className="space-y-4">
+                  <h4 className="text-lg font-semibold text-center">Account Details:</h4>
+                  
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                      <div>
+                        <p className="text-sm text-gray-500">Account Number</p>
+                        <p className="font-medium">1027681829</p>
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="hover:bg-[#59B7E7]/10"
+                        onClick={() => handleCopy('1027681829', 'Account number')}
                       >
-                        <Link href="https://paypal.me/DirectImpactEmpowerm?country.x=GB&locale.x=en_GB" target="_blank" rel="noopener noreferrer">
-                          <Image
-                            src="/paypal.png"
-                            alt="PayPal"
-                            width={80}
-                            height={20}
-                            className="mr-2"
-                          />
-                          Donate
-                        </Link>
+                        <Copy
+                          className={`w-4 h-4 ${
+                            copied === '1027681829'
+                              ? 'text-[#B5D858]'
+                              : 'text-gray-500'
+                          }`}
+                        />
                       </Button>
                     </div>
+
+                    <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                      <div>
+                        <p className="text-sm text-gray-500">Account Name</p>
+                        <p className="font-medium">Direct Impact Empowerment Foundation</p>
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="hover:bg-[#59B7E7]/10"
+                        onClick={() => handleCopy('Direct Impact Empowerment Foundation', 'Account name')}
+                      >
+                        <Copy
+                          className={`w-4 h-4 ${
+                            copied === 'Direct Impact Empowerment Foundation'
+                              ? 'text-[#B5D858]'
+                              : 'text-gray-500'
+                          }`}
+                        />
+                      </Button>
+                    </div>
+
+                    <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                      <div>
+                        <p className="text-sm text-gray-500">Bank Name</p>
+                        <p className="font-medium">United Bank For Africa (UBA)</p>
+                      </div>
+                    </div>
                   </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-          </Tabs>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Switzerland Section */}
+            <Card>
+              <CardContent className="p-6">
+                <div className="text-center mb-6">
+                  <h3 className="text-2xl font-bold mb-4">🇨🇭 Donate in Switzerland (CHF)</h3>
+                  <p className="text-gray-600 mb-6">
+                    If you're based in Switzerland, you can easily donate by scanning the QR-bill or using the bank details below.
+                  </p>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-8">
+                  {/* QR Code Section */}
+                  <div className="text-center">
+                    <h4 className="text-lg font-semibold mb-4">Scan the QR Code:</h4>
+                    <div className="flex justify-center mb-4">
+                      <Image
+                        src="/yapeal.jpeg"
+                        alt="Yapeal QR-bill"
+                        width={300}
+                        height={400}
+                        className="rounded-lg border-2 border-gray-200"
+                      />
+                    </div>
+                    <p className="text-sm text-gray-600">
+                      → Works with any Swiss banking app that supports QR-bill payments.
+                    </p>
+                  </div>
+
+                  {/* Account Details Section */}
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold">Account Details:</h4>
+                    
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                        <div>
+                          <p className="text-sm text-gray-500">Beneficiary</p>
+                          <p className="font-medium">Direct Impact Empowerment Foundation</p>
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="hover:bg-[#59B7E7]/10"
+                          onClick={() => handleCopy('Direct Impact Empowerment Foundation', 'Beneficiary name')}
+                        >
+                          <Copy
+                            className={`w-4 h-4 ${
+                              copied === 'Direct Impact Empowerment Foundation'
+                                ? 'text-[#B5D858]'
+                                : 'text-gray-500'
+                            }`}
+                          />
+                        </Button>
+                      </div>
+
+                      <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                        <div>
+                          <p className="text-sm text-gray-500">Account Number</p>
+                          <p className="font-medium">CH94 83019 DIRECTIMP002</p>
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="hover:bg-[#59B7E7]/10"
+                          onClick={() => handleCopy('CH94 83019 DIRECTIMP002', 'Account number')}
+                        >
+                          <Copy
+                            className={`w-4 h-4 ${
+                              copied === 'CH94 83019 DIRECTIMP002'
+                                ? 'text-[#B5D858]'
+                                : 'text-gray-500'
+                            }`}
+                          />
+                        </Button>
+                      </div>
+
+                      <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                        <div>
+                          <p className="text-sm text-gray-500">QR-IBAN</p>
+                          <p className="font-medium">CH69 30334 DIRECTIMP002</p>
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="hover:bg-[#59B7E7]/10"
+                          onClick={() => handleCopy('CH69 30334 DIRECTIMP002', 'QR-IBAN')}
+                        >
+                          <Copy
+                            className={`w-4 h-4 ${
+                              copied === 'CH69 30334 DIRECTIMP002'
+                                ? 'text-[#B5D858]'
+                                : 'text-gray-500'
+                            }`}
+                          />
+                        </Button>
+                      </div>
+
+                      <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                        <div>
+                          <p className="text-sm text-gray-500">Bank</p>
+                          <p className="font-medium">YAPEAL</p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                        <div>
+                          <p className="text-sm text-gray-500">BIC</p>
+                          <p className="font-medium">YAPECHZZ</p>
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="hover:bg-[#59B7E7]/10"
+                          onClick={() => handleCopy('YAPECHZZ', 'BIC')}
+                        >
+                          <Copy
+                            className={`w-4 h-4 ${
+                              copied === 'YAPECHZZ'
+                                ? 'text-[#B5D858]'
+                                : 'text-gray-500'
+                            }`}
+                          />
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* International Section */}
+            <Card>
+              <CardContent className="p-6">
+                <div className="text-center mb-6">
+                  <h3 className="text-2xl font-bold mb-4">🌍 Donate from Outside Switzerland (International Transfers)</h3>
+                  <p className="text-gray-600 mb-6">
+                    If you're outside Switzerland, please use these international (SWIFT) transfer details.
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <h4 className="text-lg font-semibold">Account Details:</h4>
+                  
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                      <div>
+                        <p className="text-sm text-gray-500">Beneficiary</p>
+                        <p className="font-medium">Direct Impact Empowerment Foundation</p>
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="hover:bg-[#59B7E7]/10"
+                        onClick={() => handleCopy('Direct Impact Empowerment Foundation', 'Beneficiary name')}
+                      >
+                        <Copy
+                          className={`w-4 h-4 ${
+                            copied === 'Direct Impact Empowerment Foundation'
+                              ? 'text-[#B5D858]'
+                              : 'text-gray-500'
+                          }`}
+                        />
+                      </Button>
+                    </div>
+
+                    <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                      <div>
+                        <p className="text-sm text-gray-500">IBAN</p>
+                        <p className="font-medium">CH94 83019 DIRECTIMP002</p>
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="hover:bg-[#59B7E7]/10"
+                        onClick={() => handleCopy('CH94 83019 DIRECTIMP002', 'IBAN')}
+                      >
+                        <Copy
+                          className={`w-4 h-4 ${
+                            copied === 'CH94 83019 DIRECTIMP002'
+                              ? 'text-[#B5D858]'
+                              : 'text-gray-500'
+                          }`}
+                        />
+                      </Button>
+                    </div>
+
+                    <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                      <div>
+                        <p className="text-sm text-gray-500">Bank</p>
+                        <p className="font-medium">YAPEAL AG</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                      <div>
+                        <p className="text-sm text-gray-500">Bank Address</p>
+                        <p className="font-medium">Hardturmstrasse 161, 8005 Zürich, Switzerland</p>
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="hover:bg-[#59B7E7]/10"
+                        onClick={() => handleCopy('Hardturmstrasse 161, 8005 Zürich, Switzerland', 'Bank address')}
+                      >
+                        <Copy
+                          className={`w-4 h-4 ${
+                            copied === 'Hardturmstrasse 161, 8005 Zürich, Switzerland'
+                              ? 'text-[#B5D858]'
+                              : 'text-gray-500'
+                          }`}
+                        />
+                      </Button>
+                    </div>
+
+                    <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                      <div>
+                        <p className="text-sm text-gray-500">SWIFT/BIC</p>
+                        <p className="font-medium">YAPECHZZ</p>
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="hover:bg-[#59B7E7]/10"
+                        onClick={() => handleCopy('YAPECHZZ', 'SWIFT/BIC')}
+                      >
+                        <Copy
+                          className={`w-4 h-4 ${
+                            copied === 'YAPECHZZ'
+                              ? 'text-[#B5D858]'
+                              : 'text-gray-500'
+                          }`}
+                        />
+                      </Button>
+                    </div>
+
+                    <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                      <div>
+                        <p className="text-sm text-gray-500">Currency</p>
+                        <p className="font-medium">CHF (Swiss Franc)</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Receipt Information */}
+            <Card>
+              <CardContent className="p-6">
+                <div className="text-center">
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#59B7E7]/10 mb-4">
+                    <Mail className="w-6 h-6 text-[#59B7E7]" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-4">Donation Receipt & Anonymous Donations</h3>
+                  <p className="text-gray-600 mb-4">
+                    If you'd like a donation receipt or prefer to remain anonymous, please email:
+                  </p>
+                  <div className="flex items-center justify-center gap-2">
+                    <Button
+                      variant="outline"
+                      className="border-[#59B7E7] text-[#59B7E7] hover:bg-[#59B7E7]/10"
+                      onClick={() => handleCopy('donations@directimpactempowerment.org', 'Email address')}
+                    >
+                      <Mail className="w-4 h-4 mr-2" />
+                      donations@directimpactempowerment.org
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </section>
