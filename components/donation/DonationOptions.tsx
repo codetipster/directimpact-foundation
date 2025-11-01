@@ -2,9 +2,10 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { Copy, Mail } from 'lucide-react'
+import { Copy, Mail, CreditCard } from 'lucide-react'
 import { toast } from 'sonner'
 
 export function DonationOptions() {
@@ -24,6 +25,34 @@ export function DonationOptions() {
           <h2 className="text-3xl font-bold text-center mb-12">How to Donate</h2>
 
           <div className="space-y-8">
+            {/* Stripe Donation Section */}
+            <Card className="border-2 border-[#59B7E7]">
+              <CardContent className="p-8">
+                <div className="text-center">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#59B7E7]/10 mb-6">
+                    <CreditCard className="w-8 h-8 text-[#59B7E7]" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4">💳 Quick & Secure Online Donation</h3>
+                  <p className="text-gray-600 mb-6">
+                    Make a secure donation instantly using your credit or debit card.
+                  </p>
+                  <Button 
+                    size="lg"
+                    className="bg-[#B5D858] hover:bg-[#59B7E7] text-white font-semibold"
+                    asChild
+                  >
+                    <Link 
+                      href="https://buy.stripe.com/4gMaEXeHH5Hi6yDgfQ3cc00" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                    >
+                      DONATE SECURELY VIA STRIPE
+                    </Link>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
             {/* Nigerian Account Section */}
             <Card>
               <CardContent className="p-6">

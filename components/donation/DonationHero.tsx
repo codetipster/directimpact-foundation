@@ -11,12 +11,22 @@ export function DonationHero() {
             <Heart className="w-8 h-8 text-[#59B7E7]" />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Transform Lives with Your Generosity
+            DIRECT IMPACT EMPOWERMENT DONATIONS
           </h1>
-          <p className="text-lg text-gray-600 mb-8">
-            We believe in a world where no one is invisible.
-            Your support helps us reach the forgotten, empower the willing, and heal the broken.
-          </p>
+          <div className="text-lg text-gray-600 mb-8 space-y-4">
+            <p>
+              At Direct Impact Empowerment, every act of giving helps us feed families, restore dignity, and empower lives across Nigeria and beyond.
+            </p>
+            <p>
+              We are a self-funded foundation, registered in both Switzerland 🇨🇭 and Nigeria 🇳🇬, doing what we can — one life at a time.
+            </p>
+            <p>
+              Your donation goes directly toward food aid, medical help, and small business support for struggling families.
+            </p>
+            <p className="text-xl font-semibold text-[#59B7E7]">
+              🌍 Together, we can make humanity our currency of kindness.
+            </p>
+          </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               variant="outline"
