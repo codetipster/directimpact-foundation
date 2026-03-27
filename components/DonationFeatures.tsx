@@ -6,39 +6,39 @@ import { GraduationCap, Briefcase, Users, Heart, Lightbulb, BookOpen } from "luc
 const features = [
   {
     icon: GraduationCap,
-    title: "Skill Development",
+    title: "Structured Pathways",
     description:
-      "We provide specialized training in fashion design and entrepreneurship, equipping youth with the tools to build sustainable careers and transform their communities.",
+      "We do not deliver one-time support. We deliver structured pathways — a guided journey from crisis to stability, from stability to income, and from income to independence.",
   },
   {
     icon: Briefcase,
-    title: "Business Empowerment",
+    title: "Measurable Outcomes",
     description:
-      "Through our micro-credit scheme, we enable young entrepreneurs to access the funding and resources they need to start and grow successful businesses.",
+      "We do not focus on activity. We focus on outcomes. Every stage of our programme is tracked across 30, 60, and 90-day intervals to ensure sustained progress.",
   },
   {
     icon: Users,
-    title: "Restoring Hope and Dignity to the Vulnerable",
+    title: "Community-Led Delivery",
     description:
-      "Compassionate Outreach: We focus on identifying the most vulnerable in our community, particularly the elderly, and reaching out to them unexpectedly. Our mission is to restore their dignity, ensuring they feel valued, respected, and supported during their later years. Through acts of kindness and care, we create a sense of belonging and transformation in their lives.",
+      "We identify individuals in crisis through trusted community networks and deliver support through locally embedded teams who understand the context.",
   },
   {
     icon: Heart,
-    title: "Youth Welfare",
+    title: "Dignity First",
     description:
-      "Our programs provide mentorship, education, and resources to ensure young people have the support they need to thrive and contribute positively to society.",
+      "We stabilise immediate needs so individuals can regain dignity and focus. Restoring a sense of self-worth is the foundation of every journey we support.",
   },
   {
     icon: Lightbulb,
-    title: "Creating Opportunities",
+    title: "Income Generation",
     description:
-      "We establish platforms for young people to showcase their talents, connect with mentors, and access markets for their skills and products.",
+      "We support income generation through practical tools, guidance, and structured support — enabling individuals to move from dependency toward earning.",
   },
   {
     icon: BookOpen,
-    title: "Education and Training",
+    title: "Designed for Scale",
     description:
-      "Our holistic approach integrates foundational education with vocational training, ensuring participants are well-prepared for success in both local and global markets.",
+      "Our model is built for replication through structured delivery and measurable tracking, allowing us to expand reach without compromising the quality of outcomes.",
   },
 ]
 
@@ -60,7 +60,7 @@ export function DonationFeatures() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">What We Do</h2>
-          <p className="text-gray-600">Empowering Youth for a Brighter Future</p>
+          <p className="text-gray-600">A repeatable model built for real, measurable impact</p>
         </div>
 
         {/* Features Grid */}

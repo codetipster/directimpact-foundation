@@ -21,22 +21,28 @@ interface ActivityCardProps {
 
 const activities: Activity[] = [
   {
-    title: "Specialist Fashion Design Training  (Training Center in Progress!)",
-    description: "The foundation is training youths in advanced fashion design techniques, equipping them with technical and entrepreneurial skills to meet both local and global demands.",
+    title: "Step 1: Identify",
+    description: "We identify individuals in crisis through trusted community networks and structured referral processes.",
     image: "/fashion.jpg",
-    slug: "fashion-design-training"
+    slug: "identify"
   },
   {
-    title: "Business Incubation and Acceleration",
-    description: "They are establishing a business incubation and acceleration program to support graduates with mentorship, advanced training, and resources to scale their businesses effectively.",
+    title: "Step 2: Stabilise",
+    description: "We provide immediate support to restore dignity and create a stable starting point, so individuals can regain focus and move forward.",
     image: "/bizness.jpg",
-    slug: "business-incubation"
+    slug: "stabilise"
   },
   {
-    title: "Micro-Credit Scheme",
-    description: "The foundation is preparing to launch a micro-credit program to provide accessible funding to graduates, enabling them to purchase essential equipment and start their businesses.",
+    title: "Step 3: Restart",
+    description: "We enable income generation through practical tools, support, and structured guidance — moving individuals from stability to earning.",
     image: "/micro.jpg",
-    slug: "micro-credit"
+    slug: "restart"
+  },
+  {
+    title: "Step 4: Track & Sustain",
+    description: "We follow through with structured support to ensure long-term outcomes are sustained over 30, 60, and 90-day intervals.",
+    image: "/hero.jpg",
+    slug: "track-sustain"
   }
 ]
 
@@ -97,14 +103,13 @@ const ImpactStories = () => {
           <div className="py-8">
             <div className="text-center max-w-3xl mx-auto px-4">
               <h2 className="text-sm uppercase tracking-wider text-green-500 mb-2">
-                Our Activities
+                The Dignity to Independence Programme
               </h2>
               <h3 className="text-4xl md:text-5xl font-bold mb-4">
-                Key Programs & Initiatives
+                How It Works
               </h3>
               <p className="text-gray-600">
-                Discover how we&apos;re making a difference through our comprehensive programs
-                and sustainable initiatives.
+                A structured, four-stage model designed to move individuals from crisis into sustainable independence.
               </p>
             </div>
           </div>

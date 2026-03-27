@@ -9,21 +9,21 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const slides = [
   {
-    title: "Empowering Futures,\nTransforming Lives\nTogether",
-    subtitle: "Direct Impact Empowerment Foundations",
-    description: "Our vision is to empower youths in developing countries by equipping them with opportunities for meaningful work, promoting sustainable livelihoods, and driving economic growth",
+    title: "Building pathways\nfrom vulnerability\nto economic independence",
+    subtitle: "Dignity to Independence Programme",
+    description: "Through the Dignity to Independence Programme, we move individuals from crisis to stability, from stability to income, and from income to independence through a structured and measurable journey.",
     image: "/hero.jpg"
   },
   {
-    title: "Fostering Change,\nInspiring Innovation\nGlobally",
-    subtitle: "Skill Development and Entrepreneurship Drive",
-    description: "We empower youth by transforming raw potential into expertise through specialized training in fashion design and entrepreneurial guidance, creating pathways for innovation and growth.",
+    title: "A structured,\nrepeatable model\nfor lasting change",
+    subtitle: "Our Solution",
+    description: "Direct Impact Empowerment delivers a structured model that transitions individuals from vulnerability to sustainable income. This is not a one-time intervention — it is a guided journey toward independence.",
     image: "/global.jpeg"
   },
   {
-    title: "Caring for the Forgotten: Supporting the Elderly and Vulnerable",
-    subtitle: "Community Care and Support Initiative",
-description: "Compassionate Care, Dignified Lives\nOur mission is to support the very elderly and vulnerable, often forgotten behind closed doors, by addressing their medical needs and welfare. We are committed to providing personalised care, fostering dignity, and ensuring they are not left behind in society’s progress. Together, we create a community where everyone is valued and cared for",
+    title: "Global Standards,\nLocal Impact",
+    subtitle: "Registered in Switzerland and Nigeria",
+    description: "We combine international structure, accountability, and programme discipline with local delivery and community understanding. Designed globally. Delivered locally.",
     image: "/oneworld.jpeg"
   }
 ];
@@ -98,12 +98,23 @@ export function Hero() {
                 <p className="text-gray-600 mb-8 max-w-lg">
                   {slides[currentSlide].description}
                 </p>
-                <Button
-                  size="lg"
-                  className="bg-[#B5D858] hover:bg-[#59B7E7]/90"
-                >
-                  Explore Causes
-                </Button>
+                <div className="flex flex-wrap gap-4">
+                  <Button
+                    size="lg"
+                    className="bg-[#B5D858] hover:bg-[#B5D858]/90 text-white"
+                    asChild
+                  >
+                    <a href="/causes">View Our Programme</a>
+                  </Button>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-[#59B7E7] text-[#59B7E7] hover:bg-[#59B7E7] hover:text-white"
+                    asChild
+                  >
+                    <a href="/contact">Partner with Us</a>
+                  </Button>
+                </div>
               </motion.div>
             </AnimatePresence>
           </div>

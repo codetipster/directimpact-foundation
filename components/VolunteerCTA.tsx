@@ -43,19 +43,20 @@ export function VolunteerCTA() {
               </div>
               
               <p className="text-white/80 uppercase tracking-wider text-sm mb-4 relative z-10">
-                COME DO SOMETHING AMAZING!
+                EXPAND STRUCTURED PATHWAYS TO INDEPENDENCE
               </p>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 relative z-10">
-                Join Our Team as a 
-                <br />
-                Volunteer
+                Work With Us
               </h2>
-                <Link href="/volunteer" passHref>
+              <p className="text-white/90 mb-8 relative z-10 max-w-sm">
+                We partner with foundations, institutions, corporates, and public leaders to build scalable pathways to independence.
+              </p>
+                <Link href="/contact" passHref>
                 <Button
                   variant="secondary"
                   className="bg-[#59B7E7] hover:bg-[#F2E5E5]/90 text-[#ffffff] w-fit relative z-10"
                 >
-                  Apply Now
+                  Partner with Us
                 </Button>
                 </Link>
             </div>

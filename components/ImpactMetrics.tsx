@@ -8,30 +8,30 @@ import { motion, useInView } from 'framer-motion'
 const challenges = [
   {
     icon: Users,
-    title: "Youth Unemployment",
-    stat: "60%",
-    description: "of unemployed people in Africa are youth",
+    title: "Trapped in Cycles of Poverty",
+    stat: "",
+    description: "Across underserved communities, many individuals remain trapped in cycles of poverty — not because they lack ability, but because they lack structure, support, and access.",
     color: "#B5D858"
   },
   {
     icon: GraduationCap,
-    title: "Education Access",
-    stat: "1 in 3",
-    description: "young people in developing countries lacks access to quality education",
+    title: "Temporary Relief Falls Short",
+    stat: "",
+    description: "Most interventions provide temporary relief without creating long-term stability, leaving people vulnerable to the same crisis again.",
     color: "#59B7E7"
   },
   {
     icon: Briefcase,
-    title: "Skills Impact",
-    stat: "70%",
-    description: "more likely to secure sustainable jobs with vocational training",
+    title: "A Structured Solution",
+    stat: "",
+    description: "Direct Impact Empowerment delivers a structured and repeatable model that transitions individuals from vulnerability to sustainable income through the Dignity to Independence Programme.",
     color: "#693B2E"
   },
   {
     icon: LineChart,
-    title: "Economic Growth",
-    stat: "10x",
-    description: "return in economic growth for every $1 invested in youth skills",
+    title: "120+ Lives Reached",
+    stat: "120+",
+    description: "individuals and families already supported through direct intervention and emergency relief initiatives.",
     color: "#B5D858"
   }
 ]
@@ -94,11 +94,11 @@ export function ImpactMetrics() {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            The Challenge We Face
+            The Problem We Solve
           </h2>
           <p className="text-gray-600">
-            Understanding the scale of youth unemployment and lack of opportunities helps
-            us create targeted solutions for sustainable change.
+            We believe in transparency and real impact. We document our work so you can see
+            how individuals move from crisis toward stability and opportunity.
           </p>
         </div>
 
@@ -126,18 +126,11 @@ export function ImpactMetrics() {
                   />
                 </div>
                 <h3 className="text-xl font-bold mb-2">{challenge.title}</h3>
-                <div className="text-4xl font-bold mb-2" style={{ color: challenge.color }}>
-                  {challenge.stat.includes('%') ? (
-                    <div className="flex items-center">
-                      <CountUpAnimation 
-                        target={parseInt(challenge.stat)} 
-                      />
-                      <span>%</span>
-                    </div>
-                  ) : (
-                    challenge.stat
-                  )}
-                </div>
+                {challenge.stat && (
+                  <div className="text-4xl font-bold mb-2" style={{ color: challenge.color }}>
+                    {challenge.stat}
+                  </div>
+                )}
                 <p className="text-gray-600">{challenge.description}</p>
               </div>
             </motion.div>

@@ -7,21 +7,21 @@ import { Users, Home, TrendingUp } from "lucide-react"
 const impacts = [
   {
     icon: Users,
-    stat: "500+",
-    label: "Youths to be Empowered",
-    description: "Training and equipping individuals with employable skills.",
+    stat: "120+",
+    label: "Individuals Already Supported",
+    description: "We have already supported individuals through direct intervention and emergency relief initiatives. Our work is focused on measurable outcomes, not one-time distribution.",
   },
   {
     icon: Home,
-    stat: "100+",
-    label: "Households to be Impacted",
-    description: "Lifting families out of poverty through ripple effects of empowerment.",
+    stat: "",
+    label: "Built for Scale",
+    description: "Our programme is designed for replication through structured delivery, measurable tracking, and community-led implementation — allowing us to expand without compromising quality.",
   },
   {
     icon: TrendingUp,
-    label: "Medical and Welfare Support for a Life of Dignity",
-    description:
-      "Empowering Lives Through Care and Welfare: We are committed to addressing the medical and welfare needs of the most vulnerable in our communities. By ensuring access to healthcare and essential support services, we strive to help them live with dignity, respect, and improved quality of life. Together, we build a compassionate society where no one is left behind.",
+    stat: "",
+    label: "Global Standards, Local Impact",
+    description: "Registered in Switzerland and Nigeria, we combine international structure, accountability, and programme discipline with local delivery and community understanding.",
   },
 ]
 
@@ -34,7 +34,8 @@ export function AboutImpact() {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Our Impact</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Impact Snapshot</h2>
+            <p className="text-white/80 max-w-2xl mx-auto">We are building measurable pathways from crisis to independence.</p>
           </div>
 
           <div ref={ref} className="grid grid-cols-1 gap-8">
