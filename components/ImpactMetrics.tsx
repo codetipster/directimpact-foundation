@@ -1,7 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
-//import { Button } from '@/components/ui/button'
+import { useRef } from 'react'
 import { Users, GraduationCap, Briefcase, LineChart } from 'lucide-react'
 import { motion, useInView } from 'framer-motion'
 
@@ -36,53 +35,6 @@ const challenges = [
   }
 ]
 
-function CountUpAnimation({ target, duration = 2000 }: { target: number, duration?: number }) {
-  const [count, setCount] = useState(0)
-  const [isVisible, setIsVisible] = useState(false)
-  const elementRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.1 }
-    )
-
-    if (elementRef.current) {
-      observer.observe(elementRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
-  useEffect(() => {
-    if (!isVisible) return
-
-    let startTime: number
-    let animationFrame: number
-
-    const animate = (currentTime: number) => {
-      if (!startTime) startTime = currentTime
-      const progress = (currentTime - startTime) / duration
-
-      if (progress < 1) {
-        setCount(Math.min(target * progress, target))
-        animationFrame = requestAnimationFrame(animate)
-      } else {
-        setCount(target)
-      }
-    }
-
-    animationFrame = requestAnimationFrame(animate)
-
-    return () => cancelAnimationFrame(animationFrame)
-  }, [target, duration, isVisible])
-
-  return <div ref={elementRef}>{Math.round(count)}</div>
-}
 
 export function ImpactMetrics() {
   const containerRef = useRef(null)
