@@ -50,9 +50,7 @@ export function Footer() {
               <span className="text-xl font-semibold text-[#59B7E7]">Direct Impact Empowerment Foundation</span>
             </Link>
             <p className="text-gray-600 mb-6">
-              Direct Impact Empowerment Foundation is a non-profit organization in Nigeria dedicated to reducing
-              multidimensional poverty across Nigeria and Sub-Saharan Africa by empowering youth through targeted skills
-              acquisition and training to foster economic independence and community transformation.
+              Direct Impact Empowerment Foundation is a non-profit organisation registered in Switzerland and Nigeria. We walk alongside vulnerable people from the moment of crisis all the way to sustained independence through our four-stage Dignity to Independence Programme. 
             </p>
 
             {/* Social Links */}

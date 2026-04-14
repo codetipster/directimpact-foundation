@@ -6,18 +6,13 @@ import ImpactStories from '@/components/ImpactStories'
 import { AboutImpact } from '@/components/about/AboutImpact'
 import { OurPartners } from '@/components/OurPartners'
 import { Popup } from '@/components/about/Popup'
+import  HomepageAndAbout  from '@/components/HomepageAndAbout'
 
 export default function Home() {
   return (
     <main>
        <Popup />
-      <Hero />
-      <ImpactMetrics />
-      <ImpactStories />
-      <AboutImpact />
-      <DonationFeatures />
-      <OurPartners />
-      <VolunteerCTA />
+	  <HomepageAndAbout />
     </main>
   )
 }
