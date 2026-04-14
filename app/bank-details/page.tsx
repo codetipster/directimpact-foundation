@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 export default function BankDetails() {
   const s = {
     page: { fontFamily: 'Arial, sans-serif', background: '#fff', color: '#1a1a1a', margin: 0, padding: 0 },
-    hero: { background: '#7B1E1E', color: '#fff', padding: '56px 24px 48px', textAlign: 'center' },
+    hero: { background: '#7B1E1E', color: '#fff', padding: '56px 24px 48px', textAlign: 'center' as const },
     tag: { display: 'inline-block', background: 'rgba(255,255,255,0.15)', color: '#fff', fontSize: '12px', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '6px 16px', borderRadius: '100px', marginBottom: '20px' },
     h1: { fontSize: 'clamp(24px, 4vw, 38px)', fontWeight: 400, lineHeight: 1.3, maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto', fontFamily: 'Georgia, serif' },
     heroP: { fontSize: '16px', color: 'rgba(255,255,255,0.8)', marginTop: '16px', maxWidth: '500px', marginLeft: 'auto', marginRight: 'auto', lineHeight: 1.7 },
@@ -21,7 +21,7 @@ export default function BankDetails() {
     cardSub: { fontSize: '13px', color: '#888' },
     row: { display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', padding: '10px 0', borderBottom: '1px solid #f5f5f5' },
     rowLabel: { fontSize: '13px', color: '#888', minWidth: '120px' },
-    rowValue: { fontSize: '14px', color: '#1a1a1a', fontWeight: 500, textAlign: 'right', wordBreak: 'break-all' },
+    rowValue: { fontSize: '14px', color: '#1a1a1a', fontWeight: 500, textAlign: 'right' as const, wordBreak: 'break-all' },
     notice: { background: '#faf5f0', borderRadius: '12px', padding: '28px 32px', marginBottom: '32px' },
     noticeP: { fontSize: '15px', color: '#2a2a2a', lineHeight: 1.75, marginBottom: '8px' },
     btnRed: { display: 'inline-block', background: '#7B1E1E', color: '#fff', fontSize: '14px', fontWeight: 600, padding: '14px 32px', borderRadius: '100px', textDecoration: 'none' },
@@ -89,7 +89,7 @@ export default function BankDetails() {
           </div>
         </div>
 
-        <div style={{ textAlign: 'center' }}>
+        <div style={{ textAlign: 'center' as const }}>
           <p style={{ fontSize: '15px', color: '#555', marginBottom: '20px', lineHeight: 1.7 }}>Prefer to donate by card? Use our secure Stripe payment link.</p>
           <a href="https://buy.stripe.com/4gMaEXeHH5Hi6yDgfQ3cc00" target="_blank" style={s.btnRed}>Donate by card instead</a>
         </div>
