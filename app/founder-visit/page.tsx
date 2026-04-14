@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import Link from "next/link";
 
 export default function FounderVisit() {
   const s = {
@@ -61,7 +61,7 @@ export default function FounderVisit() {
         </div>
 
         <div style={s.pullquote}>
-          "She mentioned, almost in passing, that the roof had a problem. She did not want to ask for more after everything we had already done. That is the kind of thing you only find when you show up unannounced."
+          &quot;She mentioned, almost in passing, that the roof had a problem. She did not want to ask for more after everything we had already done. That is the kind of thing you only find when you show up unannounced.&quot;
           <cite style={s.cite}>Founder, Direct Impact Empowerment Foundation</cite>
         </div>
 
@@ -78,8 +78,8 @@ export default function FounderVisit() {
         <div style={s.dipBridge}>
           <div style={s.dipTitle}>What comes next</div>
           <p style={s.dipP}>Every visit is a checkpoint in the Dignity to Independence Pathway. We do not give people support and disappear. We return every two months to make sure the progress holds and to take the next step together.</p>
-          <a href="/#dip-pathway" style={s.dipBtn}>Learn about the pathway</a>
-          <a href="/impact" style={s.dipBtnOutline}>Read beneficiary stories</a>
+          <Link href="/#dip-pathway" style={s.dipBtn}>Learn about the pathway</Link>
+          <Link href="/impact" style={s.dipBtnOutline}>Read beneficiary stories</Link>
         </div>
       </div>
     </div>

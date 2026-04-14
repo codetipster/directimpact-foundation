@@ -1,6 +1,6 @@
 'use client'
+import Link from "next/link";
 
-import { useState } from 'react'
 export default function EasterRelief() {
   const styles = {
     body: { fontFamily: 'Georgia, serif', background: '#fff', color: '#1a1a1a', margin: 0, padding: 0 },
@@ -73,7 +73,7 @@ export default function EasterRelief() {
         </div>
 
         <div style={styles.pullquote}>
-          <blockquote style={styles.blockquote}>"Before someone can focus on building a livelihood, their immediate needs must be met. Emergency relief is not a distraction from empowerment. It is the door we open together."</blockquote>
+          <blockquote style={styles.blockquote}>&quot;Before someone can focus on building a livelihood, their immediate needs must be met. Emergency relief is not a distraction from empowerment. It is the door we open together.&quot;</blockquote>
           <cite style={styles.cite}>Founder, Direct Impact Empowerment Foundation</cite>
         </div>
 
@@ -90,13 +90,13 @@ export default function EasterRelief() {
         <div style={styles.pathwayBridge}>
           <h2 style={styles.pathwayH2}>What comes next</h2>
           <p style={styles.pathwayP}>Emergency relief is where many of our beneficiaries first meet DIEF. But we do not stop there. Our Direct Impact Pathway walks alongside people from crisis, through training and seed funding, to sustainable livelihoods. That is the DIEF difference.</p>
-          <a href="/#dip-pathway" style={styles.btnWhite}>Learn about the Direct Impact Pathway</a>
-          <a href="/impact" style={styles.btnOutline}>Meet our beneficiaries</a>
+          <Link href="/#dip-pathway" style={styles.btnWhite}>Learn about the Direct Impact Pathway</Link>
+          <Link href="/impact" style={styles.btnOutline}>Meet our beneficiaries</Link>
         </div>
 
         <div style={styles.donateBar}>
           <p style={styles.donateP}>Help us reach more people and walk with them all the way. Every contribution funds emergency relief, vocational training, and the seed capital that changes lives.</p>
-          <a href="/donate" style={styles.donateBtn}>Donate to DIEF</a>
+         <Link href="/donate" style={styles.donateBtn}>Donate to DIEF</Link>
         </div>
       </div>
     </div>

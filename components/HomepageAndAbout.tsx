@@ -1,4 +1,5 @@
 'use client'
+import Link from "next/link";
 
 export default function HomepageAndAbout() {
   const s = {
@@ -85,7 +86,7 @@ export default function HomepageAndAbout() {
             <div style={s.storyTag}>From the ground</div>
             <h2 style={s.storyH2}>She was sitting on the ground when we found her.</h2>
             <p style={s.storyP}>She had not eaten all day. She had lost both her children and was raising her grandchildren alone. Nobody had stopped.</p>
-            <div style={s.storyQuote}>"We gave her food that evening. We came back a week later with coal stock and the capital to restart her business. No loan. No conditions."</div>
+            <div style={s.storyQuote}>&quot;We gave her food that evening. We came back a week later with coal stock and the capital to restart her business. No loan. No conditions.&quot;</div>
             <p style={s.storyP}>Months later she was standing, earning, and her grandchildren were fed. This is not an exceptional story. This is our model.</p>
             <a href="/impact" style={s.storyBtn}>Read more stories</a>
           </div>
@@ -110,12 +111,12 @@ export default function HomepageAndAbout() {
               <p style={{ ...s.aboutP, marginTop: '16px' }}>Before we helped a single person, we invested in formal NGO management training for our in-country CEO. We registered in two countries. We built the governance structures first. Because we refused to let this be the blind leading the blind.</p>
             </div>
             <div>
-              <div style={s.aboutHighlight}>"If you have ever found it hard to look away, you already understand why we exist."</div>
+              <div style={s.aboutHighlight}>&quot;If you have ever found it hard to look away, you already understand why we exist.&quot;</div>
               <p style={{ ...s.aboutP, marginTop: '24px' }}>We look forward to the day when the weight of this work is shared. Until that day, we will keep going.</p>
             </div>
           </div>
-          <a href="/about" style={s.aboutBtn}>Our full story</a>
-		  <a href="/founder-visit" style={s.foundervisitBtn}>See what we found</a>
+          <Link href="/donate" style={s.heroBtn}>Support our work</Link>
+          <Link href="/#dip-pathway" style={s.heroBtnOutline}>See the impact</Link>
         </div>
       </div>
 

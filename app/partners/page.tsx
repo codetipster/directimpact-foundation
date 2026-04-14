@@ -102,7 +102,7 @@ export default function PartnershipPage() {
         </div>
 
         <div style={s.pullquote}>
-          "We found an elderly man who had lost his kneecap in an accident. We gave him emergency cash to survive. He used it to buy coal to resell. When we heard that, we came back with three sacks of coal and the capital to trade properly. That is what we mean when we say we do not give people charity. We give them the conditions to show us who they already are."
+          &quot;We found an elderly man who had lost his kneecap in an accident. We gave him emergency cash to survive. He used it to buy coal to resell. When we heard that, we came back with three sacks of coal and the capital to trade properly. That is what we mean when we say we do not give people charity. We give them the conditions to show us who they already are.&quot;
         </div>
 
         <h2 style={s.sectionTitle}>Ways to partner with us</h2>

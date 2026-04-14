@@ -5,7 +5,6 @@ export default function TrainingSection() {
   const [form, setForm] = useState({ name: '', email: '', course: '', background: '' });
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
-  const [step, setStep] = useState(null);
 
   const handleSubmit = async () => {
     setSending(true);
@@ -84,7 +83,7 @@ export default function TrainingSection() {
         </div>
 
         <div style={s.storyBlock}>
-          <div style={s.storyQ}>"I started as a cleaner. Today I hold a CISSP qualification, one of the most respected certifications in global cybersecurity."</div>
+          <div style={s.storyQ}>&quot;I started as a cleaner. Today I hold a CISSP qualification, one of the most respected certifications in global cybersecurity.&quot;</div>
           <p style={s.storyP}>The founder of Direct Impact built a career in technology from scratch. The training at betapersin.com is built on the same belief: that where you start does not determine where you end up. You just need the right path and someone to show it to you.</p>
           <a href="https://betapersin.com" style={s.storyBtn}>Go to betapersin.com</a>
         </div>
@@ -112,7 +111,7 @@ export default function TrainingSection() {
                 <option>Full Stack Engineering</option>
               </select>
               <label style={s.label}>Tell us briefly about your background</label>
-              <textarea style={s.textarea} value={form.background} onChange={e => setForm({ ...form, background: e.target.value })} placeholder="A few sentences about where you are now and why you want to learn" />
+              <textarea style={s.textarea} value={form.background} onChange={e => setForm({ ...form, background: e.target.value })} placeholder=&quot;A few sentences about where you are now and why you want to learn&quot; />
               <button style={s.btnRed} onClick={handleSubmit} disabled={sending}>{sending ? 'Sending...' : 'Submit application'}</button>
             </div>
           )}
