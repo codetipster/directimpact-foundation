@@ -83,7 +83,7 @@ export default function TrainingSection() {
 		</div>
 
 		<div style={s.storyBlock}>
-		  <div style={s.storyQ}>{I started as a cleaner. Today I hold a CISSP qualification, one of the most respected certifications in global cybersecurity.}</div>
+		  <div style={s.storyQ}>&quot;I started as a cleaner. Today I hold a CISSP qualification, one of the most respected certifications in global cybersecurity.&quot;</div>
 		  <p style={s.storyP}>The founder of Direct Impact built a career in technology from scratch. The training at betapersin.com is built on the same belief: that where you start does not determine where you end up. You just need the right path and someone to show it to you.</p>
 		  <a href="https://betapersin.com" style={s.storyBtn}>Go to betapersin.com</a>
 		</div>
@@ -115,7 +115,7 @@ export default function TrainingSection() {
 			  <button style={s.btnRed} onClick={handleSubmit} disabled={sending}>{sending ? 'Sending...' : 'Submit application'}</button>
 			</div>
 		  )}
-		</div>
+		</div> 
 	  </div>
 	</div>
   );
