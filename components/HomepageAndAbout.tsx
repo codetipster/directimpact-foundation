@@ -59,8 +59,8 @@ export default function HomepageAndAbout() {
         <h1 style={s.heroH1}>We go to the people every other system has missed.</h1>
         <p style={s.heroP}>Registered in Switzerland and Nigeria, we walk alongside vulnerable people from the moment of crisis all the way to sustained independence. Not charity. A model.</p>
         <div id="dip-pathway">
-          <a href="/donate" style={s.heroBtn}>Support our work</a>
-          <a href="/#dip-pathway" style={s.heroBtnOutline}>See the impact</a>
+          <Link href="/donate" style={s.heroBtn}>Support our work</Link>
+          <Link href="/#dip-pathway" style={s.heroBtnOutline}>See the impact</Link>
         </div>
       </div>
 
@@ -88,7 +88,7 @@ export default function HomepageAndAbout() {
             <p style={s.storyP}>She had not eaten all day. She had lost both her children and was raising her grandchildren alone. Nobody had stopped.</p>
             <div style={s.storyQuote}>&quot;We gave her food that evening. We came back a week later with coal stock and the capital to restart her business. No loan. No conditions.&quot;</div>
             <p style={s.storyP}>Months later she was standing, earning, and her grandchildren were fed. This is not an exceptional story. This is our model.</p>
-            <a href="/impact" style={s.storyBtn}>Read more stories</a>
+            <Link href="/impact" style={s.storyBtn}>Read more stories</Link>
           </div>
           <div style={{ background: '#faf5f0', borderRadius: '12px', padding: '40px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
             {[['$70', 'Emergency relief package for one person'], ['$200', 'Full Dignity to Independence journey'], ['300+', 'People reached to date'], ['2', 'Countries registered']].map(([n, l]) => (
