@@ -1,8 +1,9 @@
 'use client'
 import Link from "next/link";
+import type { CSSProperties } from 'react';
 
 export default function HomepageAndAbout() {
-  const s = {
+  const s: Record<string, CSSProperties> = {
     page: { fontFamily: 'Arial, sans-serif', background: '#fff', color: '#1a1a1a', margin: 0, padding: 0 },
     divider: { borderTop: '1px solid #e5e5e5', margin: '0' },
     section: { maxWidth: '860px', margin: '0 auto', padding: '72px 24px' },

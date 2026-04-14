@@ -1,8 +1,9 @@
 'use client'
 import Link from "next/link";
+import type { CSSProperties } from 'react';
 
 export default function EasterRelief() {
-  const styles = {
+  const styles: Record<string, CSSProperties> = {
     body: { fontFamily: 'Georgia, serif', background: '#fff', color: '#1a1a1a', margin: 0, padding: 0 },
     hero: { background: '#7B1E1E', color: '#fff', padding: '72px 24px 56px', textAlign: 'center' },
     tag: { display: 'inline-block', background: 'rgba(255,255,255,0.15)', color: '#fff', fontFamily: 'Arial, sans-serif', fontSize: '12px', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '6px 16px', borderRadius: '100px', marginBottom: '24px' },

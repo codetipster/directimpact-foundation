@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import type { CSSProperties } from 'react';
 
 export default function PartnershipPage() {
   const [form, setForm] = useState({ name: '', email: '', org: '', type: '', message: '' });
@@ -20,7 +21,7 @@ export default function PartnershipPage() {
     }
   };
 
-  const s = {
+  const s: Record<string, CSSProperties> = {
     page: { fontFamily: 'Arial, sans-serif', background: '#fff', color: '#1a1a1a', margin: 0, padding: 0 },
     hero: { background: '#7B1E1E', color: '#fff', padding: '72px 24px 56px', textAlign: 'center' },
     tag: { display: 'inline-block', background: 'rgba(255,255,255,0.15)', color: '#fff', fontSize: '12px', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '6px 16px', borderRadius: '100px', marginBottom: '20px' },
