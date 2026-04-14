@@ -1,11 +1,4 @@
 import { Metadata } from 'next'
-import { AboutHero } from '../../components/about/AboutHero'
-import { AboutMission } from '../../components/about/AboutMission'
-import { AboutValues } from '../../components/about/AboutValues'
-import { AboutPrograms } from '../../components/about/AboutPrograms'
-import { AboutImpact } from '../../components/about/AboutImpact'
-import { AboutStory } from '../../components/about/AboutStory'
-import { AboutPartners } from '../../components/about/AboutPartners'
 import { Popup } from '../../components/about/Popup'
 import  HomepageAndAbout  from '@/components/HomepageAndAbout' 
 
