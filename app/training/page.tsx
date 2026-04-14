@@ -303,7 +303,7 @@ export default function TrainingSection() {
 
         <div style={s.storyBlock}>
           <div style={s.storyQ}>
-            "I started as a cleaner. Today I work in cybersecurity."
+            &quot;I started as a cleaner. Today I work in cybersecurity.&quot;
           </div>
           <p style={s.storyP}>
             Training at betapersin.com is built for real-world careers.
