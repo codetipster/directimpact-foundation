@@ -1,13 +1,13 @@
 import { Metadata } from 'next'
+import type { CSSProperties } from 'react'
 
 export const metadata: Metadata = {
   title: 'Donate - DirectImpact Empowerment Foundation',
   description: 'Support youth empowerment and community transformation through your generous donation.',
 }
 
-
 export default function DonorLanding() {
-  const s = {
+  const s: Record<string, CSSProperties> = {
     page: { fontFamily: 'Georgia, serif', background: '#fff', color: '#1a1a1a', margin: 0, padding: 0 },
     hero: { background: '#7B1E1E', color: '#fff', padding: '72px 24px 56px', textAlign: 'center' },
     tag: { display: 'inline-block', background: 'rgba(255,255,255,0.15)', color: '#fff', fontFamily: 'Arial, sans-serif', fontSize: '12px', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '6px 16px', borderRadius: '100px', marginBottom: '24px' },
