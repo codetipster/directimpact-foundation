@@ -2,36 +2,43 @@
 
 import { useState } from "react";
 import EasterRelief from "../../components/impact/EasterRelief";
-import type { CSSProperties } from 'react';
+import type { CSSProperties } from "react";
 
 export default function ImpactStories() {
-  const [active, setActive] = useState(null);
+  const [active, setActive] = useState<number | null>(null);
 
   const s: Record<string, CSSProperties> = {
-    page: { fontFamily: 'Arial, sans-serif', background: '#fff', color: '#1a1a1a', margin: 0, padding: 0 },
-    hero: { background: '#7B1E1E', color: '#fff', padding: '72px 24px 56px', textAlign: 'center' },
-    tag: { display: 'inline-block', background: 'rgba(255,255,255,0.15)', color: '#fff', fontSize: '12px', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '6px 16px', borderRadius: '100px', marginBottom: '20px' },
-    h1: { fontSize: 'clamp(26px, 4vw, 44px)', fontWeight: 400, lineHeight: 1.2, maxWidth: '680px', marginLeft: 'auto', marginRight: 'auto', fontFamily: 'Georgia, serif', marginBottom: '20px' },
-    heroP: { fontSize: '17px', color: 'rgba(255,255,255,0.85)', maxWidth: '560px', marginLeft: 'auto', marginRight: 'auto', lineHeight: 1.75 },
-    section: { maxWidth: '900px', margin: '0 auto', padding: '64px 24px' },
-    storiesGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '24px', margin: '48px 0' },
-    card: (isActive) => ({ background: '#fff', border: isActive ? '2px solid #7B1E1E' : '1px solid #e5e5e5', borderRadius: '12px', padding: '28px 24px', cursor: 'pointer', transition: 'border 0.2s' }),
-    stageBadge: (stage) => ({ display: 'inline-block', background: stage === 4 ? '#faeaea' : '#f0f0f0', color: stage === 4 ? '#7B1E1E' : '#555', fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', padding: '4px 12px', borderRadius: '100px', marginBottom: '14px' }),
-    cardTitle: { fontSize: '17px', fontWeight: 600, color: '#1a1a1a', marginBottom: '8px', lineHeight: 1.3 },
-    cardSub: { fontSize: '14px', color: '#888', marginBottom: '12px' },
-    cardP: { fontSize: '14px', color: '#555', lineHeight: 1.65, marginBottom: '16px' },
-    readMore: { fontSize: '14px', fontWeight: 600, color: '#7B1E1E', cursor: 'pointer' },
-    expanded: { background: '#faf5f0', borderRadius: '12px', padding: '40px', margin: '8px 0 32px', gridColumn: '1 / -1' },
-    expandedTitle: { fontSize: '22px', fontWeight: 400, fontFamily: 'Georgia, serif', marginBottom: '16px', color: '#1a1a1a' },
-    expandedP: { fontSize: '16px', color: '#2a2a2a', lineHeight: 1.85, marginBottom: '16px', fontFamily: 'Georgia, serif' },
-    videoWrap: { borderRadius: '10px', overflow: 'hidden', margin: '24px 0', aspectRatio: '16/9', position: 'relative', background: '#111' },
-    videoIframe: { width: '100%', height: '100%', border: 'none', position: 'absolute', top: 0, left: 0 },
-    closeBtn: { background: 'transparent', border: '1px solid #ddd', borderRadius: '100px', padding: '8px 20px', fontSize: '13px', cursor: 'pointer', marginTop: '16px', fontFamily: 'Arial, sans-serif' },
-    dipBadgeRow: { display: 'flex', gap: '8px', flexWrap: 'wrap', margin: '16px 0' },
-    dipBadge: (active) => ({ padding: '6px 14px', borderRadius: '100px', fontSize: '12px', fontWeight: 600, background: active ? '#7B1E1E' : '#f0f0f0', color: active ? '#fff' : '#888' }),
+    page: { fontFamily: "Arial, sans-serif", background: "#fff", color: "#1a1a1a", margin: 0, padding: 0 },
+    hero: { background: "#7B1E1E", color: "#fff", padding: "72px 24px 56px", textAlign: "center" as const },
+    tag: { display: "inline-block", background: "rgba(255,255,255,0.15)", color: "#fff", fontSize: "12px", letterSpacing: "0.1em", textTransform: "uppercase" as const, padding: "6px 16px", borderRadius: "100px", marginBottom: "20px" },
+    h1: { fontSize: "clamp(26px, 4vw, 44px)", fontWeight: 400, lineHeight: 1.2, maxWidth: "680px", marginLeft: "auto", marginRight: "auto", fontFamily: "Georgia, serif", marginBottom: "20px" },
+    heroP: { fontSize: "17px", color: "rgba(255,255,255,0.85)", maxWidth: "560px", marginLeft: "auto", marginRight: "auto", lineHeight: 1.75 },
+    section: { maxWidth: "900px", margin: "0 auto", padding: "64px 24px" },
+    storiesGrid: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "24px", margin: "48px 0" },
+
+    card: { background: "#fff", borderRadius: "12px", padding: "28px 24px", cursor: "pointer", transition: "border 0.2s" },
+    stageBadge: { display: "inline-block", fontSize: "11px", fontWeight: 600, textTransform: "uppercase" as const, letterSpacing: "0.08em", padding: "4px 12px", borderRadius: "100px", marginBottom: "14px" },
+
+    cardTitle: { fontSize: "17px", fontWeight: 600, color: "#1a1a1a", marginBottom: "8px", lineHeight: 1.3 },
+    cardSub: { fontSize: "14px", color: "#888", marginBottom: "12px" },
+    cardP: { fontSize: "14px", color: "#555", lineHeight: 1.65, marginBottom: "16px" },
+    readMore: { fontSize: "14px", fontWeight: 600, color: "#7B1E1E", cursor: "pointer" },
+
+    expanded: { background: "#faf5f0", borderRadius: "12px", padding: "40px", margin: "8px 0 32px", gridColumn: "1 / -1" },
+    expandedTitle: { fontSize: "22px", fontWeight: 400, fontFamily: "Georgia, serif", marginBottom: "16px", color: "#1a1a1a" },
+    expandedP: { fontSize: "16px", color: "#2a2a2a", lineHeight: 1.85, marginBottom: "16px", fontFamily: "Georgia, serif" },
+
+    videoWrap: { borderRadius: "10px", overflow: "hidden", margin: "24px 0", aspectRatio: "16/9", position: "relative", background: "#111" },
+    videoIframe: { width: "100%", height: "100%", border: "none", position: "absolute", top: 0, left: 0 },
+
+    closeBtn: { background: "transparent", border: "1px solid #ddd", borderRadius: "100px", padding: "8px 20px", fontSize: "13px", cursor: "pointer", marginTop: "16px", fontFamily: "Arial, sans-serif" },
+
+    dipBadgeRow: { display: "flex", gap: "8px", flexWrap: "wrap", margin: "16px 0" },
+    dipBadge: { padding: "6px 14px", borderRadius: "100px", fontSize: "12px", fontWeight: 600 },
   };
 
-  const dipStages = ['Crisis response', 'Stabilisation', 'Economic restart', 'Sustained independence'];
+  const dipStages = ["Crisis response", "Stabilisation", "Economic restart", "Sustained independence"];
+
 
   const stories = [
     {
@@ -97,48 +104,96 @@ export default function ImpactStories() {
   ];
 
   return (
-  <>
-    <div style={s.page}>
-      <div style={s.hero}>
-        <div style={s.tag}>Impact stories</div>
-        <h1 style={s.h1}>Every story here began with someone being seen.</h1>
-        <p style={s.heroP}>These are not exceptional cases. They are what happens when an organisation refuses to walk past and refuses to stop halfway through.</p>
-      </div>
+    <>
+      <div style={s.page}>
+        <div style={s.hero}>
+          <div style={s.tag}>Impact stories</div>
+          <h1 style={s.h1}>Every story here began with someone being seen.</h1>
+          <p style={s.heroP}>
+            These are not exceptional cases. They are what happens when an organisation refuses to walk past and refuses to stop halfway through.
+          </p>
+        </div>
 
-      <div style={s.section}>
-        <div style={s.storiesGrid}>
-          {stories.map(story => (
-            <div key={story.id}>
-              <div style={s.card(active === story.id)} onClick={() => setActive(active === story.id ? null : story.id)}>
-                <div style={s.stageBadge(story.id)}>{story.stage}</div>
-                <div style={s.cardTitle}>{story.title}</div>
-                <div style={s.cardSub}>{story.sub}</div>
-                <p style={s.cardP}>{story.preview}</p>
-                <div style={s.dipBadgeRow}>
-                  {dipStages.map((stage, i) => (
-                    <span key={stage} style={s.dipBadge(story.activeStages.includes(i))}>{stage}</span>
-                  ))}
+        <div style={s.section}>
+          <div style={s.storiesGrid}>
+            {stories.map((story) => (
+              <div key={story.id}>
+                <div
+                  style={{
+                    ...s.card,
+                    border: active === story.id ? "2px solid #7B1E1E" : "1px solid #e5e5e5",
+                  }}
+                  onClick={() => setActive(active === story.id ? null : story.id)}
+                >
+                  <div
+                    style={{
+                      ...s.stageBadge,
+                      background: story.id === 4 ? "#faeaea" : "#f0f0f0",
+                      color: story.id === 4 ? "#7B1E1E" : "#555",
+                    }}
+                  >
+                    {story.stage}
+                  </div>
+
+                  <div style={s.cardTitle}>{story.title}</div>
+                  <div style={s.cardSub}>{story.sub}</div>
+                  <p style={s.cardP}>{story.preview}</p>
+
+                  <div style={s.dipBadgeRow}>
+                    {dipStages.map((stage, i) => {
+                      const isActive = story.activeStages.includes(i);
+                      return (
+                        <span
+                          key={stage}
+                          style={{
+                            ...s.dipBadge,
+                            background: isActive ? "#7B1E1E" : "#f0f0f0",
+                            color: isActive ? "#fff" : "#888",
+                          }}
+                        >
+                          {stage}
+                        </span>
+                      );
+                    })}
+                  </div>
+
+                  <div style={s.readMore}>{active === story.id ? "Close story" : "Read full story"}</div>
                 </div>
-                <div style={s.readMore}>{active === story.id ? 'Close story' : 'Read full story'}</div>
+
+                {active === story.id && (
+                  <div style={s.expanded}>
+                    <div style={s.expandedTitle}>{story.title}</div>
+
+                    {story.full.map((p, i) => (
+                      <p key={i} style={s.expandedP}>
+                        {p}
+                      </p>
+                    ))}
+
+                    {story.videoId && (
+                      <div style={s.videoWrap}>
+                        <iframe
+                          style={s.videoIframe}
+                          src={`https://www.youtube.com/embed/${story.videoId}`}
+                          title={story.title}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        />
+                      </div>
+                    )}
+
+                    <button style={s.closeBtn} onClick={() => setActive(null)}>
+                      Close story
+                    </button>
+                  </div>
+                )}
               </div>
-              {active === story.id && (
-                <div style={s.expanded}>
-                  <div style={s.expandedTitle}>{story.title}</div>
-                  {story.full.map((p, i) => <p key={i} style={s.expandedP}>{p}</p>)}
-                  {story.videoId && (
-                    <div style={s.videoWrap}>
-                      <iframe style={s.videoIframe} src={`https://www.youtube.com/embed/${story.videoId}`} title={story.title} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
-                    </div>
-                  )}
-                  <button style={s.closeBtn} onClick={() => setActive(null)}>Close story</button>
-                </div>
-              )}
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
-    </div>
-	<EasterRelief />
-  </>
+
+      <EasterRelief />
+    </>
   );
 }
