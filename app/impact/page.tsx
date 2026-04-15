@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import EasterRelief from "../../components/impact/EasterRelief";
+import EmergencyRelief from "../../components/impact/EmergencyRelief";;
 import type { CSSProperties } from "react";
 
 export default function ImpactStories() {
@@ -194,6 +195,7 @@ export default function ImpactStories() {
       </div>
 
       <EasterRelief />
+	  <EmergencyRelief />
     </>
   );
 }
