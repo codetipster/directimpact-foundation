@@ -98,6 +98,46 @@ export default function HomepageAndAbout() {
 
         </div>
       </div>
+	  
+	  <div style={s.storySection}>
+        <div style={s.storyInner}>
+          <div style={s.storyText}>
+            <div style={s.storyTag}>From the ground</div>
+            <h2 style={s.storyH2}>She was sitting on the ground when we found her.</h2>
+            <p style={s.storyP}>She had not eaten all day. She had lost both her children and was raising her grandchildren alone. Nobody had stopped.</p>
+            <div style={s.storyQuote}>&quot;We gave her food that evening. We came back a week later with coal stock and the capital to restart her business. No loan. No conditions.&quot;</div>
+            <p style={s.storyP}>Months later she was standing, earning, and her grandchildren were fed. This is not an exceptional story. This is our model.</p>
+            <a href="/impact" style={s.storyBtn}>Read more stories</a>
+          </div>
+          <div style={{ background: '#faf5f0', borderRadius: '12px', padding: '40px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            {[['$70', 'Emergency relief package for one person'], ['$200', 'Full Dignity to Independence journey'], ['300+', 'People reached to date'], ['2', 'Countries registered']].map(([n, l]) => (
+              <div key={l} style={{ borderBottom: '1px solid #e5e5e5', paddingBottom: '20px' }}>
+                <div style={{ fontSize: '32px', fontWeight: 700, color: '#7B1E1E', fontFamily: 'Georgia, serif' }}>{n}</div>
+                <div style={{ fontSize: '14px', color: '#666', marginTop: '4px' }}>{l}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div style={s.aboutSection} id="about">
+        <div style={s.aboutInner}>
+          <div style={s.aboutTag}>About Direct Impact</div>
+          <h2 style={s.aboutH2}>We are self-funded. Not out of choice, but out of default.</h2>
+          <div style={s.aboutGrid}>
+            <div>
+              <p style={s.aboutP}>Looking away has always been the most difficult thing to do. And so, year after year, we have found ourselves deeper in the trenches of humanity, walking alongside people that every other system has left behind.</p>
+              <p style={{ ...s.aboutP, marginTop: '16px' }}>Before we helped a single person, we invested in formal NGO management training for our in-country CEO. We registered in two countries. We built the governance structures first. Because we refused to let this be the blind leading the blind.</p>
+            </div>
+            <div>
+              <div style={s.aboutHighlight}>&quot;If you have ever found it hard to look away, you already understand why we exist.&quot;</div>
+              <p style={{ ...s.aboutP, marginTop: '24px' }}>We look forward to the day when the weight of this work is shared. Until that day, we will keep going.</p>
+            </div>
+          </div>
+          <Link href="/about" style={s.aboutBtn}>Our full story</Link>
+		  <Link href="/founder-visit" style={s.foundervisitBtn}>See what we found</Link>
+        </div>
+      </div>
 
     </div>
   );
