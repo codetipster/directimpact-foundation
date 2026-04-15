@@ -7,21 +7,19 @@ import { useState, useEffect } from 'react'
 
 const navItems = [
   { label: 'Home', href: '/' },
-  { label: 'About Us', href: '/#about' },
+  { label: 'About Us', href: '/about' },
   { label: 'Founder Visit', href: '/founder-visit' },
   { label: 'Contact', href: '/contact' },
 ]
 
 export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
-  // ✅ Prevent hydration mismatch
   if (!mounted) return null
 
   const toggleMobileMenu = () => {
@@ -30,13 +28,13 @@ export function Navigation() {
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false)
-    setOpenDropdown(null)
   }
 
   return (
     <header className="sticky top-0 z-50 border-b bg-white">
       <div className="container mx-auto px-4">
         <nav className="flex items-center justify-between h-20">
+
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <Image
@@ -44,7 +42,7 @@ export function Navigation() {
               alt="HopeHarbor"
               width={80}
               height={80}
-              className="h-20 w-auto" // ✅ FIXED
+              className="h-20 w-auto"
               unoptimized
             />
           </Link>
@@ -52,29 +50,13 @@ export function Navigation() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
-              <div key={item.label}>
-                {item.children ? (
-                  <div className="relative group">
-                    {/* Clickable parent */}
-                    <Link
-                      href={item.href}
-                      className="text-gray-600 hover:text-gray-900 flex items-center gap-1"
-                    >
-                      {item.label}
-                      <span className="text-xs">▼</span>
-                    </Link>
-
-                   
-                  </div>
-                ) : (
-                  <Link
-                    href={item.href}
-                    className="text-gray-600 hover:text-gray-900 transition-colors"
-                  >
-                    {item.label}
-                  </Link>
-                )}
-              </div>
+              <Link
+                key={item.label}
+                href={item.href}
+                className="text-gray-600 hover:text-gray-900 transition-colors"
+              >
+                {item.label}
+              </Link>
             ))}
           </div>
 
@@ -84,10 +66,7 @@ export function Navigation() {
               <Link href="/donate">DONATE</Link>
             </Button>
 
-            <Button
-              className="bg-[#59B7E7] hover:bg-[#59B7E7]/90 text-white"
-              asChild
-            >
+            <Button className="bg-[#59B7E7] hover:bg-[#59B7E7]/90 text-white" asChild>
               <Link href="/volunteer">Become a Volunteer</Link>
             </Button>
           </div>
@@ -97,21 +76,9 @@ export function Navigation() {
             onClick={toggleMobileMenu}
             className="md:hidden flex flex-col items-center justify-center w-8 h-8 space-y-1"
           >
-            <span
-              className={`block w-6 h-0.5 bg-gray-600 ${
-                isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''
-              }`}
-            />
-            <span
-              className={`block w-6 h-0.5 bg-gray-600 ${
-                isMobileMenuOpen ? 'opacity-0' : ''
-              }`}
-            />
-            <span
-              className={`block w-6 h-0.5 bg-gray-600 ${
-                isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''
-              }`}
-            />
+            <span className={`block w-6 h-0.5 bg-gray-600 ${isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`} />
+            <span className={`block w-6 h-0.5 bg-gray-600 ${isMobileMenuOpen ? 'opacity-0' : ''}`} />
+            <span className={`block w-6 h-0.5 bg-gray-600 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`} />
           </button>
         </nav>
 
@@ -130,6 +97,7 @@ export function Navigation() {
           }`}
         >
           <div className="flex flex-col h-full">
+
             {/* Header */}
             <div className="flex items-center justify-between p-6 border-b">
               <Image
@@ -146,44 +114,14 @@ export function Navigation() {
             <div className="flex-1 px-6 py-8">
               <nav className="space-y-6">
                 {navItems.map((item) => (
-                  <div key={item.label}>
-                    {item.children ? (
-                      <>
-                        {/* Toggle dropdown */}
-                        <button
-                          onClick={() =>
-                            setOpenDropdown(
-                              openDropdown === item.label
-                                ? null
-                                : item.label
-                            )
-                          }
-                          className="w-full flex justify-between items-center text-xl font-medium text-gray-700"
-                        >
-                          {item.label}
-                          <span
-                            className={`transition-transform ${
-                              openDropdown === item.label
-                                ? 'rotate-180'
-                                : ''
-                            }`}
-                          >
-                            ▼
-                          </span>
-                        </button>
-
-                        
-                      </>
-                    ) : (
-                      <Link
-                        href={item.href}
-                        onClick={closeMobileMenu}
-                        className="block text-xl font-medium text-gray-700"
-                      >
-                        {item.label}
-                      </Link>
-                    )}
-                  </div>
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    onClick={closeMobileMenu}
+                    className="block text-xl font-medium text-gray-700"
+                  >
+                    {item.label}
+                  </Link>
                 ))}
               </nav>
             </div>
@@ -196,15 +134,13 @@ export function Navigation() {
                 </Link>
               </Button>
 
-              <Button
-                className="w-full bg-[#59B7E7] text-white text-lg"
-                asChild
-              >
+              <Button className="w-full bg-[#59B7E7] text-white text-lg" asChild>
                 <Link href="/volunteer" onClick={closeMobileMenu}>
                   Become a Volunteer
                 </Link>
               </Button>
             </div>
+
           </div>
         </div>
       </div>
