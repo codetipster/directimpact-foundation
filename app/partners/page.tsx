@@ -30,7 +30,7 @@ export default function PartnershipPage() {
     sectionTitle: { fontSize: '26px', fontWeight: 400, fontFamily: 'Georgia, serif', marginBottom: '12px', color: '#1a1a1a' },
     sectionSub: { fontSize: '16px', color: '#555', lineHeight: 1.7, marginBottom: '40px', maxWidth: '620px' },
     dipGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0', margin: '40px 0 56px' },
-    dipCard: (i: number) => ({ background: ['#7B1E1E', '#9B2E2E', '#B84040', '#D05050'][i], color: '#fff', padding: '32px 24px', position: 'relative' }),
+    //dipCard: (i: number) => ({ background: ['#7B1E1E', '#9B2E2E', '#B84040', '#D05050'][i], color: '#fff', padding: '32px 24px', position: 'relative' }),
     dipNum: { fontSize: '40px', fontWeight: 700, opacity: 0.3, fontFamily: 'Georgia, serif', lineHeight: 1 },
     dipTitle: { fontSize: '16px', fontWeight: 600, margin: '8px 0 10px', lineHeight: 1.3 },
     dipDesc: { fontSize: '13px', opacity: 0.85, lineHeight: 1.6 },
@@ -39,8 +39,8 @@ export default function PartnershipPage() {
     statNum: { fontSize: '32px', fontWeight: 700, color: '#7B1E1E', fontFamily: 'Georgia, serif' },
     statLabel: { fontSize: '13px', color: '#666', marginTop: '4px', lineHeight: 1.4 },
     partnerGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px', margin: '32px 0 56px' },
-    partnerCard: (color) => ({ background: '#fff', border: `2px solid ${color}`, borderRadius: '12px', padding: '28px 24px' }),
-    partnerTag: (color) => ({ display: 'inline-block', background: color + '20', color: color, fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', padding: '4px 12px', borderRadius: '100px', marginBottom: '14px' }),
+    //partnerCard: (color) => ({ background: '#fff', border: `2px solid ${color}`, borderRadius: '12px', padding: '28px 24px' }),
+    //partnerTag: (color) => ({ display: 'inline-block', background: color + '20', color: color, fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', padding: '4px 12px', borderRadius: '100px', marginBottom: '14px' }),
     partnerTitle: { fontSize: '17px', fontWeight: 600, marginBottom: '10px', color: '#1a1a1a' },
     partnerDesc: { fontSize: '14px', color: '#555', lineHeight: 1.65 },
     pullquote: { background: '#faf5f0', borderLeft: '4px solid #7B1E1E', borderRadius: '0 12px 12px 0', padding: '32px 40px', margin: '48px 0', fontFamily: 'Georgia, serif', fontSize: '20px', lineHeight: 1.65, color: '#2a2a2a', fontStyle: 'italic' },
@@ -69,6 +69,33 @@ export default function PartnershipPage() {
     { color: '#185FA5', type: 'Corporate partners', title: 'CSR with measurable impact', desc: 'Partner with us to fulfil your social responsibility commitments with documented, community-level outcomes across Nigeria.' },
     { color: '#7B1E1E', type: 'Individual donors', title: 'Walk alongside someone', desc: '$200 covers one complete journey from crisis to independence. $70 covers emergency relief. Every amount is tracked and reported.' },
   ];
+  
+  const getDipCard = (i: number): CSSProperties => ({
+    background: ["#7B1E1E", "#9B2E2E", "#B84040", "#D05050"][i],
+    color: "#fff",
+    padding: "32px 24px",
+    position: "relative",
+  });
+
+  const getPartnerCard = (color: string): CSSProperties => ({
+    background: "#fff",
+    border: `2px solid ${color}`,
+    borderRadius: "12px",
+    padding: "28px 24px",
+  });
+
+  const getPartnerTag = (color: string): CSSProperties => ({
+    display: "inline-block",
+    background: color + "20",
+    color,
+    fontSize: "11px",
+    fontWeight: 600,
+    textTransform: "uppercase",
+    letterSpacing: "0.08em",
+    padding: "4px 12px",
+    borderRadius: "100px",
+    marginBottom: "14px",
+  });
 
   return (
     <div style={s.page}>
@@ -84,7 +111,7 @@ export default function PartnershipPage() {
 
         <div style={s.dipGrid}>
           {dip.map((d, i) => (
-            <div key={d.num} style={s.dipCard(i)}>
+            <div key={d.num} style={getDipCard(i)}>
               <div style={s.dipNum}>{d.num}</div>
               <div style={s.dipTitle}>{d.title}</div>
               <div style={s.dipDesc}>{d.desc}</div>
@@ -110,9 +137,9 @@ export default function PartnershipPage() {
         <p style={s.sectionSub}>Whether you are a grant maker, a corporate with CSR commitments, or an individual donor, there is a meaningful way to be part of this work.</p>
 
         <div style={s.partnerGrid}>
-          {partners.map(p => (
-            <div key={p.type} style={s.partnerCard(p.color)}>
-              <div style={s.partnerTag(p.color)}>{p.type}</div>
+          {partners.map((p) => (
+            <div key={p.type} style={getPartnerCard(p.color)}>
+              <div style={getPartnerTag(p.color)}>{p.type}</div>
               <div style={s.partnerTitle}>{p.title}</div>
               <div style={s.partnerDesc}>{p.desc}</div>
             </div>
