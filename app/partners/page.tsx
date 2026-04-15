@@ -30,7 +30,7 @@ export default function PartnershipPage() {
     sectionTitle: { fontSize: '26px', fontWeight: 400, fontFamily: 'Georgia, serif', marginBottom: '12px', color: '#1a1a1a' },
     sectionSub: { fontSize: '16px', color: '#555', lineHeight: 1.7, marginBottom: '40px', maxWidth: '620px' },
     dipGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0', margin: '40px 0 56px' },
-    dipCard: (i) => ({ background: ['#7B1E1E', '#9B2E2E', '#B84040', '#D05050'][i], color: '#fff', padding: '32px 24px', position: 'relative' }),
+    dipCard: (i: number) => ({ background: ['#7B1E1E', '#9B2E2E', '#B84040', '#D05050'][i], color: '#fff', padding: '32px 24px', position: 'relative' }),
     dipNum: { fontSize: '40px', fontWeight: 700, opacity: 0.3, fontFamily: 'Georgia, serif', lineHeight: 1 },
     dipTitle: { fontSize: '16px', fontWeight: 600, margin: '8px 0 10px', lineHeight: 1.3 },
     dipDesc: { fontSize: '13px', opacity: 0.85, lineHeight: 1.6 },
@@ -55,6 +55,7 @@ export default function PartnershipPage() {
     btnRed: { background: '#7B1E1E', color: '#fff', border: 'none', padding: '16px 40px', borderRadius: '100px', fontSize: '15px', fontWeight: 600, cursor: 'pointer', marginTop: '16px' },
     successBox: { background: '#e8f5e9', borderRadius: '12px', padding: '32px', textAlign: 'center' },
   };
+
 
   const dip = [
     { num: '01', title: 'Crisis response', desc: 'Emergency relief. Food, water, and immediate support delivered directly.' },
