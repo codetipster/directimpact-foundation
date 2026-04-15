@@ -198,6 +198,12 @@ export default function PartnershipPage() {
     { num: "03", title: "Economic restart", desc: "Capital and training tailored." },
     { num: "04", title: "Independence", desc: "Follow-up until self-sufficient." },
   ];
+  
+  const partners = [
+    { color: '#1D9E75', type: 'Grant makers', title: 'Fund the model at scale', desc: 'Your grant funds the full Dignity to Independence journey for multiple beneficiaries. We provide full documentation, video evidence, and impact reporting.' },
+    { color: '#185FA5', type: 'Corporate partners', title: 'CSR with measurable impact', desc: 'Partner with us to fulfil your social responsibility commitments with documented, community-level outcomes across Nigeria.' },
+    { color: '#7B1E1E', type: 'Individual donors', title: 'Walk alongside someone', desc: '$200 covers one complete journey from crisis to independence. $70 covers emergency relief. Every amount is tracked and reported.' },
+  ];
 
   return (
     <div style={s.page}>
