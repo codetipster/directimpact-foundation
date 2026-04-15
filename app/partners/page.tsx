@@ -203,17 +203,47 @@ export default function PartnershipPage() {
     <div style={s.page}>
       <div style={s.hero}>
         <div style={s.tag}>Partner with Direct Impact</div>
-        <h1 style={s.h1}>Help us reach further</h1>
-        <p style={s.heroP}>We move people from crisis to independence.</p>
+        <h1 style={s.h1}>Help us reach further and walk longer alongside the people every other system has missed.</h1>
+        <p style={s.heroP}>Direct Impact Empowerment Foundation is registered in Switzerland and Nigeria. We work through a four-stage model that takes people from crisis all the way to sustained independence.</p>
       </div>
 
       <div style={s.section}>
+	    <h2 style={s.sectionTitle}>The Dignity to Independence Pathway</h2>
+        <p style={s.sectionSub}>Most organisations choose between emergency relief and long-term development. We refuse that choice. Our four-stage model follows each person from the moment of crisis to a life they have built for themselves.</p>
+		
         <div style={s.dipGrid}>
           {dip.map((d, i) => (
             <div key={d.num} style={{ ...s.dipCard, background: colors[i] }}>
               <div style={s.dipNum}>{d.num}</div>
               <div style={s.dipTitle}>{d.title}</div>
               <div style={s.dipDesc}>{d.desc}</div>
+            </div>
+          ))}
+        </div>
+		
+		<h2 style={s.sectionTitle}>The numbers behind the work</h2>
+        <div style={s.statsRow}>
+          {[['300+', 'People reached'], ['$200', 'Cost per full journey'], ['$70', 'Emergency relief package'], ['4', 'Documented case studies'], ['2', 'Countries registered']].map(([n, l]) => (
+            <div key={l} style={s.statCard}>
+              <div style={s.statNum}>{n}</div>
+              <div style={s.statLabel}>{l}</div>
+            </div>
+          ))}
+        </div>
+
+        <div style={s.pullquote}>
+          &quot;We found an elderly man who had lost his kneecap in an accident. We gave him emergency cash to survive. He used it to buy coal to resell. When we heard that, we came back with three sacks of coal and the capital to trade properly. That is what we mean when we say we do not give people charity. We give them the conditions to show us who they already are.&quot;
+        </div>
+
+        <h2 style={s.sectionTitle}>Ways to partner with us</h2>
+        <p style={s.sectionSub}>Whether you are a grant maker, a corporate with CSR commitments, or an individual donor, there is a meaningful way to be part of this work.</p>
+
+        <div style={s.partnerGrid}>
+          {partners.map(p => (
+            <div key={p.type} style={s.partnerCard(p.color)}>
+              <div style={s.partnerTag(p.color)}>{p.type}</div>
+              <div style={s.partnerTitle}>{p.title}</div>
+              <div style={s.partnerDesc}>{p.desc}</div>
             </div>
           ))}
         </div>
