@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import type { CSSProperties } from "react";
 
 export default function PartnershipPage() {
   const [form, setForm] = useState({ name: '', email: '', org: '', type: '', message: '' });
