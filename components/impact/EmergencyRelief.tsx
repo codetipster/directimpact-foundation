@@ -117,24 +117,30 @@ export default function EmergencyRelief() {
         <div style={s.divider} />
 
         <div style={s.eventSection}>
-          <div style={s.eventHeader}>
-            <div style={eventYear('#7B1E1E')}>Easter 2026</div>
-            <div style={s.eventTitle}>Easter Emergency Relief</div>
-          </div>
-          <p style={s.eventP}>This Easter our team in Nigeria reached 300 people with hot meals, clean water, and the kind of presence that says you are not forgotten. Hot jollof rice, protein, plantain, packed in branded DIEF containers and distributed with dignity across the community in a single day.</p>
-          <div style={s.eventHighlight}>
-            &quot;Every food pack carried our name and our promise. Every bottle of water was handed over by a volunteer in a DIEF uniform, because how you show up matters as much as what you bring.&quot;
-          </div>
-          <div style={s.videoWrap}>
-            <iframe
-              style={s.videoIframe}
-              src="https://www.youtube.com/embed/7oHKMOWEsY4"
-              title="Easter Emergency Relief 2026"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-        </div>
+  {/* Video moved to the top */}
+  <div style={s.videoWrap}>
+    <iframe
+      style={s.videoIframe}
+      src="https://www.youtube.com/embed/7oHKMOWEsY4"
+      title="Easter Emergency Relief 2026"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+    />
+  </div>
+
+  <div style={s.eventHeader}>
+    <div style={eventYear('#7B1E1E')}>Easter 2026</div>
+    <div style={s.eventTitle}>Easter Emergency Relief</div>
+  </div>
+
+  <p style={s.eventP}>
+    This Easter our team in Nigeria reached 300 people with hot meals, clean water, and the kind of presence that says you are not forgotten. Hot jollof rice, protein, plantain, packed in branded DIEF containers and distributed with dignity across the community in a single day.
+  </p>
+
+  <div style={s.eventHighlight}>
+    &quot;Every food pack carried our name and our promise. Every bottle of water was handed over by a volunteer in a DIEF uniform, because how you show up matters as much as what you bring.&quot;
+  </div>
+</div>
 
         <div style={s.pathwayBridge}>
           <h2 style={s.pathwayH2}>Emergency relief is where the journey begins</h2>
