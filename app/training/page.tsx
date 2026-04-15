@@ -256,7 +256,7 @@ export default function TrainingSection() {
     {
       color: "#1D9E75",
       type: "GRC",
-      title: "Governance Risk and Compliance",
+      title: "Governance, Risk and Compliance",
       desc: "Understand enterprise cybersecurity governance.",
       noCoding: true,
     },
@@ -278,18 +278,15 @@ export default function TrainingSection() {
     <div style={s.page}>
       <div style={s.hero}>
         <div style={s.tag}>Free technology training</div>
-        <h1 style={s.h1}>
-          A digital skill can change the entire trajectory of a life.
-        </h1>
-        <p style={s.heroP}>
-          Direct Impact offers free cybersecurity and tech training.
-        </p>
-        <a href="https://betapersin.com" style={s.freeTag}>
-          Start free at betapersin.com
-        </a>
+        <h1 style={s.h1}>A digital skill can change the entire trajectory of a life.</h1>
+        <p style={s.heroP}>Direct Impact offers free cybersecurity and technology courses through betapersin.com. No card. No catch. No coding required to get started.</p>
+        <a href="https://betapersin.com" target="_blank" style={s.freeTag}>Start with Module 1 free at betapersin.com</a>
       </div>
 
       <div style={s.section}>
+	    <h2 style={s.sectionTitle}>Choose your pathway</h2>
+        <p style={s.sectionSub}>Cybersecurity is a mile wide. Not every path requires coding. Here are the four pathways available to you right now.</p>
+		
         <div style={s.courseGrid}>
           {courses.map((c) => (
             <div key={c.type} style={courseCard(c.color)}>
@@ -302,75 +299,40 @@ export default function TrainingSection() {
         </div>
 
         <div style={s.storyBlock}>
-          <div style={s.storyQ}>
-            &quot;I started as a cleaner. Today I work in cybersecurity.&quot;
-          </div>
-          <p style={s.storyP}>
-            Training at betapersin.com is built for real-world careers.
-          </p>
+		  <div style={s.storyQ}>&quot;I started as a cleaner. Today I hold a CISSP qualification, one of the most respected certifications in global cybersecurity.&quot;</div>
+            <p style={s.storyP}>The founder of Direct Impact built a career in technology from scratch. The training at betapersin.com is built on the same belief: that where you start does not determine where you end up. You just need the right path and someone to show it to you.</p>
+           <a href="https://betapersin.com" target="_blank" style={s.storyBtn}>Go to betapersin.com</a>
         </div>
 
         <div style={s.formCard}>
           <h3 style={s.formTitle}>Apply for a funded place</h3>
-
+          <p style={s.formSub}>Direct Impact has a limited number of fully funded training places available. If cost is a barrier, apply here and we will be in touch.</p>
           {submitted ? (
             <div style={s.successBox}>
-              Application received.
+              <p style={{ fontSize: '18px', fontWeight: 600, color: '#2e7d32', marginBottom: '8px' }}>Application received.</p>
+              <p style={{ fontSize: '15px', color: '#444' }}>We will review your application and be in touch within five working days.</p>
             </div>
           ) : (
-            <>
+            <div>
               <label style={s.label}>Full name</label>
-              <input
-                style={s.input}
-                value={form.name}
-                onChange={(e) =>
-                  setForm({ ...form, name: e.target.value })
-                }
-              />
-
-              <label style={s.label}>Email</label>
-              <input
-                style={s.input}
-                value={form.email}
-                onChange={(e) =>
-                  setForm({ ...form, email: e.target.value })
-                }
-              />
-
-              <label style={s.label}>Course</label>
-              <select
-                style={s.select}
-                value={form.course}
-                onChange={(e) =>
-                  setForm({ ...form, course: e.target.value })
-                }
-              >
-                <option value="">Select</option>
-                <option>IAM</option>
-                <option>GRC</option>
+              <input style={s.input} value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="Your name" />
+              <label style={s.label}>Email address</label>
+              <input style={s.input} value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} placeholder="your@email.com" />
+              <label style={s.label}>Which course interests you?</label>
+              <select style={s.select} value={form.course} onChange={e => setForm({ ...form, course: e.target.value })}>
+                <option value="">Select a course</option>
+                <option>Identity and Access Management (IAM)</option>
+                <option>Governance Risk and Compliance (GRC)</option>
                 <option>Software Engineering</option>
-                <option>Full Stack</option>
+                <option>Full Stack Engineering</option>
               </select>
-
-              <label style={s.label}>Background</label>
-              <textarea
-                style={s.textarea}
-                value={form.background}
-                onChange={(e) =>
-                  setForm({ ...form, background: e.target.value })
-                }
-              />
-
-              <button
-                style={s.btnRed}
-                onClick={handleSubmit}
-                disabled={sending}
-              >
-                {sending ? "Sending..." : "Submit"}
-              </button>
-            </>
+              <label style={s.label}>Tell us briefly about your background</label>
+              <textarea style={s.textarea} value={form.background} onChange={e => setForm({ ...form, background: e.target.value })} placeholder="A few sentences about where you are now and why you want to learn" />
+              <button style={s.btnRed} onClick={handleSubmit} disabled={sending}>{sending ? 'Sending...' : 'Submit application'}</button>
+            </div>
           )}
         </div>
+		
       </div>
     </div>
   );
