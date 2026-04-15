@@ -8,14 +8,7 @@ import { useState, useEffect } from 'react'
 const navItems = [
   { label: 'Home', href: '/' },
   { label: 'About Us', href: '/#about' },
-  {
-    label: 'Causes',
-    href: '/causes', // ✅ clickable
-    children: [
-      { label: 'Causes', href: '/causes' }, // ✅ mobile friendly
-      { label: 'Founder Visit', href: '/founder-visit' },
-    ],
-  },
+  { label: 'Founder Visit', href: '/founder-visit' },
   { label: 'Contact', href: '/contact' },
 ]
 
@@ -71,18 +64,7 @@ export function Navigation() {
                       <span className="text-xs">▼</span>
                     </Link>
 
-                    {/* Dropdown */}
-                    <div className="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          className="block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
-                    </div>
+                   
                   </div>
                 ) : (
                   <Link
@@ -190,21 +172,7 @@ export function Navigation() {
                           </span>
                         </button>
 
-                        {/* Dropdown items */}
-                        {openDropdown === item.label && (
-                          <div className="ml-4 mt-3 space-y-2">
-                            {item.children.map((child) => (
-                              <Link
-                                key={child.href}
-                                href={child.href}
-                                onClick={closeMobileMenu}
-                                className="block text-lg text-gray-600"
-                              >
-                                {child.label}
-                              </Link>
-                            ))}
-                          </div>
-                        )}
+                        
                       </>
                     ) : (
                       <Link
