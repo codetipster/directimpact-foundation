@@ -32,7 +32,7 @@ export default function FounderVisit() {
 
   const moments = [
     { icon: '✈', title: 'Unannounced arrival', desc: 'The founder flew in from Switzerland without advance notice to the community. What you see in the footage is real, not staged.' },
-    { icon: '🤝', title: 'First meeting in person', desc: 'The founder and CEO Oga Reuben Eka met face to face for the first time during this visit, after years of working together remotely.' },
+    { icon: '🤝', title: 'First meeting in person', desc: "This visit marked a milestone. The first time Femi and Reuben, who leads DIEF's ground operations in Nigeria, had ever met in person despite two years of working together." },
     { icon: '🏠', title: 'The roof she did not mention', desc: 'One beneficiary had a damaged roof but said nothing. She did not want to ask for more after everything already done. The team noticed and acted.' },
     { icon: '👴', title: 'Visiting the elderly', desc: 'The team visited an elderly man supported through illness and a woman already empowered through the programme, checking on their progress.' },
   ];
