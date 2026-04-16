@@ -9,6 +9,7 @@ const navItems = [
   { label: 'Home', href: '/' },
   { label: 'About Us', href: '/about' },
   { label: 'Founder Visit', href: '/founder-visit' },
+  { label: 'Partners', href: '/partners' },
 ]
 
 export function Navigation() {
