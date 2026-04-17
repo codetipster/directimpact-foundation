@@ -1,11 +1,7 @@
+"use client";
 import { Metadata } from 'next'
 import React, { useState } from 'react'
 import Image from 'next/image'
-
-export const metadata: Metadata = {
-  title: 'Donate - Direct Impact Empowerment Foundation',
-  description: 'Support youth empowerment and community transformation through your generous donation.',
-}
 
 export default function BankDetails() {
   const [copiedText, setCopiedText] = useState<string | null>(null);
