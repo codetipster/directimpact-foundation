@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -20,6 +20,7 @@ const navItems = [
 ];
 
 export function Navigation() {
+  const [mounted, setMounted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
   const [desktopDropdown, setDesktopDropdown] = useState<string | null>(null);
@@ -27,6 +28,12 @@ export function Navigation() {
   const toggleMobileDropdown = (label: string) => {
     setMobileDropdown(mobileDropdown === label ? null : label);
   };
+  
+  useEffect(() => {
+	  setMounted(true);
+	}, []);
+  
+  if (!mounted) return null; // ✅ prevents hydration mismatch
 
   return (
     <header className="sticky top-0 z-50 border-b bg-white">
