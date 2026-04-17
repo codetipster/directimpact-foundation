@@ -125,7 +125,7 @@ export default function FounderBio() {
           <p style={s.p}>
             But I want to be clear about something. This also makes me very, very happy.
             Doing this makes me happy in a way that nothing else does. I could do this
-            full time without being paid a single penny, just to see someone's life
+            full time without being paid a single penny, just to see someone&apos;s life
             change because I did not walk away.
           </p>
 
