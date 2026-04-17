@@ -269,7 +269,7 @@ export default function VocationalTraining() {
         <div style={s.heroTag}>Vocational Training</div>
         <h1 style={s.heroH1}>A skill in your hands is a livelihood for life.</h1>
         <p style={s.heroP}>
-          DIEF's vocational training programme will equip young Nigerians with professional
+          DIEF&apos;s vocational training programme will equip young Nigerians with professional
           sewing and tailoring skills, and the business knowledge to turn that skill into
           a sustainable income.
         </p>
@@ -288,7 +288,7 @@ export default function VocationalTraining() {
         <div style={s.sectionLabel}>The Programme</div>
         <h2 style={s.sectionH2}>Practical skills. Real independence.</h2>
         <p style={s.sectionP}>
-          This programme has been on DIEF's roadmap from the beginning. We know exactly
+          This programme has been on DIEF&apos;s roadmap from the beginning. We know exactly
           what it will take to deliver it: a training space, industrial sewing machines,
           and qualified trainers. We have costed it. We are ready to build it the moment
           the funding is in place.
