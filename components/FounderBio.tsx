@@ -91,7 +91,7 @@ export default function FounderBio() {
       <div style={s.layout}>
         <div style={s.photoPlaceholder}>
          <Image
-			src="/reuben.jpeg"
+			src="/pesin.png"
 			alt="team-img"
             fill
 			className="object-cover"

@@ -303,6 +303,18 @@ export default function TrainingSection() {
             <p style={s.storyP}>The founder of Direct Impact built a career in technology from scratch. The training at betapersin.com is built on the same belief: that where you start does not determine where you end up. You just need the right path and someone to show it to you.</p>
            <a href="https://betapersin.com" target="_blank" style={s.storyBtn}>Go to betapersin.com</a>
         </div>
+		
+		<div style={{ background: '#fdf6f6', borderRadius: '12px', padding: '40px', marginBottom: '40px', textAlign: 'center' }}>
+		  <div style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#7B1E1E', marginBottom: '12px' }}>Also available</div>
+		  <h3 style={{ fontSize: '22px', fontWeight: 700, marginBottom: '12px', color: '#1a1a1a' }}>Prefer hands-on skills?</h3>
+		  <p style={{ fontSize: '15px', color: '#555', lineHeight: 1.7, maxWidth: '480px', margin: '0 auto 24px' }}>
+			Our vocational sewing and tailoring programme is coming soon. Register your interest
+			now and we will contact you as soon as we are ready to launch.
+		  </p>
+		  <a href="/vocational-training" style={{ display: 'inline-block', background: '#7B1E1E', color: '#fff', padding: '14px 32px', borderRadius: '100px', fontWeight: 600, fontSize: '15px', textDecoration: 'none' }}>
+			Explore vocational training
+		  </a>
+		</div>
 
         <div style={s.formCard}>
           <h3 style={s.formTitle}>Apply for a funded place</h3>
