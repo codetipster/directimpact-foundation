@@ -41,7 +41,7 @@ export default function CEOBio() {
 
           <p>
             The journey has been long. It has been tiring. But I have stayed committed,
-            and with Femi's support, we have taken giant strides.
+            and with Femi&apos;s support, we have taken giant strides.
           </p>
 
           <p>
@@ -73,11 +73,11 @@ export default function CEOBio() {
         {/* Image Section */}
         <div className="relative w-full aspect-[3/4] bg-[#f5eeee] rounded-xl overflow-hidden shadow-lg">
           <Image
-            src="/reuben.jpeg" // Ensure this file is in your /public folder
+            src="/reuben.jpeg"
             alt="Reuben Eka - CEO"
             fill
             className="object-cover"
-            priority // Helps with LCP (loading speed) for the main image
+            priority 
           />
         </div>
 
