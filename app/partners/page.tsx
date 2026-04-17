@@ -122,13 +122,17 @@ export default function PartnershipPage() {
 
         <h2 style={s.sectionTitle}>The numbers behind the work</h2>
         <div style={s.statsRow}>
-          {[['300+', 'People reached'], ['$200', 'Cost per full journey'], ['$70', 'Emergency relief package'], ['4', 'Documented case studies'], ['2', 'Countries registered']].map(([n, l]) => (
+          {[['300+', 'People reached'], ['$200', 'Cost per full journey'], ['$70', 'Emergency relief package'], ['4', 'Featured video journeys'], ['2', 'Countries registered']].map(([n, l]) => (
             <div key={l} style={s.statCard}>
               <div style={s.statNum}>{n}</div>
               <div style={s.statLabel}>{l}</div>
             </div>
           ))}
         </div>
+		
+		<p style={{ fontSize: '14px', color: '#888', fontStyle: 'italic', textAlign: 'center', marginTop: '-24px', marginBottom: '48px' }}>
+          Every beneficiary journey is recorded internally. These four represent the stories we have chosen to share publicly in full.
+        </p>
 
         <div style={s.pullquote}>
           &quot;We found an elderly man who had lost his kneecap in an accident. We gave him emergency cash to survive. He used it to buy coal to resell. When we heard that, we came back with three sacks of coal and the capital to trade properly. That is what we mean when we say we do not give people charity. We give them the conditions to show us who they already are.&quot;
