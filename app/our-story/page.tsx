@@ -1,3 +1,6 @@
+import  CEOBio  from '@/components/CEOBio'
+import  FounderBio  from '@/components/FounderBio'
+
 export default function OurStory() {
   const s: Record<string, React.CSSProperties> = {
     page: {
@@ -139,6 +142,9 @@ export default function OurStory() {
       </p>
 
       <p style={s.closing}>That is our story. It is still being written.</p>
+	  <FounderBio />
+	  <CEOBio />
     </div>
+	
   );
 }
