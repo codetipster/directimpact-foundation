@@ -42,17 +42,17 @@ export function DonationOptions() {
               </p>
 
               <div className="flex items-center justify-center gap-4 mb-6">
-                <img
+                <Image
                   src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg"
                   alt="Visa"
                   className="h-8 w-auto"
                 />
-                <img
+                <Image
                   src="https://upload.wikimedia.org/wikipedia/commons/b/b7/MasterCard_Logo.svg"
                   alt="MasterCard"
                   className="h-8 w-auto"
                 />
-                <img
+                <Image
                   src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg"
                   alt="Amex"
                   className="h-8 w-auto"
