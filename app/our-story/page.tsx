@@ -141,7 +141,7 @@ export default function OurStory() {
         went out with the team to visit beneficiaries. I saw what we had built.
       </p>
 
-      <p style={s.closing}>That is our story. It is still being written.</p>
+      <p style={s.closing}>That is our story. It is still being written.</p> 
 	  <FounderBio />
 	  <CEOBio />
     </div>
