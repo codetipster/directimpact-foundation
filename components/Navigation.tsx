@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-// We removed the unused Button import from here to fix the Render error
 import { useState, useEffect } from "react";
 
 const navItems = [
@@ -11,7 +10,6 @@ const navItems = [
     label: "About Us", 
     children: [
       { label: "Our Organization", href: "/about" },
-      { label: "Our Team", href: "/about/team" },
     ]
   },
   {
