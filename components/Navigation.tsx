@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+// We removed the unused Button import from here to fix the Render error
 import { useState, useEffect } from "react";
 
 const navItems = [
