@@ -1,84 +1,76 @@
+"use client";
+
 import Image from 'next/image';
 
 export default function CEOBio() {
   return (
-    <div className="max-w-[860px] mx-auto px-6 py-16 md:py-20 text-[#1a1a1a] font-sans">
-      {/* Label & Header */}
-      <div className="text-[12px] font-bold tracking-[2px] uppercase text-[#7B1E1E] mb-3">
-        A word from our CEO
-      </div>
-      <h2 className="text-3xl md:text-4xl font-bold mb-12 leading-tight">
-        The man on the ground
-      </h2>
-
-      {/* Main Layout Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-10 md:gap-16 items-start">
+    <div className="max-w-6xl mx-auto px-6 py-12 lg:py-24">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
-        {/* Biography Text Content */}
-        <div className="flex flex-col space-y-6 text-[17px] leading-[1.85] text-[#2a2a2a]">
-          <p>
-            When the platform we had both been part of fell apart and everyone went their
-            separate ways, I approached Femi. I had noticed something about her during our
-            time together. Of everyone in that group, she was a giver. The same as me.
-            The difference was that I was based in Nigeria and did not have much. But she
-            was the logical person to ask.
-          </p>
-
-          <p>
-            She said no at first. She told me she would rather support someone who was
-            already running an NGO than start something new. I told her not to worry,
-            that I would do it, that I would handle it. And I meant that. What I did not
-            know at the time was how much work was actually involved. I thought it was
-            something I could just start doing.
-          </p>
-
-          <p>
-            So when she said she was going to send me for training, I was genuinely
-            surprised. But that training opened my eyes. I realised that what we had been
-            doing before was not NGO work. We were just doing something. What exactly,
-            I am still not sure. But it was not this.
-          </p>
-
-          <p>
-            The journey has been long. It has been tiring. But I have stayed committed,
-            and with Femi&apos;s support, we have taken giant strides.
-          </p>
-
-          <p>
-            One of the things that makes me most proud is that through Direct Impact, I
-            have become even more respected in my community. People look up to me. People
-            come to me with their problems and ask whether our organisation can help. 
-          </p>
-
-          <p className="font-semibold italic">That still makes me smile.</p>
-
-          <p>
-            Femi had always wanted to stay in the background. But the work was too much
-            for one person, and she had to step forward. From the very beginning she told
-            me that I would be the CEO, that I would run things. And I am. I carry that
-            title with so much pride.
-          </p>
-
-          <p className="text-[#7B1E1E] font-semibold">
-            We are happy. We are proud. And we know that what we are doing is scalable.
-            If we have achieved everything we have with no external funding, just imagine
-            what becomes possible when support from the outside finally arrives.
-          </p>
-
-          <p className="text-sm text-gray-500 italic mt-2 border-t pt-4">
-            Reuben Eka, CEO, Direct Impact Empowerment Foundation, Nigeria
-          </p>
+        {/* --- Image Section (Grid Span 5) --- */}
+        <div className="lg:col-span-5 relative group">
+          {/* Decorative Background Element */}
+          <div className="absolute -inset-4 bg-[#7B1E1E]/5 rounded-2xl -rotate-2 group-hover:rotate-0 transition-transform duration-500"></div>
+          
+          <div className="relative aspect-[4/5] w-full bg-gray-100 rounded-2xl overflow-hidden shadow-2xl">
+            <Image
+              src="/reuben.jpeg"
+              alt="Reuben Eka - CEO"
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              priority 
+            />
+          </div>
+          
+          {/* Floating Badge */}
+          <div className="absolute -bottom-6 -right-6 bg-white p-6 shadow-xl rounded-xl hidden md:block border border-gray-50">
+            <p className="text-[#7B1E1E] font-black text-2xl mb-1">CEO</p>
+            <p className="text-gray-400 text-[10px] uppercase tracking-widest font-bold">Nigeria Operations</p>
+          </div>
         </div>
 
-        {/* Image Section */}
-        <div className="relative w-full aspect-[3/4] bg-[#f5eeee] rounded-xl overflow-hidden shadow-lg">
-          <Image
-            src="/reuben.jpeg"
-            alt="Reuben Eka - CEO"
-            fill
-            className="object-cover"
-            priority 
-          />
+        {/* --- Text Content (Grid Span 7) --- */}
+        <div className="lg:col-span-7 lg:pl-10">
+          <div className="space-y-8">
+            {/* Header Area */}
+            <div>
+              <span className="text-[#7B1E1E] text-xs font-black uppercase tracking-[0.3em] block mb-4">
+                Leadership
+              </span>
+              <h2 className="text-4xl md:text-5xl font-serif text-[#1a1a1a] leading-tight">
+                {`Reuben Eka: The man on the ground`}
+              </h2>
+            </div>
+
+            {/* Narrative Body */}
+            <div className="space-y-6 text-gray-600 text-lg leading-relaxed font-light">
+              <p>
+                {`When the platform we had both been part of fell apart, I approached Femi. Of everyone in that group, she was a giver. The same as me. The difference was that I was based in Nigeria and did not have much.`}
+              </p>
+
+              <div className="bg-[#7B1E1E]/5 p-8 rounded-2xl border-l-4 border-[#7B1E1E] my-8">
+                <p className="text-[#1a1a1a] font-serif italic text-xl">
+                  {`"She said she was going to send me for training. That training opened my eyes. I realized that what we had been doing before was not NGO work. We were just doing 'something.' But it was not this."`}
+                </p>
+              </div>
+
+              <p>
+                {`The journey has been long and tiring, but through Direct Impact, I have become respected in my community. People come to me with their problems and ask whether our organization can help.`}
+              </p>
+
+              <p className="text-[#7B1E1E] font-medium">
+                {`"We know that what we are doing is scalable. If we achieved this with no external funding, imagine what becomes possible when support finally arrives."`}
+              </p>
+            </div>
+
+            {/* Signature Area */}
+            <div className="pt-8 border-t border-gray-100">
+              <p className="font-serif text-2xl text-[#1a1a1a]">Reuben Eka</p>
+              <p className="text-sm text-gray-400 uppercase tracking-widest mt-1">
+                Chief Executive Officer, Nigeria
+              </p>
+            </div>
+          </div>
         </div>
 
       </div>

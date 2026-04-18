@@ -7,9 +7,15 @@ import { useState, useEffect } from "react";
 
 const navItems = [
   { label: "Home", href: "/" },
-  { label: "About Us", href: "/about" },
+  { 
+    label: "About Us", 
+    children: [
+      { label: "Our Organization", href: "/about" },
+      { label: "Our Team", href: "/about/team" },
+    ]
+  },
   {
-    label: "Our Program",
+    label: "Our Programs",
     children: [
       { label: "Vocational Training", href: "/vocational-training" },
       { label: "Digital Training", href: "/training" },
@@ -24,147 +30,167 @@ export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
   const [desktopDropdown, setDesktopDropdown] = useState<string | null>(null);
-  
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const toggleMobileDropdown = (label: string) => {
     setMobileDropdown(mobileDropdown === label ? null : label);
   };
-  
-  useEffect(() => {
-	  setMounted(true);
-	}, []);
-  
-  if (!mounted) return null; // ✅ prevents hydration mismatch
+
+  if (!mounted) return null;
 
   return (
-    <header className="sticky top-0 z-50 border-b bg-white">
-      <div className="container mx-auto px-4">
-        <nav className="flex items-center justify-between h-20">
-
-          {/* Logo */}
-          <Link href="/" className="flex items-center">
+    <header className="sticky top-0 z-50 border-b bg-white/95 backdrop-blur-md shadow-sm">
+      <div className="container mx-auto px-6">
+        <nav className="flex items-center justify-between h-24">
+          
+          {/* Logo Section */}
+          <Link href="/" className="flex items-center transition-transform hover:scale-105">
             <Image
-              src="/oldlogo.jpeg"
-              alt="HopeHarbor"
-              width={80}
-              height={80}
-              className="h-20 w-auto"
+              src="/dimpact-logo.jpeg"
+              alt="Direct Impact"
+              width={100}
+              height={100}
+              className="h-20 w-auto object-contain"
+              priority
             />
           </Link>
 
-          {/* ✅ DESKTOP NAV (HOVER BASED) */}
-		  <div className="hidden md:flex items-center gap-8">
-		  {navItems.map((item) =>
-			item.children ? (
-			  <div key={item.label} className="relative">
-				<button
-				  onClick={() =>
-					setDesktopDropdown(
-					  desktopDropdown === item.label ? null : item.label
-					)
-				  }
-				  className="text-gray-600 hover:text-gray-900 flex items-center gap-1"
-				>
-				  {item.label} ▾
-				</button>
+          {/* Desktop Nav Items */}
+          <div className="hidden md:flex items-center gap-10">
+            {navItems.map((item) =>
+              item.children ? (
+                <div 
+                  key={item.label} 
+                  className="relative group"
+                  onMouseEnter={() => setDesktopDropdown(item.label)}
+                  onMouseLeave={() => setDesktopDropdown(null)}
+                >
+                  <button className="text-gray-600 hover:text-[#7B1E1E] flex items-center gap-1 text-[15px] font-medium transition-colors py-2">
+                    {item.label}
+                    <svg className={`w-4 h-4 transition-transform ${desktopDropdown === item.label ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+                  </button>
 
-				{desktopDropdown === item.label && (
-				  <div className="absolute left-0 top-full mt-2 w-max min-w-[200px] bg-white border rounded-lg shadow-lg z-50 whitespace-nowrap p-2">
-					{item.children.map((child) => (
-					  <Link
-						key={child.label}
-						href={child.href}
-						className="block px-4 py-3 text-gray-600 hover:bg-gray-100"
-						onClick={() => setDesktopDropdown(null)}
-					  >
-						{child.label}
-					  </Link>
-					))}
-				  </div>
-				)}
-			  </div>
-			) : (
-			  <Link
-				key={item.label}
-				href={item.href}
-				className="text-gray-600 hover:text-gray-900"
-			  >
-				{item.label}
-			  </Link>
-			)
-		  )}
-		</div>
-
-          {/* Desktop Buttons */}
-          <div className="hidden md:flex items-center gap-4">
-            <Button asChild className="bg-[#B5D858]">
-              <Link href="/donate">DONATE</Link>
-            </Button>
-
-            <Button asChild className="bg-[#59B7E7] text-white">
-              <Link href="/volunteer">Become a Volunteer</Link>
-            </Button>
+                  {desktopDropdown === item.label && (
+                    <div className="absolute left-0 top-full pt-2 w-56 animate-in fade-in slide-in-from-top-2">
+                      <div className="bg-white border border-gray-100 rounded-xl shadow-xl overflow-hidden p-2">
+                        {item.children.map((child) => (
+                          <Link
+                            key={child.label}
+                            href={child.href}
+                            className="block px-4 py-3 text-sm text-gray-600 hover:bg-[#7B1E1E]/5 hover:text-[#7B1E1E] rounded-lg transition-colors"
+                            onClick={() => setDesktopDropdown(null)}
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="text-gray-600 hover:text-[#7B1E1E] text-[15px] font-medium transition-colors"
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
           </div>
 
-          {/* Mobile Toggle */}
+          {/* Action Buttons */}
+          <div className="hidden md:flex items-center gap-4">
+            <Link 
+              href="/donate"
+              className="bg-[#7B1E1E] text-white px-8 py-3 rounded-full text-xs font-bold tracking-widest hover:bg-[#5a1616] transition-all shadow-md hover:shadow-lg active:scale-95"
+            >
+              DONATE
+            </Link>
+
+            <Link 
+              href="/volunteer"
+              className="bg-[#59B7E7] text-white px-6 py-3 rounded-full text-xs font-bold tracking-widest hover:bg-[#4895bc] transition-all shadow-md active:scale-95"
+            >
+              VOLUNTEER
+            </Link>
+          </div>
+
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-2xl"
+            className="md:hidden p-2 text-gray-600"
           >
-            ☰
+            {isMobileMenuOpen ? (
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            ) : (
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+            )}
           </button>
         </nav>
       </div>
 
-      {/* ✅ MOBILE MENU */}
+      {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-white border-t px-6 py-6 space-y-4">
-
-          {navItems.map((item) =>
-            item.children ? (
-              <div key={item.label}>
-                <button
-                  onClick={() => toggleMobileDropdown(item.label)}
-                  className="w-full text-left text-lg font-medium"
-                >
-                  {item.label} ▾
-                </button>
-
-                {mobileDropdown === item.label && (
-                  <div className="ml-4 mt-2 space-y-2">
-                    {item.children.map((child) => (
-                      <Link
-                        key={child.label}
-                        href={child.href}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="block text-gray-600"
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
-                  </div>
+        <div className="md:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-2xl animate-in slide-in-from-top-5 duration-300">
+          <div className="p-6 space-y-6">
+            {navItems.map((item) => (
+              <div key={item.label} className="border-b border-gray-50 pb-4 last:border-0">
+                {item.children ? (
+                  <>
+                    <button
+                      onClick={() => toggleMobileDropdown(item.label)}
+                      className="flex items-center justify-between w-full text-lg font-medium text-gray-800"
+                    >
+                      {item.label}
+                      <svg className={`w-5 h-5 transition-transform ${mobileDropdown === item.label ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+                    </button>
+                    {mobileDropdown === item.label && (
+                      <div className="mt-4 ml-4 flex flex-col gap-4">
+                        {item.children.map((child) => (
+                          <Link
+                            key={child.label}
+                            href={child.href}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="text-gray-500 hover:text-[#7B1E1E]"
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <Link
+                    href={item.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block text-lg font-medium text-gray-800"
+                  >
+                    {item.label}
+                  </Link>
                 )}
               </div>
-            ) : (
-              <Link
-                key={item.label}
-                href={item.href}
+            ))}
+
+            <div className="flex flex-col gap-4 pt-4">
+              <Link 
+                href="/donate"
+                className="w-full bg-[#7B1E1E] text-white text-center py-4 rounded-xl font-bold tracking-widest shadow-lg"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block text-lg"
               >
-                {item.label}
+                DONATE NOW
               </Link>
-            )
-          )}
-
-          {/* Mobile Buttons */}
-          <div className="pt-4 space-y-3">
-            <Button asChild className="w-full bg-[#B5D858]">
-              <Link href="/donate">DONATE</Link>
-            </Button>
-
-            <Button asChild className="w-full bg-[#59B7E7] text-white">
-              <Link href="/volunteer">Become a Volunteer</Link>
-            </Button>
+              <Link 
+                href="/volunteer"
+                className="w-full bg-[#59B7E7] text-white text-center py-4 rounded-xl font-bold tracking-widest"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                BECOME A VOLUNTEER
+              </Link>
+            </div>
           </div>
         </div>
       )}
