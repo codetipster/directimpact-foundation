@@ -9,7 +9,7 @@ const navItems = [
   { 
     label: "About Us", 
     children: [
-      { label: "Our Organization", href: "/about" },
+      { label: " Direct Impact Empowerment", href: "/about" },
     ]
   },
   {

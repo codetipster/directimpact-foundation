@@ -1,114 +1,477 @@
-'use client';
+import React from 'react';
 
-import Link from "next/link";
+export default function Homepage() {
+  const s: Record<string, React.CSSProperties> = {
+    page: {
+      fontFamily: 'Arial, sans-serif',
+      background: '#fff',
+      color: '#1a1a1a',
+      margin: 0,
+      padding: 0,
+    },
 
-export default function HomePageAndAbout() {
+    // Hero
+    heroSection: {
+      background: '#7B1E1E',
+      color: '#fff',
+      padding: '80px 24px',
+      textAlign: 'center' as const,
+    },
+    heroTag: {
+      display: 'inline-block',
+      background: 'rgba(255,255,255,0.15)',
+      color: '#fff',
+      fontSize: '12px',
+      letterSpacing: '0.1em',
+      textTransform: 'uppercase' as const,
+      padding: '6px 16px',
+      borderRadius: '100px',
+      marginBottom: '24px',
+    },
+    heroH1: {
+      fontSize: 'clamp(28px, 5vw, 50px)',
+      fontWeight: 400,
+      lineHeight: 1.2,
+      maxWidth: '700px',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      fontFamily: 'Georgia, serif',
+      marginBottom: '24px',
+    },
+    heroP: {
+      fontSize: '18px',
+      color: 'rgba(255,255,255,0.85)',
+      maxWidth: '580px',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      lineHeight: 1.75,
+      marginBottom: '36px',
+    },
+    heroBtn: {
+      display: 'inline-block',
+      background: '#fff',
+      color: '#7B1E1E',
+      fontWeight: 600,
+      fontSize: '15px',
+      padding: '16px 40px',
+      borderRadius: '100px',
+      textDecoration: 'none',
+      marginRight: '12px',
+      marginBottom: '8px',
+    },
+    heroBtnOutline: {
+      display: 'inline-block',
+      background: 'transparent',
+      color: '#fff',
+      fontWeight: 600,
+      fontSize: '15px',
+      padding: '16px 40px',
+      borderRadius: '100px',
+      textDecoration: 'none',
+      border: '2px solid rgba(255,255,255,0.5)',
+      marginBottom: '8px',
+    },
+
+    // DIP Section
+    dipSection: {
+      background: '#f9f4f4',
+      padding: '72px 24px',
+    },
+    dipInner: {
+      maxWidth: '880px',
+      margin: '0 auto',
+    },
+    dipLabel: {
+      fontSize: '12px',
+      fontWeight: 700,
+      letterSpacing: '2px',
+      textTransform: 'uppercase' as const,
+      color: '#7B1E1E',
+      marginBottom: '12px',
+      textAlign: 'center' as const,
+    },
+    dipTitle: {
+      fontSize: 'clamp(22px, 3vw, 34px)',
+      fontWeight: 700,
+      color: '#1a1a1a',
+      marginBottom: '16px',
+      textAlign: 'center' as const,
+      lineHeight: 1.3,
+    },
+    dipSub: {
+      fontSize: '17px',
+      color: '#555',
+      maxWidth: '600px',
+      margin: '0 auto 48px',
+      lineHeight: 1.75,
+      textAlign: 'center' as const,
+    },
+    dipGrid: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+      gap: '24px',
+    },
+    dipCard: {
+      background: '#fff',
+      borderRadius: '12px',
+      padding: '28px 24px',
+      borderTop: '4px solid #7B1E1E',
+    },
+    dipStage: {
+      fontSize: '11px',
+      fontWeight: 700,
+      letterSpacing: '1.5px',
+      textTransform: 'uppercase' as const,
+      color: '#7B1E1E',
+      marginBottom: '8px',
+    },
+    dipCardTitle: {
+      fontSize: '17px',
+      fontWeight: 700,
+      color: '#1a1a1a',
+      marginBottom: '10px',
+    },
+    dipCardDesc: {
+      fontSize: '14px',
+      color: '#666',
+      lineHeight: 1.7,
+    },
+
+    // Stats
+    statsSection: {
+      background: '#7B1E1E',
+      padding: '56px 24px',
+    },
+    statsInner: {
+      maxWidth: '880px',
+      margin: '0 auto',
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+      gap: '32px',
+      textAlign: 'center' as const,
+    },
+    statNumber: {
+      fontSize: '42px',
+      fontWeight: 700,
+      color: '#fff',
+      lineHeight: 1,
+      marginBottom: '8px',
+    },
+    statLabel: {
+      fontSize: '14px',
+      color: 'rgba(255,255,255,0.75)',
+      lineHeight: 1.5,
+    },
+
+    // Story Section
+    storySection: {
+      padding: '72px 24px',
+    },
+    storyInner: {
+      maxWidth: '860px',
+      margin: '0 auto',
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      gap: '64px',
+      alignItems: 'center',
+    },
+    storyLabel: {
+      fontSize: '12px',
+      fontWeight: 700,
+      letterSpacing: '2px',
+      textTransform: 'uppercase' as const,
+      color: '#7B1E1E',
+      marginBottom: '12px',
+    },
+    storyH2: {
+      fontSize: 'clamp(22px, 3vw, 32px)',
+      fontWeight: 700,
+      color: '#1a1a1a',
+      marginBottom: '24px',
+      lineHeight: 1.3,
+    },
+    storyP: {
+      fontSize: '16px',
+      color: '#444',
+      lineHeight: 1.85,
+      marginBottom: '16px',
+    },
+    storyQuote: {
+      borderLeft: '3px solid #7B1E1E',
+      paddingLeft: '20px',
+      fontFamily: 'Georgia, serif',
+      fontSize: '18px',
+      fontStyle: 'italic' as const,
+      color: '#2a2a2a',
+      lineHeight: 1.65,
+      margin: '24px 0',
+    },
+    storyBtn: {
+      display: 'inline-block',
+      background: '#7B1E1E',
+      color: '#fff',
+      fontWeight: 600,
+      fontSize: '14px',
+      padding: '14px 32px',
+      borderRadius: '100px',
+      textDecoration: 'none',
+      marginTop: '8px',
+    },
+    storyVideoBox: {
+      background: '#f5eeee',
+      borderRadius: '12px',
+      aspectRatio: '16/9' as const,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      overflow: 'hidden',
+    },
+
+    // Self-funded section
+    selfFundedSection: {
+      background: '#1a1a1a',
+      color: '#fff',
+      padding: '80px 24px',
+    },
+    selfFundedInner: {
+      maxWidth: '860px',
+      margin: '0 auto',
+    },
+    selfFundedTag: {
+      fontSize: '12px',
+      fontWeight: 700,
+      color: 'rgba(255,255,255,0.5)',
+      textTransform: 'uppercase' as const,
+      letterSpacing: '0.1em',
+      marginBottom: '16px',
+    },
+    selfFundedH2: {
+      fontSize: 'clamp(24px, 4vw, 38px)',
+      fontWeight: 400,
+      fontFamily: 'Georgia, serif',
+      marginBottom: '32px',
+      lineHeight: 1.3,
+      maxWidth: '680px',
+    },
+    selfFundedGrid: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      gap: '48px',
+      marginTop: '48px',
+    },
+    selfFundedP: {
+      fontSize: '16px',
+      color: 'rgba(255,255,255,0.75)',
+      lineHeight: 1.85,
+    },
+    selfFundedHighlight: {
+      fontSize: '20px',
+      color: '#fff',
+      fontFamily: 'Georgia, serif',
+      fontStyle: 'italic' as const,
+      lineHeight: 1.6,
+      borderLeft: '3px solid #7B1E1E',
+      paddingLeft: '24px',
+    },
+    selfFundedBtn: {
+      display: 'inline-block',
+      background: '#7B1E1E',
+      color: '#fff',
+      fontWeight: 600,
+      fontSize: '14px',
+      padding: '14px 32px',
+      borderRadius: '100px',
+      textDecoration: 'none',
+      marginTop: '32px',
+    },
+
+    // CTA
+    ctaSection: {
+      background: '#f9f4f4',
+      padding: '72px 24px',
+      textAlign: 'center' as const,
+    },
+    ctaH2: {
+      fontSize: 'clamp(22px, 3vw, 34px)',
+      fontWeight: 700,
+      color: '#1a1a1a',
+      marginBottom: '16px',
+    },
+    ctaP: {
+      fontSize: '17px',
+      color: '#555',
+      maxWidth: '520px',
+      margin: '0 auto 32px',
+      lineHeight: 1.75,
+    },
+    ctaBtn: {
+      display: 'inline-block',
+      background: '#7B1E1E',
+      color: '#fff',
+      fontWeight: 600,
+      fontSize: '15px',
+      padding: '16px 40px',
+      borderRadius: '100px',
+      textDecoration: 'none',
+      marginRight: '12px',
+      marginBottom: '8px',
+    },
+    ctaBtnOutline: {
+      display: 'inline-block',
+      background: 'transparent',
+      color: '#7B1E1E',
+      fontWeight: 600,
+      fontSize: '15px',
+      padding: '16px 40px',
+      borderRadius: '100px',
+      textDecoration: 'none',
+      border: '2px solid #7B1E1E',
+      marginBottom: '8px',
+    },
+  };
+
   const dipStages = [
-    { 
-      stage: 'Stage 01', 
-      title: 'Crisis Response', 
-      desc: 'Emergency relief delivered directly. Food, water, and immediate support.' 
-    },
-    { 
-      stage: 'Stage 02', 
-      title: 'Stabilisation', 
-      desc: 'Medical care and basic needs secured before anything else moves forward.' 
-    },
-    { 
-      stage: 'Stage 03', 
-      title: 'Economic Restart', 
-      desc: 'Seed capital, equipment, and training tailored to each person.' 
-    },
-    { 
-      stage: 'Stage 04', 
-      title: 'Sustained Independence', 
-      desc: 'Regular follow-up visits and support until fully self-sufficient.' 
-    },
+    { stage: 'Stage 01', title: 'Crisis response', desc: 'Emergency relief delivered directly. Food, money and immediate support for people in crisis.' },
+    { stage: 'Stage 02', title: 'Stabilisation', desc: 'Medical care and basic needs secured before anything else moves forward.' },
+    { stage: 'Stage 03', title: 'Economic restart', desc: 'Seed capital, equipment and training tailored to each person and their circumstances.' },
+    { stage: 'Stage 04', title: 'Sustained independence', desc: 'Regular follow-up visits and ongoing support until the person is fully self-sufficient.' },
+  ];
+
+  const stats = [
+    { number: '300+', label: 'People reached to date' },
+    { number: '$70', label: 'Emergency relief package' },
+    { number: '$200', label: 'Full DIP journey per person' },
+    { number: '2', label: 'Countries registered' },
   ];
 
   return (
-    <main className="bg-white text-[#1a1a1a] min-h-screen">
-      
-      {/* --- HERO SECTION --- */}
-      <section className="relative min-h-[85vh] flex items-center justify-center bg-[#7B1E1E] px-6 py-20 overflow-hidden">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-white/5 rounded-full blur-3xl -mr-64 -mt-64"></div>
-        
-        <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <span className="inline-block px-5 py-2 mb-8 text-[11px] font-black uppercase tracking-[0.4em] text-white/90 bg-white/10 rounded-full backdrop-blur-md border border-white/10">
-            Direct Impact Empowerment Foundation
-          </span>
-          <h1 className="text-4xl md:text-7xl font-serif text-white leading-[1.1] mb-8 tracking-tight">
-            {`We go to the people every other system has missed.`}
-          </h1>
-          <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-12 leading-relaxed font-light">
-            {`Registered in Switzerland and Nigeria, we walk alongside vulnerable people from the moment of crisis to the day of independence.`}
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-5">
-            <Link 
-              href="/donate" 
-              className="px-10 py-4 bg-white text-[#7B1E1E] font-bold rounded-full hover:bg-gray-100 transition-all shadow-2xl hover:scale-105 active:scale-95"
-            >
-              {`Support Our Work`}
-            </Link>
-            <Link 
-              href="#pathway" 
-              className="px-10 py-4 border-2 border-white/30 text-white font-bold rounded-full hover:bg-white/10 transition-all backdrop-blur-sm"
-            >
-              {`See the Impact`}
-            </Link>
-          </div>
-        </div>
-      </section>
+    <div style={s.page}>
 
-      {/* --- THE PATHWAY --- */}
-      <section id="pathway" className="py-24 bg-[#FDFDFD] px-6 text-center">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-serif mb-16">{`The Dignity to Independence Pathway`}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {dipStages.map((d, i) => (
-              <div key={d.stage} className="bg-white p-10 rounded-3xl shadow-sm border border-gray-100 hover:shadow-2xl transition-all duration-500">
-                <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-bold mb-6 mx-auto" style={{ backgroundColor: '#7B1E1E' }}>
-                  {i + 1}
-                </div>
-                <h3 className="text-xl font-bold mb-4">{d.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{d.desc}</p>
+      {/* Hero */}
+      <div style={s.heroSection}>
+        <div style={s.heroTag}>Direct Impact Empowerment Foundation</div>
+        <h1 style={s.heroH1}>We go to the people every other system has missed.</h1>
+        <p style={s.heroP}>
+          Registered in Switzerland and Nigeria, we walk alongside vulnerable people
+          from the moment of crisis all the way to sustained independence.
+          Not charity. A pathway.
+        </p>
+        <div>
+          <a href="/donate" style={s.heroBtn}>Support our work</a>
+          <a href="/impact" style={s.heroBtnOutline}>See the impact</a>
+        </div>
+      </div>
+
+      {/* DIP Model */}
+      <div style={s.dipSection}>
+        <div style={s.dipInner}>
+          <div style={s.dipLabel}>Our model</div>
+          <div style={s.dipTitle}>The Dignity to Independence Pathway</div>
+          <p style={s.dipSub}>
+            Most organisations choose between emergency relief and long-term development.
+            We refuse that choice. Our four-stage model does both.
+          </p>
+          <div style={s.dipGrid}>
+            {dipStages.map((item) => (
+              <div key={item.stage} style={s.dipCard}>
+                <div style={s.dipStage}>{item.stage}</div>
+                <div style={s.dipCardTitle}>{item.title}</div>
+                <div style={s.dipCardDesc}>{item.desc}</div>
               </div>
             ))}
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* --- STORY & STATS --- */}
-      <section className="py-24 bg-white px-6">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          <div>
-            <h2 className="text-4xl md:text-5xl font-serif leading-tight mb-8">
-              {`"She was sitting on the ground when we found her."`}
-            </h2>
-            <div className="bg-[#7B1E1E]/5 p-10 rounded-3xl border-l-8 border-[#7B1E1E] italic font-serif text-2xl text-[#1a1a1a] mb-6">
-              {`"We gave her the capital to restart her business. No strings attached. No debt to repay."`}
+      {/* Stats */}
+      <div style={s.statsSection}>
+        <div style={s.statsInner}>
+          {stats.map((stat) => (
+            <div key={stat.label}>
+              <div style={s.statNumber}>{stat.number}</div>
+              <div style={s.statLabel}>{stat.label}</div>
             </div>
-            <p className="text-gray-600 text-lg font-light leading-relaxed">
-              {`Today, she earns a living. Her grandchildren are in school. This is the Direct Impact model.`}
-            </p>
-          </div>
+          ))}
+        </div>
+      </div>
 
-          <div className="bg-[#1a1a1a] rounded-[40px] p-12 text-white shadow-3xl">
-            <div className="space-y-10">
-              {[
-                ['$70', 'Emergency relief package'],
-                ['$200', 'Full journey to independence'],
-                ['300+', 'Lives touched to date'],
-              ].map(([num, label]) => (
-                <div key={label}>
-                  <div className="text-5xl font-serif text-[#7B1E1E] mb-1">{num}</div>
-                  <div className="text-gray-400 text-[10px] uppercase tracking-[0.25em] font-bold">{label}</div>
-                </div>
-              ))}
+      {/* Story Section */}
+      <div style={s.storySection}>
+        <div style={s.storyInner}>
+          <div>
+            <div style={s.storyLabel}>A story that stayed with us</div>
+            <h2 style={s.storyH2}>She had not eaten all day. Nobody had stopped to ask.</h2>
+            <p style={s.storyP}>
+              We found a grandmother sitting on the ground at six in the evening.
+              She had lost both her children and was raising her grandchildren alone.
+              We stopped. We brought food, cooking oil, and capital to restart her life.
+            </p>
+            <div style={s.storyQuote}>
+              "Months later she was standing. She was well. She was earning."
+            </div>
+            <a href="/impact" style={s.storyBtn}>Read more stories</a>
+          </div>
+          <div style={s.storyVideoBox}>
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/o-DmTojeEII"
+              title="Grandmother case study"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              style={{ borderRadius: '12px' }}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Self-funded section */}
+      <div style={s.selfFundedSection}>
+        <div style={s.selfFundedInner}>
+          <div style={s.selfFundedTag}>About us</div>
+          <h2 style={s.selfFundedH2}>
+            We are self-funded. Not out of choice, but out of default.
+          </h2>
+          <div style={s.selfFundedGrid}>
+            <div>
+              <p style={s.selfFundedP}>
+                Looking away has always been the most difficult thing to do. And so,
+                before we helped a single person, we invested in doing this properly.
+                Formal NGO training for our CEO. Registrations in two countries.
+                A hospital billing arrangement so that nobody we find goes untreated.
+              </p>
+              <p style={s.selfFundedP}>
+                Three years of self-funding. Hard years. Years that continue.
+                But every year has produced people who are no longer where we found them.
+              </p>
+              <a href="/our-story" style={s.selfFundedBtn}>Our full story</a>
+            </div>
+            <div>
+              <div style={s.selfFundedHighlight}>
+                "If you have ever found it hard to look away, you already understand why we exist."
+              </div>
+              <p style={{ ...s.selfFundedP, marginTop: '24px', fontSize: '14px' }}>
+                Founder, Direct Impact Empowerment Foundation
+              </p>
             </div>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+
+      {/* CTA */}
+      <div style={s.ctaSection}>
+        <h2 style={s.ctaH2}>Every $200 funds one person's full journey</h2>
+        <p style={s.ctaP}>
+          From the day we find them to the day they are standing on their own.
+          No donation is too small. Every contribution moves someone one step closer.
+        </p>
+        <div>
+          <a href="/donate" style={s.ctaBtn}>Donate now</a>
+          <a href="/partners" style={s.ctaBtnOutline}>Partner with us</a>
+        </div>
+      </div>
+
+    </div>
   );
 }
