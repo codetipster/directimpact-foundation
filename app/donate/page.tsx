@@ -1,119 +1,407 @@
-import { Metadata } from 'next'
-import type { CSSProperties } from 'react'
+import React from 'react';
 
-export const metadata: Metadata = {
-  title: 'Donate - DirectImpact Empowerment Foundation',
-  description: 'Support youth empowerment and community transformation through your generous donation.',
-}
-
-export default function DonorLanding() {
-  const s: Record<string, CSSProperties> = {
-    page: { fontFamily: 'Georgia, serif', background: '#fff', color: '#1a1a1a', margin: 0, padding: 0 },
-    hero: { background: '#7B1E1E', color: '#fff', padding: '72px 24px 56px', textAlign: 'center' },
-    tag: { display: 'inline-block', background: 'rgba(255,255,255,0.15)', color: '#fff', fontFamily: 'Arial, sans-serif', fontSize: '12px', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '6px 16px', borderRadius: '100px', marginBottom: '24px' },
-    h1: { fontSize: 'clamp(28px, 5vw, 46px)', fontWeight: 400, lineHeight: 1.2, marginBottom: '20px', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' },
-    heroP: { fontSize: 'clamp(15px, 2vw, 18px)', lineHeight: 1.7, color: 'rgba(255,255,255,0.85)', maxWidth: '580px', margin: '0 auto 32px', fontFamily: 'Arial, sans-serif' },
-    statRow: { display: 'flex', justifyContent: 'center', gap: '40px', flexWrap: 'wrap', marginTop: '40px' },
-    statNum: { fontSize: '40px', fontWeight: 700, fontFamily: 'Arial, sans-serif' },
-    statLabel: { fontSize: '13px', color: 'rgba(255,255,255,0.7)', fontFamily: 'Arial, sans-serif', textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: '4px' },
-    section: { maxWidth: '860px', margin: '0 auto', padding: '64px 24px' },
-    sectionTitle: { fontSize: '28px', fontWeight: 400, marginBottom: '24px', color: '#1a1a1a' },
-    introBlock: { borderLeft: '3px solid #7B1E1E', paddingLeft: '24px', marginBottom: '48px' },
-    introP: { fontSize: '18px', lineHeight: 1.8, color: '#2a2a2a', fontFamily: 'Arial, sans-serif' },
-    storyCard: { background: '#faf5f0', borderRadius: '12px', padding: '40px', margin: '48px 0' },
-    storyP: { fontSize: '17px', lineHeight: 1.85, color: '#2a2a2a', fontFamily: 'Arial, sans-serif', marginBottom: '16px' },
-    videoWrap: { background: '#111', borderRadius: '12px', overflow: 'hidden', margin: '48px 0', aspectRatio: '16/9', position: 'relative' },
-    videoIframe: { width: '100%', height: '100%', border: 'none', position: 'absolute', top: 0, left: 0 },
-    donationGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px', margin: '32px 0' },
-    donationCard: { border: '2px solid #e5e5e5', borderRadius: '12px', padding: '28px 24px', textAlign: 'center', cursor: 'pointer' },
-    donationCardFeatured: { border: '2px solid #7B1E1E', borderRadius: '12px', padding: '28px 24px', textAlign: 'center', cursor: 'pointer', position: 'relative' },
-    featuredBadge: { position: 'absolute', top: '-12px', left: '50%', transform: 'translateX(-50%)', background: '#7B1E1E', color: '#fff', fontSize: '11px', fontFamily: 'Arial, sans-serif', fontWeight: 600, padding: '4px 14px', borderRadius: '100px', whiteSpace: 'nowrap' },
-    donationAmount: { fontSize: '32px', fontWeight: 700, fontFamily: 'Arial, sans-serif', color: '#7B1E1E', marginBottom: '8px' },
-    donationLabel: { fontSize: '14px', fontFamily: 'Arial, sans-serif', color: '#555', lineHeight: 1.5 },
-    btnRed: { display: 'inline-block', background: '#7B1E1E', color: '#fff', fontFamily: 'Arial, sans-serif', fontSize: '15px', fontWeight: 600, padding: '16px 40px', borderRadius: '100px', textDecoration: 'none', marginTop: '8px' },
-    btnOutline: { display: 'inline-block', background: 'transparent', color: '#7B1E1E', border: '2px solid #7B1E1E', fontFamily: 'Arial, sans-serif', fontSize: '15px', fontWeight: 600, padding: '14px 40px', borderRadius: '100px', textDecoration: 'none', marginTop: '8px', marginLeft: '12px' },
-    divider: { borderTop: '1px solid #e5e5e5', margin: '48px 0' },
-    paymentSection: { background: '#f9f9f9', borderRadius: '12px', padding: '40px', margin: '32px 0' },
-    paymentTitle: { fontSize: '20px', fontWeight: 500, fontFamily: 'Arial, sans-serif', marginBottom: '16px', color: '#1a1a1a' },
-    paymentP: { fontSize: '15px', fontFamily: 'Arial, sans-serif', color: '#444', lineHeight: 1.7, marginBottom: '12px' },
+export default function HomePageAndAbout() {
+  const s: Record<string, React.CSSProperties> = {
+    page: {
+      fontFamily: 'Arial, sans-serif',
+      background: '#fff',
+      color: '#1a1a1a',
+      margin: 0,
+      padding: 0,
+    },
+    heroSection: {
+      background: '#7B1E1E',
+      color: '#fff',
+      padding: '80px 24px',
+      textAlign: 'center' as const,
+    },
+    heroTag: {
+      display: 'inline-block',
+      background: 'rgba(255,255,255,0.15)',
+      color: '#fff',
+      fontSize: '12px',
+      letterSpacing: '0.1em',
+      textTransform: 'uppercase' as const,
+      padding: '6px 16px',
+      borderRadius: '100px',
+      marginBottom: '24px',
+    },
+    heroH1: {
+      fontSize: 'clamp(28px, 5vw, 50px)',
+      fontWeight: 400,
+      lineHeight: 1.2,
+      maxWidth: '700px',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      fontFamily: 'Georgia, serif',
+      marginBottom: '24px',
+    },
+    heroP: {
+      fontSize: '18px',
+      color: 'rgba(255,255,255,0.85)',
+      maxWidth: '580px',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      lineHeight: 1.75,
+      marginBottom: '36px',
+    },
+    heroBtn: {
+      display: 'inline-block',
+      background: '#fff',
+      color: '#7B1E1E',
+      fontWeight: 600,
+      fontSize: '15px',
+      padding: '16px 40px',
+      borderRadius: '100px',
+      textDecoration: 'none',
+      marginRight: '12px',
+      marginBottom: '8px',
+    },
+    heroBtnOutline: {
+      display: 'inline-block',
+      background: 'transparent',
+      color: '#fff',
+      fontWeight: 600,
+      fontSize: '15px',
+      padding: '16px 40px',
+      borderRadius: '100px',
+      textDecoration: 'none',
+      border: '2px solid rgba(255,255,255,0.5)',
+      marginBottom: '8px',
+    },
+    dipSection: {
+      background: '#f9f4f4',
+      padding: '72px 24px',
+    },
+    dipInner: {
+      maxWidth: '880px',
+      margin: '0 auto',
+    },
+    dipLabel: {
+      fontSize: '12px',
+      fontWeight: 700,
+      letterSpacing: '2px',
+      textTransform: 'uppercase' as const,
+      color: '#7B1E1E',
+      marginBottom: '12px',
+      textAlign: 'center' as const,
+    },
+    dipTitle: {
+      fontSize: 'clamp(22px, 3vw, 34px)',
+      fontWeight: 700,
+      color: '#1a1a1a',
+      marginBottom: '16px',
+      textAlign: 'center' as const,
+      lineHeight: 1.3,
+    },
+    dipSub: {
+      fontSize: '17px',
+      color: '#555',
+      maxWidth: '600px',
+      margin: '0 auto 48px',
+      lineHeight: 1.75,
+      textAlign: 'center' as const,
+    },
+    dipGrid: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+      gap: '24px',
+    },
+    dipCard: {
+      background: '#fff',
+      borderRadius: '12px',
+      padding: '28px 24px',
+      borderTop: '4px solid #7B1E1E',
+    },
+    dipStage: {
+      fontSize: '11px',
+      fontWeight: 700,
+      letterSpacing: '1.5px',
+      textTransform: 'uppercase' as const,
+      color: '#7B1E1E',
+      marginBottom: '8px',
+    },
+    dipCardTitle: {
+      fontSize: '17px',
+      fontWeight: 700,
+      color: '#1a1a1a',
+      marginBottom: '10px',
+    },
+    dipCardDesc: {
+      fontSize: '14px',
+      color: '#666',
+      lineHeight: 1.7,
+    },
+    statsSection: {
+      background: '#7B1E1E',
+      padding: '56px 24px',
+    },
+    statsInner: {
+      maxWidth: '880px',
+      margin: '0 auto',
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+      gap: '32px',
+      textAlign: 'center' as const,
+    },
+    statNumber: {
+      fontSize: '42px',
+      fontWeight: 700,
+      color: '#fff',
+      lineHeight: 1,
+      marginBottom: '8px',
+    },
+    statLabel: {
+      fontSize: '14px',
+      color: 'rgba(255,255,255,0.75)',
+      lineHeight: 1.5,
+    },
+    storySection: {
+      padding: '72px 24px',
+    },
+    storyInner: {
+      maxWidth: '860px',
+      margin: '0 auto',
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+      gap: '64px',
+      alignItems: 'center',
+    },
+    storyLabel: {
+      fontSize: '12px',
+      fontWeight: 700,
+      letterSpacing: '2px',
+      textTransform: 'uppercase' as const,
+      color: '#7B1E1E',
+      marginBottom: '12px',
+    },
+    storyH2: {
+      fontSize: 'clamp(22px, 3vw, 32px)',
+      fontWeight: 700,
+      color: '#1a1a1a',
+      marginBottom: '24px',
+      lineHeight: 1.3,
+    },
+    storyP: {
+      fontSize: '16px',
+      color: '#444',
+      lineHeight: 1.85,
+      marginBottom: '16px',
+    },
+    storyQuote: {
+      borderLeft: '3px solid #7B1E1E',
+      paddingLeft: '20px',
+      fontFamily: 'Georgia, serif',
+      fontSize: '18px',
+      fontStyle: 'italic' as const,
+      color: '#2a2a2a',
+      lineHeight: 1.65,
+      margin: '24px 0',
+    },
+    storyBtn: {
+      display: 'inline-block',
+      background: '#7B1E1E',
+      color: '#fff',
+      fontWeight: 600,
+      fontSize: '14px',
+      padding: '14px 32px',
+      borderRadius: '100px',
+      textDecoration: 'none',
+      marginTop: '8px',
+    },
+    storyVideoBox: {
+      background: '#f5eeee',
+      borderRadius: '12px',
+      aspectRatio: '16/9' as const,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      overflow: 'hidden',
+    },
+    selfFundedSection: {
+      background: '#1a1a1a',
+      color: '#fff',
+      padding: '80px 24px',
+    },
+    selfFundedInner: {
+      maxWidth: '860px',
+      margin: '0 auto',
+    },
+    selfFundedTag: {
+      fontSize: '12px',
+      fontWeight: 700,
+      color: 'rgba(255,255,255,0.5)',
+      textTransform: 'uppercase' as const,
+      letterSpacing: '0.1em',
+      marginBottom: '16px',
+    },
+    selfFundedH2: {
+      fontSize: 'clamp(24px, 4vw, 38px)',
+      fontWeight: 400,
+      fontFamily: 'Georgia, serif',
+      marginBottom: '32px',
+      lineHeight: 1.3,
+      maxWidth: '680px',
+    },
+    selfFundedGrid: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+      gap: '48px',
+      marginTop: '48px',
+    },
+    selfFundedP: {
+      fontSize: '16px',
+      color: 'rgba(255,255,255,0.75)',
+      lineHeight: 1.85,
+    },
+    selfFundedHighlight: {
+      fontSize: '20px',
+      color: '#fff',
+      fontFamily: 'Georgia, serif',
+      fontStyle: 'italic' as const,
+      lineHeight: 1.6,
+      borderLeft: '3px solid #7B1E1E',
+      paddingLeft: '24px',
+    },
+    selfFundedBtn: {
+      display: 'inline-block',
+      background: '#7B1E1E',
+      color: '#fff',
+      fontWeight: 600,
+      fontSize: '14px',
+      padding: '14px 32px',
+      borderRadius: '100px',
+      textDecoration: 'none',
+      marginTop: '32px',
+    },
+    ctaSection: {
+      background: '#f9f4f4',
+      padding: '72px 24px',
+      textAlign: 'center' as const,
+    },
+    ctaH2: {
+      fontSize: 'clamp(22px, 3vw, 34px)',
+      fontWeight: 700,
+      color: '#1a1a1a',
+      marginBottom: '16px',
+    },
+    ctaP: {
+      fontSize: '17px',
+      color: '#555',
+      maxWidth: '520px',
+      margin: '0 auto 32px',
+      lineHeight: 1.75,
+    },
+    ctaBtn: {
+      display: 'inline-block',
+      background: '#7B1E1E',
+      color: '#fff',
+      fontWeight: 600,
+      fontSize: '15px',
+      padding: '16px 40px',
+      borderRadius: '100px',
+      textDecoration: 'none',
+      marginRight: '12px',
+      marginBottom: '8px',
+    },
+    ctaBtnOutline: {
+      display: 'inline-block',
+      background: 'transparent',
+      color: '#7B1E1E',
+      fontWeight: 600,
+      fontSize: '15px',
+      padding: '16px 40px',
+      borderRadius: '100px',
+      textDecoration: 'none',
+      border: '2px solid #7B1E1E',
+      marginBottom: '8px',
+    },
   };
+
+  const dipStages = [
+    { stage: 'Stage 01', title: 'Crisis response', desc: 'Emergency relief delivered directly. Food, money and immediate support for people in crisis.' },
+    { stage: 'Stage 02', title: 'Stabilisation', desc: 'Medical care and basic needs secured before anything else moves forward.' },
+    { stage: 'Stage 03', title: 'Economic restart', desc: 'Seed capital, equipment and training tailored to each person and their circumstances.' },
+    { stage: 'Stage 04', title: 'Sustained independence', desc: 'Regular follow-up visits and ongoing support until the person is fully self-sufficient.' },
+  ];
+
+  const stats = [
+    { number: '300+', label: 'People reached to date' },
+    { number: '$70', label: 'Emergency relief package' },
+    { number: '$200', label: 'Full DIP journey per person' },
+    { number: '2', label: 'Countries registered' },
+  ];
 
   return (
     <div style={s.page}>
-      <div style={s.hero}>
-        <div style={s.tag}>Support Direct Impact</div>
-        <h1 style={s.h1}>Your gift walks alongside someone all the way to independence.</h1>
-        <p style={s.heroP}>Every contribution funds emergency relief, vocational training, and the seed capital that changes lives permanently.</p>
-        <div style={s.statRow}>
-          {[['300+', 'Lives impacted'], ['$200', 'Full DIP journey'], ['100%', 'Self-funded to date']].map(([n, l]) => (
-            <div key={l} style={{ textAlign: 'center' }}>
-              <div style={s.statNum}>{n}</div>
-              <div style={s.statLabel}>{l}</div>
+      <div style={s.heroSection}>
+        <div style={s.heroTag}>Direct Impact Empowerment Foundation</div>
+        <h1 style={s.heroH1}>We go to the people every other system has missed.</h1>
+        <p style={s.heroP}>
+          Registered in Switzerland and Nigeria, we walk alongside vulnerable people
+          from the moment of crisis all the way to sustained independence.
+        </p>
+        <div>
+          <a href="/donate" style={s.heroBtn}>Support our work</a>
+          <a href="/about" style={s.heroBtnOutline}>See our story</a>
+        </div>
+      </div>
+
+      <div style={s.dipSection}>
+        <div style={s.dipInner}>
+          <div style={s.dipLabel}>Our model</div>
+          <div style={s.dipTitle}>The Dignity to Independence Pathway</div>
+          <div style={s.dipGrid}>
+            {dipStages.map((item) => (
+              <div key={item.stage} style={s.dipCard}>
+                <div style={s.dipStage}>{item.stage}</div>
+                <div style={s.dipCardTitle}>{item.title}</div>
+                <div style={s.dipCardDesc}>{item.desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div style={s.statsSection}>
+        <div style={s.statsInner}>
+          {stats.map((stat) => (
+            <div key={stat.label}>
+              <div style={s.statNumber}>{stat.number}</div>
+              <div style={s.statLabel}>{stat.label}</div>
             </div>
           ))}
         </div>
       </div>
 
-      <div style={s.section}>
-        <div style={s.introBlock}>
-          <p style={s.introP}>We found her sitting on the ground outside her home at six in the evening. She had not eaten all day. She had lost both her children and was raising her grandchildren alone. Nobody had stopped to ask if she was okay.</p>
-          <p style={{ ...s.introP, marginTop: '16px' }}>We stopped.</p>
-        </div>
-
-        <div style={s.storyCard}>
-          <p style={s.storyP}>That evening we brought food, cooking oil, and emergency cash. We came back the following week with four sacks of coal and the capital to restart the trading business she had always dreamed of running. No loan. No conditions.</p>
-          <p style={s.storyP}>Weeks later we returned and found that her granddaughter had been admitted to hospital. She had not told us. She did not want to place the burden on us after everything we had already done. We followed her to the hospital and paid the bill.</p>
-          <p style={s.storyP}>Months later, when we went back again, she was standing. She was well. She was earning. Her grandchildren were fed.</p>
-          <p style={{ ...s.storyP, color: '#7B1E1E', fontStyle: 'italic', marginBottom: 0 }}>This is not an exceptional story. This is our model.</p>
-        </div>
-
-        <div style={s.videoWrap}>
-          <iframe
-            style={s.videoIframe}
-            src="https://www.youtube.com/embed/o-DmTojeEII"
-            title="Grandmother coal business full journey"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-        </div>
-
-        <div style={s.divider} />
-
-        <h2 style={s.sectionTitle}>Choose how you want to help</h2>
-        <p style={{ fontFamily: 'Arial, sans-serif', fontSize: '16px', color: '#555', marginBottom: '24px' }}>Every amount makes a measurable difference. Here is what your gift does on the ground.</p>
-
-        <div style={s.donationGrid}>
-		  <div style={s.donationCard}>
-            <div style={s.donationAmount}>$50</div>
-            <div style={s.donationLabel}>Contribute toward a full journey. Every amount gets someone closer to independence.</div>
+      <div style={s.storySection}>
+        <div style={s.storyInner}>
+          <div>
+            <div style={s.storyLabel}>A story that stayed with us</div>
+            <h2 style={s.storyH2}>She had not eaten all day.</h2>
+            <p style={s.storyP}>We found a grandmother raising her grandchildren alone. We brought food and capital to restart her life.</p>
+            <a href="/about" style={s.storyBtn}>Read more</a>
           </div>
-          <div style={s.donationCard}>
-            <div style={s.donationAmount}>$70</div>
-            <div style={s.donationLabel}>Emergency relief package. Food, water, and essential support for one person in crisis.</div>
-          </div>
-          <div style={s.donationCardFeatured}>
-            <div style={s.featuredBadge}>Most impactful</div>
-            <div style={s.donationAmount}>$200</div>
-            <div style={s.donationLabel}>Full Dignity to Independence journey. Emergency relief through to sustainable livelihood.</div>
+          <div style={s.storyVideoBox}>
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/o-DmTojeEII" title="Case study" frameBorder="0" allowFullScreen style={{ borderRadius: '12px' }} />
           </div>
         </div>
+      </div>
 
-        <div style={{ textAlign: 'center', margin: '32px 0' }}>
-          <a href="https://buy.stripe.com/4gMaEXeHH5Hi6yDgfQ3cc00" target="_blank" style={s.btnRed}>Donate by card</a>
-          <a href="/bank-details" style={s.btnOutline}>Donate by bank transfer</a>
+      <div style={s.selfFundedSection}>
+        <div style={s.selfFundedInner}>
+          <h2 style={s.selfFundedH2}>We are self-funded. Not out of choice, but out of default.</h2>
+          <div style={s.selfFundedGrid}>
+            <p style={s.selfFundedP}>Three years of self-funding. Every year has produced people who are no longer where we found them.</p>
+            <a href="/about" style={s.selfFundedBtn}>Our full story</a>
+          </div>
         </div>
+      </div>
 
-        <div style={s.divider} />
-
-        <div style={s.paymentSection}>
-          <h3 style={s.paymentTitle}>Bank transfer</h3>
-          <p style={s.paymentP}>If you prefer to donate directly by bank transfer, our account details are available on our bank details page. We accept donations in NGN, CHF, and USD.</p>
-          <a href="/bank-details" style={{ ...s.btnRed, display: 'inline-block' }}>View bank details</a>
-        </div>
-
+      <div style={s.ctaSection}>
+        <h2 style={s.ctaH2}>Every $200 funds one person's full journey</h2>
+        <a href="/donate" style={s.ctaBtn}>Donate now</a>
       </div>
     </div>
   );
 }
-
-

@@ -9,7 +9,6 @@ export default function Homepage() {
       margin: 0,
       padding: 0,
     },
-
     // Hero
     heroSection: {
       background: '#7B1E1E',
@@ -71,7 +70,6 @@ export default function Homepage() {
       border: '2px solid rgba(255,255,255,0.5)',
       marginBottom: '8px',
     },
-
     // DIP Section
     dipSection: {
       background: '#f9f4f4',
@@ -136,7 +134,6 @@ export default function Homepage() {
       color: '#666',
       lineHeight: 1.7,
     },
-
     // Stats
     statsSection: {
       background: '#7B1E1E',
@@ -162,7 +159,6 @@ export default function Homepage() {
       color: 'rgba(255,255,255,0.75)',
       lineHeight: 1.5,
     },
-
     // Story Section
     storySection: {
       padding: '72px 24px',
@@ -171,7 +167,7 @@ export default function Homepage() {
       maxWidth: '860px',
       margin: '0 auto',
       display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
       gap: '64px',
       alignItems: 'center',
     },
@@ -218,7 +214,7 @@ export default function Homepage() {
       marginTop: '8px',
     },
     storyVideoBox: {
-      background: '#f5eeee',
+      background: '#000',
       borderRadius: '12px',
       aspectRatio: '16/9' as const,
       display: 'flex',
@@ -226,7 +222,6 @@ export default function Homepage() {
       justifyContent: 'center',
       overflow: 'hidden',
     },
-
     // Self-funded section
     selfFundedSection: {
       background: '#1a1a1a',
@@ -255,7 +250,7 @@ export default function Homepage() {
     },
     selfFundedGrid: {
       display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
       gap: '48px',
       marginTop: '48px',
     },
@@ -263,6 +258,7 @@ export default function Homepage() {
       fontSize: '16px',
       color: 'rgba(255,255,255,0.75)',
       lineHeight: 1.85,
+      marginBottom: '16px',
     },
     selfFundedHighlight: {
       fontSize: '20px',
@@ -284,7 +280,6 @@ export default function Homepage() {
       textDecoration: 'none',
       marginTop: '32px',
     },
-
     // CTA
     ctaSection: {
       background: '#f9f4f4',
@@ -346,9 +341,8 @@ export default function Homepage() {
 
   return (
     <div style={s.page}>
-
       {/* Hero */}
-      <div style={s.heroSection}>
+      <section style={s.heroSection}>
         <div style={s.heroTag}>Direct Impact Empowerment Foundation</div>
         <h1 style={s.heroH1}>We go to the people every other system has missed.</h1>
         <p style={s.heroP}>
@@ -360,13 +354,13 @@ export default function Homepage() {
           <a href="/donate" style={s.heroBtn}>Support our work</a>
           <a href="/impact" style={s.heroBtnOutline}>See the impact</a>
         </div>
-      </div>
+      </section>
 
       {/* DIP Model */}
-      <div style={s.dipSection}>
+      <section style={s.dipSection}>
         <div style={s.dipInner}>
           <div style={s.dipLabel}>Our model</div>
-          <div style={s.dipTitle}>The Dignity to Independence Pathway</div>
+          <h2 style={s.dipTitle}>The Dignity to Independence Pathway</h2>
           <p style={s.dipSub}>
             Most organisations choose between emergency relief and long-term development.
             We refuse that choice. Our four-stage model does both.
@@ -375,16 +369,16 @@ export default function Homepage() {
             {dipStages.map((item) => (
               <div key={item.stage} style={s.dipCard}>
                 <div style={s.dipStage}>{item.stage}</div>
-                <div style={s.dipCardTitle}>{item.title}</div>
-                <div style={s.dipCardDesc}>{item.desc}</div>
+                <h3 style={s.dipCardTitle}>{item.title}</h3>
+                <p style={s.dipCardDesc}>{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Stats */}
-      <div style={s.statsSection}>
+      <section style={s.statsSection}>
         <div style={s.statsInner}>
           {stats.map((stat) => (
             <div key={stat.label}>
@@ -393,10 +387,10 @@ export default function Homepage() {
             </div>
           ))}
         </div>
-      </div>
+      </section>
 
       {/* Story Section */}
-      <div style={s.storySection}>
+      <section style={s.storySection}>
         <div style={s.storyInner}>
           <div>
             <div style={s.storyLabel}>A story that stayed with us</div>
@@ -415,7 +409,7 @@ export default function Homepage() {
             <iframe
               width="100%"
               height="100%"
-              src="https://www.youtube.com/embed/o-DmTojeEII"
+              src="https://www.youtube.com/embed/iwCeWtDPlTw"
               title="Grandmother case study"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -424,10 +418,10 @@ export default function Homepage() {
             />
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Self-funded section */}
-      <div style={s.selfFundedSection}>
+      <section style={s.selfFundedSection}>
         <div style={s.selfFundedInner}>
           <div style={s.selfFundedTag}>About us</div>
           <h2 style={s.selfFundedH2}>
@@ -457,10 +451,10 @@ export default function Homepage() {
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* CTA */}
-      <div style={s.ctaSection}>
+      <section style={s.ctaSection}>
         <h2 style={s.ctaH2}>Every $200 funds one person's full journey</h2>
         <p style={s.ctaP}>
           From the day we find them to the day they are standing on their own.
@@ -470,8 +464,7 @@ export default function Homepage() {
           <a href="/donate" style={s.ctaBtn}>Donate now</a>
           <a href="/partners" style={s.ctaBtnOutline}>Partner with us</a>
         </div>
-      </div>
-
+      </section>
     </div>
   );
 }
