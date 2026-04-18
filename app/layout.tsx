@@ -4,11 +4,17 @@ import { Navigation } from '@/components/Navigation'
 import { Footer } from '@/components/Footer'
 import type { Metadata } from 'next'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ 
+  subsets: ['latin'],
+  display: 'swap' 
+})
 
 export const metadata: Metadata = {
-  title: 'DirectImpact Empowerement Foundation - Empowering Lives, Transforming Communities',
-  description: 'Empowering communities through skills and support',
+  title: 'Direct Impact Empowerment Foundation | Empowering Lives',
+  description: 'Registered in Switzerland and Nigeria, we walk alongside vulnerable people from the moment of crisis to the day of independence.',
+  icons: {
+    icon: '/dimpact-logo.jpeg',
+  },
 }
 
 export default function RootLayout({
@@ -17,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body className={inter.className}>
         <Navigation />
         {children}
@@ -26,4 +32,3 @@ export default function RootLayout({
     </html>
   )
 }
-
