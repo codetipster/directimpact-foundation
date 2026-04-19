@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function HomePageAndAbout() {
+export default function DonorLanding() {
   const s: Record<string, React.CSSProperties> = {
     page: {
       fontFamily: 'Arial, sans-serif',
@@ -9,10 +9,10 @@ export default function HomePageAndAbout() {
       margin: 0,
       padding: 0,
     },
-    heroSection: {
+    hero: {
       background: '#7B1E1E',
       color: '#fff',
-      padding: '80px 24px',
+      padding: '72px 24px 56px',
       textAlign: 'center' as const,
     },
     heroTag: {
@@ -24,275 +24,117 @@ export default function HomePageAndAbout() {
       textTransform: 'uppercase' as const,
       padding: '6px 16px',
       borderRadius: '100px',
-      marginBottom: '24px',
+      marginBottom: '20px',
     },
     heroH1: {
-      fontSize: 'clamp(28px, 5vw, 50px)',
+      fontSize: 'clamp(26px, 4vw, 44px)',
       fontWeight: 400,
       lineHeight: 1.2,
-      maxWidth: '700px',
+      maxWidth: '680px',
       marginLeft: 'auto',
       marginRight: 'auto',
       fontFamily: 'Georgia, serif',
-      marginBottom: '24px',
+      marginBottom: '20px',
     },
     heroP: {
-      fontSize: '18px',
+      fontSize: '17px',
       color: 'rgba(255,255,255,0.85)',
-      maxWidth: '580px',
+      maxWidth: '560px',
       marginLeft: 'auto',
       marginRight: 'auto',
       lineHeight: 1.75,
-      marginBottom: '36px',
     },
-    heroBtn: {
-      display: 'inline-block',
-      background: '#fff',
-      color: '#7B1E1E',
-      fontWeight: 600,
-      fontSize: '15px',
-      padding: '16px 40px',
-      borderRadius: '100px',
-      textDecoration: 'none',
-      marginRight: '12px',
-      marginBottom: '8px',
-    },
-    heroBtnOutline: {
-      display: 'inline-block',
-      background: 'transparent',
-      color: '#fff',
-      fontWeight: 600,
-      fontSize: '15px',
-      padding: '16px 40px',
-      borderRadius: '100px',
-      textDecoration: 'none',
-      border: '2px solid rgba(255,255,255,0.5)',
-      marginBottom: '8px',
-    },
-    dipSection: {
-      background: '#f9f4f4',
-      padding: '72px 24px',
-    },
-    dipInner: {
-      maxWidth: '880px',
-      margin: '0 auto',
-    },
-    dipLabel: {
-      fontSize: '12px',
-      fontWeight: 700,
-      letterSpacing: '2px',
-      textTransform: 'uppercase' as const,
-      color: '#7B1E1E',
-      marginBottom: '12px',
-      textAlign: 'center' as const,
-    },
-    dipTitle: {
-      fontSize: 'clamp(22px, 3vw, 34px)',
-      fontWeight: 700,
-      color: '#1a1a1a',
-      marginBottom: '16px',
-      textAlign: 'center' as const,
-      lineHeight: 1.3,
-    },
-    dipSub: {
-      fontSize: '17px',
-      color: '#555',
-      maxWidth: '600px',
-      margin: '0 auto 48px',
-      lineHeight: 1.75,
-      textAlign: 'center' as const,
-    },
-    dipGrid: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-      gap: '24px',
-    },
-    dipCard: {
-      background: '#fff',
-      borderRadius: '12px',
-      padding: '28px 24px',
-      borderTop: '4px solid #7B1E1E',
-    },
-    dipStage: {
-      fontSize: '11px',
-      fontWeight: 700,
-      letterSpacing: '1.5px',
-      textTransform: 'uppercase' as const,
-      color: '#7B1E1E',
-      marginBottom: '8px',
-    },
-    dipCardTitle: {
-      fontSize: '17px',
-      fontWeight: 700,
-      color: '#1a1a1a',
-      marginBottom: '10px',
-    },
-    dipCardDesc: {
-      fontSize: '14px',
-      color: '#666',
-      lineHeight: 1.7,
-    },
-    statsSection: {
-      background: '#7B1E1E',
-      padding: '56px 24px',
-    },
-    statsInner: {
-      maxWidth: '880px',
-      margin: '0 auto',
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-      gap: '32px',
-      textAlign: 'center' as const,
-    },
-    statNumber: {
-      fontSize: '42px',
-      fontWeight: 700,
-      color: '#fff',
-      lineHeight: 1,
-      marginBottom: '8px',
-    },
-    statLabel: {
-      fontSize: '14px',
-      color: 'rgba(255,255,255,0.75)',
-      lineHeight: 1.5,
-    },
-    storySection: {
-      padding: '72px 24px',
-    },
-    storyInner: {
+    inner: {
       maxWidth: '860px',
       margin: '0 auto',
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-      gap: '64px',
-      alignItems: 'center',
+      padding: '64px 24px',
     },
-    storyLabel: {
-      fontSize: '12px',
-      fontWeight: 700,
-      letterSpacing: '2px',
-      textTransform: 'uppercase' as const,
-      color: '#7B1E1E',
-      marginBottom: '12px',
-    },
-    storyH2: {
-      fontSize: 'clamp(22px, 3vw, 32px)',
+    sectionTitle: {
+      fontSize: '26px',
       fontWeight: 700,
       color: '#1a1a1a',
       marginBottom: '24px',
-      lineHeight: 1.3,
-    },
-    storyP: {
-      fontSize: '16px',
-      color: '#444',
-      lineHeight: 1.85,
-      marginBottom: '16px',
-    },
-    storyQuote: {
-      borderLeft: '3px solid #7B1E1E',
-      paddingLeft: '20px',
       fontFamily: 'Georgia, serif',
-      fontSize: '18px',
-      fontStyle: 'italic' as const,
-      color: '#2a2a2a',
-      lineHeight: 1.65,
-      margin: '24px 0',
     },
-    storyBtn: {
-      display: 'inline-block',
-      background: '#7B1E1E',
-      color: '#fff',
-      fontWeight: 600,
-      fontSize: '14px',
-      padding: '14px 32px',
-      borderRadius: '100px',
-      textDecoration: 'none',
-      marginTop: '8px',
+    divider: {
+      borderTop: '1px solid #eee',
+      margin: '48px 0',
     },
-    storyVideoBox: {
-      background: '#f5eeee',
-      borderRadius: '12px',
-      aspectRatio: '16/9' as const,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      overflow: 'hidden',
-    },
-    selfFundedSection: {
-      background: '#1a1a1a',
-      color: '#fff',
-      padding: '80px 24px',
-    },
-    selfFundedInner: {
-      maxWidth: '860px',
-      margin: '0 auto',
-    },
-    selfFundedTag: {
-      fontSize: '12px',
-      fontWeight: 700,
-      color: 'rgba(255,255,255,0.5)',
-      textTransform: 'uppercase' as const,
-      letterSpacing: '0.1em',
-      marginBottom: '16px',
-    },
-    selfFundedH2: {
-      fontSize: 'clamp(24px, 4vw, 38px)',
-      fontWeight: 400,
-      fontFamily: 'Georgia, serif',
-      marginBottom: '32px',
-      lineHeight: 1.3,
-      maxWidth: '680px',
-    },
-    selfFundedGrid: {
+    storyGrid: {
       display: 'grid',
       gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
       gap: '48px',
-      marginTop: '48px',
+      alignItems: 'center',
+      marginBottom: '48px',
     },
-    selfFundedP: {
+    storyP: {
       fontSize: '16px',
-      color: 'rgba(255,255,255,0.75)',
+      color: '#333',
       lineHeight: 1.85,
-    },
-    selfFundedHighlight: {
-      fontSize: '20px',
-      color: '#fff',
-      fontFamily: 'Georgia, serif',
-      fontStyle: 'italic' as const,
-      lineHeight: 1.6,
-      borderLeft: '3px solid #7B1E1E',
-      paddingLeft: '24px',
-    },
-    selfFundedBtn: {
-      display: 'inline-block',
-      background: '#7B1E1E',
-      color: '#fff',
-      fontWeight: 600,
-      fontSize: '14px',
-      padding: '14px 32px',
-      borderRadius: '100px',
-      textDecoration: 'none',
-      marginTop: '32px',
-    },
-    ctaSection: {
-      background: '#f9f4f4',
-      padding: '72px 24px',
-      textAlign: 'center' as const,
-    },
-    ctaH2: {
-      fontSize: 'clamp(22px, 3vw, 34px)',
-      fontWeight: 700,
-      color: '#1a1a1a',
       marginBottom: '16px',
     },
-    ctaP: {
-      fontSize: '17px',
-      color: '#555',
-      maxWidth: '520px',
-      margin: '0 auto 32px',
-      lineHeight: 1.75,
+    videoWrap: {
+      position: 'relative' as const,
+      paddingBottom: '56.25%',
+      height: 0,
+      borderRadius: '12px',
+      overflow: 'hidden',
     },
-    ctaBtn: {
+    videoIframe: {
+      position: 'absolute' as const,
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      border: 0,
+    },
+    donationGrid: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+      gap: '20px',
+      margin: '32px 0',
+    },
+    donationCard: {
+      border: '2px solid #e5e5e5',
+      borderRadius: '12px',
+      padding: '28px 24px',
+      textAlign: 'center' as const,
+    },
+    donationCardFeatured: {
+      border: '2px solid #7B1E1E',
+      borderRadius: '12px',
+      padding: '28px 24px',
+      textAlign: 'center' as const,
+      background: '#fdf6f6',
+      position: 'relative' as const,
+    },
+    featuredBadge: {
+      position: 'absolute' as const,
+      top: '-14px',
+      left: '50%',
+      transform: 'translateX(-50%)',
+      background: '#7B1E1E',
+      color: '#fff',
+      fontSize: '11px',
+      fontWeight: 700,
+      letterSpacing: '1px',
+      textTransform: 'uppercase' as const,
+      padding: '4px 14px',
+      borderRadius: '100px',
+      whiteSpace: 'nowrap' as const,
+    },
+    donationAmount: {
+      fontSize: '36px',
+      fontWeight: 700,
+      color: '#7B1E1E',
+      marginBottom: '12px',
+    },
+    donationLabel: {
+      fontSize: '14px',
+      color: '#555',
+      lineHeight: 1.6,
+    },
+    btnRed: {
       display: 'inline-block',
       background: '#7B1E1E',
       color: '#fff',
@@ -304,7 +146,7 @@ export default function HomePageAndAbout() {
       marginRight: '12px',
       marginBottom: '8px',
     },
-    ctaBtnOutline: {
+    btnOutline: {
       display: 'inline-block',
       background: 'transparent',
       color: '#7B1E1E',
@@ -316,92 +158,148 @@ export default function HomePageAndAbout() {
       border: '2px solid #7B1E1E',
       marginBottom: '8px',
     },
+    paymentSection: {
+      background: '#f9f4f4',
+      borderRadius: '12px',
+      padding: '32px',
+    },
+    paymentTitle: {
+      fontSize: '18px',
+      fontWeight: 700,
+      marginBottom: '12px',
+      color: '#1a1a1a',
+    },
+    paymentP: {
+      fontSize: '15px',
+      color: '#555',
+      lineHeight: 1.7,
+      marginBottom: '20px',
+    },
+    trustBar: {
+      background: '#1a1a1a',
+      color: '#fff',
+      padding: '32px 24px',
+      textAlign: 'center' as const,
+    },
+    trustP: {
+      fontSize: '14px',
+      color: 'rgba(255,255,255,0.65)',
+      maxWidth: '600px',
+      margin: '0 auto',
+      lineHeight: 1.7,
+    },
   };
-
-  const dipStages = [
-    { stage: 'Stage 01', title: 'Crisis response', desc: 'Emergency relief delivered directly. Food, money and immediate support for people in crisis.' },
-    { stage: 'Stage 02', title: 'Stabilisation', desc: 'Medical care and basic needs secured before anything else moves forward.' },
-    { stage: 'Stage 03', title: 'Economic restart', desc: 'Seed capital, equipment and training tailored to each person and their circumstances.' },
-    { stage: 'Stage 04', title: 'Sustained independence', desc: 'Regular follow-up visits and ongoing support until the person is fully self-sufficient.' },
-  ];
-
-  const stats = [
-    { number: '300+', label: 'People reached to date' },
-    { number: '$70', label: 'Emergency relief package' },
-    { number: '$200', label: 'Full DIP journey per person' },
-    { number: '2', label: 'Countries registered' },
-  ];
 
   return (
     <div style={s.page}>
-      <div style={s.heroSection}>
-        <div style={s.heroTag}>Direct Impact Empowerment Foundation</div>
-        <h1 style={s.heroH1}>We go to the people every other system has missed.</h1>
+
+      {/* Hero */}
+      <section style={s.hero}>
+        <div style={s.heroTag}>Support our work</div>
+        <h1 style={s.heroH1}>Your donation walks with someone from crisis to independence.</h1>
         <p style={s.heroP}>
-          Registered in Switzerland and Nigeria, we walk alongside vulnerable people
-          from the moment of crisis all the way to sustained independence.
+          Every amount goes directly to the people we find in Nigeria&apos;s most vulnerable communities.
+          No overhead. No waste. Direct impact.
         </p>
-        <div>
-          <a href="/donate" style={s.heroBtn}>Support our work</a>
-          <a href="/about" style={s.heroBtnOutline}>See our story</a>
-        </div>
-      </div>
+      </section>
 
-      <div style={s.dipSection}>
-        <div style={s.dipInner}>
-          <div style={s.dipLabel}>Our model</div>
-          <div style={s.dipTitle}>The Dignity to Independence Pathway</div>
-          <div style={s.dipGrid}>
-            {dipStages.map((item) => (
-              <div key={item.stage} style={s.dipCard}>
-                <div style={s.dipStage}>{item.stage}</div>
-                <div style={s.dipCardTitle}>{item.title}</div>
-                <div style={s.dipCardDesc}>{item.desc}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      <div style={s.inner}>
 
-      <div style={s.statsSection}>
-        <div style={s.statsInner}>
-          {stats.map((stat) => (
-            <div key={stat.label}>
-              <div style={s.statNumber}>{stat.number}</div>
-              <div style={s.statLabel}>{stat.label}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div style={s.storySection}>
-        <div style={s.storyInner}>
+        {/* Story */}
+        <section style={s.storyGrid}>
           <div>
-            <div style={s.storyLabel}>A story that stayed with us</div>
-            <h2 style={s.storyH2}>She had not eaten all day.</h2>
-            <p style={s.storyP}>We found a grandmother raising her grandchildren alone. We brought food and capital to restart her life.</p>
-            <a href="/about" style={s.storyBtn}>Read more</a>
+            <h2 style={s.sectionTitle}>This is who you are helping</h2>
+            <p style={s.storyP}>
+              We found a grandmother sitting on the ground at six in the evening.
+              She had not eaten all day. She had lost both her children and was raising
+              her grandchildren alone. Nobody had stopped to ask if she was okay.
+            </p>
+            <p style={s.storyP}>
+              We stopped. We brought food, cooking oil, and capital to restart her life.
+              Weeks later we returned and found her granddaughter had been admitted to
+              hospital. She had not told us &mdash; she did not want to place the burden on us.
+              We followed her to the hospital and paid the bill.
+            </p>
+            <p style={s.storyP}>
+              Months later, when we went back again, she was standing. She was well.
+              She was earning. Her grandchildren were fed.
+            </p>
+            <p style={{ ...s.storyP, color: '#7B1E1E', fontStyle: 'italic' }}>
+              This is not an exceptional story. This is our model.
+            </p>
           </div>
-          <div style={s.storyVideoBox}>
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/o-DmTojeEII" title="Case study" frameBorder="0" allowFullScreen style={{ borderRadius: '12px' }} />
+          <div style={s.videoWrap}>
+            <iframe
+              style={s.videoIframe}
+              src="https://www.youtube.com/embed/iwCeWtDPlTw"
+              title="Grandmother full journey"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
           </div>
-        </div>
+        </section>
+
+        <div style={s.divider} />
+
+        {/* Donation amounts */}
+        <section>
+          <h2 style={s.sectionTitle}>Choose how you want to help</h2>
+          <p style={{ fontSize: '16px', color: '#555', marginBottom: '8px' }}>
+            Every amount makes a measurable difference. Here is what your gift does on the ground.
+          </p>
+
+          <div style={s.donationGrid}>
+            <div style={s.donationCard}>
+              <div style={s.donationAmount}>$50</div>
+              <div style={s.donationLabel}>
+                Contribute toward a full journey. Every amount gets someone closer to independence.
+              </div>
+            </div>
+            <div style={s.donationCardFeatured}>
+              <div style={s.featuredBadge}>Most impactful</div>
+              <div style={s.donationAmount}>$200</div>
+              <div style={s.donationLabel}>
+                Full Dignity to Independence journey. Emergency relief through to sustainable livelihood.
+              </div>
+            </div>
+            <div style={s.donationCard}>
+              <div style={s.donationAmount}>$70</div>
+              <div style={s.donationLabel}>
+                Emergency relief package. Food, water, and essential support for one person in crisis.
+              </div>
+            </div>
+          </div>
+
+          <div style={{ textAlign: 'center', margin: '32px 0' }}>
+            <a href="YOUR_STRIPE_LINK" style={s.btnRed}>Donate by card</a>
+            <a href="/bank-details" style={s.btnOutline}>Donate by bank transfer</a>
+          </div>
+        </section>
+
+        <div style={s.divider} />
+
+        {/* Bank transfer */}
+        <section style={s.paymentSection}>
+          <h3 style={s.paymentTitle}>Prefer to donate by bank transfer?</h3>
+          <p style={s.paymentP}>
+            We have accounts in both Nigeria and Switzerland. If you prefer to donate
+            directly by bank transfer, our full account details are on our bank details page.
+            We accept donations in NGN, CHF, and USD.
+          </p>
+          <a href="/bank-details" style={s.btnRed}>View bank details</a>
+        </section>
+
       </div>
 
-      <div style={s.selfFundedSection}>
-        <div style={s.selfFundedInner}>
-          <h2 style={s.selfFundedH2}>We are self-funded. Not out of choice, but out of default.</h2>
-          <div style={s.selfFundedGrid}>
-            <p style={s.selfFundedP}>Three years of self-funding. Every year has produced people who are no longer where we found them.</p>
-            <a href="/about" style={s.selfFundedBtn}>Our full story</a>
-          </div>
-        </div>
-      </div>
+      {/* Trust bar */}
+      <footer style={s.trustBar}>
+        <p style={s.trustP}>
+          Direct Impact Empowerment Foundation is registered in Nigeria and Switzerland.
+          Every donation is used directly for programme delivery. We have been entirely
+          self-funded since 2023 &mdash; your support changes that.
+        </p>
+      </footer>
 
-      <div style={s.ctaSection}>
-        <h2 style={s.ctaH2}>Every $200 funds one person's full journey</h2>
-        <a href="/donate" style={s.ctaBtn}>Donate now</a>
-      </div>
     </div>
   );
 }
