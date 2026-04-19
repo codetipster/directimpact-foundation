@@ -71,7 +71,7 @@ export default function ImpactStories() {
         'We arranged and funded her eye surgery and covered her ongoing medication through our standing hospital arrangement. Her sight was restored.',
         'We came back with a pepper blending machine and the capital to start a business. She is running that business today. She mentioned her situation almost as an afterthought. She did not think she was worth making a fuss about. We disagreed.',
       ],
-      videoId: 'EknV0VSUmQg',
+      videoId: '8a1quu7PTEk',
     },
     {
       id: 3,
@@ -86,7 +86,7 @@ export default function ImpactStories() {
         'We gave him some cash to manage day to day. He used it to buy coal to resell. An elderly man with no kneecap, given money to survive, chose instead to build something.',
         'When we heard that, we went back with three sacks of coal and the capital to trade properly. The last time our team visited in February 2026, he was standing in his compound in a full traditional outfit, walking with his stick, working.',
       ],
-      videoId: 'rIozP9B03vo',
+      videoId: '5dqLFbrYMRs',
     },
     {
       id: 4,
