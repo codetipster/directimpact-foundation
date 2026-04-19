@@ -237,14 +237,14 @@ export default function AboutUsPage() {
               save people. To walk with them until they no longer need us.
             </p>
             <p style={s.signature}>
-              Olufemi Adeyemo, Founder, Direct Impact Empowerment Foundation
+              Femi Adeyemo, Founder, Direct Impact Empowerment Foundation
             </p>
           </div>
 
           <div style={s.imageContainer}>
             <Image 
               src="/pesin.png" 
-              alt="Olufemi Adeyemo" 
+              alt="Femi Adeyemo" 
               fill 
               style={{ objectFit: 'cover' }}
             />
@@ -263,7 +263,7 @@ export default function AboutUsPage() {
           <div style={s.imageContainer}>
             <Image 
               src="/reuben.jpeg" 
-              alt="Oga Reuben Eka" 
+              alt="Eka Reuben" 
               fill 
               style={{ objectFit: 'cover' }}
             />
@@ -299,7 +299,7 @@ export default function AboutUsPage() {
               what becomes possible when support from the outside finally arrives.
             </p>
             <p style={s.signature}>
-              Oga Reuben Eka, CEO, Direct Impact Empowerment Foundation, Nigeria
+              Eka Reuben, CEO, Direct Impact Empowerment Foundation, Nigeria
             </p>
           </div>
         </div>
