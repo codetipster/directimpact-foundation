@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Homepage() {
+export default function HomePageAndAbout() {
   const s: Record<string, React.CSSProperties> = {
     page: {
       fontFamily: 'Arial, sans-serif',
@@ -9,7 +9,6 @@ export default function Homepage() {
       margin: 0,
       padding: 0,
     },
-    // Hero
     heroSection: {
       background: '#7B1E1E',
       color: '#fff',
@@ -70,7 +69,6 @@ export default function Homepage() {
       border: '2px solid rgba(255,255,255,0.5)',
       marginBottom: '8px',
     },
-    // DIP Section
     dipSection: {
       background: '#f9f4f4',
       padding: '72px 24px',
@@ -134,7 +132,6 @@ export default function Homepage() {
       color: '#666',
       lineHeight: 1.7,
     },
-    // Stats
     statsSection: {
       background: '#7B1E1E',
       padding: '56px 24px',
@@ -159,7 +156,6 @@ export default function Homepage() {
       color: 'rgba(255,255,255,0.75)',
       lineHeight: 1.5,
     },
-    // Story Section
     storySection: {
       padding: '72px 24px',
     },
@@ -222,7 +218,6 @@ export default function Homepage() {
       justifyContent: 'center',
       overflow: 'hidden',
     },
-    // Self-funded section
     selfFundedSection: {
       background: '#1a1a1a',
       color: '#fff',
@@ -280,7 +275,6 @@ export default function Homepage() {
       textDecoration: 'none',
       marginTop: '32px',
     },
-    // CTA
     ctaSection: {
       background: '#f9f4f4',
       padding: '72px 24px',
@@ -341,7 +335,6 @@ export default function Homepage() {
 
   return (
     <div style={s.page}>
-      {/* Hero */}
       <section style={s.heroSection}>
         <div style={s.heroTag}>Direct Impact Empowerment Foundation</div>
         <h1 style={s.heroH1}>We go to the people every other system has missed.</h1>
@@ -356,7 +349,6 @@ export default function Homepage() {
         </div>
       </section>
 
-      {/* DIP Model */}
       <section style={s.dipSection}>
         <div style={s.dipInner}>
           <div style={s.dipLabel}>Our model</div>
@@ -377,7 +369,6 @@ export default function Homepage() {
         </div>
       </section>
 
-      {/* Stats */}
       <section style={s.statsSection}>
         <div style={s.statsInner}>
           {stats.map((stat) => (
@@ -389,7 +380,6 @@ export default function Homepage() {
         </div>
       </section>
 
-      {/* Story Section */}
       <section style={s.storySection}>
         <div style={s.storyInner}>
           <div>
@@ -401,7 +391,7 @@ export default function Homepage() {
               We stopped. We brought food, cooking oil, and capital to restart her life.
             </p>
             <div style={s.storyQuote}>
-              "Months later she was standing. She was well. She was earning."
+              &quot;Months later she was standing. She was well. She was earning.&quot;
             </div>
             <a href="/impact" style={s.storyBtn}>Read more stories</a>
           </div>
@@ -420,7 +410,6 @@ export default function Homepage() {
         </div>
       </section>
 
-      {/* Self-funded section */}
       <section style={s.selfFundedSection}>
         <div style={s.selfFundedInner}>
           <div style={s.selfFundedTag}>About us</div>
@@ -443,7 +432,7 @@ export default function Homepage() {
             </div>
             <div>
               <div style={s.selfFundedHighlight}>
-                "If you have ever found it hard to look away, you already understand why we exist."
+                &quot;If you have ever found it hard to look away, you already understand why we exist.&quot;
               </div>
               <p style={{ ...s.selfFundedP, marginTop: '24px', fontSize: '14px' }}>
                 Founder, Direct Impact Empowerment Foundation
@@ -453,9 +442,8 @@ export default function Homepage() {
         </div>
       </section>
 
-      {/* CTA */}
       <section style={s.ctaSection}>
-        <h2 style={s.ctaH2}>Every $200 funds one person's full journey</h2>
+        <h2 style={s.ctaH2}>Every $200 funds one person&apos;s full journey</h2>
         <p style={s.ctaP}>
           From the day we find them to the day they are standing on their own.
           No donation is too small. Every contribution moves someone one step closer.
