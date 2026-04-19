@@ -46,7 +46,7 @@ export function Footer() {
           {/* Logo and Description */}
           <div className="md:col-span-4 lg:col-span-5">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <Image src="/oldlogo.jpeg" alt="DirectImpact" width={80} height={80} className="w-40 h-40" />
+              <Image src="/dimpact-logo.jpeg" alt="DirectImpact" width={80} height={80} className="w-40 h-40" />
               <span className="text-xl font-semibold text-[#59B7E7]">Direct Impact Empowerment Foundation</span>
             </Link>
             <p className="text-gray-600 mb-6">
