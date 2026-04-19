@@ -271,7 +271,7 @@ export default function DonorLanding() {
           </div>
 
           <div style={{ textAlign: 'center', margin: '32px 0' }}>
-            <a href="YOUR_STRIPE_LINK" style={s.btnRed}>Donate by card</a>
+            <a href="https://buy.stripe.com/4gMaEXeHH5Hi6yDgfQ3cc00" target="_blank" rel="noopener noreferrer" style={s.btnRed}>Donate by card</a>
             <a href="/bank-details" style={s.btnOutline}>Donate by bank transfer</a>
           </div>
         </section>
