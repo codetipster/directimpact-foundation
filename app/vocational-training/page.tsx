@@ -12,8 +12,6 @@ export default function VocationalTraining() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-    
-    // Clear the error for this specific field once the user starts typing
     if (errors[e.target.name]) {
       setErrors({ ...errors, [e.target.name]: '' });
     }
@@ -248,7 +246,7 @@ export default function VocationalTraining() {
     },
     inputError: {
       borderColor: '#D32F2F',
-      marginBottom: '4px', // Reduced margin to make room for error text
+      marginBottom: '4px',
     },
     textarea: {
       width: '100%',
@@ -374,7 +372,8 @@ export default function VocationalTraining() {
           secure premises and equipment. Every contribution brings us closer to the day
           we open the doors to our first cohort.
         </p>
-        <a href="/donate" style={s.donateBtn}>Fund this programme</a>
+        {/* Updated link with explicit anchor mapping */}
+        <a href="/donate#choose-how-to-help" style={s.donateBtn}>Fund this programme</a>
       </div>
 
       <div style={{ background: '#f0f7ff', borderRadius: '12px', padding: '40px', marginBottom: '40px', textAlign: 'center' as const }}>

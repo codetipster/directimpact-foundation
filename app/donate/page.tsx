@@ -242,7 +242,7 @@ export default function DonorLanding() {
         <div style={s.divider} />
 
         {/* Donation amounts */}
-        <section>
+        <section id="choose-how-to-help">
           <h2 style={s.sectionTitle}>Choose how you want to help</h2>
           <p style={{ fontSize: '16px', color: '#555', marginBottom: '8px' }}>
             Every amount makes a measurable difference. Here is what your gift does on the ground.
