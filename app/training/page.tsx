@@ -1,9 +1,202 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import type { CSSProperties } from "react";
 
-export default function TrainingSection() {
+// ==========================================
+// 1. DIGITAL EMPOWERMENT SECTION COMPONENT
+// ==========================================
+const pillars = [
+  {
+    icon: "🌍",
+    title: "Open to everyone",
+    text: "No prior experience needed. If you have the drive, we have the course.",
+  },
+  {
+    icon: "👩‍💻",
+    title: "Built for real life",
+    text: "Practical skills that translate directly into income and opportunity.",
+  },
+  {
+    icon: "🔒",
+    title: "Always free",
+    text: "No card. No catch. No hidden fees. Ever.",
+  },
+  {
+    icon: "🤝",
+    title: "You will not do this alone",
+    text: "We guide you through every step. If you get stuck, we are here.",
+  },
+];
+
+function DigitalEmpowermentSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      style={{
+        backgroundColor: "#faf8f5",
+        padding: "80px 24px",
+        fontFamily: "Arial, sans-serif",
+      }}
+    >
+      <div style={{ maxWidth: "860px", margin: "0 auto" }}>
+        {/* Label */}
+        <p
+          style={{
+            fontFamily: "Arial, sans-serif",
+            fontSize: "12px",
+            fontWeight: "700",
+            letterSpacing: "2.5px",
+            textTransform: "uppercase",
+            color: "#7B1E1E",
+            marginBottom: "20px",
+            opacity: visible ? 1 : 0,
+            transform: visible ? "translateY(0)" : "translateY(16px)",
+            transition: "opacity 0.6s ease, transform 0.6s ease",
+          }}
+        >
+          Who this is for
+        </p>
+
+        {/* Headline */}
+        <h2
+          style={{
+            fontFamily: "Georgia, serif",
+            fontSize: "clamp(28px, 4vw, 42px)",
+            fontWeight: "normal",
+            color: "#1a1a1a",
+            lineHeight: "1.25",
+            marginBottom: "28px",
+            maxWidth: "680px",
+            opacity: visible ? 1 : 0,
+            transform: visible ? "translateY(0)" : "translateY(20px)",
+            transition: "opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s",
+          }}
+        >
+          Relief gets someone through today.
+          <br />
+          <span style={{ color: "#7B1E1E" }}>Skills get them through the rest of their lives.</span>
+        </h2>
+
+        {/* Body text */}
+        <p
+          style={{
+            fontSize: "17px",
+            lineHeight: "1.75",
+            color: "#444",
+            marginBottom: "16px",
+            maxWidth: "640px",
+            opacity: visible ? 1 : 0,
+            transform: visible ? "translateY(0)" : "translateY(20px)",
+            transition: "opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s",
+          }}
+        >
+          Alongside our emergency and humanitarian work, we equip people with
+          digital skills that open real doors. People who never had access to
+          formal education, technology, or career pathways.
+        </p>
+
+        <p
+          style={{
+            fontSize: "17px",
+            lineHeight: "1.75",
+            color: "#444",
+            marginBottom: "56px",
+            maxWidth: "640px",
+            opacity: visible ? 1 : 0,
+            transform: visible ? "translateY(0)" : "translateY(20px)",
+            transition: "opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s",
+          }}
+        >
+          Our learners are women returning to work, young adults who slipped
+          through the system, and community members who simply never had the
+          chance. Every course is free. Every skill is real. Every person who
+          completes it leaves with something no one can take away.
+        </p>
+
+        {/* Pillars */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+            gap: "24px",
+          }}
+        >
+          {pillars.map((p, i) => (
+            <div
+              key={i}
+              style={{
+                backgroundColor: "#ffffff",
+                borderTop: "3px solid #7B1E1E",
+                borderRadius: "4px",
+                padding: "28px 24px",
+                boxShadow: "0 2px 12px rgba(0,0,0,0.06)",
+                opacity: visible ? 1 : 0,
+                transform: visible ? "translateY(0)" : "translateY(24px)",
+                transition: `opacity 0.6s ease ${0.35 + i * 0.1}s, transform 0.6s ease ${0.35 + i * 0.1}s`,
+              }}
+            >
+              <div style={{ fontSize: "28px", marginBottom: "12px" }}>{p.icon}</div>
+              <h3
+                style={{
+                  fontFamily: "Georgia, serif",
+                  fontSize: "17px",
+                  fontWeight: "normal",
+                  color: "#1a1a1a",
+                  marginBottom: "8px",
+                }}
+              >
+                {p.title}
+              </h3>
+              <p
+                style={{
+                  fontSize: "15px",
+                  lineHeight: "1.6",
+                  color: "#666",
+                  margin: 0,
+                }}
+              >
+                {p.text}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Divider into next section */}
+        <div
+          style={{
+            marginTop: "64px",
+            borderBottom: "1px solid #e0d8d0",
+            opacity: visible ? 1 : 0,
+            transition: "opacity 0.6s ease 0.7s",
+          }}
+        />
+      </div>
+    </section>
+  );
+}
+
+// ==========================================
+// 2. MAIN TRAINING PAGE COMPONENT
+// ==========================================
+export default function TrainingPage() {
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -15,6 +208,11 @@ export default function TrainingSection() {
   const [sending, setSending] = useState(false);
 
   const handleSubmit = async () => {
+    if (!form.name || !form.email || !form.course) {
+      alert("Please fill in your name, email, and selected course.");
+      return;
+    }
+    
     setSending(true);
 
     try {
@@ -33,7 +231,6 @@ export default function TrainingSection() {
     }
   };
 
-  // ✅ SAFE STYLE SYSTEM (no functions inside object anymore)
   const s: Record<string, CSSProperties> = {
     page: {
       fontFamily: "Arial, sans-serif",
@@ -41,6 +238,7 @@ export default function TrainingSection() {
       color: "#1a1a1a",
       margin: 0,
       padding: 0,
+      scrollBehavior: "smooth", // Enables smooth scrolling when anchor tags are clicked
     },
     hero: {
       background: "#1a1a1a",
@@ -80,9 +278,10 @@ export default function TrainingSection() {
       color: "#fff",
       fontSize: "13px",
       fontWeight: 600,
-      padding: "8px 20px",
+      padding: "12px 24px",
       borderRadius: "100px",
       marginTop: "24px",
+      textDecoration: "none",
     },
     section: {
       maxWidth: "880px",
@@ -194,6 +393,7 @@ export default function TrainingSection() {
       border: "1px solid #ddd",
       borderRadius: "8px",
       marginBottom: "16px",
+      boxSizing: "border-box",
     },
     select: {
       width: "100%",
@@ -202,6 +402,7 @@ export default function TrainingSection() {
       borderRadius: "8px",
       marginBottom: "16px",
       background: "#fff",
+      boxSizing: "border-box",
     },
     textarea: {
       width: "100%",
@@ -210,6 +411,7 @@ export default function TrainingSection() {
       borderRadius: "8px",
       minHeight: "100px",
       marginBottom: "16px",
+      boxSizing: "border-box",
     },
     btnRed: {
       background: "#7B1E1E",
@@ -218,6 +420,8 @@ export default function TrainingSection() {
       padding: "16px 40px",
       borderRadius: "100px",
       cursor: "pointer",
+      fontWeight: 600,
+      fontSize: "15px",
     },
     successBox: {
       background: "#e8f5e9",
@@ -227,7 +431,6 @@ export default function TrainingSection() {
     },
   };
 
-  // ✅ FIXED: proper typed helpers instead of inline functions
   const courseCard = (color: string): CSSProperties => ({
     ...s.courseCardBase,
     borderTop: `4px solid ${color}`,
@@ -245,6 +448,7 @@ export default function TrainingSection() {
     marginBottom: "12px",
   });
 
+  // Removed Software Engineering completely per instructions
   const courses = [
     {
       color: "#185FA5",
@@ -261,12 +465,6 @@ export default function TrainingSection() {
       noCoding: true,
     },
     {
-      color: "#7B1E1E",
-      type: "Engineering",
-      title: "Software Engineering",
-      desc: "Build technical skills from the ground up.",
-    },
-    {
       color: "#533AB7",
       type: "Full Stack",
       title: "Full Stack Engineering",
@@ -276,17 +474,29 @@ export default function TrainingSection() {
 
   return (
     <div style={s.page}>
+      {/* HERO SECTION */}
       <div style={s.hero}>
         <div style={s.tag}>Free technology training</div>
         <h1 style={s.h1}>A digital skill can change the entire trajectory of a life.</h1>
-        <p style={s.heroP}>Direct Impact offers free cybersecurity and technology courses through betapersin.com. No card. No catch. No coding required to get started.</p>
-        <a href="https://betapersin.com" target="_blank" style={s.freeTag}>Start with Module 1 free at betapersin.com</a>
+        <p style={s.heroP}>
+          Direct Impact offers free cybersecurity and technology courses. No card. No catch. No coding required to get started.
+        </p>
+        {/* Updated Button to route to form */}
+        <a href="#apply-form" style={s.freeTag}>
+          Apply for a funded place
+        </a>
       </div>
 
+      {/* NEW DIGITAL EMPOWERMENT SECTION INJECTED HERE */}
+      <DigitalEmpowermentSection />
+
+      {/* CHOOSE YOUR PATHWAY / TRAINING SECTION */}
       <div style={s.section}>
-	    <h2 style={s.sectionTitle}>Choose your pathway</h2>
-        <p style={s.sectionSub}>Cybersecurity is a mile wide. Not every path requires coding. Here are the four pathways available to you right now.</p>
-		
+        <h2 style={s.sectionTitle}>Choose your pathway</h2>
+        <p style={s.sectionSub}>
+          Cybersecurity is a mile wide. Not every path requires coding. Here are the pathways available to you right now.
+        </p>
+
         <div style={s.courseGrid}>
           {courses.map((c) => (
             <div key={c.type} style={courseCard(c.color)}>
@@ -298,53 +508,74 @@ export default function TrainingSection() {
           ))}
         </div>
 
+        {/* STORY BLOCK */}
         <div style={s.storyBlock}>
-		  <div style={s.storyQ}>&quot;I started as a cleaner. Today I hold a CISSP qualification, one of the most respected certifications in global cybersecurity.&quot;</div>
-            <p style={s.storyP}>The founder of Direct Impact built a career in technology from scratch. The training at betapersin.com is built on the same belief: that where you start does not determine where you end up. You just need the right path and someone to show it to you.</p>
-           <a href="https://betapersin.com" target="_blank" style={s.storyBtn}>Go to betapersin.com</a>
+          <div style={s.storyQ}>
+            &quot;I started as a cleaner. Today I hold a CISSP qualification, one of the most respected certifications in global cybersecurity.&quot;
+          </div>
+          <p style={s.storyP}>
+            The founder of Direct Impact built a career in technology from scratch. The training is built on the same belief: that where you start does not determine where you end up. You just need the right path and someone to show it to you.
+          </p>
+          {/* Updated Button to route to form */}
+          <a href="#apply-form" style={s.storyBtn}>
+            Apply for a funded place
+          </a>
         </div>
-		
-		<div style={{ background: '#fdf6f6', borderRadius: '12px', padding: '40px', marginBottom: '40px', textAlign: 'center' }}>
-		  <div style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#7B1E1E', marginBottom: '12px' }}>Also available</div>
-		  <h3 style={{ fontSize: '22px', fontWeight: 700, marginBottom: '12px', color: '#1a1a1a' }}>Prefer hands-on skills?</h3>
-		  <p style={{ fontSize: '15px', color: '#555', lineHeight: 1.7, maxWidth: '480px', margin: '0 auto 24px' }}>
-			Our vocational sewing and tailoring programme is coming soon. Register your interest
-			now and we will contact you as soon as we are ready to launch.
-		  </p>
-		  <a href="/vocational-training" style={{ display: 'inline-block', background: '#7B1E1E', color: '#fff', padding: '14px 32px', borderRadius: '100px', fontWeight: 600, fontSize: '15px', textDecoration: 'none' }}>
-			Explore vocational training
-		  </a>
-		</div>
 
-        <div style={s.formCard}>
+        {/* VOCATIONAL CTA */}
+        <div style={{ background: "#fdf6f6", borderRadius: "12px", padding: "40px", marginBottom: "40px", textAlign: "center" }}>
+          <div style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: "#7B1E1E", marginBottom: "12px" }}>
+            Also available
+          </div>
+          <h3 style={{ fontSize: "22px", fontWeight: 700, marginBottom: "12px", color: "#1a1a1a" }}>
+            Prefer hands-on skills?
+          </h3>
+          <p style={{ fontSize: "15px", color: "#555", lineHeight: 1.7, maxWidth: "480px", margin: "0 auto 24px" }}>
+            Our vocational sewing and tailoring programme is coming soon. Register your interest
+            now and we will contact you as soon as we are ready to launch.
+          </p>
+          <a href="/vocational-training" style={{ display: "inline-block", background: "#7B1E1E", color: "#fff", padding: "14px 32px", borderRadius: "100px", fontWeight: 600, fontSize: "15px", textDecoration: "none" }}>
+            Explore vocational training
+          </a>
+        </div>
+
+        {/* FORM BLOCK WITH ID FOR ROUTING */}
+        <div id="apply-form" style={s.formCard}>
           <h3 style={s.formTitle}>Apply for a funded place</h3>
-          <p style={s.formSub}>Direct Impact has a limited number of fully funded training places available. If cost is a barrier, apply here and we will be in touch.</p>
+          <p style={s.formSub}>
+            Direct Impact has a limited number of fully funded training places available. If cost is a barrier, apply here and we will be in touch.
+          </p>
           {submitted ? (
             <div style={s.successBox}>
-              <p style={{ fontSize: '18px', fontWeight: 600, color: '#2e7d32', marginBottom: '8px' }}>Application received.</p>
-              <p style={{ fontSize: '15px', color: '#444' }}>We will review your application and be in touch within five working days.</p>
+              <p style={{ fontSize: "18px", fontWeight: 600, color: "#2e7d32", marginBottom: "8px" }}>Application received.</p>
+              <p style={{ fontSize: "15px", color: "#444" }}>We will review your application and be in touch within five working days.</p>
             </div>
           ) : (
             <div>
               <label style={s.label}>Full name</label>
-              <input style={s.input} value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="Your name" />
+              <input style={s.input} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Your name" />
+              
               <label style={s.label}>Email address</label>
-              <input style={s.input} value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} placeholder="your@email.com" />
+              <input style={s.input} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="your@email.com" />
+              
               <label style={s.label}>Which course interests you?</label>
-              <select style={s.select} value={form.course} onChange={e => setForm({ ...form, course: e.target.value })}>
+              <select style={s.select} value={form.course} onChange={(e) => setForm({ ...form, course: e.target.value })}>
                 <option value="">Select a course</option>
                 <option>Identity and Access Management (IAM)</option>
                 <option>Governance Risk and Compliance (GRC)</option>
-                <option>Software Engineering</option>
+                {/* Removed Software Engineering option */}
                 <option>Full Stack Engineering</option>
               </select>
+              
               <label style={s.label}>Tell us briefly about your background</label>
-              <textarea style={s.textarea} value={form.background} onChange={e => setForm({ ...form, background: e.target.value })} placeholder="A few sentences about where you are now and why you want to learn" />
-              <button style={s.btnRed} onClick={handleSubmit} disabled={sending}>{sending ? 'Sending...' : 'Submit application'}</button>
+              <textarea style={s.textarea} value={form.background} onChange={(e) => setForm({ ...form, background: e.target.value })} placeholder="A few sentences about where you are now and why you want to learn" />
+              
+              <button style={s.btnRed} onClick={handleSubmit} disabled={sending}>
+                {sending ? "Sending..." : "Submit application"}
+              </button>
             </div>
           )}
         </div>
-		
       </div>
     </div>
   );
