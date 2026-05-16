@@ -204,14 +204,45 @@ export default function TrainingPage() {
     background: "",
   });
 
+  // State to hold validation error messages
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    course: "",
+    background: "",
+  });
+
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
 
   const handleSubmit = async () => {
-    if (!form.name || !form.email || !form.course) {
-      alert("Please fill in your name, email, and selected course.");
-      return;
+    // 1. Reset current errors
+    const newErrors = { name: "", email: "", course: "", background: "" };
+    let isValid = true;
+
+    // 2. Validate fields
+    if (!form.name.trim()) {
+      newErrors.name = "name required";
+      isValid = false;
     }
+    if (!form.email.trim()) {
+      newErrors.email = "email required";
+      isValid = false;
+    }
+    if (!form.course) {
+      newErrors.course = "please select a course";
+      isValid = false;
+    }
+    if (!form.background.trim()) {
+      newErrors.background = "please write a brief history about yourself";
+      isValid = false;
+    }
+
+    // 3. Update error state
+    setErrors(newErrors);
+
+    // 4. Stop submission if not valid
+    if (!isValid) return;
     
     setSending(true);
 
@@ -238,7 +269,7 @@ export default function TrainingPage() {
       color: "#1a1a1a",
       margin: 0,
       padding: 0,
-      scrollBehavior: "smooth", // Enables smooth scrolling when anchor tags are clicked
+      scrollBehavior: "smooth",
     },
     hero: {
       background: "#1a1a1a",
@@ -392,7 +423,6 @@ export default function TrainingPage() {
       padding: "12px 14px",
       border: "1px solid #ddd",
       borderRadius: "8px",
-      marginBottom: "16px",
       boxSizing: "border-box",
     },
     select: {
@@ -400,7 +430,6 @@ export default function TrainingPage() {
       padding: "12px 14px",
       border: "1px solid #ddd",
       borderRadius: "8px",
-      marginBottom: "16px",
       background: "#fff",
       boxSizing: "border-box",
     },
@@ -410,8 +439,15 @@ export default function TrainingPage() {
       border: "1px solid #ddd",
       borderRadius: "8px",
       minHeight: "100px",
-      marginBottom: "16px",
       boxSizing: "border-box",
+    },
+    errorText: {
+      color: "#d32f2f",
+      fontSize: "13px",
+      marginTop: "6px",
+      marginBottom: "16px",
+      display: "block",
+      fontWeight: 500,
     },
     btnRed: {
       background: "#7B1E1E",
@@ -448,7 +484,6 @@ export default function TrainingPage() {
     marginBottom: "12px",
   });
 
-  // Removed Software Engineering completely per instructions
   const courses = [
     {
       color: "#185FA5",
@@ -481,13 +516,12 @@ export default function TrainingPage() {
         <p style={s.heroP}>
           Direct Impact offers free cybersecurity and technology courses. No card. No catch. No coding required to get started.
         </p>
-        {/* Updated Button to route to form */}
         <a href="#apply-form" style={s.freeTag}>
           Apply for a funded place
         </a>
       </div>
 
-      {/* NEW DIGITAL EMPOWERMENT SECTION INJECTED HERE */}
+      {/* DIGITAL EMPOWERMENT SECTION */}
       <DigitalEmpowermentSection />
 
       {/* CHOOSE YOUR PATHWAY / TRAINING SECTION */}
@@ -516,7 +550,6 @@ export default function TrainingPage() {
           <p style={s.storyP}>
             The founder of Direct Impact built a career in technology from scratch. The training is built on the same belief: that where you start does not determine where you end up. You just need the right path and someone to show it to you.
           </p>
-          {/* Updated Button to route to form */}
           <a href="#apply-form" style={s.storyBtn}>
             Apply for a funded place
           </a>
@@ -539,7 +572,7 @@ export default function TrainingPage() {
           </a>
         </div>
 
-        {/* FORM BLOCK WITH ID FOR ROUTING */}
+        {/* FORM BLOCK */}
         <div id="apply-form" style={s.formCard}>
           <h3 style={s.formTitle}>Apply for a funded place</h3>
           <p style={s.formSub}>
@@ -552,23 +585,77 @@ export default function TrainingPage() {
             </div>
           ) : (
             <div>
+              {/* NAME INPUT */}
               <label style={s.label}>Full name</label>
-              <input style={s.input} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Your name" />
+              <input 
+                style={{
+                  ...s.input, 
+                  borderColor: errors.name ? "#d32f2f" : "#ddd",
+                  marginBottom: errors.name ? "0" : "16px"
+                }} 
+                value={form.name} 
+                onChange={(e) => {
+                  setForm({ ...form, name: e.target.value });
+                  if (errors.name) setErrors({ ...errors, name: "" }); // Clear error as they type
+                }} 
+                placeholder="Your name" 
+              />
+              {errors.name && <span style={s.errorText}>{errors.name}</span>}
               
+              {/* EMAIL INPUT */}
               <label style={s.label}>Email address</label>
-              <input style={s.input} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="your@email.com" />
+              <input 
+                style={{
+                  ...s.input, 
+                  borderColor: errors.email ? "#d32f2f" : "#ddd",
+                  marginBottom: errors.email ? "0" : "16px"
+                }} 
+                value={form.email} 
+                onChange={(e) => {
+                  setForm({ ...form, email: e.target.value });
+                  if (errors.email) setErrors({ ...errors, email: "" });
+                }} 
+                placeholder="your@email.com" 
+              />
+              {errors.email && <span style={s.errorText}>{errors.email}</span>}
               
+              {/* COURSE SELECT */}
               <label style={s.label}>Which course interests you?</label>
-              <select style={s.select} value={form.course} onChange={(e) => setForm({ ...form, course: e.target.value })}>
+              <select 
+                style={{
+                  ...s.select, 
+                  borderColor: errors.course ? "#d32f2f" : "#ddd",
+                  marginBottom: errors.course ? "0" : "16px"
+                }} 
+                value={form.course} 
+                onChange={(e) => {
+                  setForm({ ...form, course: e.target.value });
+                  if (errors.course) setErrors({ ...errors, course: "" });
+                }}
+              >
                 <option value="">Select a course</option>
                 <option>Identity and Access Management (IAM)</option>
                 <option>Governance Risk and Compliance (GRC)</option>
-                {/* Removed Software Engineering option */}
                 <option>Full Stack Engineering</option>
               </select>
+              {errors.course && <span style={s.errorText}>{errors.course}</span>}
               
+              {/* BACKGROUND TEXTAREA */}
               <label style={s.label}>Tell us briefly about your background</label>
-              <textarea style={s.textarea} value={form.background} onChange={(e) => setForm({ ...form, background: e.target.value })} placeholder="A few sentences about where you are now and why you want to learn" />
+              <textarea 
+                style={{
+                  ...s.textarea, 
+                  borderColor: errors.background ? "#d32f2f" : "#ddd",
+                  marginBottom: errors.background ? "0" : "16px"
+                }} 
+                value={form.background} 
+                onChange={(e) => {
+                  setForm({ ...form, background: e.target.value });
+                  if (errors.background) setErrors({ ...errors, background: "" });
+                }} 
+                placeholder="A few sentences about where you are now and why you want to learn" 
+              />
+              {errors.background && <span style={s.errorText}>{errors.background}</span>}
               
               <button style={s.btnRed} onClick={handleSubmit} disabled={sending}>
                 {sending ? "Sending..." : "Submit application"}
