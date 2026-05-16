@@ -6,14 +6,35 @@ export default function VocationalTraining() {
   const [form, setForm] = useState({
     name: '', email: '', phone: '', location: '', age: '', motivation: ''
   });
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+    
+    // Clear the error for this specific field once the user starts typing
+    if (errors[e.target.name]) {
+      setErrors({ ...errors, [e.target.name]: '' });
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+    if (!form.name.trim()) newErrors.name = "Full name is required.";
+    if (!form.email.trim()) newErrors.email = "Email address is required.";
+    if (!form.phone.trim()) newErrors.phone = "Phone number is required.";
+    if (!form.location.trim()) newErrors.location = "State / location is required.";
+    if (!form.age.trim()) newErrors.age = "Age is required.";
+    if (!form.motivation.trim()) newErrors.motivation = "Please tell us why you want to join this programme.";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async () => {
+    if (!validateForm()) return;
+
     setLoading(true);
     try {
       await fetch('YOUR_FORMSPREE_ENDPOINT', {
@@ -70,8 +91,8 @@ export default function VocationalTraining() {
       margin: '0 auto',
     },
     imagePlaceholder: {
-	  position: 'relative',
-	  overflow: 'hidden',
+      position: 'relative',
+      overflow: 'hidden',
       width: '100%',
       height: '320px',
       background: '#f5eeee',
@@ -225,6 +246,10 @@ export default function VocationalTraining() {
       marginBottom: '16px',
       boxSizing: 'border-box' as const,
     },
+    inputError: {
+      borderColor: '#D32F2F',
+      marginBottom: '4px', // Reduced margin to make room for error text
+    },
     textarea: {
       width: '100%',
       padding: '12px 14px',
@@ -238,6 +263,17 @@ export default function VocationalTraining() {
       marginBottom: '16px',
       boxSizing: 'border-box' as const,
     },
+    textareaError: {
+      borderColor: '#D32F2F',
+      marginBottom: '4px',
+    },
+    errorText: {
+      display: 'block',
+      color: '#D32F2F',
+      fontSize: '13px',
+      fontWeight: 500,
+      marginBottom: '16px',
+    },
     btnRed: {
       background: '#7B1E1E',
       color: '#fff',
@@ -247,6 +283,7 @@ export default function VocationalTraining() {
       fontSize: '15px',
       fontWeight: 600,
       cursor: 'pointer',
+      marginTop: '8px',
     },
     successBox: {
       background: '#e8f5e9',
@@ -277,11 +314,11 @@ export default function VocationalTraining() {
 
       <div style={s.imagePlaceholder}>
          <Image
-			src="/team-img.jpeg"
-			alt="team-img"
-            fill
-			className="object-cover"
-		  />
+          src="/tailor.jpg"
+          alt="tailor-img"
+          fill
+          className="object-cover"
+         />
       </div>
 
       <div style={{ marginBottom: '64px' }}>
@@ -371,22 +408,65 @@ export default function VocationalTraining() {
             </div>
 
             <label style={s.label}>Full name</label>
-            <input style={s.input} name="name" value={form.name} onChange={handleChange} placeholder="Your full name" />
+            <input 
+              style={{ ...s.input, ...(errors.name ? s.inputError : {}) }} 
+              name="name" 
+              value={form.name} 
+              onChange={handleChange} 
+              placeholder="Your full name" 
+            />
+            {errors.name && <span style={s.errorText}>{errors.name}</span>}
 
             <label style={s.label}>Email address</label>
-            <input style={s.input} name="email" type="email" value={form.email} onChange={handleChange} placeholder="your@email.com" />
+            <input 
+              style={{ ...s.input, ...(errors.email ? s.inputError : {}) }} 
+              name="email" 
+              type="email" 
+              value={form.email} 
+              onChange={handleChange} 
+              placeholder="your@email.com" 
+            />
+            {errors.email && <span style={s.errorText}>{errors.email}</span>}
 
             <label style={s.label}>Phone number</label>
-            <input style={s.input} name="phone" value={form.phone} onChange={handleChange} placeholder="+234..." />
+            <input 
+              style={{ ...s.input, ...(errors.phone ? s.inputError : {}) }} 
+              name="phone" 
+              value={form.phone} 
+              onChange={handleChange} 
+              placeholder="+234..." 
+            />
+            {errors.phone && <span style={s.errorText}>{errors.phone}</span>}
 
             <label style={s.label}>State / location in Nigeria</label>
-            <input style={s.input} name="location" value={form.location} onChange={handleChange} placeholder="e.g. Lagos, Abuja, Port Harcourt" />
+            <input 
+              style={{ ...s.input, ...(errors.location ? s.inputError : {}) }} 
+              name="location" 
+              value={form.location} 
+              onChange={handleChange} 
+              placeholder="e.g. Lagos, Abuja, Port Harcourt" 
+            />
+            {errors.location && <span style={s.errorText}>{errors.location}</span>}
 
             <label style={s.label}>Age</label>
-            <input style={s.input} name="age" value={form.age} onChange={handleChange} placeholder="Your age" />
+            <input 
+              style={{ ...s.input, ...(errors.age ? s.inputError : {}) }} 
+              name="age" 
+              value={form.age} 
+              onChange={handleChange} 
+              placeholder="Your age" 
+            />
+            {errors.age && <span style={s.errorText}>{errors.age}</span>}
 
             <label style={s.label}>Why do you want to join this programme?</label>
-            <textarea style={s.textarea} name="motivation" value={form.motivation} onChange={handleChange} placeholder="Tell us a little about yourself and why this matters to you" />
+            <textarea 
+              style={{ ...s.textarea, ...(errors.motivation ? s.textareaError : {}) }} 
+              name="motivation" 
+              value={form.motivation} 
+              onChange={handleChange} 
+              placeholder="Tell us a little about yourself and why this matters to you" 
+            />
+            {errors.motivation && <span style={s.errorText}>{errors.motivation}</span>}
 
             <button style={s.btnRed} onClick={handleSubmit} disabled={loading}>
               {loading ? 'Submitting...' : 'Register my interest'}
