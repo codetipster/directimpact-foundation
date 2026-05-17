@@ -10,13 +10,28 @@ export default function PartnershipPage() {
   const handleSubmit = async () => {
     setSending(true);
     try {
-      await fetch('https://formspree.io/f/xwvwjrzk', {
+      const response = await fetch('https://formspree.io/f/xwvwjrzk', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json' // <-- REQUIRED for Formspree AJAX submissions
+        },
         body: JSON.stringify(form),
       });
-      setSubmitted(true);
-    } catch {
+
+      if (response.ok) {
+        // Formspree accepted the submission successfully
+        setSubmitted(true);
+      } else {
+        // Formspree returned an error status code
+        const errorData = await response.json();
+        console.error("Formspree rejected submission:", errorData);
+        alert("Submission failed. Open your browser console to see why Formspree rejected it.");
+        setSending(false);
+      }
+    } catch (error) {
+      // Handles true network/server crashes
+      console.error("Network error occurred:", error);
       setSending(false);
     }
   };
