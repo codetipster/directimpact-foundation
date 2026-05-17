@@ -19,12 +19,12 @@ export default function VocationalTraining() {
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
-    if (!form.name.trim()) newErrors.name = "Full name is required.";
-    if (!form.email.trim()) newErrors.email = "Email address is required.";
-    if (!form.phone.trim()) newErrors.phone = "Phone number is required.";
-    if (!form.location.trim()) newErrors.location = "State / location is required.";
-    if (!form.age.trim()) newErrors.age = "Age is required.";
-    if (!form.motivation.trim()) newErrors.motivation = "Please tell us why you want to join this programme.";
+    if (!form.name.trim()) newErrors.name = "Full name is required";
+    if (!form.email.trim()) newErrors.email = "Email address is required";
+    if (!form.phone.trim()) newErrors.phone = "Phone number is required";
+    if (!form.location.trim()) newErrors.location = "State / location is required";
+    if (!form.age.trim()) newErrors.age = "Age is required";
+    if (!form.motivation.trim()) newErrors.motivation = "Motivation statement is required";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -35,14 +35,25 @@ export default function VocationalTraining() {
 
     setLoading(true);
     try {
-      await fetch('YOUR_FORMSPREE_ENDPOINT', {
+      const response = await fetch('https://formspree.io/f/mvzypywn', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
         body: JSON.stringify(form),
       });
-      setSubmitted(true);
-    } catch {
-      alert('Something went wrong. Please try again.');
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        const errorData = await response.json();
+        console.error("Formspree validation error:", errorData);
+        alert('Formspree rejected the application. Check your browser console for structural issues.');
+      }
+    } catch (error) {
+      console.error("Network connectivity crash:", error);
+      alert('Something went wrong. Please check your network connection and try again.');
     }
     setLoading(false);
   };
@@ -372,7 +383,6 @@ export default function VocationalTraining() {
           secure premises and equipment. Every contribution brings us closer to the day
           we open the doors to our first cohort.
         </p>
-        {/* Updated link with explicit anchor mapping */}
         <a href="/donate#choose-how-to-help" style={s.donateBtn}>Fund this programme</a>
       </div>
 
