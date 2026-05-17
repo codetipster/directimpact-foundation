@@ -8,29 +8,48 @@ export default function PartnershipPage() {
   const [sending, setSending] = useState(false);
 
   const handleSubmit = async () => {
+    // --- FRONTEND VALIDATION ---
+    if (!form.name.trim()) {
+      alert("Full name is required");
+      return;
+    }
+    if (!form.email.trim()) {
+      alert("Email address is required");
+      return;
+    }
+    if (!form.org.trim()) {
+      alert("Organisation is required");
+      return;
+    }
+    if (!form.type.trim()) {
+      alert("Type of partnership is required");
+      return;
+    }
+    if (!form.message.trim()) {
+      alert("Message is required");
+      return;
+    }
+
     setSending(true);
     try {
       const response = await fetch('https://formspree.io/f/xwvwjrzk', {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
-          'Accept': 'application/json' // <-- REQUIRED for Formspree AJAX submissions
+          'Accept': 'application/json'
         },
         body: JSON.stringify(form),
       });
 
       if (response.ok) {
-        // Formspree accepted the submission successfully
         setSubmitted(true);
       } else {
-        // Formspree returned an error status code
         const errorData = await response.json();
         console.error("Formspree rejected submission:", errorData);
         alert("Submission failed. Open your browser console to see why Formspree rejected it.");
         setSending(false);
       }
     } catch (error) {
-      // Handles true network/server crashes
       console.error("Network error occurred:", error);
       setSending(false);
     }
@@ -46,7 +65,6 @@ export default function PartnershipPage() {
     sectionTitle: { fontSize: '26px', fontWeight: 400, fontFamily: 'Georgia, serif', marginBottom: '12px', color: '#1a1a1a' },
     sectionSub: { fontSize: '16px', color: '#555', lineHeight: 1.7, marginBottom: '40px', maxWidth: '620px' },
     dipGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0', margin: '40px 0 56px' },
-    //dipCard: (i: number) => ({ background: ['#7B1E1E', '#9B2E2E', '#B84040', '#D05050'][i], color: '#fff', padding: '32px 24px', position: 'relative' }),
     dipNum: { fontSize: '40px', fontWeight: 700, opacity: 0.3, fontFamily: 'Georgia, serif', lineHeight: 1 },
     dipTitle: { fontSize: '16px', fontWeight: 600, margin: '8px 0 10px', lineHeight: 1.3 },
     dipDesc: { fontSize: '13px', opacity: 0.85, lineHeight: 1.6 },
@@ -55,8 +73,6 @@ export default function PartnershipPage() {
     statNum: { fontSize: '32px', fontWeight: 700, color: '#7B1E1E', fontFamily: 'Georgia, serif' },
     statLabel: { fontSize: '13px', color: '#666', marginTop: '4px', lineHeight: 1.4 },
     partnerGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px', margin: '32px 0 56px' },
-    //partnerCard: (color) => ({ background: '#fff', border: `2px solid ${color}`, borderRadius: '12px', padding: '28px 24px' }),
-    //partnerTag: (color) => ({ display: 'inline-block', background: color + '20', color: color, fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', padding: '4px 12px', borderRadius: '100px', marginBottom: '14px' }),
     partnerTitle: { fontSize: '17px', fontWeight: 600, marginBottom: '10px', color: '#1a1a1a' },
     partnerDesc: { fontSize: '14px', color: '#555', lineHeight: 1.65 },
     pullquote: { background: '#faf5f0', borderLeft: '4px solid #7B1E1E', borderRadius: '0 12px 12px 0', padding: '32px 40px', margin: '48px 0', fontFamily: 'Georgia, serif', fontSize: '20px', lineHeight: 1.65, color: '#2a2a2a', fontStyle: 'italic' },
@@ -71,7 +87,6 @@ export default function PartnershipPage() {
     btnRed: { background: '#7B1E1E', color: '#fff', border: 'none', padding: '16px 40px', borderRadius: '100px', fontSize: '15px', fontWeight: 600, cursor: 'pointer', marginTop: '16px' },
     successBox: { background: '#e8f5e9', borderRadius: '12px', padding: '32px', textAlign: 'center' },
   };
-
 
   const dip = [
     { num: '01', title: 'Crisis response', desc: 'Emergency relief. Food, water, and immediate support delivered directly.' },
@@ -144,8 +159,8 @@ export default function PartnershipPage() {
             </div>
           ))}
         </div>
-		
-		<p style={{ fontSize: '14px', color: '#888', fontStyle: 'italic', textAlign: 'center', marginTop: '-24px', marginBottom: '48px' }}>
+    
+        <p style={{ fontSize: '14px', color: '#888', fontStyle: 'italic', textAlign: 'center', marginTop: '-24px', marginBottom: '48px' }}>
           Every beneficiary journey is recorded internally. These four represent the stories we have chosen to share publicly in full.
         </p>
 
