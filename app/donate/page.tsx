@@ -46,6 +46,43 @@ export default function DonorLanding() {
       marginRight: 'auto',
       lineHeight: 1.75,
     },
+    trustStrip: {
+      background: '#FDF6F6',
+      borderBottom: '1px solid #E5E5E5',
+      padding: '20px 24px',
+    },
+    trustStripInner: {
+      maxWidth: '860px',
+      margin: '0 auto',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '32px',
+      flexWrap: 'wrap' as const,
+    },
+    trustLabel: {
+      fontSize: '14px',
+      fontWeight: 700,
+      color: '#7B1E1E',
+      margin: 0,
+    },
+    badgeGroup: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '24px',
+      flexWrap: 'wrap' as const,
+    },
+    trustBadgeItem: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '10px',
+      textDecoration: 'none',
+    },
+    trustBadgeText: {
+      fontSize: '14px',
+      fontWeight: 500,
+      color: '#333',
+    },
     inner: {
       maxWidth: '860px',
       margin: '0 auto',
@@ -165,23 +202,15 @@ export default function DonorLanding() {
       alignItems: 'center',
       justifyContent: 'center',
       gap: '8px',
-      background: '#B2BB1E', // Official GlobalGiving Lemon Green
+      background: '#B2BB1E',
       color: '#fff',
       fontWeight: 600,
       fontSize: '15px',
-      padding: '16px 40px', // Uniform padding padding to match your buttons
+      padding: '16px 40px',
       borderRadius: '100px',
       textDecoration: 'none',
       marginRight: '12px',
       marginBottom: '8px',
-    },
-    badgeContainer: {
-      marginTop: '40px',
-      textAlign: 'center' as const,
-      display: 'flex',
-      flexDirection: 'column' as const,
-      alignItems: 'center',
-      gap: '12px',
     },
     paymentSection: {
       background: '#f9f4f4',
@@ -227,6 +256,43 @@ export default function DonorLanding() {
           No overhead. No waste. Direct impact.
         </p>
       </section>
+
+      {/* Placement 1 - Homepage, below the hero section */}
+      <div style={s.trustStrip}>
+        <div style={s.trustStripInner}>
+          <p style={s.trustLabel}>Trusted and verified on:</p>
+          <div style={s.badgeGroup}>
+            <a 
+              href="https://www.globalgiving.org/dy/v2/pe/dashboard/overview.html?organization.id=105967" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              style={s.trustBadgeItem}
+            >
+              <img
+                src="/Globalgivingbadge.jpeg"
+                alt="GlobalGiving Vetted Organization 2026"
+                style={{ width: '28px', height: 'auto', display: 'block' }}
+              />
+              <span style={s.trustBadgeText}>GlobalGiving 2026</span>
+            </a>
+            <div style={{ width: '1px', height: '24px', background: '#E5E5E5' }} />
+            <a 
+              href="https://benevity.com" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              style={s.trustBadgeItem}
+            >
+              <img
+                src="https://images.benevity.com/web/assets/benevity-logo-icon.png"
+                alt="Listed on Benevity"
+                style={{ width: '24px', height: 'auto', display: 'block' }}
+                onError={(e) => { e.currentTarget.src = "/Globalgivingbadge.jpeg"; }}
+              />
+              <span style={s.trustBadgeText}>Listed on Benevity</span>
+            </a>
+          </div>
+        </div>
+      </div>
 
       <div style={s.inner}>
 
@@ -284,7 +350,7 @@ export default function DonorLanding() {
               <div style={s.featuredBadge}>Most impactful</div>
               <div style={s.donationAmount}>$200</div>
               <div style={s.donationLabel}>
-                Full Dignity to Independence journey. Emergency relief through to sustainable livelihood.
+                Full Dignity to Independence journey. Emergency relief package through to sustainable livelihood.
               </div>
             </div>
             <div style={s.donationCard}>
@@ -295,13 +361,12 @@ export default function DonorLanding() {
             </div>
           </div>
 
-          {/* Updated Buttons Selection Block */}
-          <div style={{ textAlign: 'center', margin: '32px 0' }}>
+          {/* Buttons Selection Block */}
+          <div style={{ textAlign: 'center', margin: '32px 0 16px' }}>
             <a href="https://buy.stripe.com/4gMaEXeHH5Hi6yDgfQ3cc00" target="_blank" rel="noopener noreferrer" style={s.btnRed}>
               Donate by card
             </a>
             
-            {/* GlobalGiving Button with updated lemon green color */}
             <a href="https://www.globalgiving.org/donate/105967/direct-impact-empowerment-foundation/" target="_blank" rel="noopener noreferrer" style={s.btnOrange}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"></path>
@@ -310,6 +375,93 @@ export default function DonorLanding() {
             </a>
 
             <a href="/bank-details" style={s.btnOutline}>Donate by bank transfer</a>
+          </div>
+
+          {/* Placement 2 - Donate page, below the donate buttons (Moved Lower Component Up) */}
+          <div style={{
+            borderTop: '1px solid #e5e5e5',
+            paddingTop: '1.5rem',
+            marginTop: '1.5rem',
+            marginBottom: '2rem'
+          }}>
+            <p style={{
+              fontSize: '12px',
+              color: '#888',
+              textAlign: 'center',
+              margin: '0 0 12px',
+            }}>
+              Verified and trusted on
+            </p>
+
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '1rem',
+              flexWrap: 'wrap' as const,
+              marginBottom: '1rem',
+            }}>
+              <a
+                href="https://www.globalgiving.org/dy/v2/pe/dashboard/overview.html?organization.id=105967"
+                target="_blank"
+                rel="noopener noreferrer"                                                                                                                                                         
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  background: '#f5f5f5',
+                  padding: '8px 14px',
+                  borderRadius: '8px',
+                  textDecoration: 'none',
+                }}
+              >
+                <img
+                  src="/Globalgivingbadge.jpeg"
+                  alt="GlobalGiving Vetted Organization 2026"
+                  style={{ width: '36px', height: 'auto' }}
+                />
+                <span style={{ fontSize: '12px', fontWeight: 500, color: '#333' }}>
+                  GlobalGiving 2026
+                </span>
+              </a>
+
+              <a
+                href="https://benevity.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  background: '#f5f5f5',
+                  padding: '8px 14px',
+                  borderRadius: '8px',
+                  textDecoration: 'none',
+                }}
+              >
+                <img
+                  src="https://images.benevity.com/web/assets/benevity-logo-icon.png"
+                  alt="Listed on Benevity"
+                  style={{ width: '28px', height: 'auto' }}
+                  onError={(e) => { e.currentTarget.src = "/Globalgivingbadge.jpeg"; }}
+                />
+                <span style={{ fontSize: '12px', fontWeight: 500, color: '#333' }}>
+                  Listed on Benevity
+                </span>
+              </a>
+            </div>
+
+            <p style={{
+              fontSize: '11px',
+              color: '#888',
+              textAlign: 'center',
+              margin: 0,
+              lineHeight: 1.6,
+            }}>
+              Does your employer offer donation matching? Search{' '}
+              <strong>Direct Impact Empowerment Foundation</strong>{' '}
+              on your company&apos;s Benevity portal.
+            </p>
           </div>
         </section>
 
@@ -325,27 +477,6 @@ export default function DonorLanding() {
           </p>
           <a href="/bank-details" style={s.btnRed}>View bank details</a>
         </section>
-
-        {/* Badge Section Integration */}
-        <div style={s.badgeContainer}>
-          <a 
-            href="https://www.globalgiving.org/donate/105967/direct-impact-empowerment-foundation/"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ display: 'inline-block' }}
-          >
-            <img
-              src="/Globalgivingbadge.jpeg"
-              alt="GlobalGiving Vetted Organization 2026"
-              style={{ width: '70px', height: 'auto', display: 'block' }}
-              onError={(e) => { e.currentTarget.style.display = 'none'; console.error("Badge image not found"); }}
-            />
-          </a>
-          <p style={{ fontSize: '13px', color: '#666', margin: 0, lineHeight: '1.5' }}>
-            DIEF is a GlobalGiving Vetted Organization 2026.<br/>
-            Your donation is secure and independently verified.
-          </p>
-        </div>
 
       </div>
 
