@@ -135,28 +135,49 @@ export default function DonorLanding() {
       lineHeight: 1.6,
     },
     btnRed: {
-      display: 'inline-block',
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '8px',
       background: '#7B1E1E',
       color: '#fff',
       fontWeight: 600,
       fontSize: '15px',
-      padding: '16px 40px',
+      padding: '16px 32px',
       borderRadius: '100px',
       textDecoration: 'none',
       marginRight: '12px',
-      marginBottom: '8px',
+      marginBottom: '12px',
+    },
+    btnOrange: {
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '8px',
+      background: '#F26522',
+      color: '#fff',
+      fontWeight: 600,
+      fontSize: '15px',
+      padding: '16px 32px',
+      borderRadius: '100px',
+      textDecoration: 'none',
+      marginRight: '12px',
+      marginBottom: '12px',
     },
     btnOutline: {
-      display: 'inline-block',
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '8px',
       background: 'transparent',
       color: '#7B1E1E',
       fontWeight: 600,
       fontSize: '15px',
-      padding: '16px 40px',
+      padding: '16px 32px',
       borderRadius: '100px',
       textDecoration: 'none',
       border: '2px solid #7B1E1E',
-      marginBottom: '8px',
+      marginBottom: '12px',
     },
     paymentSection: {
       background: '#f9f4f4',
@@ -187,6 +208,16 @@ export default function DonorLanding() {
       maxWidth: '600px',
       margin: '0 auto',
       lineHeight: 1.7,
+    },
+    badgeContainer: {
+      borderTop: '1px solid #e5e5e5',
+      paddingTop: '1.5rem',
+      marginTop: '1.5rem',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '14px',
+      justifyContent: 'center',
+      flexWrap: 'wrap' as const,
     },
   };
 
@@ -271,14 +302,37 @@ export default function DonorLanding() {
           </div>
 
           <div style={{ textAlign: 'center', margin: '32px 0' }}>
-            <a href="https://buy.stripe.com/4gMaEXeHH5Hi6yDgfQ3cc00" target="_blank" rel="noopener noreferrer" style={s.btnRed}>Donate by card</a>
-            <a href="/bank-details" style={s.btnOutline}>Donate by bank transfer</a>
+            {/* Donate By Card Button with ATM Card SVG Icon */}
+            <a href="https://buy.stripe.com/4gMaEXeHH5Hi6yDgfQ3cc00" target="_blank" rel="noopener noreferrer" style={s.btnRed}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                <line x1="1" y1="10" x2="23" y2="10"></line>
+              </svg>
+              Donate by card
+            </a>
+
+            {/* GlobalGiving Gateway Button */}
+            <a href="https://www.globalgiving.org/donate/105967/direct-impact-empowerment-foundation/" target="_blank" rel="noopener noreferrer" style={s.btnOrange}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"></path>
+              </svg>
+              Donate via GlobalGiving
+            </a>
+
+            {/* Donate By Bank Transfer with Home/Bank SVG Icon */}
+            <a href="/bank-details" style={s.btnOutline}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+              Donate by bank transfer
+            </a>
           </div>
         </section>
 
         <div style={s.divider} />
 
-        {/* Bank transfer */}
+        {/* Bank transfer section */}
         <section style={s.paymentSection}>
           <h3 style={s.paymentTitle}>Prefer to donate by bank transfer?</h3>
           <p style={s.paymentP}>
@@ -286,7 +340,33 @@ export default function DonorLanding() {
             directly by bank transfer, our full account details are on our bank details page.
             We accept donations in NGN, CHF, and USD.
           </p>
-          <a href="/bank-details" style={s.btnRed}>View bank details</a>
+          <a href="/bank-details" style={s.btnRed}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '6px', verticalAlign: 'middle' }}>
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            View bank details
+          </a>
+
+          {/* Transformed GlobalGiving Vetted Badge Segment */}
+          <div style={s.badgeContainer}>
+            <a 
+              href="https://www.globalgiving.org/donate/105967/direct-impact-empowerment-foundation/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: 'inline-block' }}
+            >
+              <img
+                src="/images/globalgiving-vetted-2026.png"
+                alt="GlobalGiving Vetted Organization 2026"
+                style={{ width: '70px', height: 'auto', display: 'block' }}
+              />
+            </a>
+            <p style={{ fontSize: '13px', color: '#666', margin: 0, lineHeight: '1.5' }}>
+              DIEF is a GlobalGiving Vetted Organization 2026.<br/>
+              Your donation is secure and independently verified.
+            </p>
+          </div>
         </section>
 
       </div>
