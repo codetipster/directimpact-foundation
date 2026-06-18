@@ -70,9 +70,30 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Navigation */}
+          {/* Verification and Partnership Branding */}
           <div className="md:col-span-4 lg:col-span-3">
-            
+            <h3 className="font-bold text-lg mb-4 text-[#59B7E7]">Partner Organization</h3>
+            <a 
+              href="https://www.globalgiving.org/dy/v2/pe/dashboard/overview.html?organization.id=105967"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex flex-col items-start gap-3 p-4 rounded-xl bg-white border border-[#59B7E7]/20 shadow-sm transition-all duration-300 hover:shadow-md hover:border-[#59B7E7]/40 group"
+            >
+              <div className="relative overflow-hidden rounded-lg transition-transform duration-300 group-hover:scale-105">
+                <Image 
+                  src="/Globalgivingbadge.jpeg" 
+                  alt="GlobalGiving Partner Organization" 
+                  width={140} 
+                  height={140} 
+                  className="h-auto object-contain"
+                  priority
+                />
+              </div>
+              <div>
+                <span className="block text-xs uppercase font-bold tracking-wider text-gray-400 mb-0.5">Verified Partner</span>
+                <span className="text-sm font-bold text-gray-800 group-hover:text-[#59B7E7] transition-colors">GlobalGiving 2026</span>
+              </div>
+            </a>
           </div>
 
           {/* Contact Information */}
@@ -82,7 +103,7 @@ export function Footer() {
               <div className="flex items-start gap-3 group">
                 <div
                   className="w-10 h-10 rounded-full bg-[#59B7E7]/10 flex items-center justify-center 
-                  group-hover:bg-[#59B7E7] transition-colors"
+                    group-hover:bg-[#59B7E7] transition-colors"
                 >
                   <Mail className="w-5 h-5 text-[#59B7E7] group-hover:text-white transition-colors" />
                 </div>
@@ -108,7 +129,7 @@ export function Footer() {
               <div className="flex items-start gap-3 group">
                 <div
                   className="w-10 h-10 rounded-full bg-[#59B7E7]/10 flex items-center justify-center 
-                  group-hover:bg-[#59B7E7] transition-colors"
+                    group-hover:bg-[#59B7E7] transition-colors"
                 >
                   <Phone className="w-5 h-5 text-[#59B7E7] group-hover:text-white transition-colors" />
                 </div>
@@ -123,7 +144,7 @@ export function Footer() {
               <div className="flex items-start gap-3 group">
                 <div
                   className="w-10 h-10 rounded-full bg-[#59B7E7]/10 flex items-center justify-center 
-                  group-hover:bg-[#59B7E7] transition-colors"
+                    group-hover:bg-[#59B7E7] transition-colors"
                 >
                   <MapPin className="w-5 h-5 text-[#59B7E7] group-hover:text-white transition-colors" />
                 </div>
@@ -142,14 +163,13 @@ export function Footer() {
         {/* Copyright */}
         <div className="mt-12 pt-8 border-t border-[#59B7E7]/20">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-gray-600">
-            Copyright © {new Date().getFullYear()} Direct Impact Empowerment Foundation | All Rights Reserved
-            <br />
-            <span className="text-sm mt-1 inline-block text-[#59B7E7]">
-              Direct Impact Empowerment is a registered charity in Switzerland [CHE-415.427.651] and in Nigeria
-              [CAC/IT/7420254]
-            </span>
-          </p>
+            <p className="text-gray-600">
+              Copyright © {new Date().getFullYear()} Direct Impact Empowerment Foundation | All Rights Reserved
+              <br />
+              <span className="text-sm mt-1 inline-block text-[#59B7E7]">
+                Direct Impact Empowerment is a registered charity in Switzerland [CHE-415.427.651] and in Nigeria [CAC/IT/7420254]
+              </span>
+            </p>
             <div className="flex gap-4">
               <Link href="/privacy" className="text-gray-600 hover:text-[#B5D858] transition-colors">
                 Privacy Policy
@@ -164,4 +184,3 @@ export function Footer() {
     </footer>
   )
 }
-

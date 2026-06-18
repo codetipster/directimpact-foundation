@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 export default function HomePageAndAbout() {
   const s: Record<string, React.CSSProperties> = {
@@ -134,7 +135,7 @@ export default function HomePageAndAbout() {
     },
     statsSection: {
       background: '#7B1E1E',
-      padding: '56px 24px',
+      padding: '56px 24px 48px 24px',
     },
     statsInner: {
       maxWidth: '880px',
@@ -155,6 +156,52 @@ export default function HomePageAndAbout() {
       fontSize: '14px',
       color: 'rgba(255,255,255,0.75)',
       lineHeight: 1.5,
+    },
+    badgesBar: {
+      backgroundColor: '#F5F0EA',
+      padding: '1.2rem 24px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '2rem',
+      flexWrap: 'wrap' as const,
+      borderTop: '2px solid #e8ddd4',
+      borderBottom: '1px solid #e8ddd4',
+    },
+    badgesTextRed: {
+      fontSize: '14px',
+      color: '#7B1E1E',
+      fontWeight: 600,
+      margin: 0,
+      lineHeight: 1.4,
+    },
+    badgeLink: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '10px',
+      textDecoration: 'none',
+    },
+    badgeTitle: {
+      fontSize: '13px',
+      fontWeight: 600,
+      color: '#3a3a2a',
+      margin: 0,
+    },
+    badgeSubtitle: {
+      fontSize: '11px',
+      color: '#777',
+      margin: 0,
+    },
+    badgeDivider: {
+      width: '1px',
+      height: '32px',
+      background: '#dcd3ca',
+    },
+    badgeFootnote: {
+      fontSize: '12px',
+      color: '#8a8279',
+      margin: 0,
+      fontWeight: 500,
     },
     storySection: {
       padding: '72px 24px',
@@ -369,6 +416,7 @@ export default function HomePageAndAbout() {
         </div>
       </section>
 
+      {/* Stats Counter Section */}
       <section style={s.statsSection}>
         <div style={s.statsInner}>
           {stats.map((stat) => (
@@ -379,6 +427,59 @@ export default function HomePageAndAbout() {
           ))}
         </div>
       </section>
+
+      {/* Trust & Verification Badges Section (Matches samplehomepage.jpeg Layout) */}
+      <div style={s.badgesBar}>
+        <p style={s.badgesTextRed}>
+          Trusted and verified<br />on:
+        </p>
+
+        <a
+          href="https://www.globalgiving.org/donate/105967/direct-impact-empowerment-foundation/"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={s.badgeLink}
+        >
+          <Image
+            src="Globalgivingbadge.jpeg"
+            alt="GlobalGiving Vetted Organization 2026"
+            width={40}
+            height={40}
+            style={{ width: '40px', height: 'auto', objectContain: 'contain' }}
+          />
+          <div>
+            <p style={s.badgeTitle}>GlobalGiving 2026</p>
+            <p style={s.badgeSubtitle}>Vetted organization</p>
+          </div>
+        </a>
+
+        <div style={s.badgeDivider} />
+
+        <a
+          href="https://benevity.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={s.badgeLink}
+        >
+          <Image
+            src="benevity-logo.png"
+            alt="Listed on Benevity"
+            width={40}
+            height={40}
+            style={{ width: '40px', height: 'auto', objectContain: 'contain' }}
+          />
+          <div>
+            <p style={{ ...s.badgeTitle, color: '#1a6e3c' }}>Listed on Benevity</p>
+            <p style={s.badgeSubtitle}>Corporate giving portal</p>
+          </div>
+        </a>
+
+        <div style={s.badgeDivider} />
+
+        <p style={s.badgeFootnote}>
+          Registered in Nigeria and Switzerland
+        </p>
+      </div>
 
       <section style={s.storySection}>
         <div style={s.storyInner}>
