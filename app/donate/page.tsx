@@ -440,7 +440,7 @@ export default function DonorLanding() {
                 }}
               >
                 <img
-                  src="https://images.benevity.com/web/assets/benevity-logo-icon.png"
+                  src="benevity-logo.png"
                   alt="Listed on Benevity"
                   style={{ width: '28px', height: 'auto' }}
                   onError={(e) => { e.currentTarget.src = "/Globalgivingbadge.jpeg"; }}
