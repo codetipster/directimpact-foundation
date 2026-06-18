@@ -428,7 +428,7 @@ export default function HomePageAndAbout() {
         </div>
       </section>
 
-      {/* Trust & Verification Badges Section (Matches samplehomepage.jpeg Layout) */}
+      {/* Trust & Verification Badges Section */}
       <div style={s.badgesBar}>
         <p style={s.badgesTextRed}>
           Trusted and verified<br />on:
@@ -441,11 +441,11 @@ export default function HomePageAndAbout() {
           style={s.badgeLink}
         >
           <Image
-            src="Globalgivingbadge.jpeg"
+            src="/images/globalgiving-vetted-2026.png"
             alt="GlobalGiving Vetted Organization 2026"
             width={40}
             height={40}
-            style={{ width: '40px', height: 'auto', objectContain: 'contain' }}
+            style={{ width: '40px', height: 'auto', objectFit: 'contain' }}
           />
           <div>
             <p style={s.badgeTitle}>GlobalGiving 2026</p>
@@ -462,11 +462,11 @@ export default function HomePageAndAbout() {
           style={s.badgeLink}
         >
           <Image
-            src="benevity-logo.png"
+            src="/images/benevity-logo.png"
             alt="Listed on Benevity"
             width={40}
             height={40}
-            style={{ width: '40px', height: 'auto', objectContain: 'contain' }}
+            style={{ width: '40px', height: 'auto', objectFit: 'contain' }}
           />
           <div>
             <p style={{ ...s.badgeTitle, color: '#1a6e3c' }}>Listed on Benevity</p>
