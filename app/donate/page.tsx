@@ -174,7 +174,10 @@ export default function DonorLanding() {
       lineHeight: 1.6,
     },
     btnRed: {
-      display: 'inline-block',
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '8px',
       background: '#7B1E1E',
       color: '#fff',
       fontWeight: 600,
@@ -186,7 +189,10 @@ export default function DonorLanding() {
       marginBottom: '8px',
     },
     btnOutline: {
-      display: 'inline-block',
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '8px',
       background: 'transparent',
       color: '#7B1E1E',
       fontWeight: 600,
@@ -364,7 +370,7 @@ export default function DonorLanding() {
           {/* Buttons Selection Block */}
           <div style={{ textAlign: 'center', margin: '32px 0 16px' }}>
             <a href="https://buy.stripe.com/4gMaEXeHH5Hi6yDgfQ3cc00" target="_blank" rel="noopener noreferrer" style={s.btnRed}>
-              Donate by card
+              <span>💳</span> Donate by card
             </a>
             
             <a href="https://www.globalgiving.org/donate/105967/direct-impact-empowerment-foundation/" target="_blank" rel="noopener noreferrer" style={s.btnOrange}>
@@ -374,10 +380,12 @@ export default function DonorLanding() {
               Donate via GlobalGiving
             </a>
 
-            <a href="/bank-details" style={s.btnOutline}>Donate by bank transfer</a>
+            <a href="/bank-details" style={s.btnOutline}>
+              <span>🏡</span> Donate by bank transfer
+            </a>
           </div>
 
-          {/* Placement 2 - Donate page, below the donate buttons (Moved Lower Component Up) */}
+          {/* Placement 2 - Donate page, below the donate buttons */}
           <div style={{
             borderTop: '1px solid #e5e5e5',
             paddingTop: '1.5rem',
@@ -399,7 +407,7 @@ export default function DonorLanding() {
               justifyContent: 'center',
               gap: '1rem',
               flexWrap: 'wrap' as const,
-              marginBottom: '1rem',
+              marginBottom: '1.5rem',
             }}>
               <a
                 href="https://www.globalgiving.org/dy/v2/pe/dashboard/overview.html?organization.id=105967"
@@ -451,15 +459,22 @@ export default function DonorLanding() {
               </a>
             </div>
 
+            {/* Redesigned Corporate Matching Callout Text */}
             <p style={{
-              fontSize: '11px',
-              color: '#888',
+              fontSize: '13px',
+              color: '#111',
+              fontWeight: 600,
               textAlign: 'center',
-              margin: 0,
+              margin: '0 auto',
+              maxWidth: '650px',
               lineHeight: 1.6,
+              background: '#fdf6f6',
+              padding: '12px 20px',
+              borderRadius: '8px',
+              border: '1px dashed #7B1E1E'
             }}>
               Does your employer offer donation matching? Search{' '}
-              <strong>Direct Impact Empowerment Foundation</strong>{' '}
+              <strong style={{ color: '#7B1E1E', fontWeight: 700 }}>Direct Impact Empowerment Foundation</strong>{' '}
               on your company&apos;s Benevity portal.
             </p>
           </div>
@@ -475,7 +490,7 @@ export default function DonorLanding() {
             directly by bank transfer, our full account details are on our bank details page.
             We accept donations in NGN, CHF, and USD.
           </p>
-          <a href="/bank-details" style={s.btnRed}>View bank details</a>
+          <a href="/bank-details" style={s.btnRed}><span>🏡</span> View bank details</a>
         </section>
 
       </div>
