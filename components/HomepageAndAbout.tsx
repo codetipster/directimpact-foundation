@@ -441,7 +441,7 @@ export default function HomePageAndAbout() {
           style={s.badgeLink}
         >
           <Image
-            src="/images/globalgiving-vetted-2026.png"
+            src="/Globalgivingbadge.jpeg"
             alt="GlobalGiving Vetted Organization 2026"
             width={40}
             height={40}
@@ -462,7 +462,7 @@ export default function HomePageAndAbout() {
           style={s.badgeLink}
         >
           <Image
-            src="/images/benevity-logo.png"
+            src="/benevity-logo.png"
             alt="Listed on Benevity"
             width={40}
             height={40}
