@@ -283,7 +283,7 @@ export default function DonorLanding() {
               style={s.trustBadgeItem}
             >
               <img
-                src="https://images.benevity.com/web/assets/benevity-logo-icon.png"
+                src="benevity-logo.png"
                 alt="Listed on Benevity"
                 style={{ width: '24px', height: 'auto', display: 'block' }}
                 onError={(e) => { e.currentTarget.src = "/Globalgivingbadge.jpeg"; }}
