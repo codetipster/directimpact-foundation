@@ -72,28 +72,51 @@ export function Footer() {
 
           {/* Verification and Partnership Branding */}
           <div className="md:col-span-4 lg:col-span-3">
-            <h3 className="font-bold text-lg mb-4 text-[#59B7E7]">Partner Organization</h3>
-            <a 
-              href="https://www.globalgiving.org/dy/v2/pe/dashboard/overview.html?organization.id=105967"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex flex-col items-start gap-3 p-4 rounded-xl bg-white border border-[#59B7E7]/20 shadow-sm transition-all duration-300 hover:shadow-md hover:border-[#59B7E7]/40 group"
-            >
-              <div className="relative overflow-hidden rounded-lg transition-transform duration-300 group-hover:scale-105">
-                <Image 
-                  src="/Globalgivingbadge.jpeg" 
-                  alt="GlobalGiving Partner Organization" 
-                  width={140} 
-                  height={140} 
-                  className="h-auto object-contain"
-                  priority
-                />
+            <h3 className="font-bold text-lg mb-4 text-[#59B7E7]">Partner Organizations</h3>
+            <div className="flex flex-col gap-4">
+              {/* GlobalGiving Badge */}
+              <a 
+                href="https://www.globalgiving.org/dy/v2/pe/dashboard/overview.html?organization.id=105967"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex flex-col items-start gap-3 p-4 rounded-xl bg-white border border-[#59B7E7]/20 shadow-sm transition-all duration-300 hover:shadow-md hover:border-[#59B7E7]/40 group"
+              >
+                <div className="relative overflow-hidden rounded-lg transition-transform duration-300 group-hover:scale-105">
+                  <Image 
+                    src="/Globalgivingbadge.jpeg" 
+                    alt="GlobalGiving Partner Organization" 
+                    width={140} 
+                    height={140} 
+                    className="h-auto object-contain"
+                    priority
+                  />
+                </div>
+                <div>
+                  <span className="block text-xs uppercase font-bold tracking-wider text-gray-400 mb-0.5">Verified Partner</span>
+                  <span className="text-sm font-bold text-gray-800 group-hover:text-[#59B7E7] transition-colors">GlobalGiving 2026</span>
+                </div>
+              </a>
+
+              {/* Effective Org Badge */}
+              <div 
+                className="inline-flex flex-col items-start gap-3 p-4 rounded-xl bg-white border border-[#59B7E7]/20 shadow-sm transition-all duration-300 hover:shadow-md hover:border-[#59B7E7]/40 group"
+              >
+                <div className="relative overflow-hidden rounded-lg transition-transform duration-300 group-hover:scale-105">
+                  <Image 
+                    src="/effective_org.png" 
+                    alt="Effective Organization Badge" 
+                    width={140} 
+                    height={140} 
+                    className="h-auto object-contain"
+                    priority
+                  />
+                </div>
+                <div>
+                  <span className="block text-xs uppercase font-bold tracking-wider text-gray-400 mb-0.5">Recognized</span>
+                  <span className="text-sm font-bold text-gray-800 group-hover:text-[#59B7E7] transition-colors">Effective Organization</span>
+                </div>
               </div>
-              <div>
-                <span className="block text-xs uppercase font-bold tracking-wider text-gray-400 mb-0.5">Verified Partner</span>
-                <span className="text-sm font-bold text-gray-800 group-hover:text-[#59B7E7] transition-colors">GlobalGiving 2026</span>
-              </div>
-            </a>
+            </div>
           </div>
 
           {/* Contact Information */}
