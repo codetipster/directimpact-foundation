@@ -1,7 +1,7 @@
-import Link from "next/link"
-import Image from "next/image"
-import { Facebook, Phone, Mail, MapPin, Youtube } from "lucide-react"
-import { FaTiktok, FaWhatsapp } from "react-icons/fa"
+import Image from "next/image";
+import Link from "next/link";
+import { Facebook, Youtube, Mail, Phone, MapPin } from "lucide-react";
+import { FaTiktok, FaWhatsapp } from "react-icons/fa";
 
 /* const navigationLinks = [
   { label: "Home", href: "/" },
@@ -46,7 +46,7 @@ export function Footer() {
         {/* UPPER SECTION: Partner Organisations & Badges */}
         <div className="mb-6">
           <div className="text-center mb-4">
-            <h3 className="font-bold text-xl text-[#59B7E7]">Partner Organisations</h3>
+            <h3 className="font-bold text-xl text-[#59B7E7]">Partner Organisation</h3>
             <p className="text-gray-500 text-sm mt-1">Recognised and verified by global platforms</p>
           </div>
           
@@ -200,8 +200,7 @@ export function Footer() {
                 <div className="pt-0.5">
                   <p className="font-semibold text-sm text-gray-800 mb-0.5">Address</p>
                   <p className="text-gray-600 text-sm">
-                    21 Bale Street, Apata <br />
-                    Ibadan, Nigeria
+                    21 Bale Street, Apata <br /> Ibadan, Nigeria
                   </p>
                 </div>
               </div>
