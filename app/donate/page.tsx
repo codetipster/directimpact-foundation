@@ -424,7 +424,7 @@ export default function DonorLanding() {
                 }}
               >
                 <img
-                  src="/Globalgivingbadge.jpeg"
+                  src="/vetted.jpeg"
                   alt="GlobalGiving Vetted Organization 2026"
                   style={{ width: '36px', height: 'auto' }}
                 />

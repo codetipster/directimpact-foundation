@@ -47,7 +47,6 @@ export function Footer() {
         <div className="mb-6">
           <div className="text-center mb-4">
             <h3 className="font-bold text-xl text-[#59B7E7]">Partner Organisation</h3>
-            <p className="text-gray-500 text-sm mt-1">Recognised and verified by global platforms</p>
           </div>
           
           <div className="flex flex-wrap justify-center items-stretch gap-4">
@@ -60,7 +59,7 @@ export function Footer() {
             >
               <div className="relative overflow-hidden rounded-lg transition-transform duration-300 group-hover:scale-105">
                 <Image 
-                  src="/Globalgivingbadge.jpeg" 
+                  src="/vetted.jpeg" 
                   alt="GlobalGiving Partner Organisation" 
                   width={80} 
                   height={80} 
@@ -80,7 +79,7 @@ export function Footer() {
             >
               <div className="relative overflow-hidden rounded-lg transition-transform duration-300 group-hover:scale-105">
                 <Image 
-                  src="/effective_org.png" 
+                  src="/effective.jpeg" 
                   alt="Effective Organisation Badge" 
                   width={80} 
                   height={80} 
@@ -100,7 +99,7 @@ export function Footer() {
             >
               <div className="relative overflow-hidden rounded-lg transition-transform duration-300 group-hover:scale-105">
                 <Image 
-                  src="/top_rank_badge.png" 
+                  src="/top-rank.jpeg" 
                   alt="Top Ranked Organisation Badge" 
                   width={80} 
                   height={80} 
