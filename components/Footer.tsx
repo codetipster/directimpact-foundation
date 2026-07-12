@@ -67,10 +67,6 @@ export function Footer() {
                   priority
                 />
               </div>
-              <div className="mt-auto leading-tight">
-                <span className="block text-[10px] uppercase font-bold tracking-wider text-gray-400 mb-0.5">Verified Partner</span>
-                <span className="text-xs font-bold text-gray-800 group-hover:text-[#59B7E7] transition-colors">GlobalGiving 2026</span>
-              </div>
             </a>
 
             {/* Effective Org Badge */}
@@ -87,10 +83,7 @@ export function Footer() {
                   priority
                 />
               </div>
-              <div className="mt-auto leading-tight">
-                <span className="block text-[10px] uppercase font-bold tracking-wider text-gray-400 mb-0.5">Recognised</span>
-                <span className="text-xs font-bold text-gray-800 group-hover:text-[#59B7E7] transition-colors">Effective Organisation</span>
-              </div>
+              
             </div>
 
             {/* Top Rank Badge */}
@@ -107,10 +100,7 @@ export function Footer() {
                   priority
                 />
               </div>
-              <div className="mt-auto leading-tight">
-                <span className="block text-[10px] uppercase font-bold tracking-wider text-gray-400 mb-0.5">Top Ranked</span>
-                <span className="text-xs font-bold text-gray-800 group-hover:text-[#59B7E7] transition-colors">Organisation</span>
-              </div>
+            
             </div>
           </div>
         </div>
