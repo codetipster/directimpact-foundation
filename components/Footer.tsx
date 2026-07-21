@@ -3,14 +3,6 @@ import Link from "next/link";
 import { Facebook, Youtube, Mail, Phone, MapPin } from "lucide-react";
 import { FaTiktok, FaWhatsapp } from "react-icons/fa";
 
-/* const navigationLinks = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Donate", href: "/donate" },
-  //{ label: 'Insights', href: '/insights' },
-  { label: "Contact", href: "/contact" },
-] */
-
 const socialLinks = [
   {
     icon: Facebook,
@@ -36,72 +28,95 @@ const socialLinks = [
     label: "YouTube",
     color: "#FF0000", // YouTube red
   },
-]
+];
 
 export function Footer() {
   return (
     <footer className="bg-gradient-to-b from-[#59B7E7]/10 to-white border-t">
-      <div className="container mx-auto px-4 py-6">
+      <div className="container mx-auto px-4 py-8">
         
         {/* UPPER SECTION: Partner Organisations & Badges */}
-        <div className="mb-6">
-          <div className="text-center mb-4">
-            <h3 className="font-bold text-xl text-[#59B7E7]">Partner Organisation</h3>
+        <div className="mb-8">
+          <div className="text-center mb-6">
+            <h3 className="font-bold text-xl text-[#59B7E7]">Partner Organisation & Accreditations</h3>
           </div>
           
-          <div className="flex flex-wrap justify-center items-stretch gap-4">
-            {/* GlobalGiving Badge */}
+          {/* Larger Badges Row */}
+          <div className="flex flex-wrap justify-center items-stretch gap-6 mb-6">
+            {/* GlobalGiving Vetted Badge */}
             <a 
               href="https://www.globalgiving.org/dy/v2/pe/dashboard/overview.html?organization.id=105967"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col items-center text-center gap-2 p-3 rounded-xl bg-white border border-[#59B7E7]/20 shadow-sm transition-all duration-300 hover:shadow-md hover:border-[#59B7E7]/40 group w-36"
+              className="flex flex-col items-center text-center gap-3 p-4 rounded-xl bg-white border border-[#59B7E7]/20 shadow-sm transition-all duration-300 hover:shadow-md hover:border-[#59B7E7]/40 group w-44 md:w-48"
             >
               <div className="relative overflow-hidden rounded-lg transition-transform duration-300 group-hover:scale-105">
                 <Image 
                   src="/vetted.jpeg" 
-                  alt="GlobalGiving Partner Organisation" 
-                  width={80} 
-                  height={80} 
-                  className="h-auto object-contain"
+                  alt="GlobalGiving Vetted Organisation" 
+                  width={120} 
+                  height={120} 
+                  className="h-auto w-28 md:w-32 object-contain"
                   priority
                 />
               </div>
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#1a3a5c]">Vetted</span>
             </a>
 
             {/* Effective Org Badge */}
-            <div 
-              className="flex flex-col items-center text-center gap-2 p-3 rounded-xl bg-white border border-[#59B7E7]/20 shadow-sm transition-all duration-300 hover:shadow-md hover:border-[#59B7E7]/40 group w-36"
+            <a 
+              href="https://www.globalgiving.org/dy/v2/pe/dashboard/overview.html?organization.id=105967"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center text-center gap-3 p-4 rounded-xl bg-white border border-[#59B7E7]/20 shadow-sm transition-all duration-300 hover:shadow-md hover:border-[#59B7E7]/40 group w-44 md:w-48"
             >
               <div className="relative overflow-hidden rounded-lg transition-transform duration-300 group-hover:scale-105">
                 <Image 
                   src="/effective.jpeg" 
                   alt="Effective Organisation Badge" 
-                  width={80} 
-                  height={80} 
-                  className="h-auto object-contain"
+                  width={120} 
+                  height={120} 
+                  className="h-auto w-28 md:w-32 object-contain"
                   priority
                 />
               </div>
-              
-            </div>
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#1a3a5c]">Effective</span>
+            </a>
 
             {/* Top Rank Badge */}
-            <div 
-              className="flex flex-col items-center text-center gap-2 p-3 rounded-xl bg-white border border-[#59B7E7]/20 shadow-sm transition-all duration-300 hover:shadow-md hover:border-[#59B7E7]/40 group w-36"
+            <a 
+              href="https://www.globalgiving.org/dy/v2/pe/dashboard/overview.html?organization.id=105967"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center text-center gap-3 p-4 rounded-xl bg-white border border-[#59B7E7]/20 shadow-sm transition-all duration-300 hover:shadow-md hover:border-[#59B7E7]/40 group w-44 md:w-48"
             >
               <div className="relative overflow-hidden rounded-lg transition-transform duration-300 group-hover:scale-105">
                 <Image 
                   src="/top-rank.jpeg" 
                   alt="Top Ranked Organisation Badge" 
-                  width={80} 
-                  height={80} 
-                  className="h-auto object-contain"
+                  width={120} 
+                  height={120} 
+                  className="h-auto w-28 md:w-32 object-contain"
                   priority
                 />
               </div>
-            
-            </div>
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#1a3a5c]">Top-Ranked</span>
+            </a>
+          </div>
+
+          {/* Sub-Footer Statement from GlobalGiving Page */}
+          <div className="mx-auto max-w-3xl text-center font-sans text-xs leading-relaxed text-[#555] bg-white/70 p-4 rounded-xl border border-[#59B7E7]/20 shadow-xs">
+            <p>
+              Direct Impact Empowerment Foundation is a dual-registered NGO in Nigeria (CAC/IT/7420254) and Switzerland (CHE-415.427.651), independently vetted and Top-Ranked by{" "}
+              <a
+                href="https://www.globalgiving.org/dy/v2/pe/dashboard/overview.html?organization.id=105967"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#7B1E1E] font-semibold underline hover:no-underline"
+              >
+                GlobalGiving
+              </a>.
+            </p>
           </div>
         </div>
 
@@ -219,5 +234,5 @@ export function Footer() {
 
       </div>
     </footer>
-  )
+  );
 }

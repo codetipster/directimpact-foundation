@@ -160,7 +160,7 @@ export default function GlobalGivingPage() {
 
         <div className="mt-12 text-center">
           <a
-            href="https://www.globalgiving.org/organizations/direct-impact-empowerment-foundation/"
+            href="https://www.globalgiving.org/dy/v2/pe/dashboard/overview.html?organization.id=105967"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block rounded-md bg-[#7B1E1E] px-6 py-3 font-sans text-sm font-semibold text-white transition-colors hover:bg-[#5a1515]"
@@ -296,21 +296,6 @@ export default function GlobalGivingPage() {
           </span>
         </div>
       </section>
-
-      {/* PAGE SUB-FOOTER */}
-      <footer className="mx-auto max-w-3xl px-6 pb-12 text-center font-sans text-xs leading-relaxed text-[#555]">
-        <p>
-          Direct Impact Empowerment Foundation is a dual-registered NGO in Nigeria (CAC/IT/7420254) and Switzerland (CHE-415.427.651), independently vetted and Top-Ranked by{" "}
-          <a
-            href="https://www.globalgiving.org/projects/76936"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#7B1E1E] underline hover:no-underline"
-          >
-            GlobalGiving
-          </a>.
-        </p>
-      </footer>
     </main>
   );
 }
