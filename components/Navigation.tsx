@@ -19,6 +19,7 @@ const navItems = [
       { label: "Digital Training", href: "/training" },
     ],
   },
+  { label: "GlobalGiving", href: "/globalgiving" }, // Added GlobalGiving here
   { label: "Founder Visit", href: "/founder-visit" },
   { label: "Partners", href: "/partners" },
 ];

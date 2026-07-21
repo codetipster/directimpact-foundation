@@ -339,33 +339,47 @@ export default function DonorLanding() {
         <div style={s.divider} />
 
         {/* Donation amounts */}
-        <section id="choose-how-to-help">
-          <h2 style={s.sectionTitle}>Choose how you want to help</h2>
-          <p style={{ fontSize: '16px', color: '#555', marginBottom: '8px' }}>
-            Every amount makes a measurable difference. Here is what your gift does on the ground.
-          </p>
+<section id="choose-how-to-help">
+  <h2 style={s.sectionTitle}>Choose how you want to help</h2>
+  <p style={{ fontSize: '16px', color: '#555', marginBottom: '24px' }}>
+    Every amount makes a measurable difference. Here is what your gift does on the ground.
+  </p>
 
-          <div style={s.donationGrid}>
-            <div style={s.donationCard}>
-              <div style={s.donationAmount}>$50</div>
-              <div style={s.donationLabel}>
-                Contribute toward a full journey. Every amount gets someone closer to independence.
-              </div>
-            </div>
-            <div style={s.donationCardFeatured}>
-              <div style={s.featuredBadge}>Most impactful</div>
-              <div style={s.donationAmount}>$200</div>
-              <div style={s.donationLabel}>
-                Full Dignity to Independence journey. Emergency relief package through to sustainable livelihood.
-              </div>
-            </div>
-            <div style={s.donationCard}>
-              <div style={s.donationAmount}>$70</div>
-              <div style={s.donationLabel}>
-                Emergency relief package. Food, water, and essential support for one person in crisis.
-              </div>
-            </div>
-          </div>
+  <div style={s.donationGrid}>
+    {/* $50 Card */}
+    <div style={s.donationCard}>
+      <div style={s.donationAmount}>$50</div>
+      <div style={s.donationLabel}>
+        Contribute toward a full journey. Every amount gets someone closer to independence.
+      </div>
+    </div>
+
+    {/* $200 Featured Card */}
+    <div style={s.donationCardFeatured}>
+      <div style={s.featuredBadge}>Most impactful</div>
+      <div style={s.donationAmount}>$200</div>
+      <div style={s.donationLabel}>
+        Full Dignity to Independence journey. Emergency relief package through to sustainable livelihood.
+      </div>
+    </div>
+
+    {/* $70 Card */}
+    <div style={s.donationCard}>
+      <div style={s.donationAmount}>$70</div>
+      <div style={s.donationLabel}>
+        Emergency relief package. Food, water, and essential support for one person in crisis.
+      </div>
+    </div>
+
+    {/* Custom Amount Card */}
+    <div style={s.donationCard}>
+      <div style={s.donationAmount}>$</div>
+      <div style={s.donationLabel}>
+        Give the amount that feels right to you. Every contribution moves someone closer to independence.
+      </div>
+    </div>
+  </div>
+</section>
 
           {/* Buttons Selection Block */}
           <div style={{ textAlign: 'center', margin: '32px 0 16px' }}>
