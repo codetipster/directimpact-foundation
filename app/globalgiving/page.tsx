@@ -52,39 +52,11 @@ export default function GlobalGivingPage() {
             </h1>
           </div>
 
-          <p className="mx-auto mb-8 max-w-2xl text-base text-white/90">
+          <p className="mx-auto max-w-2xl text-base text-white/90">
             Direct Impact Empowerment Foundation is independently vetted through GlobalGiving, 
             the world&apos;s largest crowdfunding community for nonprofits. Here&apos;s what that 
             means and what&apos;s currently active.
           </p>
-
-          {/* Header Badges Row */}
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <div className="relative h-[60px] w-[140px] overflow-hidden rounded-md bg-white/10 p-1 backdrop-blur-sm">
-              <Image
-                src="/vetted.jpeg"
-                alt="GlobalGiving Vetted Organisation"
-                fill
-                className="object-contain"
-              />
-            </div>
-            <div className="relative h-[60px] w-[140px] overflow-hidden rounded-md bg-white/10 p-1 backdrop-blur-sm">
-              <Image
-                src="/top-rank.jpeg"
-                alt="GlobalGiving Top-Ranked Organisation"
-                fill
-                className="object-contain"
-              />
-            </div>
-            <div className="relative h-[60px] w-[140px] overflow-hidden rounded-md bg-white/10 p-1 backdrop-blur-sm">
-              <Image
-                src="/effective.jpeg"
-                alt="GlobalGiving Effective Organisation 2026"
-                fill
-                className="object-contain"
-              />
-            </div>
-          </div>
         </div>
       </section>
 
@@ -235,7 +207,7 @@ export default function GlobalGivingPage() {
       </section>
 
       {/* TAX NOTE FOR US DONORS */}
-      <section className="mx-auto max-w-5xl px-6 pt-10">
+      <section className="mx-auto max-w-5xl px-6 py-10">
         <div className="rounded-lg border border-[#e8d5a3] bg-[#fdf6e8] p-7 shadow-sm">
           <p className="mb-2 font-sans text-xs font-bold uppercase tracking-widest text-[#C8972A]">
             For US-Based Donors
@@ -249,51 +221,6 @@ export default function GlobalGivingPage() {
           <p className="mt-3 text-sm leading-relaxed text-[#3a3020]">
             If you file taxes in the US and itemize your deductions, you may also see a benefit on your own return. GlobalGiving provides a donation receipt for your records at the time of giving.
           </p>
-        </div>
-      </section>
-
-      {/* GLOBALGIVING BADGES ROW */}
-      <section className="flex flex-wrap items-center justify-center gap-8 px-6 py-10">
-        <div className="text-center">
-          <div className="relative mx-auto mb-2 h-20 w-32">
-            <Image
-              src="/vetted.jpeg"
-              alt="GlobalGiving Vetted Organisation"
-              fill
-              className="object-contain"
-            />
-          </div>
-          <span className="font-sans text-[11px] font-bold uppercase tracking-wider text-[#1a3a5c]">
-            Vetted
-          </span>
-        </div>
-
-        <div className="text-center">
-          <div className="relative mx-auto mb-2 h-20 w-32">
-            <Image
-              src="/top-rank.jpeg"
-              alt="GlobalGiving Top-Ranked Organisation"
-              fill
-              className="object-contain"
-            />
-          </div>
-          <span className="font-sans text-[11px] font-bold uppercase tracking-wider text-[#1a3a5c]">
-            Top-Ranked
-          </span>
-        </div>
-
-        <div className="text-center">
-          <div className="relative mx-auto mb-2 h-20 w-32">
-            <Image
-              src="/effective.jpeg"
-              alt="GlobalGiving Effective Organisation 2026"
-              fill
-              className="object-contain"
-            />
-          </div>
-          <span className="font-sans text-[11px] font-bold uppercase tracking-wider text-[#1a3a5c]">
-            Effective
-          </span>
         </div>
       </section>
     </main>
