@@ -339,160 +339,159 @@ export default function DonorLanding() {
         <div style={s.divider} />
 
         {/* Donation amounts */}
-<section id="choose-how-to-help">
-  <h2 style={s.sectionTitle}>Choose how you want to help</h2>
-  <p style={{ fontSize: '16px', color: '#555', marginBottom: '24px' }}>
-    Every amount makes a measurable difference. Here is what your gift does on the ground.
-  </p>
+        <section id="choose-how-to-help">
+          <h2 style={s.sectionTitle}>Choose how you want to help</h2>
+          <p style={{ fontSize: '16px', color: '#555', marginBottom: '24px' }}>
+            Every amount makes a measurable difference. Here is what your gift does on the ground.
+          </p>
 
-  <div style={s.donationGrid}>
-    {/* $50 Card */}
-    <div style={s.donationCard}>
-      <div style={s.donationAmount}>$50</div>
-      <div style={s.donationLabel}>
-        Contribute toward a full journey. Every amount gets someone closer to independence.
-      </div>
-    </div>
-
-    {/* $200 Featured Card */}
-    <div style={s.donationCardFeatured}>
-      <div style={s.featuredBadge}>Most impactful</div>
-      <div style={s.donationAmount}>$200</div>
-      <div style={s.donationLabel}>
-        Full Dignity to Independence journey. Emergency relief package through to sustainable livelihood.
-      </div>
-    </div>
-
-    {/* $70 Card */}
-    <div style={s.donationCard}>
-      <div style={s.donationAmount}>$70</div>
-      <div style={s.donationLabel}>
-        Emergency relief package. Food, water, and essential support for one person in crisis.
-      </div>
-    </div>
-
-    {/* Custom Amount Card */}
-    <div style={s.donationCard}>
-      <div style={s.donationAmount}>$</div>
-      <div style={s.donationLabel}>
-        Give the amount that feels right to you. Every contribution moves someone closer to independence.
-      </div>
-    </div>
-  </div>
-</section>
-
-          {/* Buttons Selection Block */}
-          <div style={{ textAlign: 'center', margin: '32px 0 16px' }}>
-            <a href="https://buy.stripe.com/4gMaEXeHH5Hi6yDgfQ3cc00" target="_blank" rel="noopener noreferrer" style={s.btnRed}>
-              <span>💳</span> Donate by card
-            </a>
-            
-            <a href="https://www.globalgiving.org/donate/105967/direct-impact-empowerment-foundation/" target="_blank" rel="noopener noreferrer" style={s.btnOrange}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"></path>
-              </svg>
-              Donate via GlobalGiving
-            </a>
-
-            <a href="/bank-details" style={s.btnOutline}>
-              <span>🏡</span> Donate by bank transfer
-            </a>
-          </div>
-
-          {/* Placement 2 - Donate page, below the donate buttons */}
-          <div style={{
-            borderTop: '1px solid #e5e5e5',
-            paddingTop: '1.5rem',
-            marginTop: '1.5rem',
-            marginBottom: '2rem'
-          }}>
-            <p style={{
-              fontSize: '12px',
-              color: '#888',
-              textAlign: 'center',
-              margin: '0 0 12px',
-            }}>
-              Verified and trusted on
-            </p>
-
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '1rem',
-              flexWrap: 'wrap' as const,
-              marginBottom: '1.5rem',
-            }}>
-              <a
-                href="https://www.globalgiving.org/dy/v2/pe/dashboard/overview.html?organization.id=105967"
-                target="_blank"
-                rel="noopener noreferrer"                                                                                                                                                         
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  background: '#f5f5f5',
-                  padding: '8px 14px',
-                  borderRadius: '8px',
-                  textDecoration: 'none',
-                }}
-              >
-                <img
-                  src="/vetted.jpeg"
-                  alt="GlobalGiving Vetted Organization 2026"
-                  style={{ width: '36px', height: 'auto' }}
-                />
-                <span style={{ fontSize: '12px', fontWeight: 500, color: '#333' }}>
-                  GlobalGiving 2026
-                </span>
-              </a>
-
-              <a
-                href="https://benevity.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  background: '#f5f5f5',
-                  padding: '8px 14px',
-                  borderRadius: '8px',
-                  textDecoration: 'none',
-                }}
-              >
-                <img
-                  src="benevity-logo.png"
-                  alt="Listed on Benevity"
-                  style={{ width: '28px', height: 'auto' }}
-                  onError={(e) => { e.currentTarget.src = "/Globalgivingbadge.jpeg"; }}
-                />
-                <span style={{ fontSize: '12px', fontWeight: 500, color: '#333' }}>
-                  Listed on Benevity
-                </span>
-              </a>
+          <div style={s.donationGrid}>
+            {/* $50 Card */}
+            <div style={s.donationCard}>
+              <div style={s.donationAmount}>$50</div>
+              <div style={s.donationLabel}>
+                Contribute toward a full journey. Every amount gets someone closer to independence.
+              </div>
             </div>
 
-            {/* Redesigned Corporate Matching Callout Text */}
-            <p style={{
-              fontSize: '13px',
-              color: '#111',
-              fontWeight: 600,
-              textAlign: 'center',
-              margin: '0 auto',
-              maxWidth: '650px',
-              lineHeight: 1.6,
-              background: '#fdf6f6',
-              padding: '12px 20px',
-              borderRadius: '8px',
-              border: '1px dashed #7B1E1E'
-            }}>
-              Does your employer offer donation matching? Search{' '}
-              <strong style={{ color: '#7B1E1E', fontWeight: 700 }}>Direct Impact Empowerment Foundation</strong>{' '}
-              on your company&apos;s Benevity portal.
-            </p>
+            {/* $200 Featured Card */}
+            <div style={s.donationCardFeatured}>
+              <div style={s.featuredBadge}>Most impactful</div>
+              <div style={s.donationAmount}>$200</div>
+              <div style={s.donationLabel}>
+                Full Dignity to Independence journey. Emergency relief package through to sustainable livelihood.
+              </div>
+            </div>
+
+            {/* $70 Card */}
+            <div style={s.donationCard}>
+              <div style={s.donationAmount}>$70</div>
+              <div style={s.donationLabel}>
+                Emergency relief package. Food, water, and essential support for one person in crisis.
+              </div>
+            </div>
+
+            {/* Custom Amount Card */}
+            <div style={s.donationCard}>
+              <div style={s.donationAmount}>$</div>
+              <div style={s.donationLabel}>
+                Give the amount that feels right to you. Every contribution moves someone closer to independence.
+              </div>
+            </div>
           </div>
         </section>
+
+        {/* Buttons Selection Block */}
+        <div style={{ textAlign: 'center', margin: '32px 0 16px' }}>
+          <a href="https://buy.stripe.com/4gMaEXeHH5Hi6yDgfQ3cc00" target="_blank" rel="noopener noreferrer" style={s.btnRed}>
+            <span>💳</span> Donate by card
+          </a>
+          
+          <a href="https://www.globalgiving.org/donate/105967/direct-impact-empowerment-foundation/" target="_blank" rel="noopener noreferrer" style={s.btnOrange}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"></path>
+            </svg>
+            Donate via GlobalGiving
+          </a>
+
+          <a href="/bank-details" style={s.btnOutline}>
+            <span>🏡</span> Donate by bank transfer
+          </a>
+        </div>
+
+        {/* Placement 2 - Donate page, below the donate buttons */}
+        <div style={{
+          borderTop: '1px solid #e5e5e5',
+          paddingTop: '1.5rem',
+          marginTop: '1.5rem',
+          marginBottom: '2rem'
+        }}>
+          <p style={{
+            fontSize: '12px',
+            color: '#888',
+            textAlign: 'center',
+            margin: '0 0 12px',
+          }}>
+            Verified and trusted on
+          </p>
+
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '1rem',
+            flexWrap: 'wrap' as const,
+            marginBottom: '1.5rem',
+          }}>
+            <a
+              href="https://www.globalgiving.org/dy/v2/pe/dashboard/overview.html?organization.id=105967"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                background: '#f5f5f5',
+                padding: '8px 14px',
+                borderRadius: '8px',
+                textDecoration: 'none',
+              }}
+            >
+              <img
+                src="/vetted.jpeg"
+                alt="GlobalGiving Vetted Organization 2026"
+                style={{ width: '36px', height: 'auto' }}
+              />
+              <span style={{ fontSize: '12px', fontWeight: 500, color: '#333' }}>
+                GlobalGiving 2026
+              </span>
+            </a>
+
+            <a
+              href="https://benevity.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                background: '#f5f5f5',
+                padding: '8px 14px',
+                borderRadius: '8px',
+                textDecoration: 'none',
+              }}
+            >
+              <img
+                src="benevity-logo.png"
+                alt="Listed on Benevity"
+                style={{ width: '28px', height: 'auto' }}
+                onError={(e) => { e.currentTarget.src = "/Globalgivingbadge.jpeg"; }}
+              />
+              <span style={{ fontSize: '12px', fontWeight: 500, color: '#333' }}>
+                Listed on Benevity
+              </span>
+            </a>
+          </div>
+
+          {/* Redesigned Corporate Matching Callout Text */}
+          <p style={{
+            fontSize: '13px',
+            color: '#111',
+            fontWeight: 600,
+            textAlign: 'center',
+            margin: '0 auto',
+            maxWidth: '650px',
+            lineHeight: 1.6,
+            background: '#fdf6f6',
+            padding: '12px 20px',
+            borderRadius: '8px',
+            border: '1px dashed #7B1E1E'
+          }}>
+            Does your employer offer donation matching? Search{' '}
+            <strong style={{ color: '#7B1E1E', fontWeight: 700 }}>Direct Impact Empowerment Foundation</strong>{' '}
+            on your company&apos;s Benevity portal.
+          </p>
+        </div>
 
         <div style={s.divider} />
 
