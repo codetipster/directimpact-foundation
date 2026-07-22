@@ -36,12 +36,30 @@ const projects = [
   },
 ];
 
+const badges = [
+  {
+    title: "Vetted Organization - GlobalGiving 2026",
+    image: "/vetted.jpeg",
+    alt: "Vetted Organization - GlobalGiving 2026",
+  },
+  {
+    title: "Top-Ranked Organization - GlobalGiving 2026",
+    image: "/top-rank.jpeg",
+    alt: "Top-Ranked Organization - GlobalGiving 2026",
+  },
+  {
+    title: "Effective Organization - GlobalGiving 2026",
+    image: "/effective.jpeg",
+    alt: "Effective Organization - GlobalGiving 2026",
+  },
+];
+
 export default function GlobalGivingPage() {
   return (
     <main className="min-h-screen bg-[#fafafa] font-serif text-[#1a1a1a] antialiased">
       {/* HERO SECTION */}
-      <section className="bg-[#7B1E1E] px-6 py-12 md:py-16 text-center text-white">
-        <div className="mx-auto max-w-4xl">
+      <section className="bg-[#7B1E1E] px-6 pt-12 pb-16 text-center text-white md:pt-16 md:pb-20">
+        <div className="mx-auto max-w-5xl">
           <p className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-white/80">
             Our Partnership With GlobalGiving
           </p>
@@ -50,41 +68,33 @@ export default function GlobalGivingPage() {
             Verified, Vetted, and Accountable
           </h1>
 
-          <p className="mx-auto mb-8 max-w-2xl text-base text-white/90 leading-relaxed font-sans md:font-serif">
+          <p className="mx-auto mb-10 max-w-2xl font-sans text-base leading-relaxed text-white/90 md:font-serif">
             Direct Impact Empowerment Foundation is independently vetted through GlobalGiving,
             the world&apos;s largest crowdfunding community for nonprofits. Here&apos;s what that
             means and what&apos;s currently active.
           </p>
 
-          {/* GLOBALGIVING BADGES ROW */}
-          <div className="flex flex-wrap items-center justify-center gap-6 pt-2">
-            <div className="flex flex-col items-center">
-              <Image
-                src="/vetted.jpeg"
-                alt="Vetted Organization - GlobalGiving 2026"
-                width={120}
-                height={90}
-                className="h-20 w-auto object-contain transition-transform hover:scale-105"
-              />
-            </div>
-            <div className="flex flex-col items-center">
-              <Image
-                src="/top-rank.jpeg"
-                alt="Top-Ranked Organization - GlobalGiving 2026"
-                width={120}
-                height={90}
-                className="h-20 w-auto object-contain transition-transform hover:scale-105"
-              />
-            </div>
-            <div className="flex flex-col items-center">
-              <Image
-                src="/effective.jpeg"
-                alt="Effective Organization - GlobalGiving 2026"
-                width={120}
-                height={90}
-                className="h-20 w-auto object-contain transition-transform hover:scale-105"
-              />
-            </div>
+          {/* GLOBALGIVING BADGES GRID */}
+          <div className="grid grid-cols-1 border-y border-white/20 divide-y divide-white/20 md:grid-cols-3 md:divide-y-0 md:divide-x">
+            {badges.map((badge, idx) => (
+              <div
+                key={idx}
+                className="flex flex-col items-center justify-between p-6 transition-colors hover:bg-white/5"
+              >
+                <p className="mb-6 font-serif text-sm font-normal text-white md:text-base">
+                  {badge.title}
+                </p>
+                <div className="flex h-16 w-full items-center justify-center">
+                  <Image
+                    src={badge.image}
+                    alt={badge.alt}
+                    width={120}
+                    height={90}
+                    className="max-h-16 w-auto object-contain transition-transform hover:scale-105"
+                  />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -133,7 +143,7 @@ export default function GlobalGivingPage() {
                 </p>
 
                 {/* Stats Row */}
-                <div className="mb-6 flex gap-6 font-sans border-t border-gray-100 pt-4">
+                <div className="mb-6 flex gap-6 border-t border-gray-100 pt-4 font-sans">
                   {project.stats.map((stat, idx) => (
                     <div key={idx}>
                       <span className="block text-lg font-bold text-[#1a3a5c]">
@@ -165,7 +175,7 @@ export default function GlobalGivingPage() {
             href="https://www.globalgiving.org/donate/105967/direct-impact-empowerment-foundation/"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto rounded-md bg-[#7B1E1E] px-6 py-3.5 text-center font-sans text-sm font-semibold text-white transition-colors hover:bg-[#5a1515]"
+            className="w-full rounded-md bg-[#7B1E1E] px-6 py-3.5 text-center font-sans text-sm font-semibold text-white transition-colors hover:bg-[#5a1515] sm:w-auto"
           >
             View All Active Projects on GlobalGiving
           </a>
@@ -173,7 +183,7 @@ export default function GlobalGivingPage() {
             href="https://www.directimpactempowerment.org/training"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto rounded-md border-2 border-[#7B1E1E] bg-transparent px-6 py-3 text-center font-sans text-sm font-semibold text-[#7B1E1E] transition-colors hover:bg-[#7B1E1E] hover:text-white"
+            className="w-full rounded-md border-2 border-[#7B1E1E] bg-transparent px-6 py-3 text-center font-sans text-sm font-semibold text-[#7B1E1E] transition-colors hover:bg-[#7B1E1E] hover:text-white sm:w-auto"
           >
             Explore Our Digital Training Programme
           </a>
