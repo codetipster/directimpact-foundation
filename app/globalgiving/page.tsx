@@ -60,7 +60,7 @@ export default function GlobalGivingPage() {
           <div className="flex flex-wrap items-center justify-center gap-6 pt-2">
             <div className="flex flex-col items-center">
               <Image
-                src="/badge_vetted.png"
+                src="/vetted.jpeg"
                 alt="Vetted Organization - GlobalGiving 2026"
                 width={120}
                 height={90}
@@ -69,7 +69,7 @@ export default function GlobalGivingPage() {
             </div>
             <div className="flex flex-col items-center">
               <Image
-                src="/badge_topranked.png"
+                src="/top-rank.jpeg"
                 alt="Top-Ranked Organization - GlobalGiving 2026"
                 width={120}
                 height={90}
@@ -78,7 +78,7 @@ export default function GlobalGivingPage() {
             </div>
             <div className="flex flex-col items-center">
               <Image
-                src="/badge_effective.png"
+                src="/effective.jpeg"
                 alt="Effective Organization - GlobalGiving 2026"
                 width={120}
                 height={90}
