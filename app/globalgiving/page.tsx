@@ -79,18 +79,18 @@ export default function GlobalGivingPage() {
             {badges.map((badge, idx) => (
               <div
                 key={idx}
-                className="flex flex-col items-center justify-between p-6 transition-colors hover:bg-white/5"
+                className="flex flex-col items-center justify-between p-6 md:p-8 transition-colors hover:bg-white/5"
               >
-                <p className="mb-6 font-serif text-sm font-normal text-white md:text-base">
+                <p className="mb-6 font-serif text-base font-normal text-white md:text-lg">
                   {badge.title}
                 </p>
-                <div className="flex h-16 w-full items-center justify-center">
+                <div className="flex h-28 w-full items-center justify-center">
                   <Image
                     src={badge.image}
                     alt={badge.alt}
-                    width={120}
-                    height={90}
-                    className="max-h-16 w-auto object-contain transition-transform hover:scale-105"
+                    width={200}
+                    height={150}
+                    className="max-h-28 w-auto object-contain transition-transform hover:scale-105"
                   />
                 </div>
               </div>
