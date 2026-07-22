@@ -40,35 +40,64 @@ export default function GlobalGivingPage() {
   return (
     <main className="min-h-screen bg-[#fafafa] font-serif text-[#1a1a1a] antialiased">
       {/* HERO SECTION */}
-      <section className="bg-[#7B1E1E] px-6 py-14 text-center text-white">
+      <section className="bg-[#7B1E1E] px-6 py-12 md:py-16 text-center text-white">
         <div className="mx-auto max-w-4xl">
-          <p className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-white/75">
+          <p className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-white/80">
             Our Partnership With GlobalGiving
           </p>
 
-          <div className="mb-4 flex flex-col items-center justify-center gap-3 md:flex-row">
-            <h1 className="text-3xl font-normal leading-tight md:text-4xl">
-              Verified, Vetted, and Accountable
-            </h1>
-          </div>
+          <h1 className="mb-4 text-3xl font-normal leading-tight md:text-4xl">
+            Verified, Vetted, and Accountable
+          </h1>
 
-          <p className="mx-auto max-w-2xl text-base text-white/90">
-            Direct Impact Empowerment Foundation is independently vetted through GlobalGiving, 
-            the world&apos;s largest crowdfunding community for nonprofits. Here&apos;s what that 
+          <p className="mx-auto mb-8 max-w-2xl text-base text-white/90 leading-relaxed font-sans md:font-serif">
+            Direct Impact Empowerment Foundation is independently vetted through GlobalGiving,
+            the world&apos;s largest crowdfunding community for nonprofits. Here&apos;s what that
             means and what&apos;s currently active.
           </p>
+
+          {/* GLOBALGIVING BADGES ROW */}
+          <div className="flex flex-wrap items-center justify-center gap-6 pt-2">
+            <div className="flex flex-col items-center">
+              <Image
+                src="/badge_vetted.png"
+                alt="Vetted Organization - GlobalGiving 2026"
+                width={120}
+                height={90}
+                className="h-20 w-auto object-contain transition-transform hover:scale-105"
+              />
+            </div>
+            <div className="flex flex-col items-center">
+              <Image
+                src="/badge_topranked.png"
+                alt="Top-Ranked Organization - GlobalGiving 2026"
+                width={120}
+                height={90}
+                className="h-20 w-auto object-contain transition-transform hover:scale-105"
+              />
+            </div>
+            <div className="flex flex-col items-center">
+              <Image
+                src="/badge_effective.png"
+                alt="Effective Organization - GlobalGiving 2026"
+                width={120}
+                height={90}
+                className="h-20 w-auto object-contain transition-transform hover:scale-105"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
       {/* ACTIVE PROJECTS SECTION */}
       <section className="mx-auto max-w-5xl px-6 py-12">
-        <p className="mb-2 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-[#7B1E1E]">
+        <p className="mb-2 font-sans text-xs font-bold uppercase tracking-[0.18em] text-[#7B1E1E]">
           Currently Open
         </p>
         <h2 className="mb-2 text-2xl font-normal text-[#1a3a5c] md:text-3xl">
           Active Projects on GlobalGiving
         </h2>
-        <p className="mb-8 max-w-2xl text-sm text-[#555]">
+        <p className="mb-8 max-w-2xl font-sans text-sm text-[#555]">
           Explore our live campaigns currently receiving funding through GlobalGiving.
         </p>
 
@@ -80,7 +109,7 @@ export default function GlobalGivingPage() {
               className="flex flex-col overflow-hidden rounded-lg border border-[#ddd] border-t-4 border-t-[#7B1E1E] bg-white shadow-sm transition-all hover:shadow-md"
             >
               {/* Project Card Image */}
-              <div className="relative h-52 w-full bg-gray-100">
+              <div className="relative h-52 w-full bg-[#eef0f2]">
                 <Image
                   src={project.image}
                   alt={project.title}
@@ -91,7 +120,7 @@ export default function GlobalGivingPage() {
 
               {/* Project Card Content */}
               <div className="flex flex-1 flex-col p-6">
-                <span className="mb-2 font-sans text-[10px] font-bold uppercase tracking-widest text-[#7B1E1E]">
+                <span className="mb-2 font-sans text-[11px] font-bold uppercase tracking-widest text-[#7B1E1E]">
                   {project.tag}
                 </span>
 
@@ -99,7 +128,7 @@ export default function GlobalGivingPage() {
                   {project.title}
                 </h3>
 
-                <p className="mb-6 flex-grow text-sm leading-relaxed text-[#555]">
+                <p className="mb-6 flex-grow font-sans text-sm leading-relaxed text-[#555]">
                   {project.description}
                 </p>
 
@@ -130,14 +159,23 @@ export default function GlobalGivingPage() {
           ))}
         </div>
 
-        <div className="mt-12 text-center">
+        {/* ACTION BUTTONS ROW */}
+        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
-            href="https://www.globalgiving.org/dy/v2/pe/dashboard/overview.html?organization.id=105967"
+            href="https://www.globalgiving.org/donate/105967/direct-impact-empowerment-foundation/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block rounded-md bg-[#7B1E1E] px-6 py-3 font-sans text-sm font-semibold text-white transition-colors hover:bg-[#5a1515]"
+            className="w-full sm:w-auto rounded-md bg-[#7B1E1E] px-6 py-3.5 text-center font-sans text-sm font-semibold text-white transition-colors hover:bg-[#5a1515]"
           >
             View All Active Projects on GlobalGiving
+          </a>
+          <a
+            href="https://www.directimpactempowerment.org/training"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto rounded-md border-2 border-[#7B1E1E] bg-transparent px-6 py-3 text-center font-sans text-sm font-semibold text-[#7B1E1E] transition-colors hover:bg-[#7B1E1E] hover:text-white"
+          >
+            Explore Our Digital Training Programme
           </a>
         </div>
       </section>
@@ -215,10 +253,10 @@ export default function GlobalGivingPage() {
           <h3 className="mb-3 text-xl font-normal text-[#5a1515]">
             Your donation may also be tax deductible
           </h3>
-          <p className="text-sm leading-relaxed text-[#3a3020]">
+          <p className="font-sans text-sm leading-relaxed text-[#555]">
             Donations made through GlobalGiving are tax deductible for US taxpayers, since GlobalGiving is a registered 501(c)(3) nonprofit. When you give, your donation goes directly to real families in Nigeria moving from crisis to independence.
           </p>
-          <p className="mt-3 text-sm leading-relaxed text-[#3a3020]">
+          <p className="mt-3 font-sans text-sm leading-relaxed text-[#555]">
             If you file taxes in the US and itemize your deductions, you may also see a benefit on your own return. GlobalGiving provides a donation receipt for your records at the time of giving.
           </p>
         </div>
