@@ -38,17 +38,14 @@ const projects = [
 
 const badges = [
   {
-   
     image: "/vetted.jpeg",
     alt: "Vetted Organization - GlobalGiving 2026",
   },
   {
-    
     image: "/top-rank.jpeg",
     alt: "Top-Ranked Organization - GlobalGiving 2026",
   },
   {
-
     image: "/effective.jpeg",
     alt: "Effective Organization - GlobalGiving 2026",
   },
@@ -79,11 +76,8 @@ export default function GlobalGivingPage() {
             {badges.map((badge, idx) => (
               <div
                 key={idx}
-                className="flex flex-col items-center justify-between p-6 md:p-8 transition-colors hover:bg-white/5"
+                className="flex items-center justify-center p-6 md:p-8 transition-colors hover:bg-white/5"
               >
-                <p className="mb-6 font-serif text-base font-normal text-white md:text-lg">
-                  {badge.title}
-                </p>
                 <div className="flex h-28 w-full items-center justify-center">
                   <Image
                     src={badge.image}
