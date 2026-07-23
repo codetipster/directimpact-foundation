@@ -17,8 +17,8 @@ const projects = [
     image: "/project-76936.jpeg",
     link: "https://www.globalgiving.org/projects/76936",
     stats: [
-      { num: "300+", label: "People Reached" },
-      { num: "2023", label: "Since Founding" },
+      { num: "10", label: "Women Sponsored" },
+      { num: "IAM & GRC", label: "Career Track" },
     ],
   },
   {
@@ -30,7 +30,7 @@ const projects = [
     image: "/christmas-lifeline.jpeg",
     link: "https://www.globalgiving.org/projects/a-christmas-lifeline-for-220-nigerian-families/",
     stats: [
-      { num: "220", label: "Families Supported" },
+      { num: "220", label: "Families to Support" },
       { num: "Direct", label: "Food & Aid" },
     ],
   },
@@ -38,17 +38,17 @@ const projects = [
 
 const badges = [
   {
-    title: "Vetted Organization - GlobalGiving 2026",
+   
     image: "/vetted.jpeg",
     alt: "Vetted Organization - GlobalGiving 2026",
   },
   {
-    title: "Top-Ranked Organization - GlobalGiving 2026",
+    
     image: "/top-rank.jpeg",
     alt: "Top-Ranked Organization - GlobalGiving 2026",
   },
   {
-    title: "Effective Organization - GlobalGiving 2026",
+
     image: "/effective.jpeg",
     alt: "Effective Organization - GlobalGiving 2026",
   },
