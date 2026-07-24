@@ -5,12 +5,26 @@ import React, { useEffect, useState } from 'react';
 export default function DonatePage() {
   const [showThankYou, setShowThankYou] = useState(false);
 
-  // Checks URL parameters on load to trigger Thank You modal when returning from Stripe
+  // Close modal and navigate to main website
+  const handleCloseAndRedirect = () => {
+    setShowThankYou(false);
+    window.location.href = 'https://www.directimpactempowerment.org/';
+  };
+
+  // Checks URL parameters on load & manages auto-close timer
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
       if (params.get('status') === 'success' || params.get('success') === 'true') {
         setShowThankYou(true);
+
+        // Auto-close after 1 minute (60,000 ms) and redirect to main website
+        const timer = setTimeout(() => {
+          handleCloseAndRedirect();
+        }, 60000);
+
+        // Clean up timer if component unmounts
+        return () => clearTimeout(timer);
       }
     }
   }, []);
@@ -50,6 +64,20 @@ export default function DonatePage() {
       boxShadow: '0 20px 30px rgba(0, 0, 0, 0.15)',
       position: 'relative' as const,
       border: '1px solid #EAE5D9',
+    },
+    closeBtn: {
+      position: 'absolute' as const,
+      top: '16px',
+      right: '16px',
+      background: 'transparent',
+      border: 'none',
+      fontSize: '22px',
+      cursor: 'pointer',
+      color: '#888888',
+      lineHeight: 1,
+      padding: '8px',
+      borderRadius: '50%',
+      transition: 'color 0.2s',
     },
     heartCircle: {
       display: 'inline-flex',
@@ -425,6 +453,17 @@ export default function DonatePage() {
       {showThankYou && (
         <div style={s.modalOverlay}>
           <div style={s.modalCard}>
+            
+            {/* Top Right Close Button */}
+            <button 
+              onClick={handleCloseAndRedirect} 
+              style={s.closeBtn}
+              title="Close and return to home page"
+              aria-label="Close"
+            >
+              ✕
+            </button>
+
             {/* Golden Heart Outline Circle */}
             <div style={s.heartCircle}>
               <span>♡</span>
@@ -478,10 +517,6 @@ export default function DonatePage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={s.seeGiftBtn}
-                onClick={() => {
-                  setShowThankYou(false);
-                  window.history.replaceState({}, document.title, window.location.pathname);
-                }}
               >
                 See where your gift goes
               </a>
@@ -561,7 +596,7 @@ export default function DonatePage() {
             <p style={s.storyP}>
               We stopped. We brought food, cooking oil, and capital to restart her life.
               Weeks later we returned and found her granddaughter had been admitted to
-              hospital. She had not told us &mdash; she did not want to place the burden on us.
+              hospital. She had not told us, she did not want to place the burden on us.
               We followed her to the hospital and paid the bill.
             </p>
             <p style={s.storyP}>
