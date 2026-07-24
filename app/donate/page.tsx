@@ -1,8 +1,20 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-export default function DonorLanding() {
+export default function DonatePage() {
+  const [showThankYou, setShowThankYou] = useState(false);
+
+  // Checks URL parameters on load to trigger Thank You modal when returning from Stripe
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('status') === 'success' || params.get('success') === 'true') {
+        setShowThankYou(true);
+      }
+    }
+  }, []);
+
   const s: Record<string, React.CSSProperties> = {
     page: {
       fontFamily: 'Arial, sans-serif',
@@ -10,7 +22,156 @@ export default function DonorLanding() {
       color: '#1a1a1a',
       margin: 0,
       padding: 0,
+      position: 'relative',
     },
+    
+    /* ------------ THANK YOU MODAL STYLES ------------ */
+    modalOverlay: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100vw',
+      height: '100vh',
+      backgroundColor: 'rgba(0, 0, 0, 0.65)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      zIndex: 9999,
+      padding: '20px',
+      overflowY: 'auto',
+    },
+    modalCard: {
+      background: '#FCFAF6',
+      borderRadius: '8px',
+      padding: '48px 36px 36px',
+      maxWidth: '560px',
+      width: '100%',
+      textAlign: 'center' as const,
+      boxShadow: '0 20px 30px rgba(0, 0, 0, 0.15)',
+      position: 'relative' as const,
+      border: '1px solid #EAE5D9',
+    },
+    heartCircle: {
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: '44px',
+      height: '44px',
+      borderRadius: '50%',
+      border: '1px solid #C8972A',
+      color: '#C8972A',
+      fontSize: '18px',
+      marginBottom: '20px',
+    },
+    thankYouTitle: {
+      fontFamily: 'Georgia, serif',
+      fontSize: '38px',
+      color: '#1A2E26',
+      margin: '0 0 16px',
+      fontWeight: 400,
+    },
+    thankYouSub: {
+      fontSize: '15px',
+      color: '#4A4A4A',
+      lineHeight: 1.6,
+      margin: '0 auto 24px',
+      maxWidth: '440px',
+    },
+    goldDivider: {
+      width: '48px',
+      height: '3px',
+      backgroundColor: '#C8972A',
+      margin: '0 auto 28px',
+      borderRadius: '2px',
+    },
+    quoteBox: {
+      background: '#FFFFFF',
+      border: '1px solid #EAE5D9',
+      borderRadius: '4px',
+      padding: '20px 24px',
+      textAlign: 'left' as const,
+      position: 'relative' as const,
+      display: 'flex',
+      gap: '16px',
+      marginBottom: '32px',
+    },
+    quoteBar: {
+      width: '3px',
+      backgroundColor: '#C8972A',
+      borderRadius: '2px',
+      flexShrink: 0,
+    },
+    quoteText: {
+      fontFamily: 'Georgia, serif',
+      fontStyle: 'italic',
+      fontSize: '15px',
+      color: '#2A3B32',
+      lineHeight: 1.6,
+      margin: '0 0 12px',
+    },
+    quoteAuthor: {
+      fontSize: '13px',
+      color: '#777777',
+      margin: 0,
+    },
+    stageGrid: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(4, 1fr)',
+      gap: '8px',
+      marginBottom: '32px',
+      textAlign: 'center' as const,
+    },
+    stageActive: {
+      display: 'flex',
+      flexDirection: 'column' as const,
+      alignItems: 'center',
+      fontSize: '11px',
+      fontWeight: 700,
+      color: '#1A2E26',
+    },
+    stageItem: {
+      display: 'flex',
+      flexDirection: 'column' as const,
+      alignItems: 'center',
+      fontSize: '11px',
+      fontWeight: 500,
+      color: '#888888',
+    },
+    stageLineActive: {
+      width: '100%',
+      height: '3px',
+      backgroundColor: '#C8972A',
+      marginBottom: '8px',
+      borderRadius: '2px',
+    },
+    stageLine: {
+      width: '100%',
+      height: '2px',
+      backgroundColor: '#E5E0D8',
+      marginBottom: '8px',
+      borderRadius: '2px',
+    },
+    seeGiftBtn: {
+      display: 'inline-block',
+      color: '#C8972A',
+      fontSize: '15px',
+      fontWeight: 600,
+      textDecoration: 'underline',
+      textUnderlineOffset: '6px',
+      cursor: 'pointer',
+      background: 'none',
+      border: 'none',
+      padding: '8px 16px',
+      transition: 'opacity 0.2s',
+    },
+    modalFooter: {
+      fontSize: '11px',
+      color: '#8A8A8A',
+      marginTop: '28px',
+      lineHeight: 1.6,
+    },
+
+    /* ---------------- PAGE STYLES ---------------- */
     hero: {
       background: '#7B1E1E',
       color: '#fff',
@@ -260,6 +421,85 @@ export default function DonorLanding() {
   return (
     <div style={s.page}>
 
+      {/* AUTOMATIC STRIPE REDIRECT THANK YOU MODAL */}
+      {showThankYou && (
+        <div style={s.modalOverlay}>
+          <div style={s.modalCard}>
+            {/* Golden Heart Outline Circle */}
+            <div style={s.heartCircle}>
+              <span>♡</span>
+            </div>
+
+            <h2 style={s.thankYouTitle}>Thank you.</h2>
+            
+            <p style={s.thankYouSub}>
+              Your gift is already at work. It moves a family one stage closer to independence, not just through today.
+            </p>
+
+            <div style={s.goldDivider} />
+
+            {/* Quote Block */}
+            <div style={s.quoteBox}>
+              <div style={s.quoteBar} />
+              <div>
+                <p style={s.quoteText}>
+                  &quot;We followed her to the hospital and paid the bill. Months later, she was standing. She was well. She was earning.&quot;
+                </p>
+                <p style={s.quoteAuthor}>
+                  This is not an exceptional story. This is our model.
+                </p>
+              </div>
+            </div>
+
+            {/* 4-Stage Progress Line */}
+            <div style={s.stageGrid}>
+              <div style={s.stageActive}>
+                <div style={s.stageLineActive} />
+                <span>Crisis response</span>
+              </div>
+              <div style={s.stageItem}>
+                <div style={s.stageLine} />
+                <span>Stabilisation</span>
+              </div>
+              <div style={s.stageItem}>
+                <div style={s.stageLine} />
+                <span>Economic restart</span>
+              </div>
+              <div style={s.stageItem}>
+                <div style={s.stageLine} />
+                <span>Independence</span>
+              </div>
+            </div>
+
+            {/* "See where your gift goes" Button */}
+            <div>
+              <a
+                href="https://www.globalgiving.org/projects/a-christmas-lifeline-for-220-nigerian-families/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={s.seeGiftBtn}
+                onClick={() => {
+                  setShowThankYou(false);
+                  window.history.replaceState({}, document.title, window.location.pathname);
+                }}
+              >
+                See where your gift goes
+              </a>
+            </div>
+
+            {/* Registration & Vetted Footer */}
+            <div style={s.modalFooter}>
+              <p style={{ margin: '0 0 4px' }}>
+                Direct Impact Empowerment Foundation · CAC/IT/7420254 · CHE-415.427.651
+              </p>
+              <p style={{ margin: 0 }}>
+                Vetted Organisation on GlobalGiving
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Hero */}
       <section style={s.hero}>
         <div style={s.heroTag}>Support our work</div>
@@ -270,7 +510,7 @@ export default function DonorLanding() {
         </p>
       </section>
 
-      {/* Placement 1 - Homepage, below the hero section */}
+      {/* Trust Strip */}
       <div style={s.trustStrip}>
         <div style={s.trustStripInner}>
           <p style={s.trustLabel}>Trusted and verified on:</p>
@@ -353,7 +593,6 @@ export default function DonorLanding() {
           </p>
 
           <div style={s.donationGrid}>
-            {/* $50 Card */}
             <div style={s.donationCard}>
               <div style={s.donationAmount}>$50</div>
               <div style={s.donationLabel}>
@@ -361,7 +600,6 @@ export default function DonorLanding() {
               </div>
             </div>
 
-            {/* $200 Featured Card */}
             <div style={s.donationCardFeatured}>
               <div style={s.featuredBadge}>Most impactful</div>
               <div style={s.donationAmount}>$200</div>
@@ -370,7 +608,6 @@ export default function DonorLanding() {
               </div>
             </div>
 
-            {/* $70 Card */}
             <div style={s.donationCard}>
               <div style={s.donationAmount}>$70</div>
               <div style={s.donationLabel}>
@@ -378,7 +615,6 @@ export default function DonorLanding() {
               </div>
             </div>
 
-            {/* Custom Amount Card */}
             <div style={s.donationCard}>
               <div style={s.donationAmount}>$</div>
               <div style={s.donationLabel}>
@@ -406,7 +642,7 @@ export default function DonorLanding() {
           </a>
         </div>
 
-        {/* Placement 2 - Donate page, below the donate buttons */}
+        {/* Employer Matching Callout */}
         <div style={{
           borderTop: '1px solid #e5e5e5',
           paddingTop: '1.5rem',
@@ -480,7 +716,6 @@ export default function DonorLanding() {
             </a>
           </div>
 
-          {/* Redesigned Corporate Matching Callout Text */}
           <p style={{
             fontSize: '13px',
             color: '#111',
@@ -515,7 +750,7 @@ export default function DonorLanding() {
 
       </div>
 
-      {/* Trust bar */}
+      {/* Footer */}
       <footer style={s.trustBar}>
         <p style={s.trustP}>
           Direct Impact Empowerment Foundation is registered in Nigeria and Switzerland.
