@@ -353,11 +353,11 @@ export default function TrainingPage() {
       maxWidth: "620px",
     },
     courseGrid: {
-      display: "grid",
-      gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-      gap: "20px",
-      margin: "32px 0 56px",
-    },
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))",
+  gap: "16px",
+  margin: "32px 0 56px",
+},
     courseCardBase: {
       background: "#fff",
       borderRadius: "0 0 12px 12px",
