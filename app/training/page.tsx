@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import type { CSSProperties } from "react";
+import Link from "next/link";
 
 // ==========================================
 // 1. DIGITAL EMPOWERMENT SECTION COMPONENT
@@ -102,7 +103,9 @@ function DigitalEmpowermentSection() {
         >
           Relief gets someone through today.
           <br />
-          <span style={{ color: "#7B1E1E" }}>Skills get them through the rest of their lives.</span>
+          <span style={{ color: "#7B1E1E" }}>
+            Skills get them through the rest of their lives.
+          </span>
         </h2>
 
         {/* Body text */}
@@ -163,7 +166,9 @@ function DigitalEmpowermentSection() {
                 transition: `opacity 0.6s ease ${0.35 + i * 0.1}s, transform 0.6s ease ${0.35 + i * 0.1}s`,
               }}
             >
-              <div style={{ fontSize: "28px", marginBottom: "12px" }}>{p.icon}</div>
+              <div style={{ fontSize: "28px", marginBottom: "12px" }}>
+                {p.icon}
+              </div>
               <h3
                 style={{
                   fontFamily: "Georgia, serif",
@@ -228,7 +233,9 @@ export default function TrainingPage() {
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+
     // 1. Reset current errors
     const newErrors = { name: "", email: "", course: "", background: "" };
     let isValid = true;
@@ -256,7 +263,7 @@ export default function TrainingPage() {
 
     // 4. Stop submission if not valid
     if (!isValid) return;
-    
+
     setSending(true);
 
     try {
@@ -372,6 +379,24 @@ export default function TrainingPage() {
       display: "inline-block",
       background: "#e8f5e9",
       color: "#2e7d32",
+      fontSize: "12px",
+      fontWeight: 600,
+      padding: "4px 12px",
+      borderRadius: "100px",
+    },
+    codingRequired: {
+      display: "inline-block",
+      background: "#fdeee0",
+      color: "#b45f06",
+      fontSize: "12px",
+      fontWeight: 600,
+      padding: "4px 12px",
+      borderRadius: "100px",
+    },
+    comingSoon: {
+      display: "inline-block",
+      background: "#eeeeee",
+      color: "#555",
       fontSize: "12px",
       fontWeight: 600,
       padding: "4px 12px",
@@ -517,10 +542,18 @@ export default function TrainingPage() {
       noCoding: true,
     },
     {
+      color: "#C2410C",
+      type: "IAM Engineering",
+      title: "IAM Engineering",
+      desc: "A senior, hands-on path into IAM. Involves coding and scripting.",
+      codingRequired: true,
+    },
+    {
       color: "#533AB7",
       type: "Full Stack",
       title: "Full Stack Engineering",
       desc: "Frontend + backend development combined.",
+      comingSoon: true,
     },
   ];
 
@@ -529,9 +562,12 @@ export default function TrainingPage() {
       {/* HERO SECTION */}
       <div style={s.hero}>
         <div style={s.tag}>Free technology training</div>
-        <h1 style={s.h1}>A digital skill can change the entire trajectory of a life.</h1>
+        <h1 style={s.h1}>
+          A digital skill can change the entire trajectory of a life.
+        </h1>
         <p style={s.heroP}>
-          Direct Impact offers free cybersecurity and technology courses. No card. No catch. No coding required to get started.
+          Direct Impact offers free cybersecurity and technology courses. No
+          card. No catch. No coding required to get started.
         </p>
         <a href="#apply-form" style={s.freeTag}>
           Learn more
@@ -545,7 +581,8 @@ export default function TrainingPage() {
       <div style={s.section}>
         <h2 style={s.sectionTitle}>Choose your pathway</h2>
         <p style={s.sectionSub}>
-          Cybersecurity is a mile wide. Not every path requires coding. Here are the pathways available to you right now.
+          Cybersecurity is a mile wide. Not every path requires coding. Here are
+          the pathways available to you right now.
         </p>
 
         <div style={s.courseGrid}>
@@ -554,7 +591,15 @@ export default function TrainingPage() {
               <div style={courseTag(c.color)}>{c.type}</div>
               <div style={s.courseTitle}>{c.title}</div>
               <div style={s.courseDesc}>{c.desc}</div>
-              {c.noCoding && <div style={s.noCoding}>No coding required</div>}
+              {c.noCoding && (
+                <div style={s.noCoding}>No coding required</div>
+              )}
+              {c.codingRequired && (
+                <div style={s.codingRequired}>Coding required</div>
+              )}
+              {c.comingSoon && (
+                <div style={s.comingSoon}>Coming soon</div>
+              )}
             </div>
           ))}
         </div>
@@ -562,10 +607,15 @@ export default function TrainingPage() {
         {/* STORY BLOCK */}
         <div style={s.storyBlock}>
           <div style={s.storyQ}>
-            &quot;I started as a cleaner. Today I hold a CISSP qualification, one of the most respected certifications in global cybersecurity.&quot;
+            &quot;I started as a cleaner. Today I hold a CISSP qualification,
+            one of the most respected certifications in global
+            cybersecurity.&quot;
           </div>
           <p style={s.storyP}>
-            The founder of Direct Impact built a career in technology from scratch. The training is built on the same belief: that where you start does not determine where you end up. You just need the right path and someone to show it to you.
+            The founder of Direct Impact built a career in technology from
+            scratch. The training is built on the same belief: that where you
+            start does not determine where you end up. You just need the right
+            path and someone to show it to you.
           </p>
           <a href="#apply-form" style={s.storyBtn}>
             Learn more
@@ -573,51 +623,125 @@ export default function TrainingPage() {
         </div>
 
         {/* VOCATIONAL CTA */}
-        <div style={{ background: "#fdf6f6", borderRadius: "12px", padding: "40px", marginBottom: "40px", textAlign: "center" }}>
-          <div style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: "#7B1E1E", marginBottom: "12px" }}>
+        <div
+          style={{
+            background: "#fdf6f6",
+            borderRadius: "12px",
+            padding: "40px",
+            marginBottom: "40px",
+            textAlign: "center",
+          }}
+        >
+          <div
+            style={{
+              fontSize: "12px",
+              fontWeight: 700,
+              letterSpacing: "2px",
+              textTransform: "uppercase",
+              color: "#7B1E1E",
+              marginBottom: "12px",
+            }}
+          >
             Also available
           </div>
-          <h3 style={{ fontSize: "22px", fontWeight: 700, marginBottom: "12px", color: "#1a1a1a" }}>
+          <h3
+            style={{
+              fontSize: "22px",
+              fontWeight: 700,
+              marginBottom: "12px",
+              color: "#1a1a1a",
+            }}
+          >
             Prefer hands-on skills?
           </h3>
-          <p style={{ fontSize: "15px", color: "#555", lineHeight: 1.7, maxWidth: "480px", margin: "0 auto 24px" }}>
-            Our vocational sewing and tailoring programme is coming soon. Register your interest
-            now and we will contact you as soon as we are ready to launch.
+          <p
+            style={{
+              fontSize: "15px",
+              color: "#555",
+              lineHeight: 1.7,
+              maxWidth: "480px",
+              margin: "0 auto 24px",
+            }}
+          >
+            Our vocational sewing and tailoring programme is coming soon.
+            Register your interest now and we will contact you as soon as we
+            are ready to launch.
           </p>
-          <a href="/vocational-training" style={{ display: "inline-block", background: "#7B1E1E", color: "#fff", padding: "14px 32px", borderRadius: "100px", fontWeight: 600, fontSize: "15px", textDecoration: "none" }}>
+          <Link
+            href="/vocational-training"
+            style={{
+              display: "inline-block",
+              background: "#7B1E1E",
+              color: "#fff",
+              padding: "14px 32px",
+              borderRadius: "100px",
+              fontWeight: 600,
+              fontSize: "15px",
+              textDecoration: "none",
+            }}
+          >
             Explore vocational training
-          </a>
+          </Link>
         </div>
 
         {/* FORM BLOCK / AWAITING FUNDING SECTION */}
         <div id="apply-form" style={s.formCard}>
           {!showForm ? (
             <div>
-              <h3 style={s.formTitle}>Awaiting funding.*</h3>
+              <h3 style={s.formTitle}>Applications open soon.</h3>
               <p style={s.formSub}>
-                Keep watching this space for the latest update.
+                Watch this space, we will announce here the moment funded places
+                become available.
               </p>
             </div>
           ) : (
             <div>
-              <h3 style={{ ...s.formTitle, color: "#1a1a1a", textAlign: "left" }}>Apply for a funded place</h3>
-              <p style={{ ...s.formSub, textAlign: "left", marginBottom: "32px" }}>
-                Direct Impact has a limited number of fully funded training places available. If cost is a barrier, apply here and we will be in touch.
+              <h3
+                style={{
+                  ...s.formTitle,
+                  color: "#1a1a1a",
+                  textAlign: "left",
+                }}
+              >
+                Apply for a funded place
+              </h3>
+              <p
+                style={{
+                  ...s.formSub,
+                  textAlign: "left",
+                  marginBottom: "32px",
+                }}
+              >
+                Direct Impact has a limited number of fully funded training
+                places available. If cost is a barrier, apply here and we will
+                be in touch.
               </p>
               {submitted ? (
                 <div style={s.successBox}>
-                  <p style={{ fontSize: "18px", fontWeight: 600, color: "#2e7d32", marginBottom: "8px" }}>Application received.</p>
-                  <p style={{ fontSize: "15px", color: "#444" }}>We will review your application and be in touch within five working days.</p>
+                  <p
+                    style={{
+                      fontSize: "18px",
+                      fontWeight: 600,
+                      color: "#2e7d32",
+                      marginBottom: "8px",
+                    }}
+                  >
+                    Application received.
+                  </p>
+                  <p style={{ fontSize: "15px", color: "#444" }}>
+                    We will review your application and be in touch within five
+                    working days.
+                  </p>
                 </div>
               ) : (
-                <div style={{ textAlign: "left" }}>
+                <form onSubmit={handleSubmit} style={{ textAlign: "left" }}>
                   {/* NAME INPUT */}
                   <label style={s.label}>Full name</label>
                   <input
                     style={{
                       ...s.input,
                       borderColor: errors.name ? "#d32f2f" : "#ddd",
-                      marginBottom: errors.name ? "0" : "16px"
+                      marginBottom: errors.name ? "0" : "16px",
                     }}
                     value={form.name}
                     onChange={(e) => {
@@ -626,15 +750,18 @@ export default function TrainingPage() {
                     }}
                     placeholder="Your name"
                   />
-                  {errors.name && <span style={s.errorText}>{errors.name}</span>}
-                  
+                  {errors.name && (
+                    <span style={s.errorText}>{errors.name}</span>
+                  )}
+
                   {/* EMAIL INPUT */}
                   <label style={s.label}>Email address</label>
                   <input
+                    type="email"
                     style={{
                       ...s.input,
                       borderColor: errors.email ? "#d32f2f" : "#ddd",
-                      marginBottom: errors.email ? "0" : "16px"
+                      marginBottom: errors.email ? "0" : "16px",
                     }}
                     value={form.email}
                     onChange={(e) => {
@@ -643,15 +770,17 @@ export default function TrainingPage() {
                     }}
                     placeholder="your@email.com"
                   />
-                  {errors.email && <span style={s.errorText}>{errors.email}</span>}
-                  
+                  {errors.email && (
+                    <span style={s.errorText}>{errors.email}</span>
+                  )}
+
                   {/* COURSE SELECT */}
                   <label style={s.label}>Which course interests you?</label>
                   <select
                     style={{
                       ...s.select,
                       borderColor: errors.course ? "#d32f2f" : "#ddd",
-                      marginBottom: errors.course ? "0" : "16px"
+                      marginBottom: errors.course ? "0" : "16px",
                     }}
                     value={form.course}
                     onChange={(e) => {
@@ -662,31 +791,43 @@ export default function TrainingPage() {
                     <option value="">Select a course</option>
                     <option>Identity and Access Management (IAM)</option>
                     <option>Governance Risk and Compliance (GRC)</option>
+                    <option>IAM Engineering</option>
                     <option>Full Stack Engineering</option>
                   </select>
-                  {errors.course && <span style={s.errorText}>{errors.course}</span>}
-                  
+                  {errors.course && (
+                    <span style={s.errorText}>{errors.course}</span>
+                  )}
+
                   {/* BACKGROUND TEXTAREA */}
-                  <label style={s.label}>Tell us briefly about your background</label>
+                  <label style={s.label}>
+                    Tell us briefly about your background
+                  </label>
                   <textarea
                     style={{
                       ...s.textarea,
                       borderColor: errors.background ? "#d32f2f" : "#ddd",
-                      marginBottom: errors.background ? "0" : "16px"
+                      marginBottom: errors.background ? "0" : "16px",
                     }}
                     value={form.background}
                     onChange={(e) => {
                       setForm({ ...form, background: e.target.value });
-                      if (errors.background) setErrors({ ...errors, background: "" });
+                      if (errors.background)
+                        setErrors({ ...errors, background: "" });
                     }}
                     placeholder="A few sentences about where you are now and why you want to learn"
                   />
-                  {errors.background && <span style={s.errorText}>{errors.background}</span>}
-                  
-                  <button style={s.btnRed} onClick={handleSubmit} disabled={sending}>
+                  {errors.background && (
+                    <span style={s.errorText}>{errors.background}</span>
+                  )}
+
+                  <button
+                    type="submit"
+                    style={s.btnRed}
+                    disabled={sending}
+                  >
                     {sending ? "Sending..." : "Submit application"}
                   </button>
-                </div>
+                </form>
               )}
             </div>
           )}
