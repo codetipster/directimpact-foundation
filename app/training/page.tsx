@@ -353,16 +353,18 @@ export default function TrainingPage() {
       maxWidth: "620px",
     },
     courseGrid: {
-  display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))",
-  gap: "16px",
-  margin: "32px 0 56px",
-},
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))",
+      gap: "16px",
+      margin: "32px 0 56px",
+    },
     courseCardBase: {
       background: "#fff",
       borderRadius: "0 0 12px 12px",
       border: "1px solid #e5e5e5",
       padding: "28px 24px",
+      display: "flex",
+      flexDirection: "column",
     },
     courseTitle: {
       fontSize: "17px",
@@ -377,6 +379,8 @@ export default function TrainingPage() {
     },
     noCoding: {
       display: "inline-block",
+      alignSelf: "flex-start",
+      marginTop: "auto",
       background: "#e8f5e9",
       color: "#2e7d32",
       fontSize: "12px",
@@ -386,6 +390,8 @@ export default function TrainingPage() {
     },
     codingRequired: {
       display: "inline-block",
+      alignSelf: "flex-start",
+      marginTop: "auto",
       background: "#fdeee0",
       color: "#b45f06",
       fontSize: "12px",
@@ -395,6 +401,8 @@ export default function TrainingPage() {
     },
     comingSoon: {
       display: "inline-block",
+      alignSelf: "flex-start",
+      marginTop: "auto",
       background: "#eeeeee",
       color: "#555",
       fontSize: "12px",

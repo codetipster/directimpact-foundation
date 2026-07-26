@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import type { CSSProperties } from "react";
 
@@ -76,6 +77,19 @@ export default function PartnershipPage() {
     partnerTitle: { fontSize: '17px', fontWeight: 600, marginBottom: '10px', color: '#1a1a1a' },
     partnerDesc: { fontSize: '14px', color: '#555', lineHeight: 1.65 },
     pullquote: { background: '#faf5f0', borderLeft: '4px solid #7B1E1E', borderRadius: '0 12px 12px 0', padding: '32px 40px', margin: '48px 0', fontFamily: 'Georgia, serif', fontSize: '20px', lineHeight: 1.65, color: '#2a2a2a', fontStyle: 'italic' },
+
+    // Why Partner With Us
+    benefitList: { margin: '32px 0 56px', display: 'flex', flexDirection: 'column', gap: '20px' },
+    benefitItem: { display: 'flex', gap: '14px', alignItems: 'flex-start' },
+    benefitDot: { width: '8px', height: '8px', borderRadius: '50%', background: '#7B1E1E', marginTop: '7px', flexShrink: 0 },
+    benefitText: { fontSize: '15px', color: '#333', lineHeight: 1.7 },
+
+    // What your partnership can achieve
+    outcomeGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px', margin: '32px 0 56px' },
+    outcomeCard: { background: '#fff', border: '2px solid #7B1E1E', borderRadius: '12px', padding: '28px 24px' },
+    outcomeAmount: { fontSize: '30px', fontWeight: 700, color: '#7B1E1E', fontFamily: 'Georgia, serif', marginBottom: '10px' },
+    outcomeDesc: { fontSize: '14px', color: '#444', lineHeight: 1.65 },
+
     formCard: { background: '#f9f9f9', borderRadius: '12px', padding: '48px 40px', marginTop: '48px' },
     formTitle: { fontSize: '22px', fontWeight: 400, fontFamily: 'Georgia, serif', marginBottom: '8px' },
     formSub: { fontSize: '15px', color: '#666', marginBottom: '32px', lineHeight: 1.6 },
@@ -100,7 +114,23 @@ export default function PartnershipPage() {
     { color: '#185FA5', type: 'Corporate partners', title: 'CSR with measurable impact', desc: 'Partner with us to fulfil your social responsibility commitments with documented, community-level outcomes across Nigeria.' },
     { color: '#7B1E1E', type: 'Individual donors', title: 'Walk alongside someone', desc: '$200 covers one complete journey from crisis to independence. $70 covers emergency relief. Every amount is tracked and reported.' },
   ];
-  
+
+  const benefits = [
+    { title: 'Independently vetted.', desc: "We hold GlobalGiving\u2019s Vetted Organisation, Top-Ranked Organisation, and Effective Organisation badges, third-party verification of how funds are used and tracked, not just our own word for it." },
+    { title: 'Dual registration.', desc: 'Direct Impact Empowerment Foundation is registered in Nigeria (CAC/IT/7420254) and Switzerland (CHE-415.427.651), giving partners a recognised legal entity on both sides.' },
+    { title: 'Named financial accountability.', desc: 'Ayodele Ajanaku, an ACCA-certified accountant, serves as our accountant. There is a named, qualified person behind every set of figures we publish.' },
+    { title: 'Execution on the ground, oversight from outside it.', desc: 'Reuben Eka, our In-Country CEO, runs day-to-day delivery in Ibadan. Founder Femi Adeyemo directs strategy and funding from Zurich, so every partnership has both grounded execution and independent oversight.' },
+    { title: 'Documented, not staged.', desc: 'Every story we publish is a real beneficiary, filmed as it happened, with consent. No stock photography, no composited images, no invented testimonials.' },
+    { title: 'Live public reporting.', desc: 'Our GlobalGiving project pages carry ongoing, independently hosted updates, so partners can check progress at any time without waiting on us to send a report.' },
+  ];
+
+  const outcomes = [
+    { amount: '$70', desc: 'Funds one emergency relief package for a family in crisis, the first step of our Crisis Response stage.' },
+    { amount: '$200', desc: "Funds one person\u2019s complete journey, from crisis response through to sustained independence." },
+    { amount: '$1,000', desc: 'Funds five complete journeys, five people moved from crisis to a livelihood they run themselves.' },
+    { amount: '$15,000', desc: 'Funds our current Christmas Lifeline campaign in full, relief packages for 220 families across Nigeria.' },
+  ];
+
   const getDipCard = (i: number): CSSProperties => ({
     background: ["#7B1E1E", "#9B2E2E", "#B84040", "#D05050"][i],
     color: "#fff",
@@ -159,7 +189,7 @@ export default function PartnershipPage() {
             </div>
           ))}
         </div>
-    
+
         <p style={{ fontSize: '14px', color: '#888', fontStyle: 'italic', textAlign: 'center', marginTop: '-24px', marginBottom: '48px' }}>
           Every beneficiary journey is recorded internally. These four represent the stories we have chosen to share publicly in full.
         </p>
@@ -168,7 +198,31 @@ export default function PartnershipPage() {
           &quot;We found an elderly man who had lost his kneecap in an accident. We gave him emergency cash to survive. He used it to buy coal to resell. When we heard that, we came back with three sacks of coal and the capital to trade properly. That is what we mean when we say we do not give people charity. We give them the conditions to show us who they already are.&quot;
         </div>
 
-        <h2 style={s.sectionTitle}>Ways to partner with us</h2>
+        <h2 style={s.sectionTitle}>Why Partner With Us</h2>
+        <p style={s.sectionSub}>There are a lot of places to put your money or your name. Here is what makes this one different.</p>
+
+        <div style={s.benefitList}>
+          {benefits.map((b) => (
+            <div key={b.title} style={s.benefitItem}>
+              <div style={s.benefitDot} />
+              <div style={s.benefitText}><strong>{b.title}</strong> {b.desc}</div>
+            </div>
+          ))}
+        </div>
+
+        <h2 style={s.sectionTitle}>What Your Partnership Can Achieve</h2>
+        <p style={s.sectionSub}>Every figure below ties directly to a real cost in our current work, not an estimate.</p>
+
+        <div style={s.outcomeGrid}>
+          {outcomes.map((o) => (
+            <div key={o.amount} style={s.outcomeCard}>
+              <div style={s.outcomeAmount}>{o.amount}</div>
+              <div style={s.outcomeDesc}>{o.desc}</div>
+            </div>
+          ))}
+        </div>
+
+        <h2 style={s.sectionTitle}>Partnership Options</h2>
         <p style={s.sectionSub}>Whether you are a grant maker, a corporate with CSR commitments, or an individual donor, there is a meaningful way to be part of this work.</p>
 
         <div style={s.partnerGrid}>

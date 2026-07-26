@@ -9,7 +9,7 @@ const navItems = [
   { 
     label: "About Us", 
     children: [
-      { label: " Direct Impact Empowerment", href: "/about" },
+      { label: "Direct Impact Empowerment", href: "/about" },
     ]
   },
   {
@@ -19,7 +19,8 @@ const navItems = [
       { label: "Digital Training", href: "/training" },
     ],
   },
-  { label: "GlobalGiving", href: "/globalgiving" }, // Added GlobalGiving here
+  { label: "Impact", href: "/impact" }, // Added Impact page here
+  { label: "GlobalGiving", href: "/globalgiving" },
   { label: "Founder Visit", href: "/founder-visit" },
   { label: "Partners", href: "/partners" },
 ];
@@ -58,7 +59,7 @@ export function Navigation() {
           </Link>
 
           {/* Desktop Nav Items */}
-          <div className="hidden md:flex items-center gap-10">
+          <div className="hidden md:flex items-center gap-8 lg:gap-10">
             {navItems.map((item) =>
               item.children ? (
                 <div 
@@ -122,6 +123,7 @@ export function Navigation() {
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden p-2 text-gray-600"
+            aria-label="Toggle Navigation Menu"
           >
             {isMobileMenuOpen ? (
               <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
