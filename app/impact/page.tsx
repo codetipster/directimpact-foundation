@@ -53,9 +53,9 @@ export default function ImpactPage() {
     ctaCard: { background: '#7B1E1E', color: '#fff', borderRadius: '16px', padding: '48px 32px', textAlign: 'center', marginTop: '64px' },
     ctaTitle: { fontSize: '28px', fontFamily: 'Georgia, serif', fontWeight: 400, marginBottom: '14px' },
     ctaP: { fontSize: '16px', color: 'rgba(255,255,255,0.85)', maxWidth: '520px', margin: '0 auto 28px', lineHeight: 1.6 },
-    ctaBtnRow: { display: 'flex', gap: '16px', justifyCenter: 'center', flexWrap: 'wrap', justifyContent: 'center' },
+    ctaBtnRow: { display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' },
     btnWhite: { background: '#fff', color: '#7B1E1E', padding: '14px 32px', borderRadius: '100px', fontSize: '14px', fontWeight: 700, textDecoration: 'none', display: 'inline-block' },
-    btnOutline: { background: 'transparent', color: '#fff', border: '2px solid rgba(255,255,255,0.4)', padding: '12px 32px', borderRadius: '100px', fontSize: '14px', fontWeight: 700, textDecoration: 'none', display: 'inline-block' },
+    btnOutline: { background: 'transparent', color: '#fff', border: '2px solid rgba(255,255,255,0.4)', padding: '12px 32px', borderRadius: '100px', fontSize: '14px', fontWeight 700, textDecoration: 'none', display: 'inline-block' },
   };
 
   const metrics = [
