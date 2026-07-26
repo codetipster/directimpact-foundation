@@ -55,7 +55,7 @@ export default function ImpactPage() {
     ctaP: { fontSize: '16px', color: 'rgba(255,255,255,0.85)', maxWidth: '520px', margin: '0 auto 28px', lineHeight: 1.6 },
     ctaBtnRow: { display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' },
     btnWhite: { background: '#fff', color: '#7B1E1E', padding: '14px 32px', borderRadius: '100px', fontSize: '14px', fontWeight: 700, textDecoration: 'none', display: 'inline-block' },
-    btnOutline: { background: 'transparent', color: '#fff', border: '2px solid rgba(255,255,255,0.4)', padding: '12px 32px', borderRadius: '100px', fontSize: '14px', fontWeight 700, textDecoration: 'none', display: 'inline-block' },
+    btnOutline: { background: 'transparent', color: '#fff', border: '2px solid rgba(255,255,255,0.4)', padding: '12px 32px', borderRadius: '100px', fontSize: '14px', fontWeight: 700, textDecoration: 'none', display: 'inline-block' },
   };
 
   const metrics = [
@@ -76,7 +76,7 @@ export default function ImpactPage() {
     {
       category: 'video',
       tag: 'Video Journey',
-      title: 'Baba\u2019s Coal Trade Restart',
+      title: 'Baba’s Coal Trade Restart',
       desc: 'After losing his kneecap in an accident, an elderly father used emergency relief cash to trade coal. We returned with 3 sacks of coal and full trading capital to establish his shop.',
       outcome: 'Self-sufficient trader in Ibadan',
     },
@@ -98,7 +98,7 @@ export default function ImpactPage() {
 
   const filteredStories = activeTab === 'all' 
     ? stories 
-    : stories.filter(s => s.category === activeTab);
+    : stories.filter(st => st.category === activeTab);
 
   return (
     <div style={s.page}>
