@@ -3,6 +3,7 @@
 import React from "react";
 import type { CSSProperties } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function OurImpactPage() {
   const s: Record<string, CSSProperties> = {
@@ -62,7 +63,7 @@ export default function OurImpactPage() {
       width: "100%", height: "100%", border: "none", display: "block",
     },
     cardImageWrap: {
-      width: "100%", aspectRatio: "16 / 9", background: "#f2ede9", overflow: "hidden",
+      width: "100%", aspectRatio: "16 / 9", background: "#f2ede9", overflow: "hidden", position: "relative",
     },
     cardImage: { width: "100%", height: "100%", objectFit: "cover", display: "block" },
     cardBody: { padding: "20px 22px 24px", display: "flex", flexDirection: "column", flexGrow: 1 },
@@ -81,7 +82,7 @@ export default function OurImpactPage() {
       gap: "16px", marginBottom: "40px",
     },
     statCard: { background: "#fff", borderRadius: "12px", padding: "20px", textAlign: "center" },
-    statNumber: { fontSize: "26px", fontWeight 700, color: "#7B1E1E", fontFamily: "Georgia, serif" },
+    statNumber: { fontSize: "26px", fontWeight: 700, color: "#7B1E1E", fontFamily: "Georgia, serif" },
     statLabel: { fontSize: "13px", color: "#666", marginTop: "4px" },
     trustItem: { display: "flex", gap: "14px", marginBottom: "22px", alignItems: "flex-start" },
     trustDot: {
@@ -186,7 +187,12 @@ export default function OurImpactPage() {
           {photoStories.map((story, i) => (
             <div key={i} style={s.card}>
               <div style={s.cardImageWrap}>
-                <img src={story.image} alt={story.name} style={s.cardImage} />
+                <Image
+                  src={story.image}
+                  alt={story.name}
+                  fill
+                  style={{ objectFit: "cover" }}
+                />
               </div>
               <div style={s.cardBody}>
                 <div style={s.cardStage}>{story.stage}</div>
