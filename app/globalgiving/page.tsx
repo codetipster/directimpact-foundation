@@ -7,14 +7,25 @@ export const metadata: Metadata = {
     "Direct Impact Empowerment Foundation is independently vetted through GlobalGiving, the world's largest crowdfunding community for nonprofits.",
 };
 
-const projects = [
+interface Project {
+  id: string;
+  tag: string;
+  title: string;
+  description: string;
+  image?: string;
+  videoId?: string;
+  link: string;
+  stats: { num: string; label: string }[];
+}
+
+const projects: Project[] = [
   {
     id: "76936",
     tag: "Active Project",
     title: "Sponsor 10 Nigerian Women into a Tech Career",
     description:
       "Fund hands-on IAM and GRC training for women in Nigeria, giving them the skills and certification path to move into real tech careers and achieve lasting financial independence.",
-    image: "/project-76936.jpeg",
+    image: "/digital-training.png",
     link: "https://www.globalgiving.org/projects/76936",
     stats: [
       { num: "10", label: "Women Sponsored" },
@@ -27,7 +38,7 @@ const projects = [
     title: "A Christmas Lifeline for 220 Nigerian Families",
     description:
       "Provide essential food supplies, holiday support, and immediate relief packages to 220 vulnerable families in Nigeria during the festive season to ensure no family goes hungry.",
-    image: "/christmas-lifeline.jpeg",
+    videoId: "SL9qvoRcFDM",
     link: "https://www.globalgiving.org/projects/a-christmas-lifeline-for-220-nigerian-families/",
     stats: [
       { num: "220", label: "Families to Support" },
@@ -112,15 +123,27 @@ export default function GlobalGivingPage() {
               key={project.id}
               className="flex flex-col overflow-hidden rounded-lg border border-[#ddd] border-t-4 border-t-[#7B1E1E] bg-white shadow-sm transition-all hover:shadow-md"
             >
-              {/* Project Card Image */}
-              <div className="relative h-52 w-full bg-[#eef0f2]">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover"
-                />
-              </div>
+              {/* Project Card Media (Embedded Video or Image) */}
+              {project.videoId ? (
+                <div className="relative h-52 w-full overflow-hidden bg-black">
+                  <iframe
+                    className="h-full w-full border-0"
+                    src={`https://www.youtube.com/embed/${project.videoId}`}
+                    title={project.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              ) : (
+                <div className="relative h-52 w-full bg-[#eef0f2]">
+                  <Image
+                    src={project.image!}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              )}
 
               {/* Project Card Content */}
               <div className="flex flex-1 flex-col p-6">

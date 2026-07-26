@@ -1,12 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import type { CSSProperties } from "react";
 import Link from "next/link";
 
 export default function OurImpactPage() {
-  const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
-
   const s: Record<string, CSSProperties> = {
     page: { fontFamily: "Arial, sans-serif", background: "#fff", color: "#1a1a1a", margin: 0, padding: 0 },
 
@@ -36,17 +34,35 @@ export default function OurImpactPage() {
       fontSize: "clamp(22px, 3.5vw, 32px)", fontWeight: 400, fontFamily: "Georgia, serif",
       textAlign: "center", marginBottom: "48px", color: "#1a1a1a",
     },
-
-    // Stories Grid
-    storiesGrid: {
-      display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "28px",
+    subSectionTitle: {
+      fontSize: "20px", fontWeight: 600, fontFamily: "Georgia, serif",
+      marginBottom: "24px", color: "#1a1a1a", borderBottom: "2px solid #7B1E1E15",
+      paddingBottom: "8px",
     },
+
+    // Video Stories Grid (3 items row)
+    videoGrid: {
+      display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "28px",
+      marginBottom: "56px",
+    },
+
+    // Photo Stories Grid (2 items row)
+    photoGrid: {
+      display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "28px",
+    },
+
     card: {
       border: "1px solid #eee", borderRadius: "14px", overflow: "hidden", background: "#fff",
       boxShadow: "0 1px 3px rgba(0,0,0,0.06)", display: "flex", flexDirection: "column",
     },
+    videoIframeWrap: {
+      width: "100%", aspectRatio: "16 / 9", background: "#000", overflow: "hidden",
+    },
+    videoIframe: {
+      width: "100%", height: "100%", border: "none", display: "block",
+    },
     cardImageWrap: {
-      width: "100%", aspectRatio: "16 / 9", background: "#f2ede9", overflow: "hidden", position: "relative",
+      width: "100%", aspectRatio: "16 / 9", background: "#f2ede9", overflow: "hidden",
     },
     cardImage: { width: "100%", height: "100%", objectFit: "cover", display: "block" },
     cardBody: { padding: "20px 22px 24px", display: "flex", flexDirection: "column", flexGrow: 1 },
@@ -56,38 +72,6 @@ export default function OurImpactPage() {
     },
     cardName: { fontSize: "18px", fontWeight: 700, fontFamily: "Georgia, serif", marginBottom: "10px", color: "#1a1a1a" },
     cardText: { fontSize: "14.5px", color: "#444", lineHeight: 1.7, flexGrow: 1 },
-    
-    // Video Link & Buttons
-    btnRow: { display: "flex", alignItems: "center", gap: "12px", marginTop: "16px", flexWrap: "wrap" },
-    playBtn: {
-      display: "inline-flex", alignItems: "center", gap: "8px",
-      fontSize: "13.5px", fontWeight: 600, color: "#fff", background: "#7B1E1E",
-      padding: "8px 16px", borderRadius: "100px", border: "none", cursor: "pointer",
-    },
-    ytLink: {
-      fontSize: "13px", fontWeight: 600, color: "#7B1E1E", textDecoration: "none",
-      display: "inline-flex", alignItems: "center", gap: "6px",
-    },
-    playCircle: {
-      width: "18px", height: "18px", borderRadius: "50%", background: "rgba(255,255,255,0.3)",
-      display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
-    },
-
-    // Video Modal
-    modalOverlay: {
-      position: "fixed", top: 0, left: 0, right: 0, bottom: 0,
-      background: "rgba(0, 0, 0, 0.85)", display: "flex", alignItems: "center", justifyContent: "center",
-      zIndex: 1000, padding: "20px",
-    },
-    modalContent: {
-      position: "relative", width: "100%", maxWidth: "800px", aspectRatio: "16 / 9",
-      background: "#000", borderRadius: "12px", overflow: "hidden",
-    },
-    closeBtn: {
-      position: "absolute", top: "12px", right: "16px", background: "rgba(0,0,0,0.6)",
-      border: "none", color: "#fff", fontSize: "24px", cursor: "pointer", borderRadius: "50%",
-      width: "36px", height: "36px", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 10,
-    },
 
     // Financial transparency
     trustSection: { background: "#f9f4f1", padding: "72px 24px" },
@@ -97,7 +81,7 @@ export default function OurImpactPage() {
       gap: "16px", marginBottom: "40px",
     },
     statCard: { background: "#fff", borderRadius: "12px", padding: "20px", textAlign: "center" },
-    statNumber: { fontSize: "26px", fontWeight: 700, color: "#7B1E1E", fontFamily: "Georgia, serif" },
+    statNumber: { fontSize: "26px", fontWeight 700, color: "#7B1E1E", fontFamily: "Georgia, serif" },
     statLabel: { fontSize: "13px", color: "#666", marginTop: "4px" },
     trustItem: { display: "flex", gap: "14px", marginBottom: "22px", alignItems: "flex-start" },
     trustDot: {
@@ -119,41 +103,39 @@ export default function OurImpactPage() {
     },
   };
 
-  const stories = [
-    {
-      name: "Romoke",
-      stage: "Economic Restart",
-      text: "Empowered as a vendor in July 2023, Romoke has supplied every Christmas distribution since, turning early support into a lasting trade relationship with DIEF.",
-      image: "/images/impact/romoke.jpg",
-      videoId: null,
-    },
+  const videoStories = [
     {
       name: "An elderly man, restored",
       stage: "Crisis to Livelihood",
       text: "After losing his kneecap in an accident, we gave him emergency cash to survive. He used it to buy coal to resell. When we heard, we came back with three sacks of coal and the capital to trade properly, the conditions to show us who he already was.",
-      image: "https://img.youtube.com/vi/rIozP9B03vo/hqdefault.jpg",
       videoId: "rIozP9B03vo",
     },
     {
       name: "A grandmother, provided for",
       stage: "Sustained Independence",
       text: "Raising her grandchildren alone, she now runs a coal business built from the same model: relief first, then the capital and conditions to stand on her own.",
-      image: "https://img.youtube.com/vi/A0Pi8BNYuwE/hqdefault.jpg",
       videoId: "A0Pi8BNYuwE",
     },
     {
       name: "A pepper blending business, restarted",
       stage: "Economic Restart",
       text: "Supported through eye surgery, she moved from crisis into her own pepper blending trade, a small business she now runs and grows on her own terms.",
-      image: "https://img.youtube.com/vi/OmFWL_bqfGE/hqdefault.jpg",
       videoId: "OmFWL_bqfGE",
+    },
+  ];
+
+  const photoStories = [
+    {
+      name: "Romoke",
+      stage: "Economic Restart",
+      text: "Empowered as a vendor in July 2023, Romoke has supplied every Christmas distribution since, turning early support into a lasting trade relationship with DIEF.",
+      image: "/Romoke-story.png",
     },
     {
       name: "A sponsored trainee",
       stage: "Skills to Employment",
       text: '"I have learnt so much over these past weeks. The number of interviews I have had is incredible. I was actually offered a role, which was very encouraging, but unfortunately I could not accept it because of the distance. I am still very optimistic, and I am grateful for the sponsorship."',
-      image: "/images/impact/trainee.jpg",
-      videoId: null,
+      image: "/digital-training.png",
     },
   ];
 
@@ -174,8 +156,34 @@ export default function OurImpactPage() {
       <div style={s.section}>
         <div style={s.sectionTag}>Success Stories</div>
         <div style={s.sectionTitle}>From crisis to independence</div>
-        <div style={s.storiesGrid}>
-          {stories.map((story, i) => (
+
+        {/* 1. VIDEO JOURNEYS (3 Cards in one row) */}
+        <div style={s.subSectionTitle}>Video Journeys</div>
+        <div style={s.videoGrid}>
+          {videoStories.map((story, i) => (
+            <div key={i} style={s.card}>
+              <div style={s.videoIframeWrap}>
+                <iframe
+                  style={s.videoIframe}
+                  src={`https://www.youtube.com/embed/${story.videoId}`}
+                  title={story.name}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+              <div style={s.cardBody}>
+                <div style={s.cardStage}>{story.stage}</div>
+                <div style={s.cardName}>{story.name}</div>
+                <p style={s.cardText}>{story.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* 2. COMMUNITY & TRAINEE STORIES (2 Cards in one row) */}
+        <div style={s.subSectionTitle}>Community & Trainee Stories</div>
+        <div style={s.photoGrid}>
+          {photoStories.map((story, i) => (
             <div key={i} style={s.card}>
               <div style={s.cardImageWrap}>
                 <img src={story.image} alt={story.name} style={s.cardImage} />
@@ -184,55 +192,11 @@ export default function OurImpactPage() {
                 <div style={s.cardStage}>{story.stage}</div>
                 <div style={s.cardName}>{story.name}</div>
                 <p style={s.cardText}>{story.text}</p>
-                {story.videoId && (
-                  <div style={s.btnRow}>
-                    <button
-                      onClick={() => setActiveVideoId(story.videoId)}
-                      style={s.playBtn}
-                    >
-                      <span style={s.playCircle}>
-                        <svg width="9" height="9" viewBox="0 0 9 9" fill="none">
-                          <path d="M1.5 0.5L8 4.5L1.5 8.5V0.5Z" fill="#fff" />
-                        </svg>
-                      </span>
-                      Watch video
-                    </button>
-
-                    <a
-                      href={`https://www.youtube.com/watch?v=${story.videoId}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={s.ytLink}
-                    >
-                      Open on YouTube ↗
-                    </a>
-                  </div>
-                )}
               </div>
             </div>
           ))}
         </div>
       </div>
-
-      {/* VIDEO POPUP MODAL */}
-      {activeVideoId && (
-        <div style={s.modalOverlay} onClick={() => setActiveVideoId(null)}>
-          <div style={s.modalContent} onClick={(e) => e.stopPropagation()}>
-            <button style={s.closeBtn} onClick={() => setActiveVideoId(null)}>
-              ✕
-            </button>
-            <iframe
-              width="100%"
-              height="100%"
-              src={`https://www.youtube.com/embed/${activeVideoId}?autoplay=1`}
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-        </div>
-      )}
 
       {/* FINANCIAL TRANSPARENCY */}
       <div style={s.trustSection}>
