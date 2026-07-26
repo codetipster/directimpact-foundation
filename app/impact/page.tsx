@@ -109,7 +109,7 @@ export default function OurImpactPage() {
       name: "An elderly man, restored",
       stage: "Crisis to Livelihood",
       text: "After losing his kneecap in an accident, we gave him emergency cash to survive. He used it to buy coal to resell. When we heard, we came back with three sacks of coal and the capital to trade properly, the conditions to show us who he already was.",
-      videoId: "https:X_b-mH6ExI8",
+      videoId: "X_b-mH6ExI8",
     },
     {
       name: "A grandmother, provided for",
