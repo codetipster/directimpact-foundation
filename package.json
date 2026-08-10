@@ -11,6 +11,7 @@
     "deploy": "npm run clean && next build && aws s3 sync out s3://directimpactempowerment.org --acl public-read --delete && aws cloudfront create-invalidation --distribution-id E3GB7CH29DCI1Z --paths \"/*\""
   },
   "dependencies": {
+    "@next/third-parties": "^16.3.0",
     "@radix-ui/react-slot": "^1.1.1",
     "@radix-ui/react-tabs": "^1.1.2",
     "class-variance-authority": "^0.7.1",
