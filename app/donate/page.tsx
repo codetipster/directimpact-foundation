@@ -2,6 +2,14 @@
 
 import React, { useEffect, useState } from 'react';
 
+// Extend Window interface for TypeScript
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+    trackAdConversion?: () => void;
+  }
+}
+
 export default function DonatePage() {
   const [showThankYou, setShowThankYou] = useState(false);
 
@@ -11,12 +19,21 @@ export default function DonatePage() {
     window.location.href = 'https://www.directimpactempowerment.org/';
   };
 
-  // Checks URL parameters on load & manages auto-close timer
+  // Checks URL parameters on load, triggers conversion tag & manages auto-close timer
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
       if (params.get('status') === 'success' || params.get('success') === 'true') {
         setShowThankYou(true);
+
+        // 🎯 FIRE GOOGLE ADS CONVERSION TAG
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'conversion', {
+            'send_to': 'AW-18051879035/_4ofCMbc19YcEPug559D'
+          });
+        } else if (typeof window.trackAdConversion === 'function') {
+          window.trackAdConversion();
+        }
 
         // Auto-close after 1 minute (60,000 ms) and redirect to main website
         const timer = setTimeout(() => {
