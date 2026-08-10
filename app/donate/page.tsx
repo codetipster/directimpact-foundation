@@ -3,15 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
-// Extend Window interface for TypeScript
-declare global {
-  interface Window {
-    /* eslint-disable @typescript-eslint/no-explicit-any */
-    gtag?: (...args: any[]) => void;
-    trackAdConversion?: () => void;
-  }
-}
-
 export default function DonatePage() {
   const [showThankYou, setShowThankYou] = useState(false);
 
@@ -28,13 +19,17 @@ export default function DonatePage() {
       if (params.get('status') === 'success' || params.get('success') === 'true') {
         setShowThankYou(true);
 
+        // Safely access global window object properties using type casting
+        /* eslint-disable @typescript-eslint/no-explicit-any */
+        const win = window as any;
+
         // 🎯 FIRE GOOGLE ADS CONVERSION TAG
-        if (typeof window.gtag === 'function') {
-          window.gtag('event', 'conversion', {
+        if (typeof win.gtag === 'function') {
+          win.gtag('event', 'conversion', {
             'send_to': 'AW-18051879035/_4ofCMbc19YcEPug559D'
           });
-        } else if (typeof window.trackAdConversion === 'function') {
-          window.trackAdConversion();
+        } else if (typeof win.trackAdConversion === 'function') {
+          win.trackAdConversion();
         }
 
         // Auto-close after 1 minute (60,000 ms) and redirect to main website
