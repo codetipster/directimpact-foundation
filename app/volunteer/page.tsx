@@ -21,7 +21,17 @@ export default function BecomeAVolunteer() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       });
+      
       setSubmitted(true);
+
+      // 🎯 FIRE GOOGLE ADS VOLUNTEER CONVERSION TAG
+      /* eslint-disable @typescript-eslint/no-explicit-any */
+      const win = window as any;
+      if (typeof win.gtag === 'function') {
+        win.gtag('event', 'conversion', {
+          'send_to': 'AW-18051879035/sT7OCKuNy8scEPug559D'
+        });
+      }
     } catch {
       alert('Something went wrong. Please try again.');
     }
@@ -70,8 +80,8 @@ export default function BecomeAVolunteer() {
       margin: '0 auto',
     },
     teamPhoto: {
-	  position: 'relative',
-	  overflow: 'hidden',
+      position: 'relative',
+      overflow: 'hidden',
       width: '100%',
       height: '380px',
       background: '#f5eeee',
@@ -243,11 +253,11 @@ export default function BecomeAVolunteer() {
 
       <div style={s.teamPhoto}>
         <Image
-			src="/team-img.jpeg"
-			alt="team-img"
-            fill
-			className="object-cover"
-		  />
+          src="/team-img.jpeg"
+          alt="team-img"
+          fill
+          className="object-cover"
+        />
       </div>
 
       <div style={{ marginBottom: '64px' }}>
