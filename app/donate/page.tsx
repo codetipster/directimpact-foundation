@@ -1,11 +1,13 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 // Extend Window interface for TypeScript
 declare global {
   interface Window {
-    gtag?: (...args: unknown[]) => void;
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    gtag?: (...args: any[]) => void;
     trackAdConversion?: () => void;
   }
 }
@@ -573,10 +575,13 @@ export default function DonatePage() {
               rel="noopener noreferrer" 
               style={s.trustBadgeItem}
             >
-              <img
+              <Image
                 src="/Globalgivingbadge.jpeg"
                 alt="GlobalGiving Vetted Organization 2026"
+                width={28}
+                height={28}
                 style={{ width: '28px', height: 'auto', display: 'block' }}
+                unoptimized
               />
               <span style={s.trustBadgeText}>GlobalGiving 2026</span>
             </a>
@@ -587,11 +592,13 @@ export default function DonatePage() {
               rel="noopener noreferrer" 
               style={s.trustBadgeItem}
             >
-              <img
-                src="benevity-logo.png"
+              <Image
+                src="/benevity-logo.png"
                 alt="Listed on Benevity"
+                width={24}
+                height={24}
                 style={{ width: '24px', height: 'auto', display: 'block' }}
-                onError={(e) => { e.currentTarget.src = "/Globalgivingbadge.jpeg"; }}
+                unoptimized
               />
               <span style={s.trustBadgeText}>Listed on Benevity</span>
             </a>
@@ -732,10 +739,13 @@ export default function DonatePage() {
                 textDecoration: 'none',
               }}
             >
-              <img
+              <Image
                 src="/vetted.jpeg"
                 alt="GlobalGiving Vetted Organization 2026"
+                width={36}
+                height={36}
                 style={{ width: '36px', height: 'auto' }}
+                unoptimized
               />
               <span style={{ fontSize: '12px', fontWeight: 500, color: '#333' }}>
                 GlobalGiving 2026
@@ -756,11 +766,13 @@ export default function DonatePage() {
                 textDecoration: 'none',
               }}
             >
-              <img
-                src="benevity-logo.png"
+              <Image
+                src="/benevity-logo.png"
                 alt="Listed on Benevity"
+                width={28}
+                height={28}
                 style={{ width: '28px', height: 'auto' }}
-                onError={(e) => { e.currentTarget.src = "/Globalgivingbadge.jpeg"; }}
+                unoptimized
               />
               <span style={{ fontSize: '12px', fontWeight: 500, color: '#333' }}>
                 Listed on Benevity
