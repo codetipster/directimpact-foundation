@@ -32,7 +32,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <head>
+      <body className={inter.className}>
         {/* Google Ads Tag - Load script */}
         <Script
           strategy="afterInteractive"
@@ -47,8 +47,7 @@ export default function RootLayout({
             gtag('config', 'AW-18051879035');
           `}
         </Script>
-      </head>
-      <body className={inter.className}>
+
         <Navigation />
         {children}
         <Footer />
