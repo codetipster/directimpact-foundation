@@ -213,7 +213,7 @@ function DigitalEmpowermentSection() {
 // ==========================================
 export default function TrainingPage() {
   // Toggle this to `true` when you are ready to reopen the application form
-  const showForm = false;
+  const showForm = true;
 
   const [form, setForm] = useState({
     name: "",
