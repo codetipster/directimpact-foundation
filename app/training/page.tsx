@@ -576,9 +576,10 @@ export default function TrainingPage() {
         <p style={s.heroP}>
           Direct Impact offers free cybersecurity and technology courses. No
           card. No catch. No coding required to get started.
+          Limited space available.
         </p>
         <a href="#apply-form" style={s.freeTag}>
-          Learn more
+        Apply for a  funded place
         </a>
       </div>
 
@@ -626,7 +627,7 @@ export default function TrainingPage() {
             path and someone to show it to you.
           </p>
           <a href="#apply-form" style={s.storyBtn}>
-            Learn more
+            Apply for a  funded place
           </a>
         </div>
 
