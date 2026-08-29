@@ -1,151 +1,539 @@
-import { Playfair_Display, Source_Sans_3 } from 'next/font/google';
+"use client";
 
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  weight: ['600', '700'],
-  variable: '--font-playfair',
-});
+import React, { useState, useRef, CSSProperties, FormEvent } from "react";
 
-const sourceSans = Source_Sans_3({
-  subsets: ['latin'],
-  weight: ['400', '600', '700'],
-  variable: '--font-source-sans',
-});
+export default function SponsoredTrainingApplication() {
+  const [submitted, setSubmitted] = useState<boolean>(false);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [consentData, setConsentData] = useState<boolean>(false);
+  const [declaration, setDeclaration] = useState<boolean>(false);
+  const [showError, setShowError] = useState<boolean>(false);
 
-const coursesData = [
-  {
-    id: 'iam-analyst',
-    isOpen: true,
-    title: 'Identity and Access Management (IAM)',
-    description:
-      'A complete foundation in IAM covering concepts, tools, and real-world application. Leads to employability in one of the fastest-growing areas of cybersecurity.',
-    features: [
-      'Full curriculum access included',
-      'Fortnightly live support sessions',
-      'CV rewritten by hand',
-      'Unlimited mock interviews until first job secured',
-      'Market value: over $1,300',
-    ],
-  },
-  {
-    id: 'iam-engineering',
-    isOpen: true,
-    title: 'Identity and Access Management (IAM) Engineering',
-    description:
-      'A hands-on build, not theory and portal clicks. You engineer a live identity estate in Microsoft Entra ID and Okta: the directory, authentication protocols, Conditional Access, privileged access, entitlements, and the automation layer that ties it together. By the capstone, these labs add up to a portfolio project you can show an employer.',
-    features: [
-      'Full curriculum access included',
-      'Fortnightly live support sessions',
-      'CV rewritten by hand',
-      'Unlimited mock interviews until first job secured',
-      'Market value: over $1,300',
-    ],
-  },
-  {
-    id: 'grc',
-    isOpen: true,
-    title: 'Governance, Risk and Compliance (GRC)',
-    description:
-      'A structured GRC programme covering frameworks, risk assessment, and compliance operations. Prepares you for roles in risk management and organisational governance.',
-    features: [
-      'Full curriculum access included',
-      'Fortnightly live support sessions',
-      'CV rewritten by hand',
-      'Unlimited mock interviews until first job secured',
-      'Market value: over $1,300',
-    ],
-  },
-  {
-    id: 'full-stack',
-    isOpen: false,
-    title: 'Full Stack Engineering',
-    description:
-      'End-to-end web development. Applications will open once funding is secured for this track.',
-  },
-];
+  const errBoxRef = useRef<HTMLDivElement>(null);
 
-export default function CoursesSection() {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // Check required checkboxes per script logic
+    if (!consentData || !declaration) {
+      setShowError(true);
+      if (errBoxRef.current) {
+        errBoxRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      return;
+    }
+
+    setShowError(false);
+    setIsSubmitting(true);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        alert(
+          "There was a problem submitting your application. Please email femi@directimpactempowerment.org directly."
+        );
+      }
+    } catch (err) {
+      console.error("Submission error:", err);
+      alert(
+        "There was a problem submitting your application. Please email femi@directimpactempowerment.org directly."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const containerStyle: CSSProperties = {
+    "--crimson": "#7B1E1E",
+    "--crimson-dark": "#5a1515",
+    "--crimson-light": "#f5eaea",
+    "--gold": "#C8972A",
+    "--gold-light": "#fdf6e8",
+    "--navy": "#1a3a5c",
+    "--navy-light": "#e8eff7",
+    "--green": "#1a6b3a",
+    "--green-light": "#e8f5ee",
+    "--border": "#ddd",
+    "--muted": "#555",
+    "--radius": "8px",
+    "--shadow": "0 2px 12px rgba(0,0,0,0.08)",
+    backgroundColor: "#fafafa",
+    color: "#1a1a1a",
+    fontFamily: "Georgia, serif",
+    minHeight: "100vh",
+    lineHeight: 1.6,
+  } as CSSProperties;
+
   return (
-    <section
-      className={`${sourceSans.className} ${playfair.variable} bg-[#f7f6f4] px-6 py-16 md:pb-20`}
-    >
-      <div className="mx-auto max-w-[1200px]">
-        <div className="mb-3 text-[13px] font-bold uppercase tracking-[0.08em] text-[#7a1f1f]">
-          Available Courses
-        </div>
-        <h2 className="mb-5 font-serif text-[34px] font-bold text-[#1e3a5f]">
-          Three sponsored pathways currently open
-        </h2>
-        <p className="mb-10 max-w-[780px] text-[17px] leading-[1.6] text-[#333]">
-          Self-paced online, delivered by Betapersin, DIEF&apos;s sister commercial
-          training partner, led by a CISSP and Microsoft Identity and Access
-          Administrator{' '}
-          <span className="whitespace-nowrap">(SC-300)</span> certified
-          instructor with fifteen years in identity and security.
+    <div style={containerStyle}>
+      {/* Scoped CSS rules matching original layout */}
+      <style>{`
+        .fgrid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+        }
+        @media (max-width: 560px) {
+          .fgrid {
+            grid-template-columns: 1fr;
+          }
+        }
+        .fg-input {
+          font-family: Arial, sans-serif;
+          font-size: 14px;
+          color: #1a1a1a;
+          border: 1px solid var(--border);
+          border-radius: 6px;
+          padding: 10px 14px;
+          width: 100%;
+          transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .fg-input:focus {
+          outline: none;
+          border-color: var(--crimson);
+          box-shadow: 0 0 0 3px rgba(123, 30, 30, 0.1);
+        }
+        .fg-input[readonly] {
+          background: #f5f5f5;
+          color: var(--muted);
+          cursor: not-allowed;
+        }
+        textarea.fg-input {
+          resize: vertical;
+          min-height: 90px;
+        }
+        .checkbox-label {
+          display: flex;
+          align-items: flex-start;
+          gap: 10px;
+          font-family: Arial, sans-serif;
+          font-size: 13px;
+          color: #1a1a1a;
+          cursor: pointer;
+        }
+        .checkbox-label input[type="checkbox"] {
+          margin-top: 3px;
+          accent-color: var(--crimson);
+        }
+      `}</style>
+
+      {/* HERO */}
+      <div style={{ background: "var(--crimson)", padding: "56px 24px 48px", textAlign: "center" }}>
+        <p style={{ fontFamily: "Arial, sans-serif", fontSize: "11px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#ffffff", opacity: 0.75, marginBottom: "12px" }}>
+          Dignity to Independence Programme
         </p>
-
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {coursesData.map((course) => (
-            <div
-              key={course.id}
-              className={`flex flex-col rounded-[6px] border border-[#e5e2dc] bg-white p-[28px_26px_30px] shadow-[0_1px_3px_rgba(0,0,0,0.04)] ${
-                course.isOpen
-                  ? 'border-t-4 border-t-[#7a1f1f]'
-                  : 'border-t-4 border-t-[#c7c2b8]'
-              }`}
-            >
-              <div
-                className={`mb-2.5 text-[12px] font-bold uppercase tracking-[0.06em] ${
-                  course.isOpen ? 'text-[#7a1f1f]' : 'text-[#9a968c]'
-                }`}
-              >
-                {course.isOpen ? 'Now Open' : 'Coming Soon'}
-              </div>
-
-              <h3
-                className={`mb-3.5 font-serif text-[22px] font-bold leading-[1.3] ${
-                  course.isOpen ? 'text-[#1e3a5f]' : 'text-[#8a97a8]'
-                }`}
-              >
-                {course.title}
-              </h3>
-
-              <p
-                className={`mb-[18px] text-[15px] leading-[1.6] ${
-                  course.isOpen ? 'text-[#444]' : 'text-[#9a968c]'
-                }`}
-              >
-                {course.description}
-              </p>
-
-              {course.isOpen ? (
-                <div className="mt-auto">
-                  <ul className="mb-[20px] p-0">
-                    {course.features?.map((feature, i) => (
-                      <li
-                        key={i}
-                        className="mb-2.5 flex items-start gap-2.5 text-[14.5px] leading-[1.4] text-[#333]"
-                      >
-                        <span className="mt-[1px] flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-[#f3e6e0] text-[11px] text-[#7a1f1f]">
-                          ✓
-                        </span>
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <span className="inline-block rounded-full bg-[#e3f3ea] px-4 py-2 text-[13px] font-bold text-[#1f7a4d]">
-                    ✓ Fully Funded by DIEF
-                  </span>
-                </div>
-              ) : (
-                <div className="mt-auto flex items-center gap-2 text-[14px] text-[#9a968c]">
-                  🔒 Applications not yet open
-                </div>
-              )}
-            </div>
-          ))}
+        <h1 style={{ fontSize: "clamp(24px, 4vw, 38px)", fontWeight: "normal", color: "#ffffff", lineHeight: 1.2, marginBottom: "16px", maxWidth: "680px", marginLeft: "auto", marginRight: "auto" }}>
+          Apply for a Fully Funded Tech Career Training Place
+        </h1>
+        <p style={{ fontSize: "16px", color: "#ffffff", opacity: 0.88, maxWidth: "540px", margin: "0 auto 24px" }}>
+          No fees. No conditions. Open across Africa. Just the training, support, and pathway you deserve.
+        </p>
+        <div style={{ display: "flex", justifyContent: "center", gap: "10px", flexWrap: "wrap" }}>
+          <span style={{ background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.35)", color: "#ffffff", fontFamily: "Arial, sans-serif", fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", padding: "6px 14px", borderRadius: "20px" }}>
+            ✓ Vetted Organisation
+          </span>
+          <span style={{ background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.35)", color: "#ffffff", fontFamily: "Arial, sans-serif", fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", padding: "6px 14px", borderRadius: "20px" }}>
+            ★ Top-Ranked
+          </span>
+          <span style={{ background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.35)", color: "#ffffff", fontFamily: "Arial, sans-serif", fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", padding: "6px 14px", borderRadius: "20px" }}>
+            ✓ Effective Organisation 2026
+          </span>
+          <span style={{ background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.35)", color: "#ffffff", fontFamily: "Arial, sans-serif", fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", padding: "6px 14px", borderRadius: "20px" }}>
+            GlobalGiving Certified
+          </span>
         </div>
       </div>
-    </section>
+
+      {/* COURSES */}
+      <div style={{ maxWidth: "900px", margin: "0 auto", padding: "52px 24px 36px" }}>
+        <p style={{ fontFamily: "Arial, sans-serif", fontSize: "11px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--crimson)", marginBottom: "10px" }}>
+          Available Courses
+        </p>
+        <h2 style={{ fontSize: "26px", fontWeight: "normal", color: "var(--navy)", marginBottom: "8px" }}>
+          Two sponsored pathways currently open
+        </h2>
+        <p style={{ fontSize: "15px", color: "var(--muted)", marginBottom: "32px", maxWidth: "600px" }}>
+          Delivered online by Olufemi Adeyemo, CISSP-certified founder of DIEF and fifteen-year identity and security professional.
+        </p>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "20px" }}>
+          {/* IAM */}
+          <div style={{ background: "#fff", border: "1px solid var(--border)", borderTop: "4px solid var(--crimson)", borderRadius: "var(--radius)", padding: "24px", boxShadow: "var(--shadow)" }}>
+            <p style={{ fontFamily: "Arial, sans-serif", fontSize: "10px", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--crimson)", marginBottom: "8px" }}>
+              Now Open
+            </p>
+            <h3 style={{ fontSize: "17px", fontWeight: "normal", color: "var(--navy)", marginBottom: "8px" }}>
+              Identity and Access Management (IAM)
+            </h3>
+            <p style={{ fontSize: "13px", color: "var(--muted)", marginBottom: "14px", lineHeight: 1.55 }}>
+              A complete foundation in IAM covering concepts, tools, and real-world application. Leads to employability in one of the fastest-growing areas of cybersecurity.
+            </p>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", fontFamily: "Arial, sans-serif", fontSize: "12px", color: "var(--muted)", marginBottom: "6px" }}>
+              <span style={{ width: "18px", height: "18px", background: "var(--crimson-light)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "9px", flexShrink: 0 }}>✓</span>
+              <span>Full curriculum access included</span>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", fontFamily: "Arial, sans-serif", fontSize: "12px", color: "var(--muted)", marginBottom: "6px" }}>
+              <span style={{ width: "18px", height: "18px", background: "var(--crimson-light)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "9px", flexShrink: 0 }}>✓</span>
+              <span>Fortnightly live support sessions</span>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", fontFamily: "Arial, sans-serif", fontSize: "12px", color: "var(--muted)", marginBottom: "6px" }}>
+              <span style={{ width: "18px", height: "18px", background: "var(--crimson-light)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "9px", flexShrink: 0 }}>✓</span>
+              <span>CV rewritten by hand</span>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", fontFamily: "Arial, sans-serif", fontSize: "12px", color: "var(--muted)", marginBottom: "6px" }}>
+              <span style={{ width: "18px", height: "18px", background: "var(--crimson-light)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "9px", flexShrink: 0 }}>✓</span>
+              <span>Unlimited mock interviews until first job secured</span>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", fontFamily: "Arial, sans-serif", fontSize: "12px", color: "var(--muted)", marginBottom: "6px" }}>
+              <span style={{ width: "18px", height: "18px", background: "var(--crimson-light)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "9px", flexShrink: 0 }}>✓</span>
+              <span>Market value: over $1,300</span>
+            </div>
+            <span style={{ display: "inline-block", background: "var(--green-light)", color: "var(--green)", fontFamily: "Arial, sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase", padding: "4px 10px", borderRadius: "20px", marginTop: "12px" }}>
+              ✓ Fully Funded by DIEF
+            </span>
+          </div>
+
+          {/* GRC */}
+          <div style={{ background: "#fff", border: "1px solid var(--border)", borderTop: "4px solid var(--crimson)", borderRadius: "var(--radius)", padding: "24px", boxShadow: "var(--shadow)" }}>
+            <p style={{ fontFamily: "Arial, sans-serif", fontSize: "10px", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--crimson)", marginBottom: "8px" }}>
+              Now Open
+            </p>
+            <h3 style={{ fontSize: "17px", fontWeight: "normal", color: "var(--navy)", marginBottom: "8px" }}>
+              Governance, Risk and Compliance (GRC)
+            </h3>
+            <p style={{ fontSize: "13px", color: "var(--muted)", marginBottom: "14px", lineHeight: 1.55 }}>
+              A structured GRC programme covering frameworks, risk assessment, and compliance operations. Prepares you for roles in risk management and organisational governance.
+            </p>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", fontFamily: "Arial, sans-serif", fontSize: "12px", color: "var(--muted)", marginBottom: "6px" }}>
+              <span style={{ width: "18px", height: "18px", background: "var(--crimson-light)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "9px", flexShrink: 0 }}>✓</span>
+              <span>Full curriculum access included</span>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", fontFamily: "Arial, sans-serif", fontSize: "12px", color: "var(--muted)", marginBottom: "6px" }}>
+              <span style={{ width: "18px", height: "18px", background: "var(--crimson-light)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "9px", flexShrink: 0 }}>✓</span>
+              <span>Fortnightly live support sessions</span>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", fontFamily: "Arial, sans-serif", fontSize: "12px", color: "var(--muted)", marginBottom: "6px" }}>
+              <span style={{ width: "18px", height: "18px", background: "var(--crimson-light)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "9px", flexShrink: 0 }}>✓</span>
+              <span>CV rewritten by hand</span>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", fontFamily: "Arial, sans-serif", fontSize: "12px", color: "var(--muted)", marginBottom: "6px" }}>
+              <span style={{ width: "18px", height: "18px", background: "var(--crimson-light)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "9px", flexShrink: 0 }}>✓</span>
+              <span>Unlimited mock interviews until first job secured</span>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", fontFamily: "Arial, sans-serif", fontSize: "12px", color: "var(--muted)", marginBottom: "6px" }}>
+              <span style={{ width: "18px", height: "18px", background: "var(--crimson-light)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "9px", flexShrink: 0 }}>✓</span>
+              <span>Market value: over $1,300</span>
+            </div>
+            <span style={{ display: "inline-block", background: "var(--green-light)", color: "var(--green)", fontFamily: "Arial, sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase", padding: "4px 10px", borderRadius: "20px", marginTop: "12px" }}>
+              ✓ Fully Funded by DIEF
+            </span>
+          </div>
+
+          {/* Full Stack */}
+          <div style={{ background: "#fff", border: "1px solid var(--border)", borderTop: "4px solid var(--border)", borderRadius: "var(--radius)", padding: "24px", boxShadow: "var(--shadow)", opacity: 0.62 }}>
+            <p style={{ fontFamily: "Arial, sans-serif", fontSize: "10px", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--muted)", marginBottom: "8px" }}>
+              Coming Soon
+            </p>
+            <h3 style={{ fontSize: "17px", fontWeight: "normal", color: "var(--navy)", marginBottom: "8px" }}>
+              Full Stack Engineering
+            </h3>
+            <p style={{ fontSize: "13px", color: "var(--muted)", marginBottom: "14px", lineHeight: 1.55 }}>
+              End-to-end web development. Applications will open once funding is secured for this track.
+            </p>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", fontFamily: "Arial, sans-serif", fontSize: "12px", color: "var(--muted)", marginBottom: "6px" }}>
+              <span style={{ width: "18px", height: "18px", background: "var(--crimson-light)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "9px", flexShrink: 0 }}>🔒</span>
+              <span>Applications not yet open</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* WHAT YOU GET */}
+      <div style={{ background: "var(--navy)", padding: "44px 24px" }}>
+        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
+          <h2 style={{ fontSize: "22px", fontWeight: "normal", color: "#fff", marginBottom: "28px" }}>
+            What every sponsored student receives
+          </h2>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "18px" }}>
+            <div style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
+              <div style={{ width: "34px", height: "34px", background: "rgba(255,255,255,0.1)", borderRadius: "7px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "15px", flexShrink: 0 }}>📖</div>
+              <div>
+                <strong style={{ display: "block", fontFamily: "Arial, sans-serif", fontSize: "12px", fontWeight: 600, color: "#fff", marginBottom: "2px" }}>Full Course Access</strong>
+                <span style={{ fontFamily: "Arial, sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.62)" }}>Complete curriculum, no fees</span>
+              </div>
+            </div>
+            <div style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
+              <div style={{ width: "34px", height: "34px", background: "rgba(255,255,255,0.1)", borderRadius: "7px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "15px", flexShrink: 0 }}>📅</div>
+              <div>
+                <strong style={{ display: "block", fontFamily: "Arial, sans-serif", fontSize: "12px", fontWeight: 600, color: "#fff", marginBottom: "2px" }}>Fortnightly Support</strong>
+                <span style={{ fontFamily: "Arial, sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.62)" }}>Live sessions with the founder</span>
+              </div>
+            </div>
+            <div style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
+              <div style={{ width: "34px", height: "34px", background: "rgba(255,255,255,0.1)", borderRadius: "7px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "15px", flexShrink: 0 }}>✏️</div>
+              <div>
+                <strong style={{ display: "block", fontFamily: "Arial, sans-serif", fontSize: "12px", fontWeight: 600, color: "#fff", marginBottom: "2px" }}>CV Written By Hand</strong>
+                <span style={{ fontFamily: "Arial, sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.62)" }}>Not a template — your story</span>
+              </div>
+            </div>
+            <div style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
+              <div style={{ width: "34px", height: "34px", background: "rgba(255,255,255,0.1)", borderRadius: "7px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "15px", flexShrink: 0 }}>🎯</div>
+              <div>
+                <strong style={{ display: "block", fontFamily: "Arial, sans-serif", fontSize: "12px", fontWeight: 600, color: "#fff", marginBottom: "2px" }}>Unlimited Mock Interviews</strong>
+                <span style={{ fontFamily: "Arial, sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.62)" }}>Until your first job is secured</span>
+              </div>
+            </div>
+            <div style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
+              <div style={{ width: "34px", height: "34px", background: "rgba(255,255,255,0.1)", borderRadius: "7px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "15px", flexShrink: 0 }}>🤝</div>
+              <div>
+                <strong style={{ display: "block", fontFamily: "Arial, sans-serif", fontSize: "12px", fontWeight: 600, color: "#fff", marginBottom: "2px" }}>We Don’t Fire and Forget</strong>
+                <span style={{ fontFamily: "Arial, sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.62)" }}>Support continues after training</span>
+              </div>
+            </div>
+            <div style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
+              <div style={{ width: "34px", height: "34px", background: "rgba(255,255,255,0.1)", borderRadius: "7px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "15px", flexShrink: 0 }}>🌍</div>
+              <div>
+                <strong style={{ display: "block", fontFamily: "Arial, sans-serif", fontSize: "12px", fontWeight: 600, color: "#fff", marginBottom: "2px" }}>Pan-African Programme</strong>
+                <span style={{ fontFamily: "Arial, sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.62)" }}>Open across Africa as we scale</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* FORM WRAPPER */}
+      <div style={{ maxWidth: "740px", margin: "0 auto", padding: "48px 24px 64px" }}>
+        <div style={{ background: "#fff", border: "1px solid var(--border)", borderRadius: "var(--radius)", boxShadow: "var(--shadow)", overflow: "hidden" }}>
+          <div style={{ background: "var(--crimson-light)", borderBottom: "1px solid #e0cece", padding: "26px 34px" }}>
+            <h2 style={{ fontSize: "22px", fontWeight: "normal", color: "var(--crimson-dark)", marginBottom: "4px" }}>
+              Application Form
+            </h2>
+            <p style={{ fontFamily: "Arial, sans-serif", fontSize: "13px", color: "var(--muted)" }}>
+              Complete all sections carefully. We read every application personally. You will hear back within 14 days.
+            </p>
+          </div>
+
+          <div id="formContainer">
+            {submitted ? (
+              <div style={{ background: "var(--green-light)", border: "1px solid #a0d0b0", borderRadius: "var(--radius)", padding: "36px 28px", textAlign: "center", margin: "34px" }}>
+                <h3 style={{ fontSize: "22px", fontWeight: "normal", color: "var(--green)", marginBottom: "8px" }}>
+                  Application received
+                </h3>
+                <p style={{ fontFamily: "Arial, sans-serif", fontSize: "14px", color: "var(--muted)" }}>
+                  Thank you for applying. We have received your application and will be in touch within 14 days. We read every application personally.
+                </p>
+              </div>
+            ) : (
+              <form id="appForm" onSubmit={handleSubmit} style={{ padding: "34px" }}>
+                {/* SECTION 1: Personal Details */}
+                <p style={{ fontFamily: "Arial, sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--crimson)", paddingBottom: "8px", borderBottom: "2px solid var(--crimson-light)", marginBottom: "20px", marginTop: 0 }}>
+                  Personal Details
+                </p>
+
+                <div className="fgrid">
+                  <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px" }}>
+                    <label htmlFor="firstName" style={{ fontFamily: "Arial, sans-serif", fontSize: "13px", fontWeight: 600, color: "#1a1a1a" }}>
+                      First Name <span style={{ color: "var(--crimson)", marginLeft: "2px" }}>*</span>
+                    </label>
+                    <input type="text" id="firstName" name="firstName" required placeholder="Your first name" className="fg-input" />
+                  </div>
+
+                  <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px" }}>
+                    <label htmlFor="lastName" style={{ fontFamily: "Arial, sans-serif", fontSize: "13px", fontWeight: 600, color: "#1a1a1a" }}>
+                      Last Name <span style={{ color: "var(--crimson)", marginLeft: "2px" }}>*</span>
+                    </label>
+                    <input type="text" id="lastName" name="lastName" required placeholder="Your last name" className="fg-input" />
+                  </div>
+                </div>
+
+                <div className="fgrid">
+                  <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px" }}>
+                    <label htmlFor="email" style={{ fontFamily: "Arial, sans-serif", fontSize: "13px", fontWeight: 600, color: "#1a1a1a" }}>
+                      Email Address <span style={{ color: "var(--crimson)", marginLeft: "2px" }}>*</span>
+                    </label>
+                    <input type="email" id="email" name="email" required placeholder="your@email.com" className="fg-input" />
+                  </div>
+
+                  <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px" }}>
+                    <label htmlFor="phone" style={{ fontFamily: "Arial, sans-serif", fontSize: "13px", fontWeight: 600, color: "#1a1a1a" }}>
+                      Phone Number <span style={{ color: "var(--crimson)", marginLeft: "2px" }}>*</span>
+                    </label>
+                    <input type="tel" id="phone" name="phone" required placeholder="Include your country code e.g. +234" className="fg-input" />
+                  </div>
+                </div>
+
+                <div className="fgrid">
+                  <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px" }}>
+                    <label htmlFor="country" style={{ fontFamily: "Arial, sans-serif", fontSize: "13px", fontWeight: 600, color: "#1a1a1a" }}>
+                      Country of Residence <span style={{ color: "var(--crimson)", marginLeft: "2px" }}>*</span>
+                    </label>
+                    <input type="text" id="country" name="country" defaultValue="Nigeria" readOnly className="fg-input" />
+                  </div>
+
+                  <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px" }}>
+                    <label htmlFor="city" style={{ fontFamily: "Arial, sans-serif", fontSize: "13px", fontWeight: 600, color: "#1a1a1a" }}>
+                      City <span style={{ color: "var(--crimson)", marginLeft: "2px" }}>*</span>
+                    </label>
+                    <select id="city" name="city" required className="fg-input">
+                      <option value="">Select your city</option>
+                      <option>Abuja</option><option>Abeokuta</option><option>Ado-Ekiti</option><option>Akure</option>
+                      <option>Asaba</option><option>Awka</option><option>Bauchi</option><option>Benin City</option>
+                      <option>Birnin Kebbi</option><option>Calabar</option><option>Damaturu</option><option>Dutse</option>
+                      <option>Enugu</option><option>Gombe</option><option>Gusau</option><option>Ibadan</option>
+                      <option>Ilorin</option><option>Jalingo</option><option>Jos</option><option>Kaduna</option>
+                      <option>Kano</option><option>Katsina</option><option>Kebbi</option><option>Lagos</option>
+                      <option>Lafia</option><option>Lokoja</option><option>Maiduguri</option><option>Makurdi</option>
+                      <option>Minna</option><option>Nnewi</option><option>Onitsha</option><option>Osogbo</option>
+                      <option>Owerri</option><option>Port Harcourt</option><option>Sokoto</option><option>Umuahia</option>
+                      <option>Uyo</option><option>Warri</option><option>Yenagoa</option><option>Yola</option>
+                      <option>Zaria</option><option>Other</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* SECTION 2: Course Selection */}
+                <p style={{ fontFamily: "Arial, sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--crimson)", paddingBottom: "8px", borderBottom: "2px solid var(--crimson-light)", marginBottom: "20px", marginTop: "34px" }}>
+                  Course Selection
+                </p>
+
+                <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px" }}>
+                  <label htmlFor="course" style={{ fontFamily: "Arial, sans-serif", fontSize: "13px", fontWeight: 600, color: "#1a1a1a" }}>
+                    Which course are you applying for? <span style={{ color: "var(--crimson)", marginLeft: "2px" }}>*</span>
+                  </label>
+                  <select id="course" name="course" required className="fg-input">
+                    <option value="">Select a course</option>
+                    <option>Identity and Access Management (IAM)</option>
+                    <option>Governance, Risk and Compliance (GRC)</option>
+                    <option>Bundle — IAM and GRC combined</option>
+                  </select>
+                </div>
+
+                <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px" }}>
+                  <label htmlFor="digitalLevel" style={{ fontFamily: "Arial, sans-serif", fontSize: "13px", fontWeight: 600, color: "#1a1a1a" }}>
+                    How would you describe your current digital skills level? <span style={{ color: "var(--crimson)", marginLeft: "2px" }}>*</span>
+                  </label>
+                  <select id="digitalLevel" name="digitalLevel" required className="fg-input">
+                    <option value="">Select one</option>
+                    <option>Beginner — I use a phone and basic apps</option>
+                    <option>Intermediate — I am comfortable with computers and the internet</option>
+                    <option>Advanced — I have some technical background</option>
+                  </select>
+                </div>
+
+                {/* SECTION 3: Your Background */}
+                <p style={{ fontFamily: "Arial, sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--crimson)", paddingBottom: "8px", borderBottom: "2px solid var(--crimson-light)", marginBottom: "20px", marginTop: "34px" }}>
+                  Your Background
+                </p>
+
+                <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px" }}>
+                  <label htmlFor="situation" style={{ fontFamily: "Arial, sans-serif", fontSize: "13px", fontWeight: 600, color: "#1a1a1a" }}>
+                    Tell us briefly about your current situation <span style={{ color: "var(--crimson)", marginLeft: "2px" }}>*</span>
+                    <span style={{ fontWeight: "normal", color: "var(--muted)", fontSize: "12px", display: "block", marginTop: "2px" }}>
+                      What is your life like right now? Are you employed, studying, or neither?
+                    </span>
+                  </label>
+                  <textarea id="situation" name="situation" required placeholder="Tell us a little about where you are right now..." className="fg-input" />
+                </div>
+
+                <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px" }}>
+                  <label htmlFor="motivation" style={{ fontFamily: "Arial, sans-serif", fontSize: "13px", fontWeight: 600, color: "#1a1a1a" }}>
+                    Why do you want to train in this field? <span style={{ color: "var(--crimson)", marginLeft: "2px" }}>*</span>
+                    <span style={{ fontWeight: "normal", color: "var(--muted)", fontSize: "12px", display: "block", marginTop: "2px" }}>
+                      Tell us what this opportunity means to you. Be honest — there are no wrong answers.
+                    </span>
+                  </label>
+                  <textarea id="motivation" name="motivation" required placeholder="What would this change for you and your family?" className="fg-input" />
+                </div>
+
+                <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px" }}>
+                  <label htmlFor="commitment" style={{ fontFamily: "Arial, sans-serif", fontSize: "13px", fontWeight: 600, color: "#1a1a1a" }}>
+                    How many hours per week can you dedicate to training? <span style={{ color: "var(--crimson)", marginLeft: "2px" }}>*</span>
+                    <span style={{ fontWeight: "normal", color: "var(--muted)", fontSize: "12px", display: "block", marginTop: "2px" }}>
+                      We want to make sure you can complete the programme successfully.
+                    </span>
+                  </label>
+                  <select id="commitment" name="commitment" required className="fg-input">
+                    <option value="">Select one</option>
+                    <option>Less than 5 hours</option>
+                    <option>5 - 10 hours</option>
+                    <option>10 - 20 hours</option>
+                    <option>20+ hours</option>
+                  </select>
+                </div>
+
+                {/* SECTION 4: Declaration & Consent */}
+                <p style={{ fontFamily: "Arial, sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--crimson)", paddingBottom: "8px", borderBottom: "2px solid var(--crimson-light)", marginBottom: "20px", marginTop: "34px" }}>
+                  Declaration & Consent
+                </p>
+
+                {showError && (
+                  <div ref={errBoxRef} style={{ background: "#fde8e8", border: "1px solid #f5c6c6", color: "var(--crimson-dark)", padding: "12px 16px", borderRadius: "6px", fontFamily: "Arial, sans-serif", fontSize: "13px", marginBottom: "20px" }}>
+                    Please check both required consent and declaration boxes before submitting.
+                  </div>
+                )}
+
+                <div style={{ display: "flex", flexDirection: "column", gap: "14px", marginBottom: "28px" }}>
+                  <label className="checkbox-label">
+                    <input 
+                      type="checkbox" 
+                      name="consentData" 
+                      checked={consentData} 
+                      onChange={(e) => setConsentData(e.target.checked)} 
+                    />
+                    <span>
+                      I consent to the collection and processing of my personal data for the purpose of assessing my application to the Dignity to Independence Programme. <span style={{ color: "var(--crimson)" }}>*</span>
+                    </span>
+                  </label>
+
+                  <label className="checkbox-label">
+                    <input 
+                      type="checkbox" 
+                      name="declaration" 
+                      checked={declaration} 
+                      onChange={(e) => setDeclaration(e.target.checked)} 
+                    />
+                    <span>
+                      I declare that all information provided in this application is true, accurate, and complete to the best of my knowledge. <span style={{ color: "var(--crimson)" }}>*</span>
+                    </span>
+                  </label>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  style={{
+                    width: "100%",
+                    background: isSubmitting ? "#a0a0a0" : "var(--crimson)",
+                    color: "#fff",
+                    border: "none",
+                    borderRadius: "6px",
+                    padding: "14px",
+                    fontFamily: "Arial, sans-serif",
+                    fontSize: "15px",
+                    fontWeight: 600,
+                    cursor: isSubmitting ? "not-allowed" : "pointer",
+                    transition: "background 0.2s",
+                  }}
+                >
+                  {isSubmitting ? "Submitting Application..." : "Submit Application"}
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
   );
-}
+}s
