@@ -64,6 +64,52 @@ export default function ApplicationPage() {
       </Head>
 
       <style jsx>{`
+        /* Hero Section Styles */
+        .hero {
+          font-family: 'Source Sans 3', sans-serif;
+          background: #1e3a5f;
+          color: #ffffff;
+          padding: 64px 24px 56px;
+          text-align: center;
+        }
+        .hero-label {
+          color: #d1e4ff;
+          font-weight: 700;
+          font-size: 14px;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          margin-bottom: 12px;
+        }
+        .hero h1 {
+          font-family: 'Playfair Display', serif;
+          font-size: 38px;
+          font-weight: 700;
+          margin: 0 0 16px;
+          line-height: 1.25;
+        }
+        .hero p {
+          font-size: 18px;
+          max-width: 680px;
+          margin: 0 auto 28px;
+          line-height: 1.5;
+          color: #e2ebf5;
+        }
+        .badges {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 10px;
+        }
+        .badge {
+          background: rgba(255, 255, 255, 0.12);
+          border: 1px solid rgba(255, 255, 255, 0.25);
+          color: #ffffff;
+          font-size: 13px;
+          font-weight: 600;
+          padding: 6px 14px;
+          border-radius: 999px;
+        }
+
         /* Courses Section Styles */
         .courses-section {
           font-family: 'Source Sans 3', sans-serif;
@@ -118,6 +164,8 @@ export default function ApplicationPage() {
           border-top: 4px solid #7a1f1f;
           padding: 28px 26px 30px;
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+          display: flex;
+          flex-direction: column;
         }
         .course-card.coming-soon {
           border-top: 4px solid #c7c2b8;
@@ -188,14 +236,18 @@ export default function ApplicationPage() {
           font-size: 13px;
           padding: 8px 16px;
           border-radius: 999px;
+          margin-top: auto;
+          text-align: center;
         }
         .not-open-note {
           display: flex;
           align-items: center;
+          justify-content: center;
           gap: 8px;
           font-size: 14px;
           color: #9a968c;
-          margin-top: 4px;
+          margin-top: auto;
+          padding-top: 8px;
         }
 
         /* Form Section Styles */
@@ -208,6 +260,16 @@ export default function ApplicationPage() {
           max-width: 800px;
           margin: 0 auto;
         }
+        .fgrid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 20px;
+        }
+        @media (max-width: 600px) {
+          .fgrid {
+            grid-template-columns: 1fr;
+          }
+        }
         .fg {
           margin-bottom: 24px;
         }
@@ -219,6 +281,7 @@ export default function ApplicationPage() {
           font-size: 15px;
         }
         .fg input[type='text'],
+        .fg input[type='email'],
         .fg input[type='tel'],
         .fg select,
         .fg textarea {
@@ -253,6 +316,9 @@ export default function ApplicationPage() {
           border-bottom: 2px solid #7a1f1f;
           padding-bottom: 8px;
           margin: 40px 0 24px;
+        }
+        .fsec.first {
+          margin-top: 0;
         }
         .consent-box {
           background: #fdfbf7;
@@ -371,6 +437,19 @@ export default function ApplicationPage() {
         }
       `}</style>
 
+      {/* Hero Section */}
+      <div className="hero">
+        <p className="hero-label">Dignity to Independence Programme</p>
+        <h1>Apply for a Fully Funded Tech Career Training Place</h1>
+        <p>No fees. No conditions. Open across Africa. Just the training, support, and pathway you deserve.</p>
+        <div className="badges">
+          <span className="badge">&#10003; Vetted Organisation</span>
+          <span className="badge">&#9733; Top-Ranked</span>
+          <span className="badge">&#10003; Effective Organisation 2026</span>
+          <span className="badge">GlobalGiving Certified</span>
+        </div>
+      </div>
+
       {/* Available Courses Section */}
       <section className="courses-section">
         <div className="courses-inner">
@@ -470,6 +549,49 @@ export default function ApplicationPage() {
             </div>
           ) : (
             <form id="appForm" onSubmit={handleSubmit}>
+              <p className="fsec first">Personal Details</p>
+
+              <div className="fgrid">
+                <div className="fg">
+                  <label htmlFor="firstName">
+                    First Name <span className="req">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    required
+                    placeholder="Your first name"
+                  />
+                </div>
+
+                <div className="fg">
+                  <label htmlFor="lastName">
+                    Last Name <span className="req">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    required
+                    placeholder="Your last name"
+                  />
+                </div>
+              </div>
+
+              <div className="fg">
+                <label htmlFor="email">
+                  Email Address <span className="req">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="your@email.com"
+                />
+              </div>
+
               <div className="fg">
                 <label htmlFor="phone">
                   Phone Number <span className="req">*</span>
