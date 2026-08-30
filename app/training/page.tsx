@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import Head from 'next/head';
 
@@ -54,9 +56,9 @@ export default function ApplicationPage() {
   return (
     <>
       <Head>
-        <title>DIEF - Course Application & Available Courses</title>
+        <title>DIEF - Course Application &amp; Available Courses</title>
         <link
-          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Source+Sans+3:wght@400;600;700&amp;display=swap"
           rel="stylesheet"
         />
       </Head>
@@ -370,96 +372,96 @@ export default function ApplicationPage() {
       `}</style>
 
       {/* Available Courses Section */}
-      <section class="courses-section">
-        <div class="courses-inner">
-          <div class="courses-eyebrow">Available Courses</div>
-          <h2 class="courses-heading">Three sponsored pathways currently open</h2>
-          <p class="courses-intro">
+      <section className="courses-section">
+        <div className="courses-inner">
+          <div className="courses-eyebrow">Available Courses</div>
+          <h2 className="courses-heading">Three sponsored pathways currently open</h2>
+          <p className="courses-intro">
             Self-paced online, delivered by Betapersin, DIEF&apos;s sister commercial training
             partner, led by a CISSP and Microsoft Identity and Access Administrator{' '}
             <span style={{ whiteSpace: 'nowrap' }}>(SC-300)</span> certified instructor with
             fifteen years in identity and security.
           </p>
 
-          <div class="courses-grid">
+          <div className="courses-grid">
             {/* CARD 1: IAM Analyst */}
-            <div class="course-card">
-              <div class="course-status">Now Open</div>
-              <h3 class="course-title">Identity and Access Management (IAM)</h3>
-              <p class="course-desc">
+            <div className="course-card">
+              <div className="course-status">Now Open</div>
+              <h3 className="course-title">Identity and Access Management (IAM)</h3>
+              <p className="course-desc">
                 A complete foundation in IAM covering concepts, tools, and real-world
                 application. Leads to employability in one of the fastest-growing areas of
                 cybersecurity.
               </p>
-              <ul class="course-features">
-                <li><span class="check">&#10003;</span> Full curriculum access included</li>
-                <li><span class="check">&#10003;</span> Fortnightly live support sessions</li>
-                <li><span class="check">&#10003;</span> CV rewritten by hand</li>
-                <li><span class="check">&#10003;</span> Unlimited mock interviews until first job secured</li>
-                <li><span class="check">&#10003;</span> Market value: over $1,300</li>
+              <ul className="course-features">
+                <li><span className="check">&#10003;</span> Full curriculum access included</li>
+                <li><span className="check">&#10003;</span> Fortnightly live support sessions</li>
+                <li><span className="check">&#10003;</span> CV rewritten by hand</li>
+                <li><span className="check">&#10003;</span> Unlimited mock interviews until first job secured</li>
+                <li><span className="check">&#10003;</span> Market value: over $1,300</li>
               </ul>
-              <span class="funded-badge">&#10003; Fully Funded by DIEF</span>
+              <span className="funded-badge">&#10003; Fully Funded by DIEF</span>
             </div>
 
             {/* CARD 2: IAM Engineering */}
-            <div class="course-card">
-              <div class="course-status">Now Open</div>
-              <h3 class="course-title">Identity and Access Management (IAM) Engineering</h3>
-              <p class="course-desc">
+            <div className="course-card">
+              <div className="course-status">Now Open</div>
+              <h3 className="course-title">Identity and Access Management (IAM) Engineering</h3>
+              <p className="course-desc">
                 A hands-on build, not theory and portal clicks. You engineer a live identity
                 estate in Microsoft Entra ID and Okta: the directory, authentication protocols,
                 Conditional Access, privileged access, entitlements, and the automation layer
                 that ties it together. By the capstone, these labs add up to a portfolio project
                 you can show an employer.
               </p>
-              <ul class="course-features">
-                <li><span class="check">&#10003;</span> Full curriculum access included</li>
-                <li><span class="check">&#10003;</span> Fortnightly live support sessions</li>
-                <li><span class="check">&#10003;</span> CV rewritten by hand</li>
-                <li><span class="check">&#10003;</span> Unlimited mock interviews until first job secured</li>
-                <li><span class="check">&#10003;</span> Market value: over $1,300</li>
+              <ul className="course-features">
+                <li><span className="check">&#10003;</span> Full curriculum access included</li>
+                <li><span className="check">&#10003;</span> Fortnightly live support sessions</li>
+                <li><span className="check">&#10003;</span> CV rewritten by hand</li>
+                <li><span className="check">&#10003;</span> Unlimited mock interviews until first job secured</li>
+                <li><span className="check">&#10003;</span> Market value: over $1,300</li>
               </ul>
-              <span class="funded-badge">&#10003; Fully Funded by DIEF</span>
+              <span className="funded-badge">&#10003; Fully Funded by DIEF</span>
             </div>
 
             {/* CARD 3: GRC */}
-            <div class="course-card">
-              <div class="course-status">Now Open</div>
-              <h3 class="course-title">Governance, Risk and Compliance (GRC)</h3>
-              <p class="course-desc">
+            <div className="course-card">
+              <div className="course-status">Now Open</div>
+              <h3 className="course-title">Governance, Risk and Compliance (GRC)</h3>
+              <p className="course-desc">
                 A structured GRC programme covering frameworks, risk assessment, and compliance
                 operations. Prepares you for roles in risk management and organisational
                 governance.
               </p>
-              <ul class="course-features">
-                <li><span class="check">&#10003;</span> Full curriculum access included</li>
-                <li><span class="check">&#10003;</span> Fortnightly live support sessions</li>
-                <li><span class="check">&#10003;</span> CV rewritten by hand</li>
-                <li><span class="check">&#10003;</span> Unlimited mock interviews until first job secured</li>
-                <li><span class="check">&#10003;</span> Market value: over $1,300</li>
+              <ul className="course-features">
+                <li><span className="check">&#10003;</span> Full curriculum access included</li>
+                <li><span className="check">&#10003;</span> Fortnightly live support sessions</li>
+                <li><span className="check">&#10003;</span> CV rewritten by hand</li>
+                <li><span className="check">&#10003;</span> Unlimited mock interviews until first job secured</li>
+                <li><span className="check">&#10003;</span> Market value: over $1,300</li>
               </ul>
-              <span class="funded-badge">&#10003; Fully Funded by DIEF</span>
+              <span className="funded-badge">&#10003; Fully Funded by DIEF</span>
             </div>
 
             {/* CARD 4: Full Stack Engineering (Coming Soon) */}
-            <div class="course-card coming-soon">
-              <div class="course-status muted">Coming Soon</div>
-              <h3 class="course-title muted">Full Stack Engineering</h3>
-              <p class="course-desc muted">
+            <div className="course-card coming-soon">
+              <div className="course-status muted">Coming Soon</div>
+              <h3 className="course-title muted">Full Stack Engineering</h3>
+              <p className="course-desc muted">
                 End-to-end web development. Applications will open once funding is secured for
                 this track.
               </p>
-              <div class="not-open-note">&#128274; Applications not yet open</div>
+              <div className="not-open-note">&#128274; Applications not yet open</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Form Section */}
-      <section class="form-section">
-        <div class="form-container" id="formContainer">
+      <section className="form-section">
+        <div className="form-container" id="formContainer">
           {submitted ? (
-            <div class="success">
+            <div className="success">
               <h3>Application received</h3>
               <p>
                 Thank you for applying. We have received your application and will be in touch
@@ -468,9 +470,9 @@ export default function ApplicationPage() {
             </div>
           ) : (
             <form id="appForm" onSubmit={handleSubmit}>
-              <div class="fg">
+              <div className="fg">
                 <label htmlFor="phone">
-                  Phone Number <span class="req">*</span>
+                  Phone Number <span className="req">*</span>
                 </label>
                 <input
                   type="tel"
@@ -481,9 +483,9 @@ export default function ApplicationPage() {
                 />
               </div>
 
-              <div class="fg">
+              <div className="fg">
                 <label htmlFor="country">
-                  Country of Residence <span class="req">*</span>
+                  Country of Residence <span className="req">*</span>
                 </label>
                 <input
                   type="text"
@@ -494,9 +496,9 @@ export default function ApplicationPage() {
                 />
               </div>
 
-              <div class="fg">
+              <div className="fg">
                 <label htmlFor="city">
-                  City <span class="req">*</span>
+                  City <span className="req">*</span>
                 </label>
                 <select id="city" name="city" required defaultValue="">
                   <option value="">Select your city</option>
@@ -545,11 +547,11 @@ export default function ApplicationPage() {
                 </select>
               </div>
 
-              <p class="fsec">Course Selection</p>
+              <p className="fsec">Course Selection</p>
 
-              <div class="fg">
+              <div className="fg">
                 <label htmlFor="course">
-                  Which course are you applying for? <span class="req">*</span>
+                  Which course are you applying for? <span className="req">*</span>
                 </label>
                 <select id="course" name="course" required defaultValue="">
                   <option value="">Select a course</option>
@@ -560,9 +562,9 @@ export default function ApplicationPage() {
                 </select>
               </div>
 
-              <div class="fg">
+              <div className="fg">
                 <label htmlFor="digitalLevel">
-                  How would you describe your current digital skills level? <span class="req">*</span>
+                  How would you describe your current digital skills level? <span className="req">*</span>
                 </label>
                 <select id="digitalLevel" name="digitalLevel" required defaultValue="">
                   <option value="">Select one</option>
@@ -572,12 +574,12 @@ export default function ApplicationPage() {
                 </select>
               </div>
 
-              <p class="fsec">Your Background</p>
+              <p className="fsec">Your Background</p>
 
-              <div class="fg">
+              <div className="fg">
                 <label htmlFor="situation">
-                  Tell us briefly about your current situation <span class="req">*</span>
-                  <span class="hint">What is your life like right now? Are you employed, studying, or neither?</span>
+                  Tell us briefly about your current situation <span className="req">*</span>
+                  <span className="hint">What is your life like right now? Are you employed, studying, or neither?</span>
                 </label>
                 <textarea
                   id="situation"
@@ -587,10 +589,10 @@ export default function ApplicationPage() {
                 ></textarea>
               </div>
 
-              <div class="fg">
+              <div className="fg">
                 <label htmlFor="motivation">
-                  Why do you want to train in this field? <span class="req">*</span>
-                  <span class="hint">Tell us what this opportunity means to you. Be honest &mdash; there are no wrong answers.</span>
+                  Why do you want to train in this field? <span className="req">*</span>
+                  <span className="hint">Tell us what this opportunity means to you. Be honest &mdash; there are no wrong answers.</span>
                 </label>
                 <textarea
                   id="motivation"
@@ -600,10 +602,10 @@ export default function ApplicationPage() {
                 ></textarea>
               </div>
 
-              <div class="fg">
+              <div className="fg">
                 <label htmlFor="commitment">
                   How many hours per week can you dedicate to training?
-                  <span class="hint">We want to make sure you can complete the programme successfully.</span>
+                  <span className="hint">We want to make sure you can complete the programme successfully.</span>
                 </label>
                 <select id="commitment" name="commitment" defaultValue="">
                   <option value="">Select one</option>
@@ -614,9 +616,9 @@ export default function ApplicationPage() {
                 </select>
               </div>
 
-              <div class="fg">
+              <div className="fg">
                 <label htmlFor="laptop">
-                  Do you have access to a laptop or desktop computer? <span class="req">*</span>
+                  Do you have access to a laptop or desktop computer? <span className="req">*</span>
                 </label>
                 <select id="laptop" name="laptop" required defaultValue="">
                   <option value="">Select one</option>
@@ -626,9 +628,9 @@ export default function ApplicationPage() {
                 </select>
               </div>
 
-              <div class="fg">
+              <div className="fg">
                 <label htmlFor="internet">
-                  Do you have reliable internet access? <span class="req">*</span>
+                  Do you have reliable internet access? <span className="req">*</span>
                 </label>
                 <select id="internet" name="internet" required defaultValue="">
                   <option value="">Select one</option>
@@ -639,65 +641,65 @@ export default function ApplicationPage() {
                 </select>
               </div>
 
-              <p class="fsec">Consent and Permissions</p>
+              <p className="fsec">Consent and Permissions</p>
 
-              <div class="consent-box">
-                <p class="cb-title">&#128203; Please read and confirm each item below</p>
+              <div className="consent-box">
+                <p className="cb-title">&#128203; Please read and confirm each item below</p>
 
-                <div class="ci">
+                <div className="ci">
                   <input type="checkbox" id="consent_data" name="consent_data" required />
-                  <label class="ci-label" htmlFor="consent_data">
-                    <strong class="ci-strong">
-                      Use of personal data for programme delivery <span class="req">*</span>
+                  <label className="ci-label" htmlFor="consent_data">
+                    <strong className="ci-strong">
+                      Use of personal data for programme delivery <span className="req">*</span>
                     </strong>
                     I give Direct Impact Empowerment Foundation permission to store and use the
                     information I have provided in this application for the purposes of assessing
                     my application, contacting me about my place, and delivering the training
                     programme.
-                    <em class="ci-em">Required to process your application.</em>
+                    <em className="ci-em">Required to process your application.</em>
                   </label>
                 </div>
 
-                <div class="ci">
+                <div className="ci">
                   <input type="checkbox" id="consent_gg" name="consent_globalgiving" />
-                  <label class="ci-label" htmlFor="consent_gg">
-                    <strong class="ci-strong">Use of photo and data in GlobalGiving reports</strong>
+                  <label className="ci-label" htmlFor="consent_gg">
+                    <strong className="ci-strong">Use of photo and data in GlobalGiving reports</strong>
                     I give Direct Impact Empowerment Foundation permission to use my name,
                     photograph, and anonymised progress data in reports submitted to GlobalGiving as
                     evidence of programme delivery and impact. This may include project reports
                     visible to donors on the GlobalGiving platform.
-                    <em class="ci-em">
+                    <em className="ci-em">
                       Optional &mdash; but helps us demonstrate impact to the donors who fund your
                       place.
                     </em>
                   </label>
                 </div>
 
-                <div class="ci">
+                <div className="ci">
                   <input type="checkbox" id="consent_media" name="consent_media" />
-                  <label class="ci-label" htmlFor="consent_media">
-                    <strong class="ci-strong">
+                  <label className="ci-label" htmlFor="consent_media">
+                    <strong className="ci-strong">
                       Use of story and image in fundraising and social media
                     </strong>
                     I give Direct Impact Empowerment Foundation permission to share my story and
                     photograph on social media, the DIEF website, and in fundraising materials. DIEF
                     will always ask for approval before using any specific content about me.
-                    <em class="ci-em">Optional &mdash; your story helps us fund more places like yours.</em>
+                    <em className="ci-em">Optional &mdash; your story helps us fund more places like yours.</em>
                   </label>
                 </div>
 
-                <div class="ci">
+                <div className="ci">
                   <input type="checkbox" id="consent_shoutout" name="consent_shoutout" />
-                  <label class="ci-label" htmlFor="consent_shoutout">
-                    <strong class="ci-strong">Public celebration and shout-out</strong>
+                  <label className="ci-label" htmlFor="consent_shoutout">
+                    <strong className="ci-strong">Public celebration and shout-out</strong>
                     I am happy for DIEF to publicly celebrate my progress and achievements on social
                     media when milestones are reached &mdash; such as completing the course or securing
                     employment.
-                    <em class="ci-em">Optional &mdash; we love celebrating our students!</em>
+                    <em className="ci-em">Optional &mdash; we love celebrating our students!</em>
                   </label>
                 </div>
 
-                <div class="cn">
+                <div className="cn">
                   <strong>Your privacy matters to us.</strong> DIEF will never sell or share your
                   personal data with third parties. You can withdraw any consent at any time by
                   emailing <strong>femi@directimpactempowerment.org</strong>. Only the first consent
@@ -705,15 +707,15 @@ export default function ApplicationPage() {
                 </div>
               </div>
 
-              <p class="fsec">Declaration</p>
+              <p className="fsec">Declaration</p>
 
-              <div class="consent-box decl">
-                <div class="ci">
+              <div className="consent-box decl">
+                <div className="ci">
                   <input type="checkbox" id="declaration" name="declaration" required />
-                  <label class="ci-label" htmlFor="declaration">
-                    <strong class="ci-strong">
+                  <label className="ci-label" htmlFor="declaration">
+                    <strong className="ci-strong">
                       I confirm that the information I have provided is accurate and truthful.{' '}
-                      <span class="req">*</span>
+                      <span className="req">*</span>
                     </strong>
                     I understand that providing false information may result in my application being
                     withdrawn. I commit to engaging fully with the programme if I am offered a
@@ -722,7 +724,7 @@ export default function ApplicationPage() {
                 </div>
               </div>
 
-              <div class="priv">
+              <div className="priv">
                 <p>
                   <strong style={{ color: '#1a3a5c' }}>How we process applications:</strong> Every
                   application is read personally by Olufemi Adeyemo. We do not use automated
@@ -733,16 +735,16 @@ export default function ApplicationPage() {
               </div>
 
               {showError && (
-                <div id="errBox" class="err">
+                <div id="errBox" className="err">
                   Please confirm the required consent items before submitting.
                 </div>
               )}
 
-              <div class="sub-wrap">
-                <button type="submit" class="sub-btn" disabled={submitting}>
+              <div className="sub-wrap">
+                <button type="submit" className="sub-btn" disabled={submitting}>
                   {submitting ? 'Submitting...' : 'Submit My Application'}
                 </button>
-                <p class="sub-note">
+                <p className="sub-note">
                   You will receive a confirmation email once your application is received.
                 </p>
               </div>
@@ -752,7 +754,7 @@ export default function ApplicationPage() {
       </section>
 
       {/* Footer Note */}
-      <footer class="footer-note">
+      <footer className="footer-note">
         <p>
           This programme is part of DIEF&rsquo;s{' '}
           <strong>Dignity to Independence Programme (DIP)</strong>. Direct Impact Empowerment
