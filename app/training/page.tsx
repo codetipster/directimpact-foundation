@@ -1,4 +1,4 @@
-"use client";
+"use "use client";
 
 import React, { useState, useRef, CSSProperties, FormEvent } from "react";
 import Link from "next/link";
@@ -144,7 +144,7 @@ export default function SponsoredTrainingApplication() {
         </div>
       </div>
 
-      {/* COURSES (Plain page layout style per screenshot) */}
+      {/* COURSES (Plain page layout style) */}
       <div style={{ maxWidth: "900px", margin: "0 auto", padding: "52px 24px 36px" }}>
         <p style={{ fontFamily: "Arial, sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--crimson)", marginBottom: "10px" }}>
           Available Courses
@@ -153,7 +153,7 @@ export default function SponsoredTrainingApplication() {
           Three sponsored pathways currently open
         </h2>
         <p style={{ fontSize: "15px", color: "var(--muted)", marginBottom: "32px", maxWidth: "720px" }}>
-          Self-paced online, delivered by Betapersin, DIEF's sister commercial training partner, led by a CISSP and Microsoft Identity and Access Administrator <span style={{ whiteSpace: "nowrap" }}>(SC-300)</span> certified instructor with fifteen years in identity and security.
+          Self-paced online, delivered by Betapersin, DIEF&apos;s sister commercial training partner, led by a CISSP and Microsoft Identity and Access Administrator <span style={{ whiteSpace: "nowrap" }}>(SC-300)</span> certified instructor with fifteen years in identity and security.
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "36px" }}>
@@ -328,7 +328,7 @@ export default function SponsoredTrainingApplication() {
             <div style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
               <div style={{ width: "34px", height: "34px", background: "rgba(255,255,255,0.1)", borderRadius: "7px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "15px", flexShrink: 0 }}>🤝</div>
               <div>
-                <strong style={{ display: "block", fontFamily: "Arial, sans-serif", fontSize: "12px", fontWeight: 600, color: "#fff", marginBottom: "2px" }}>We Don’t Fire and Forget</strong>
+                <strong style={{ display: "block", fontFamily: "Arial, sans-serif", fontSize: "12px", fontWeight: 600, color: "#fff", marginBottom: "2px" }}>We Don&apos;t Fire and Forget</strong>
                 <span style={{ fontFamily: "Arial, sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.62)" }}>Support continues after training</span>
               </div>
             </div>
@@ -681,7 +681,7 @@ export default function SponsoredTrainingApplication() {
       {/* FOOTER */}
       <div style={{ maxWidth: "740px", margin: "0 auto", padding: "0 24px 52px", textAlign: "center" }}>
         <p style={{ fontFamily: "Arial, sans-serif", fontSize: "13px", color: "var(--muted)", lineHeight: 1.65 }}>
-          This programme is part of DIEF’s <strong>Dignity to Independence Programme (DIP)</strong>. Direct Impact Empowerment Foundation is a dual-registered NGO in Nigeria (CAC/IT/7420254) and Switzerland (CHE-415.427.651), independently vetted and Top-Ranked by{" "}
+          This programme is part of DIEF&apos;s <strong>Dignity to Independence Programme (DIP)</strong>. Direct Impact Empowerment Foundation is a dual-registered NGO in Nigeria (CAC/IT/7420254) and Switzerland (CHE-415.427.651), independently vetted and Top-Ranked by{" "}
           <Link href="https://www.globalgiving.org/projects/76936" target="_blank" rel="noopener noreferrer" style={{ color: "var(--crimson)", textDecoration: "none" }}>
             GlobalGiving
           </Link>.
