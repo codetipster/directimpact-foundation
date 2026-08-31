@@ -43,13 +43,13 @@ export default function SponsoredTrainingApplication() {
         setSubmitted(true);
       } else {
         alert(
-          "There was a problem submitting your application. Please email Digitaltraining@directimpactempowerment.org directly."
+          "There was a problem submitting your application. Please email digitaltraining@directimpactempowerment.org directly."
         );
       }
     } catch (err) {
       console.error("Submission error:", err);
       alert(
-        "There was a problem submitting your application. Please email Digitaltraining@directimpactempowerment.org directly."
+        "There was a problem submitting your application. Please email digitaltraining@directimpactempowerment.org directly."
       );
     } finally {
       setIsSubmitting(false);
@@ -606,8 +606,8 @@ export default function SponsoredTrainingApplication() {
                     </label>
                   </div>
 
-                  <div style={{ fontFamily: "Arial, sans-serif", fontSize: "12px", color: "var(--muted)", background: "rgba(255,255,255,0.65)", borderLeft: "3px solid var(--gold)", padding: "10px 14px", borderRadius: "0 6px 6px 0", marginTop: "14px", lineHeight: 1.6 }}>
-                    <strong>Your privacy matters to us.</strong> DIEF will never sell or share your personal data with third parties. You can withdraw any consent at any time by emailing <strong>Digitaltraining@directimpactempowerment.org</strong>. Only the first consent item is required to process your application.
+                  <div style={{ fontFamily: "Arial, sans-serif", fontSize: "12px", color: "var(--muted)", background: "rgba(255,255,255,0.65)", borderLeft: "3px solid var(--gold)", padding: "10px 14px", borderRadius: "0 6px 6px 0", marginTop: "14px", lineHeight: 1.6, overflowWrap: "anywhere", wordBreak: "break-word" }}>
+                    <strong>Your privacy matters to us.</strong> DIEF will never sell or share your personal data with third parties. You can withdraw any consent at any time by emailing <strong style={{ overflowWrap: "anywhere", wordBreak: "break-all" }}>digitaltraining@directimpactempowerment.org</strong>. Only the first consent item is required to process your application.
                   </div>
                 </div>
 
