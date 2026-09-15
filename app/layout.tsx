@@ -33,17 +33,21 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={inter.className}>
-        {/* Google Ads Tag - Load script */}
+        {/* Google Tag (gtag.js) - Google Ads & GA4 */}
         <Script
           strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=AW-18051879035"
+          src="https://www.googletagmanager.com/gtag/js?id=G-VS2Q62GNSR"
         />
-        {/* Google Ads Tag - Config */}
-        <Script id="google-ads-tag" strategy="afterInteractive">
+        <Script id="google-tags" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
+
+            /* Initialize Google Analytics 4 */
+            gtag('config', 'G-VS2Q62GNSR');
+
+            /* Initialize Google Ads Grant Conversion Tracking */
             gtag('config', 'AW-18051879035');
           `}
         </Script>
