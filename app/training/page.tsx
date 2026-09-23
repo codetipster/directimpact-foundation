@@ -3,6 +3,17 @@
 import React, { useState, useRef } from "react";
 import Link from "next/link";
 
+// Declare gtag on the global Window interface for clean TypeScript typing
+declare global {
+  interface Window {
+    gtag?: (
+      command: string,
+      action: string,
+      params?: Record<string, unknown>
+    ) => void;
+  }
+}
+
 export default function ApplicationForm() {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -38,10 +49,10 @@ export default function ApplicationForm() {
 
       if (response.ok) {
         // --- GOOGLE ANALYTICS 4 & IMPORTED GOOGLE ADS TRACKING ---
-        if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
-          (window as any).gtag("event", "training_form_submitted", {
+        if (typeof window !== "undefined" && typeof window.gtag === "function") {
+          window.gtag("event", "training_form_submitted", {
             event_category: "Form Submission",
-            event_label: formData.get("course") || "General Application",
+            event_label: (formData.get("course") as string) || "General Application",
           });
         }
 
