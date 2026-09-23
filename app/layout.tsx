@@ -5,10 +5,10 @@ import { Footer } from '@/components/Footer'
 import type { Metadata } from 'next'
 import Script from 'next/script'
 
-// Declare gtag globally so TypeScript allows you to use window.gtag on click events
+// Declare gtag globally with optional modifier to prevent TypeScript declaration merge conflicts
 declare global {
   interface Window {
-    gtag: (...args: unknown[]) => void;
+    gtag?: (...args: unknown[]) => void;
   }
 }
 

@@ -3,17 +3,6 @@
 import React, { useState, useRef } from "react";
 import Link from "next/link";
 
-// Declare gtag on the global Window interface for clean TypeScript typing
-declare global {
-  interface Window {
-    gtag?: (
-      command: string,
-      action: string,
-      params?: Record<string, unknown>
-    ) => void;
-  }
-}
-
 export default function ApplicationForm() {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
