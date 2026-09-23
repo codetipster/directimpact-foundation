@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useRef } from "react";
 import Link from "next/link";
 
@@ -7,9 +9,9 @@ export default function ApplicationForm() {
   const [consentData, setConsentData] = useState(false);
   const [declaration, setDeclaration] = useState(false);
   const [showError, setShowError] = useState(false);
-  const errBoxRef = useRef(null);
+  const errBoxRef = useRef<HTMLDivElement | null>(null);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!consentData || !declaration) {
@@ -23,7 +25,7 @@ export default function ApplicationForm() {
     setShowError(false);
     setIsSubmitting(true);
 
-    const formData = new FormData(e.target);
+    const formData = new FormData(e.currentTarget);
 
     try {
       const response = await fetch("https://formspree.io/f/YOUR_FORMSPREE_ID", {
@@ -36,9 +38,8 @@ export default function ApplicationForm() {
 
       if (response.ok) {
         // --- GOOGLE ANALYTICS 4 & IMPORTED GOOGLE ADS TRACKING ---
-        // Fires the exact event imported by Google Ads (ID: 7582557995)
-        if (typeof window !== "undefined" && typeof window.gtag === "function") {
-          window.gtag("event", "training_form_submitted", {
+        if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
+          (window as any).gtag("event", "training_form_submitted", {
             event_category: "Form Submission",
             event_label: formData.get("course") || "General Application",
           });
