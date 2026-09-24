@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, FormEvent, ChangeEvent } from "react";
 import Link from "next/link";
 
-export default function ApplicationPage({ handleSubmit }) {
+export default function ApplicationPage() {
   // State management for form and consents
   const [consentData, setConsentData] = useState(false);
   const [declaration, setDeclaration] = useState(false);
@@ -12,26 +12,27 @@ export default function ApplicationPage({ handleSubmit }) {
   const [submitted, setSubmitted] = useState(false);
 
   // Ref for auto-scrolling to error box if validation fails
-  const errBoxRef = useRef(null);
+  const errBoxRef = useRef<HTMLDivElement | null>(null);
 
   // Safe helper function for Google Analytics event tracking
-  const trackGAEvent = (eventName, eventParams = {}) => {
-    if (typeof window !== "undefined" && typeof window.gtag === "function") {
-      window.gtag("event", eventName, eventParams);
+  const trackGAEvent = (eventName: string, eventParams: Record<string, unknown> = {}) => {
+    if (typeof window !== "undefined" && typeof (window as unknown as { gtag?: Function }).gtag === "function") {
+      (window as unknown as { gtag: Function }).gtag("event", eventName, eventParams);
     }
   };
 
   // Helper for tracking form input interactions
-  const handleFieldChange = (e) => {
-    const { name, value, type, checked } = e.target;
+  const handleFieldChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
     trackGAEvent("form_field_interaction", {
       field_name: name,
       field_value: type === "checkbox" ? checked : value,
     });
   };
 
-  // Enhanced submission handler with GA Tracking
-  const handleFormSubmit = async (e) => {
+  // Form submission handler
+  const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // Track submission attempt
@@ -64,10 +65,13 @@ export default function ApplicationPage({ handleSubmit }) {
       const mediaConsent = formData.get("consent_media") === "on";
       const shoutoutConsent = formData.get("consent_shoutout") === "on";
 
-      // Execute custom API handler if passed as prop
-      if (typeof handleSubmit === "function") {
-        await handleSubmit(e);
-      }
+      // Submit data to your backend endpoint (e.g. Next.js API Route or FormSpree/SheetDB)
+      /* 
+      await fetch("/api/apply", {
+        method: "POST",
+        body: formData,
+      });
+      */
 
       // Track successful submission & application properties
       trackGAEvent("form_submit_success", {
@@ -86,11 +90,12 @@ export default function ApplicationPage({ handleSubmit }) {
       });
 
       setSubmitted(true);
-    } catch (err) {
+    } catch (err: unknown) {
+      const errorObj = err as Error;
       trackGAEvent("form_submit_error", {
         form_id: "appForm",
         error_type: "api_submission_failure",
-        error_message: err?.message || "Unknown error",
+        error_message: errorObj?.message || "Unknown error",
       });
     } finally {
       setIsSubmitting(false);
@@ -169,7 +174,7 @@ export default function ApplicationPage({ handleSubmit }) {
           </div>
 
           {/* Course 2: IAM Engineering */}
-          <div style={{ background: "#fff", border: "2px solid #a81c1c", borderRadius: "8px", padding: "24px", display: "flex", flexDirection: "column", justifyContent: "space-between", boxShadow: "0 4px 12px rgba(0,0,0,0.08)", relative: "relative" }}>
+          <div style={{ background: "#fff", border: "2px solid #a81c1c", borderRadius: "8px", padding: "24px", display: "flex", flexDirection: "column", justifyContent: "space-between", boxShadow: "0 4px 12px rgba(0,0,0,0.08)" }}>
             <div>
               <span style={{ background: "#e6f4ea", color: "#137333", fontSize: "11px", fontWeight: 700, padding: "4px 10px", borderRadius: "12px", textTransform: "uppercase" }}>
                 Now Open
@@ -199,7 +204,7 @@ export default function ApplicationPage({ handleSubmit }) {
               <span style={{ background: "#e6f4ea", color: "#137333", fontSize: "11px", fontWeight: 700, padding: "4px 10px", borderRadius: "12px", textTransform: "uppercase" }}>
                 Now Open
               </span>
-              <h3 style={{ fontSize: "18px", fontWeight: 700, marginTop: "12px", marginBottom: "10px", color: "#111e2e" }}>
+              <h3 style={{ fontSize: "18px", fontWeight 700, marginTop: "12px", marginBottom: "10px", color: "#111e2e" }}>
                 Governance, Risk and Compliance (GRC)
               </h3>
               <p style={{ fontSize: "13px", color: "#555", lineHeight: 1.5, marginBottom: "16px" }}>
