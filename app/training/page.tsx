@@ -1,53 +1,53 @@
 "use client";
 
-import React, { useState, useRef, FormEvent, ChangeEvent } from "react";
+import React, { useState, useRef } from "react";
 import Link from "next/link";
 
-export default function ApplicationPage() {
-  // State management for form and consents
+// Helper for Google Analytics Tracking
+const trackGAEvent = (eventName: string, params?: Record<string, any>) => {
+  if (typeof window !== "undefined" && (window as any).gtag) {
+    (window as any).gtag("event", eventName, params);
+  }
+};
+
+export default function DignityToIndependencePage() {
+  const [formData, setFormData] = useState<Record<string, any>>({});
   const [consentData, setConsentData] = useState(false);
   const [declaration, setDeclaration] = useState(false);
-  const [showError, setShowError] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showError, setShowError] = useState(false);
 
-  // Ref for auto-scrolling to error box if validation fails
-  const errBoxRef = useRef<HTMLDivElement | null>(null);
+  const errBoxRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLDivElement>(null);
 
-  // Safe helper function for Google Analytics event tracking
-  const trackGAEvent = (eventName: string, eventParams: Record<string, unknown> = {}) => {
-    if (typeof window !== "undefined" && typeof (window as unknown as { gtag?: Function }).gtag === "function") {
-      (window as unknown as { gtag: Function }).gtag("event", eventName, eventParams);
+  const scrollToForm = () => {
+    if (formRef.current) {
+      formRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
 
-  // Helper for tracking form input interactions
-  const handleFieldChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    const { name, value, type } = e.target;
-    const checked = (e.target as HTMLInputElement).checked;
+  const handleFieldChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
+    const target = e.target;
+    const value = target.type === "checkbox" ? (target as HTMLInputElement).checked : target.value;
+
+    setFormData((prev) => ({
+      ...prev,
+      [target.name]: value,
+    }));
+
     trackGAEvent("form_field_interaction", {
-      field_name: name,
-      field_value: type === "checkbox" ? checked : value,
+      field_name: target.name,
     });
   };
 
-  // Form submission handler
-  const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Track submission attempt
-    trackGAEvent("form_submit_attempt", {
-      form_id: "appForm",
-      form_name: "Application Form",
-    });
-
-    // Validation check for mandatory consents
     if (!consentData || !declaration) {
       setShowError(true);
-      trackGAEvent("form_submit_error", {
-        form_id: "appForm",
-        error_type: "missing_required_consent",
-      });
       if (errBoxRef.current) {
         errBoxRef.current.scrollIntoView({ behavior: "smooth" });
       }
@@ -58,291 +58,260 @@ export default function ApplicationPage() {
     setIsSubmitting(true);
 
     try {
-      const formData = new FormData(e.currentTarget);
-      const courseSelected = formData.get("course");
-      const citySelected = formData.get("city");
-      const ggConsent = formData.get("consent_globalgiving") === "on";
-      const mediaConsent = formData.get("consent_media") === "on";
-      const shoutoutConsent = formData.get("consent_shoutout") === "on";
+      trackGAEvent("form_submission_attempt", { form_id: "application_form" });
+      
+      // Simulate API Submission
+      await new Promise((resolve) => setTimeout(resolve, 1500));
 
-      // Submit data to your backend endpoint (e.g. Next.js API Route or FormSpree/SheetDB)
-      /* 
-      await fetch("/api/apply", {
-        method: "POST",
-        body: formData,
-      });
-      */
-
-      // Track successful submission & application properties
-      trackGAEvent("form_submit_success", {
-        form_id: "appForm",
-        course_selected: courseSelected,
-        city_selected: citySelected,
-        consent_globalgiving: ggConsent,
-        consent_media: mediaConsent,
-        consent_shoutout: shoutoutConsent,
-      });
-
-      // Track conversion event for GA Conversions / Google Ads
-      trackGAEvent("conversion", {
-        event_category: "Application",
-        event_label: courseSelected,
-      });
-
-      setSubmitted(true);
-    } catch (err: unknown) {
-      const errorObj = err as Error;
-      trackGAEvent("form_submit_error", {
-        form_id: "appForm",
-        error_type: "api_submission_failure",
-        error_message: errorObj?.message || "Unknown error",
-      });
+      setIsSubmitted(true);
+      trackGAEvent("form_submission_success", { form_id: "application_form" });
+    } catch (err) {
+      console.error(err);
+      trackGAEvent("form_submission_error", { form_id: "application_form" });
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div style={{ fontFamily: "Arial, sans-serif", color: "#1a1a1a", backgroundColor: "#f8f9fa", minHeight: "100vh" }}>
-      {/* ------------------- HERO SECTION ------------------- */}
-      <header style={{ background: "linear-gradient(135deg, #111e2e 0%, #1a3a5c 100%)", color: "#fff", padding: "60px 24px 50px", textAlign: "center" }}>
+    <div style={{ width: "100%", backgroundColor: "#f9fbfd", fontFamily: "Arial, sans-serif", color: "#1a1a1a", minHeight: "100vh" }}>
+      
+      {/* HERO SECTION */}
+      <header style={{ background: "linear-gradient(135deg, #771010 0%, #a81c1c 100%)", color: "#ffffff", padding: "60px 24px 50px", textAlign: "center" }}>
         <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-          <p style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#e2b857", marginBottom: "12px" }}>
+          <p style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#f2d6d6", marginBottom: "12px" }}>
             Dignity to Independence Programme
           </p>
-          <h1 style={{ fontSize: "32px", fontWeight: 700, lineHeight: 1.25, marginBottom: "16px" }}>
+          <h1 style={{ fontSize: "36px", fontWeight: 800, lineHeight: 1.2, marginBottom: "16px" }}>
             Apply for a Fully Funded Tech Career Training Place
           </h1>
-          <p style={{ fontSize: "16px", color: "#d0dce8", lineHeight: 1.6, marginBottom: "28px", maxWidth: "680px", margin: "0 auto 28px" }}>
+          <p style={{ fontSize: "16px", color: "#f9e8e8", lineHeight: 1.6, maxWidth: "680px", margin: "0 auto 28px" }}>
             No fees. No conditions. Open across Nigeria. Just the training, support, and pathway you deserve.
           </p>
 
-          {/* Badges */}
-          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "12px", fontSize: "12px", color: "#e0e8f0" }}>
-            <span style={{ background: "rgba(255,255,255,0.1)", padding: "6px 14px", borderRadius: "20px", border: "1px solid rgba(255,255,255,0.15)" }}>
-              ✓ Vetted Organisation
-            </span>
-            <span style={{ background: "rgba(255,255,255,0.1)", padding: "6px 14px", borderRadius: "20px", border: "1px solid rgba(255,255,255,0.15)", color: "#f3c863" }}>
-              ★ Top-Ranked
-            </span>
-            <span style={{ background: "rgba(255,255,255,0.1)", padding: "6px 14px", borderRadius: "20px", border: "1px solid rgba(255,255,255,0.15)" }}>
-              ✓ Effective Organisation 2026
-            </span>
-            <span style={{ background: "rgba(255,255,255,0.1)", padding: "6px 14px", borderRadius: "20px", border: "1px solid rgba(255,255,255,0.15)" }}>
-              GlobalGiving Certified
-            </span>
+          <button
+            onClick={scrollToForm}
+            style={{
+              background: "#ffffff",
+              color: "#a81c1c",
+              border: "none",
+              borderRadius: "4px",
+              padding: "14px 32px",
+              fontSize: "15px",
+              fontWeight: 700,
+              cursor: "pointer",
+              boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+              transition: "transform 0.2s, background 0.2s"
+            }}
+          >
+            Apply Now
+          </button>
+
+          {/* BADGES */}
+          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "16px", marginTop: "36px", paddingTop: "24px", borderTop: "1px solid rgba(255,255,255,0.2)" }}>
+            <span style={{ fontSize: "12px", background: "rgba(255,255,255,0.15)", padding: "6px 12px", borderRadius: "20px" }}>✓ Vetted Organisation</span>
+            <span style={{ fontSize: "12px", background: "rgba(255,255,255,0.15)", padding: "6px 12px", borderRadius: "20px" }}>★ Top-Ranked</span>
+            <span style={{ fontSize: "12px", background: "rgba(255,255,255,0.15)", padding: "6px 12px", borderRadius: "20px" }}>✓ Effective Organisation 2026</span>
+            <span style={{ fontSize: "12px", background: "rgba(255,255,255,0.15)", padding: "6px 12px", borderRadius: "20px" }}>GlobalGiving Certified</span>
           </div>
         </div>
       </header>
 
-      {/* ------------------- AVAILABLE COURSES SECTION ------------------- */}
-      <section style={{ maxWidth: "960px", margin: "0 auto", padding: "50px 24px 30px" }}>
-        <div style={{ textAlign: "center", marginBottom: "36px" }}>
-          <h2 style={{ fontSize: "26px", fontWeight: 700, color: "#111e2e", marginBottom: "8px" }}>Available Courses</h2>
-          <p style={{ fontSize: "15px", color: "#555", marginBottom: "12px" }}>Three sponsored pathways currently open</p>
-          <p style={{ fontSize: "13px", color: "#666", maxWidth: "760px", margin: "0 auto", lineHeight: 1.6 }}>
-            Self-paced online, delivered by Betapersin, DIEF&apos;s sister commercial training partner, led by a CISSP and Microsoft Identity and Access Administrator (SC-300) certified instructor with fifteen years in identity and security.
-          </p>
-        </div>
-
-        {/* Course Cards Grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "24px", marginBottom: "50px" }}>
-          
-          {/* Course 1: IAM */}
-          <div style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: "8px", padding: "24px", display: "flex", flexDirection: "column", justifyContent: "space-between", boxShadow: "0 2px 8px rgba(0,0,0,0.04)" }}>
-            <div>
-              <span style={{ background: "#e6f4ea", color: "#137333", fontSize: "11px", fontWeight: 700, padding: "4px 10px", borderRadius: "12px", textTransform: "uppercase" }}>
-                Now Open
-              </span>
-              <h3 style={{ fontSize: "18px", fontWeight: 700, marginTop: "12px", marginBottom: "10px", color: "#111e2e" }}>
-                Identity and Access Management (IAM)
-              </h3>
-              <p style={{ fontSize: "13px", color: "#555", lineHeight: 1.5, marginBottom: "16px" }}>
-                A complete foundation in IAM covering concepts, tools, and real-world application. Leads to employability in one of the fastest-growing areas of cybersecurity.
-              </p>
-              <ul style={{ listStyle: "none", padding: 0, margin: "0 0 20px 0", fontSize: "13px", color: "#333", lineHeight: 1.8 }}>
-                <li>✓ Full curriculum access included</li>
-                <li>✓ Fortnightly live support sessions</li>
-                <li>✓ CV rewritten by hand</li>
-                <li>✓ Unlimited mock interviews until first job secured</li>
-              </ul>
-            </div>
-            <div>
-              <div style={{ fontSize: "12px", color: "#777", textDecoration: "line-through" }}>Market value: over $1,300</div>
-              <div style={{ fontSize: "14px", fontWeight: 700, color: "#a81c1c", marginTop: "2px" }}>✓ Fully Funded by DIEF</div>
-            </div>
+      {/* MAIN CONTENT WRAPPER */}
+      <main style={{ maxWidth: "960px", margin: "0 auto", padding: "48px 24px" }}>
+        
+        {/* COURSES SECTION */}
+        <section style={{ marginBottom: "64px" }}>
+          <div style={{ textAlign: "center", marginBottom: "32px" }}>
+            <h2 style={{ fontSize: "28px", fontWeight: 700, color: "#1a1a1a", marginBottom: "8px" }}>Available Courses</h2>
+            <p style={{ fontSize: "15px", color: "#666" }}>Three sponsored pathways currently open</p>
+            <p style={{ fontSize: "13px", color: "#555", maxWidth: "780px", margin: "12px auto 0", lineHeight: 1.6, background: "#edf2f7", padding: "12px 18px", borderRadius: "6px" }}>
+              Self-paced online, delivered by Betapersin, DIEF&apos;s sister commercial training partner, led by a CISSP and Microsoft Identity and Access Administrator (SC-300) certified instructor with fifteen years in identity and security.
+            </p>
           </div>
 
-          {/* Course 2: IAM Engineering */}
-          <div style={{ background: "#fff", border: "2px solid #a81c1c", borderRadius: "8px", padding: "24px", display: "flex", flexDirection: "column", justifyContent: "space-between", boxShadow: "0 4px 12px rgba(0,0,0,0.08)" }}>
-            <div>
-              <span style={{ background: "#e6f4ea", color: "#137333", fontSize: "11px", fontWeight: 700, padding: "4px 10px", borderRadius: "12px", textTransform: "uppercase" }}>
-                Now Open
-              </span>
-              <h3 style={{ fontSize: "18px", fontWeight: 700, marginTop: "12px", marginBottom: "10px", color: "#111e2e" }}>
-                Identity and Access Management (IAM) Engineering
-              </h3>
-              <p style={{ fontSize: "13px", color: "#555", lineHeight: 1.5, marginBottom: "16px" }}>
-                A hands-on build, not theory and portal clicks. You engineer a live identity estate in Microsoft Entra ID and Okta: the directory, authentication protocols, Conditional Access, privileged access, entitlements, and the automation layer that ties it together. By the capstone, these labs add up to a portfolio project you can show an employer.
-              </p>
-              <ul style={{ listStyle: "none", padding: 0, margin: "0 0 20px 0", fontSize: "13px", color: "#333", lineHeight: 1.8 }}>
-                <li>✓ Full curriculum access included</li>
-                <li>✓ Fortnightly live support sessions</li>
-                <li>✓ CV rewritten by hand</li>
-                <li>✓ Unlimited mock interviews until first job secured</li>
-              </ul>
+          {/* COURSE CARDS GRID */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "24px" }}>
+            
+            {/* Card 1 */}
+            <div style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: "8px", padding: "24px", display: "flex", flexDirection: "column", justifyContent: "space-between", boxShadow: "0 2px 4px rgba(0,0,0,0.02)" }}>
+              <div>
+                <span style={{ fontSize: "11px", fontWeight: 700, color: "#2e7d32", background: "#e8f5e9", padding: "4px 8px", borderRadius: "4px", textTransform: "uppercase" }}>Now Open</span>
+                <h3 style={{ fontSize: "18px", fontWeight: 700, marginTop: "12px", marginBottom: "8px" }}>Identity and Access Management (IAM)</h3>
+                <p style={{ fontSize: "13px", color: "#555", lineHeight: 1.5, marginBottom: "16px" }}>
+                  A complete foundation in IAM covering concepts, tools, and real-world application. Leads to employability in one of the fastest-growing areas of cybersecurity.
+                </p>
+                <ul style={{ listStyle: "none", padding: 0, margin: "0 0 20px 0", fontSize: "13px", color: "#333", lineHeight: 1.8 }}>
+                  <li>✓ Full curriculum access included</li>
+                  <li>✓ Fortnightly live support sessions</li>
+                  <li>✓ CV rewritten by hand</li>
+                  <li>✓ Unlimited mock interviews until first job secured</li>
+                </ul>
+              </div>
+              <div>
+                <div style={{ fontSize: "12px", color: "#888", textDecoration: "line-through" }}>Market value: over $1,300</div>
+                <div style={{ fontSize: "15px", fontWeight: 700, color: "#a81c1c" }}>✓ Fully Funded by DIEF</div>
+              </div>
             </div>
-            <div>
-              <div style={{ fontSize: "12px", color: "#777", textDecoration: "line-through" }}>Market value: over $2,500</div>
-              <div style={{ fontSize: "14px", fontWeight: 700, color: "#a81c1c", marginTop: "2px" }}>✓ Fully Funded by DIEF</div>
+
+            {/* Card 2 */}
+            <div style={{ background: "#fff", border: "2px solid #a81c1c", borderRadius: "8px", padding: "24px", display: "flex", flexDirection: "column", justifyContent: "space-between", boxShadow: "0 4px 12px rgba(168,28,28,0.08)", relative: "relative" }}>
+              <div>
+                <span style={{ fontSize: "11px", fontWeight: 700, color: "#2e7d32", background: "#e8f5e9", padding: "4px 8px", borderRadius: "4px", textTransform: "uppercase" }}>Now Open</span>
+                <h3 style={{ fontSize: "18px", fontWeight: 700, marginTop: "12px", marginBottom: "8px" }}>Identity and Access Management (IAM) Engineering</h3>
+                <p style={{ fontSize: "13px", color: "#555", lineHeight: 1.5, marginBottom: "16px" }}>
+                  A hands-on build, not theory and portal clicks. You engineer a live identity estate in Microsoft Entra ID and Okta: the directory, authentication protocols, Conditional Access, privileged access, entitlements, and the automation layer that ties it together. By the capstone, these labs add up to a portfolio project you can show an employer.
+                </p>
+                <ul style={{ listStyle: "none", padding: 0, margin: "0 0 20px 0", fontSize: "13px", color: "#333", lineHeight: 1.8 }}>
+                  <li>✓ Full curriculum access included</li>
+                  <li>✓ Fortnightly live support sessions</li>
+                  <li>✓ CV rewritten by hand</li>
+                  <li>✓ Unlimited mock interviews until first job secured</li>
+                </ul>
+              </div>
+              <div>
+                <div style={{ fontSize: "12px", color: "#888", textDecoration: "line-through" }}>Market value: over $2,500</div>
+                <div style={{ fontSize: "15px", fontWeight: 700, color: "#a81c1c" }}>✓ Fully Funded by DIEF</div>
+              </div>
             </div>
+
+            {/* Card 3 */}
+            <div style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: "8px", padding: "24px", display: "flex", flexDirection: "column", justifyContent: "space-between", boxShadow: "0 2px 4px rgba(0,0,0,0.02)" }}>
+              <div>
+                <span style={{ fontSize: "11px", fontWeight: 700, color: "#2e7d32", background: "#e8f5e9", padding: "4px 8px", borderRadius: "4px", textTransform: "uppercase" }}>Now Open</span>
+                <h3 style={{ fontSize: "18px", fontWeight 700, marginTop: "12px", marginBottom: "8px" }}>Governance, Risk and Compliance (GRC)</h3>
+                <p style={{ fontSize: "13px", color: "#555", lineHeight: 1.5, marginBottom: "16px" }}>
+                  A structured GRC programme covering frameworks, risk assessment, and compliance operations. Prepares you for roles in risk management and organisational governance.
+                </p>
+                <ul style={{ listStyle: "none", padding: 0, margin: "0 0 20px 0", fontSize: "13px", color: "#333", lineHeight: 1.8 }}>
+                  <li>✓ Full curriculum access included</li>
+                  <li>✓ Fortnightly live support sessions</li>
+                  <li>✓ CV rewritten by hand</li>
+                  <li>✓ Unlimited mock interviews until first job secured</li>
+                </ul>
+              </div>
+              <div>
+                <div style={{ fontSize: "12px", color: "#888", textDecoration: "line-through" }}>Market value: over $1,300</div>
+                <div style={{ fontSize: "15px", fontWeight: 700, color: "#a81c1c" }}>✓ Fully Funded by DIEF</div>
+              </div>
+            </div>
+
+            {/* Card 4 - Coming Soon */}
+            <div style={{ background: "#f8fafc", border: "1px dashed #cbd5e1", borderRadius: "8px", padding: "24px", display: "flex", flexDirection: "column", justifyContent: "space-between", opacity: 0.85 }}>
+              <div>
+                <span style={{ fontSize: "11px", fontWeight: 700, color: "#475569", background: "#e2e8f0", padding: "4px 8px", borderRadius: "4px", textTransform: "uppercase" }}>Coming Soon</span>
+                <h3 style={{ fontSize: "18px", fontWeight: 700, marginTop: "12px", marginBottom: "8px", color: "#475569" }}>Full Stack Engineering</h3>
+                <p style={{ fontSize: "13px", color: "#64748b", lineHeight: 1.5, marginBottom: "16px" }}>
+                  End-to-end web development. Applications will open once funding is secured for this track.
+                </p>
+              </div>
+              <div>
+                <div style={{ fontSize: "13px", fontWeight: 600, color: "#64748b" }}>🔒 Applications not yet open</div>
+              </div>
+            </div>
+
           </div>
+        </section>
 
-          {/* Course 3: GRC */}
-          <div style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: "8px", padding: "24px", display: "flex", flexDirection: "column", justifyContent: "space-between", boxShadow: "0 2px 8px rgba(0,0,0,0.04)" }}>
-            <div>
-              <span style={{ background: "#e6f4ea", color: "#137333", fontSize: "11px", fontWeight: 700, padding: "4px 10px", borderRadius: "12px", textTransform: "uppercase" }}>
-                Now Open
-              </span>
-              <h3 style={{ fontSize: "18px", fontWeight 700, marginTop: "12px", marginBottom: "10px", color: "#111e2e" }}>
-                Governance, Risk and Compliance (GRC)
-              </h3>
-              <p style={{ fontSize: "13px", color: "#555", lineHeight: 1.5, marginBottom: "16px" }}>
-                A structured GRC programme covering frameworks, risk assessment, and compliance operations. Prepares you for roles in risk management and organisational governance.
-              </p>
-              <ul style={{ listStyle: "none", padding: 0, margin: "0 0 20px 0", fontSize: "13px", color: "#333", lineHeight: 1.8 }}>
-                <li>✓ Full curriculum access included</li>
-                <li>✓ Fortnightly live support sessions</li>
-                <li>✓ CV rewritten by hand</li>
-                <li>✓ Unlimited mock interviews until first job secured</li>
-              </ul>
-            </div>
-            <div>
-              <div style={{ fontSize: "12px", color: "#777", textDecoration: "line-through" }}>Market value: over $1,300</div>
-              <div style={{ fontSize: "14px", fontWeight: 700, color: "#a81c1c", marginTop: "2px" }}>✓ Fully Funded by DIEF</div>
-            </div>
-          </div>
-
-          {/* Course 4: Full Stack (Coming Soon) */}
-          <div style={{ background: "#f1f5f9", border: "1px dashed #cbd5e1", borderRadius: "8px", padding: "24px", display: "flex", flexDirection: "column", justifyContent: "space-between", opacity: 0.85 }}>
-            <div>
-              <span style={{ background: "#fef3c7", color: "#92400e", fontSize: "11px", fontWeight: 700, padding: "4px 10px", borderRadius: "12px", textTransform: "uppercase" }}>
-                Coming Soon
-              </span>
-              <h3 style={{ fontSize: "18px", fontWeight: 700, marginTop: "12px", marginBottom: "10px", color: "#475569" }}>
-                Full Stack Engineering
-              </h3>
-              <p style={{ fontSize: "13px", color: "#64748b", lineHeight: 1.5, marginBottom: "16px" }}>
-                End-to-end web development. Applications will open once funding is secured for this track.
-              </p>
-            </div>
-            <div style={{ fontSize: "13px", fontWeight: 600, color: "#64748b" }}>
-              🔒 Applications not yet open
-            </div>
-          </div>
-
-        </div>
-
-        {/* ------------------- WHAT EVERY SPONSORED STUDENT RECEIVES ------------------- */}
-        <div style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: "8px", padding: "32px 24px", marginBottom: "50px", boxShadow: "0 2px 8px rgba(0,0,0,0.03)" }}>
-          <h3 style={{ fontSize: "20px", fontWeight: 700, textAlign: "center", marginBottom: "28px", color: "#111e2e" }}>
-            What every sponsored student receives
-          </h3>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: "20px", textAlign: "center" }}>
+        {/* WHAT EVERY STUDENT RECEIVES */}
+        <section style={{ marginBottom: "64px", background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "8px", padding: "36px 28px" }}>
+          <h2 style={{ fontSize: "22px", fontWeight: 700, textAlign: "center", marginBottom: "28px" }}>What Every Sponsored Student Receives</h2>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "20px", textAlign: "center" }}>
             <div>
               <div style={{ fontSize: "28px", marginBottom: "8px" }}>📖</div>
-              <h4 style={{ fontSize: "14px", fontWeight: 700, margin: "0 0 4px 0" }}>Full Course Access</h4>
-              <p style={{ fontSize: "12px", color: "#666", margin: 0 }}>Complete curriculum, no fees</p>
+              <h4 style={{ fontSize: "15px", fontWeight: 700, marginBottom: "4px" }}>Full Course Access</h4>
+              <p style={{ fontSize: "13px", color: "#666", margin: 0 }}>Complete curriculum, no fees</p>
             </div>
             <div>
               <div style={{ fontSize: "28px", marginBottom: "8px" }}>📅</div>
-              <h4 style={{ fontSize: "14px", fontWeight: 700, margin: "0 0 4px 0" }}>Fortnightly Support</h4>
-              <p style={{ fontSize: "12px", color: "#666", margin: 0 }}>Live sessions with your instructor</p>
+              <h4 style={{ fontSize: "15px", fontWeight: 700, marginBottom: "4px" }}>Fortnightly Support</h4>
+              <p style={{ fontSize: "13px", color: "#666", margin: 0 }}>Live sessions with your instructor</p>
             </div>
             <div>
               <div style={{ fontSize: "28px", marginBottom: "8px" }}>✏️</div>
-              <h4 style={{ fontSize: "14px", fontWeight: 700, margin: "0 0 4px 0" }}>CV Written By Hand</h4>
-              <p style={{ fontSize: "12px", color: "#666", margin: 0 }}>Not a template, your story</p>
+              <h4 style={{ fontSize: "15px", fontWeight: 700, marginBottom: "4px" }}>CV Written By Hand</h4>
+              <p style={{ fontSize: "13px", color: "#666", margin: 0 }}>Not a template, your story</p>
             </div>
             <div>
               <div style={{ fontSize: "28px", marginBottom: "8px" }}>🎯</div>
-              <h4 style={{ fontSize: "14px", fontWeight: 700, margin: "0 0 4px 0" }}>Unlimited Mock Interviews</h4>
-              <p style={{ fontSize: "12px", color: "#666", margin: 0 }}>Until your first job is secured</p>
+              <h4 style={{ fontSize: "15px", fontWeight: 700, marginBottom: "4px" }}>Unlimited Mock Interviews</h4>
+              <p style={{ fontSize: "13px", color: "#666", margin: 0 }}>Until your first job is secured</p>
             </div>
             <div>
               <div style={{ fontSize: "28px", marginBottom: "8px" }}>🤝</div>
-              <h4 style={{ fontSize: "14px", fontWeight: 700, margin: "0 0 4px 0" }}>We Don&apos;t Fire and Forget</h4>
-              <p style={{ fontSize: "12px", color: "#666", margin: 0 }}>Support continues after training</p>
+              <h4 style={{ fontSize: "15px", fontWeight: 700, marginBottom: "4px" }}>We Don't Fire and Forget</h4>
+              <p style={{ fontSize: "13px", color: "#666", margin: 0 }}>Support continues after training</p>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ------------------- FORM CONTAINER ------------------- */}
-      <div style={{ maxWidth: "740px", margin: "0 auto", padding: "0 24px 40px" }}>
-        <div style={{ background: "#fff", borderRadius: "8px", boxShadow: "0 4px 20px rgba(0,0,0,0.08)", overflow: "hidden" }}>
-          <div>
-            {submitted ? (
-              <div style={{ background: "#e6f4ea", border: "1px solid #a0d0b0", borderRadius: "8px", padding: "36px 28px", textAlign: "center", margin: "34px" }}>
-                <h3 style={{ fontSize: "22px", fontWeight: "normal", color: "#137333", marginBottom: "8px" }}>
-                  Application received
-                </h3>
-                <p style={{ fontFamily: "Arial, sans-serif", fontSize: "14px", color: "#555" }}>
-                  Thank you for applying. We have received your application and will be in touch within 14 days. We read every application personally.
+        {/* APPLICATION FORM CONTAINER */}
+        <section ref={formRef} style={{ background: "#ffffff", border: "1px solid #e0e0e0", borderRadius: "8px", overflow: "hidden", boxShadow: "0 4px 16px rgba(0,0,0,0.06)", maxWidth: "740px", margin: "0 auto" }}>
+          <div style={{ padding: "36px 32px" }}>
+            <h2 style={{ fontSize: "24px", color: "#1a1a1a", marginBottom: "8px", fontWeight: 700 }}>
+              Application Form
+            </h2>
+            <p style={{ fontSize: "14px", color: "#666", lineHeight: 1.5, marginBottom: "28px" }}>
+              Complete all sections carefully. We read every application personally. You will hear back within 14 days.
+            </p>
+
+            {isSubmitted ? (
+              <div style={{ background: "#e6f4ea", border: "1px solid #b7e1cd", padding: "28px", borderRadius: "6px", textAlign: "center" }}>
+                <h3 style={{ color: "#137333", margin: "0 0 8px 0" }}>Application Submitted!</h3>
+                <p style={{ color: "#3c4043", margin: 0, fontSize: "14px", lineHeight: 1.6 }}>
+                  Thank you for applying. We have received your application and sent a confirmation email. Our team will review your application personally and get back to you within 14 days.
                 </p>
               </div>
             ) : (
-              <form id="appForm" onSubmit={handleFormSubmit} style={{ padding: "34px" }}>
+              <form onSubmit={handleSubmit}>
+                
                 {/* SECTION 1: Personal Details */}
-                <p style={{ fontFamily: "Arial, sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#a81c1c", paddingBottom: "8px", borderBottom: "2px solid #f2d6d6", marginBottom: "20px", marginTop: 0 }}>
+                <p style={{ fontFamily: "Arial, sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#a81c1c", paddingBottom: "8px", borderBottom: "2px solid #f2d6d6", marginBottom: "20px" }}>
                   Personal Details
                 </p>
 
-                <div className="fgrid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "16px" }}>
-                  <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "16px" }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                     <label htmlFor="firstName" style={{ fontSize: "13px", fontWeight: 600, color: "#1a1a1a" }}>
-                      First Name <span style={{ color: "#a81c1c", marginLeft: "2px" }}>*</span>
+                      First Name <span style={{ color: "#a81c1c" }}>*</span>
                     </label>
-                    <input type="text" id="firstName" name="firstName" required placeholder="Your first name" className="fg-input" style={{ width: "100%", padding: "10px 12px", border: "1px solid #ccc", borderRadius: "4px", fontSize: "14px", boxSizing: "border-box" }} />
+                    <input type="text" id="firstName" name="firstName" required onChange={handleFieldChange} style={{ padding: "10px 12px", border: "1px solid #ccc", borderRadius: "4px", fontSize: "14px" }} />
                   </div>
-
-                  <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px" }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                     <label htmlFor="lastName" style={{ fontSize: "13px", fontWeight: 600, color: "#1a1a1a" }}>
-                      Last Name <span style={{ color: "#a81c1c", marginLeft: "2px" }}>*</span>
+                      Last Name <span style={{ color: "#a81c1c" }}>*</span>
                     </label>
-                    <input type="text" id="lastName" name="lastName" required placeholder="Your last name" className="fg-input" style={{ width: "100%", padding: "10px 12px", border: "1px solid #ccc", borderRadius: "4px", fontSize: "14px", boxSizing: "border-box" }} />
+                    <input type="text" id="lastName" name="lastName" required onChange={handleFieldChange} style={{ padding: "10px 12px", border: "1px solid #ccc", borderRadius: "4px", fontSize: "14px" }} />
                   </div>
                 </div>
 
-                <div className="fgrid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "16px" }}>
-                  <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "16px" }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                     <label htmlFor="email" style={{ fontSize: "13px", fontWeight: 600, color: "#1a1a1a" }}>
-                      Email Address <span style={{ color: "#a81c1c", marginLeft: "2px" }}>*</span>
+                      Email Address <span style={{ color: "#a81c1c" }}>*</span>
                     </label>
-                    <input type="email" id="email" name="email" required placeholder="your@email.com" className="fg-input" style={{ width: "100%", padding: "10px 12px", border: "1px solid #ccc", borderRadius: "4px", fontSize: "14px", boxSizing: "border-box" }} />
+                    <input type="email" id="email" name="email" required onChange={handleFieldChange} style={{ padding: "10px 12px", border: "1px solid #ccc", borderRadius: "4px", fontSize: "14px" }} />
                   </div>
-
-                  <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px" }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                     <label htmlFor="phone" style={{ fontSize: "13px", fontWeight: 600, color: "#1a1a1a" }}>
-                      Phone Number <span style={{ color: "#a81c1c", marginLeft: "2px" }}>*</span>
+                      Phone Number <span style={{ color: "#a81c1c" }}>*</span>
                     </label>
-                    <input type="tel" id="phone" name="phone" required placeholder="Include your country code e.g. +234" className="fg-input" style={{ width: "100%", padding: "10px 12px", border: "1px solid #ccc", borderRadius: "4px", fontSize: "14px", boxSizing: "border-box" }} />
+                    <input type="tel" id="phone" name="phone" required onChange={handleFieldChange} style={{ padding: "10px 12px", border: "1px solid #ccc", borderRadius: "4px", fontSize: "14px" }} />
                   </div>
                 </div>
 
-                <div className="fgrid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "16px" }}>
-                  <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "16px" }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                     <label htmlFor="country" style={{ fontSize: "13px", fontWeight: 600, color: "#1a1a1a" }}>
-                      Country of Residence <span style={{ color: "#a81c1c", marginLeft: "2px" }}>*</span>
+                      Country of Residence <span style={{ color: "#a81c1c" }}>*</span>
                     </label>
-                    <input type="text" id="country" name="country" defaultValue="Nigeria" readOnly className="fg-input" style={{ width: "100%", padding: "10px 12px", border: "1px solid #ccc", borderRadius: "4px", fontSize: "14px", backgroundColor: "#f0f0f0", boxSizing: "border-box" }} />
+                    <input type="text" id="country" name="country" defaultValue="Nigeria" required onChange={handleFieldChange} style={{ padding: "10px 12px", border: "1px solid #ccc", borderRadius: "4px", fontSize: "14px" }} />
                   </div>
-
-                  <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px" }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                     <label htmlFor="city" style={{ fontSize: "13px", fontWeight: 600, color: "#1a1a1a" }}>
-                      City <span style={{ color: "#a81c1c", marginLeft: "2px" }}>*</span>
+                      City <span style={{ color: "#a81c1c" }}>*</span>
                     </label>
-                    <select id="city" name="city" required className="fg-input" onChange={handleFieldChange} style={{ width: "100%", padding: "10px 12px", border: "1px solid #ccc", borderRadius: "4px", fontSize: "14px", boxSizing: "border-box" }}>
+                    <select id="city" name="city" required onChange={handleFieldChange} style={{ width: "100%", padding: "10px 12px", border: "1px solid #ccc", borderRadius: "4px", fontSize: "14px", boxSizing: "border-box" }}>
                       <option value="">Select your city</option>
                       <option>Abuja</option><option>Abeokuta</option><option>Ado-Ekiti</option><option>Akure</option>
                       <option>Asaba</option><option>Awka</option><option>Bauchi</option><option>Benin City</option>
@@ -366,9 +335,9 @@ export default function ApplicationPage() {
 
                 <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px" }}>
                   <label htmlFor="course" style={{ fontSize: "13px", fontWeight: 600, color: "#1a1a1a" }}>
-                    Which course are you applying for? <span style={{ color: "#a81c1c", marginLeft: "2px" }}>*</span>
+                    Which course are you applying for? <span style={{ color: "#a81c1c" }}>*</span>
                   </label>
-                  <select id="course" name="course" required className="fg-input" onChange={handleFieldChange} style={{ width: "100%", padding: "10px 12px", border: "1px solid #ccc", borderRadius: "4px", fontSize: "14px", boxSizing: "border-box" }}>
+                  <select id="course" name="course" required onChange={handleFieldChange} style={{ width: "100%", padding: "10px 12px", border: "1px solid #ccc", borderRadius: "4px", fontSize: "14px", boxSizing: "border-box" }}>
                     <option value="">Select a course</option>
                     <option>Identity and Access Management (IAM)</option>
                     <option>Identity and Access Management (IAM) Engineering</option>
@@ -378,9 +347,9 @@ export default function ApplicationPage() {
 
                 <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px" }}>
                   <label htmlFor="digitalLevel" style={{ fontSize: "13px", fontWeight: 600, color: "#1a1a1a" }}>
-                    How would you describe your current digital skills level? <span style={{ color: "#a81c1c", marginLeft: "2px" }}>*</span>
+                    How would you describe your current digital skills level? <span style={{ color: "#a81c1c" }}>*</span>
                   </label>
-                  <select id="digitalLevel" name="digitalLevel" required className="fg-input" onChange={handleFieldChange} style={{ width: "100%", padding: "10px 12px", border: "1px solid #ccc", borderRadius: "4px", fontSize: "14px", boxSizing: "border-box" }}>
+                  <select id="digitalLevel" name="digitalLevel" required onChange={handleFieldChange} style={{ width: "100%", padding: "10px 12px", border: "1px solid #ccc", borderRadius: "4px", fontSize: "14px", boxSizing: "border-box" }}>
                     <option value="">Select one</option>
                     <option>Beginner: I use a phone and basic apps</option>
                     <option>Intermediate: I am comfortable with computers and the internet</option>
@@ -395,22 +364,22 @@ export default function ApplicationPage() {
 
                 <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px" }}>
                   <label htmlFor="situation" style={{ fontSize: "13px", fontWeight: 600, color: "#1a1a1a" }}>
-                    Tell us briefly about your current situation <span style={{ color: "#a81c1c", marginLeft: "2px" }}>*</span>
+                    Tell us briefly about your current situation <span style={{ color: "#a81c1c" }}>*</span>
                     <span style={{ fontWeight: "normal", color: "#666", fontSize: "12px", display: "block", marginTop: "2px" }}>
                       What is your life like right now? Are you employed, studying, or neither?
                     </span>
                   </label>
-                  <textarea id="situation" name="situation" required placeholder="Tell us a little about where you are right now..." className="fg-input" rows={4} style={{ width: "100%", padding: "10px 12px", border: "1px solid #ccc", borderRadius: "4px", fontSize: "14px", boxSizing: "border-box" }} />
+                  <textarea id="situation" name="situation" required placeholder="Tell us a little about where you are right now..." rows={4} onChange={handleFieldChange} style={{ width: "100%", padding: "10px 12px", border: "1px solid #ccc", borderRadius: "4px", fontSize: "14px", boxSizing: "border-box" }} />
                 </div>
 
                 <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px" }}>
                   <label htmlFor="motivation" style={{ fontSize: "13px", fontWeight: 600, color: "#1a1a1a" }}>
-                    Why do you want to train in this field? <span style={{ color: "#a81c1c", marginLeft: "2px" }}>*</span>
+                    Why do you want to train in this field? <span style={{ color: "#a81c1c" }}>*</span>
                     <span style={{ fontWeight: "normal", color: "#666", fontSize: "12px", display: "block", marginTop: "2px" }}>
                       Tell us what this opportunity means to you. Be honest, there are no wrong answers.
                     </span>
                   </label>
-                  <textarea id="motivation" name="motivation" required placeholder="What would this change for you and your family?" className="fg-input" rows={4} style={{ width: "100%", padding: "10px 12px", border: "1px solid #ccc", borderRadius: "4px", fontSize: "14px", boxSizing: "border-box" }} />
+                  <textarea id="motivation" name="motivation" required placeholder="What would this change for you and your family?" rows={4} onChange={handleFieldChange} style={{ width: "100%", padding: "10px 12px", border: "1px solid #ccc", borderRadius: "4px", fontSize: "14px", boxSizing: "border-box" }} />
                 </div>
 
                 <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px" }}>
@@ -420,7 +389,7 @@ export default function ApplicationPage() {
                       We want to make sure you can complete the programme successfully.
                     </span>
                   </label>
-                  <select id="commitment" name="commitment" className="fg-input" onChange={handleFieldChange} style={{ width: "100%", padding: "10px 12px", border: "1px solid #ccc", borderRadius: "4px", fontSize: "14px", boxSizing: "border-box" }}>
+                  <select id="commitment" name="commitment" onChange={handleFieldChange} style={{ width: "100%", padding: "10px 12px", border: "1px solid #ccc", borderRadius: "4px", fontSize: "14px", boxSizing: "border-box" }}>
                     <option value="">Select one</option>
                     <option>Less than 5 hours</option>
                     <option>5 to 10 hours</option>
@@ -431,9 +400,9 @@ export default function ApplicationPage() {
 
                 <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px" }}>
                   <label htmlFor="laptop" style={{ fontSize: "13px", fontWeight: 600, color: "#1a1a1a" }}>
-                    Do you have access to a laptop or desktop computer? <span style={{ color: "#a81c1c", marginLeft: "2px" }}>*</span>
+                    Do you have access to a laptop or desktop computer? <span style={{ color: "#a81c1c" }}>*</span>
                   </label>
-                  <select id="laptop" name="laptop" required className="fg-input" onChange={handleFieldChange} style={{ width: "100%", padding: "10px 12px", border: "1px solid #ccc", borderRadius: "4px", fontSize: "14px", boxSizing: "border-box" }}>
+                  <select id="laptop" name="laptop" required onChange={handleFieldChange} style={{ width: "100%", padding: "10px 12px", border: "1px solid #ccc", borderRadius: "4px", fontSize: "14px", boxSizing: "border-box" }}>
                     <option value="">Select one</option>
                     <option>Yes, I have my own laptop or desktop</option>
                     <option>Yes, I have shared access to a laptop or desktop</option>
@@ -443,9 +412,9 @@ export default function ApplicationPage() {
 
                 <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px" }}>
                   <label htmlFor="internet" style={{ fontSize: "13px", fontWeight: 600, color: "#1a1a1a" }}>
-                    Do you have reliable internet access? <span style={{ color: "#a81c1c", marginLeft: "2px" }}>*</span>
+                    Do you have reliable internet access? <span style={{ color: "#a81c1c" }}>*</span>
                   </label>
-                  <select id="internet" name="internet" required className="fg-input" onChange={handleFieldChange} style={{ width: "100%", padding: "10px 12px", border: "1px solid #ccc", borderRadius: "4px", fontSize: "14px", boxSizing: "border-box" }}>
+                  <select id="internet" name="internet" required onChange={handleFieldChange} style={{ width: "100%", padding: "10px 12px", border: "1px solid #ccc", borderRadius: "4px", fontSize: "14px", boxSizing: "border-box" }}>
                     <option value="">Select one</option>
                     <option>Yes, I have reliable home or office internet</option>
                     <option>Yes, I use mobile data and it is generally stable</option>
@@ -479,7 +448,7 @@ export default function ApplicationPage() {
                     />
                     <label htmlFor="consent_data" style={{ fontSize: "13px", color: "#1a1a1a", lineHeight: 1.55, cursor: "pointer" }}>
                       <strong style={{ color: "#771010", display: "block", marginBottom: "2px", fontSize: "13px", fontWeight: 600 }}>
-                        Use of personal data for programme delivery <span style={{ color: "#a81c1c", marginLeft: "2px" }}>*</span>
+                        Use of personal data for programme delivery <span style={{ color: "#a81c1c" }}>*</span>
                       </strong>
                       I give Direct Impact Empowerment Foundation permission to store and use the information I have provided in this application for the purposes of assessing my application, contacting me about my place, and delivering the training programme.
                       <em style={{ fontStyle: "normal", color: "#666", fontSize: "12px", display: "block", marginTop: "3px" }}>
@@ -571,7 +540,7 @@ export default function ApplicationPage() {
                     />
                     <label htmlFor="declaration" style={{ fontSize: "13px", color: "#1a1a1a", lineHeight: 1.55, cursor: "pointer" }}>
                       <strong style={{ color: "#771010", display: "block", marginBottom: "2px", fontSize: "13px", fontWeight: 600 }}>
-                        I confirm that the information I have provided is accurate and truthful. <span style={{ color: "#a81c1c", marginLeft: "2px" }}>*</span>
+                        I confirm that the information I have provided is accurate and truthful. <span style={{ color: "#a81c1c" }}>*</span>
                       </strong>
                       I understand that providing false information may result in my application being withdrawn. I commit to engaging fully with the programme if I am offered a funded place.
                     </label>
@@ -613,32 +582,48 @@ export default function ApplicationPage() {
                     You will receive a confirmation email once your application is received.
                   </p>
                 </div>
+
               </form>
             )}
           </div>
-        </div>
-      </div>
+        </section>
 
-      {/* FOOTER */}
-      <footer style={{ maxWidth: "740px", margin: "0 auto", padding: "0 24px 52px", textAlign: "center" }}>
-        <p style={{ fontSize: "13px", color: "#666", lineHeight: 1.65 }}>
-          This programme is part of DIEF&apos;s <strong>Dignity to Independence Programme (DIP)</strong>. Direct Impact Empowerment Foundation is a dual-registered NGO in Nigeria (CAC/IT/7420254) and Switzerland (CHE-415.427.651), independently vetted and Top-Ranked by{" "}
-          <Link
-            href="https://www.globalgiving.org/projects/76936"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() =>
-              trackGAEvent("outbound_link_click", {
-                destination: "GlobalGiving",
-                url: "https://www.globalgiving.org/projects/76936",
-              })
-            }
-            style={{ color: "#a81c1c", textDecoration: "none" }}
-          >
-            GlobalGiving
-          </Link>.
-        </p>
+      </main>
+
+      {/* FOOTER & PARTNERS */}
+      <footer style={{ background: "#ffffff", borderTop: "1px solid #e2e8f0", padding: "40px 24px", marginTop: "40px" }}>
+        <div style={{ maxWidth: "800px", margin: "0 auto", textAlign: "center" }}>
+          
+          <h4 style={{ fontSize: "14px", fontWeight: 700, color: "#475569", letterSpacing: "0.05em", textTransform: "uppercase", marginBottom: "16px" }}>
+            Partner Organisation & Accreditations
+          </h4>
+
+          <div style={{ display: "flex", justifyContent: "center", gap: "20px", marginBottom: "20px" }}>
+            <span style={{ fontSize: "12px", color: "#2e7d32", fontWeight: 700 }}>✓ Vetted</span>
+            <span style={{ fontSize: "12px", color: "#2e7d32", fontWeight: 700 }}>✓ Effective</span>
+            <span style={{ fontSize: "12px", color: "#2e7d32", fontWeight 700 }}>★ Top-Ranked</span>
+          </div>
+
+          <p style={{ fontSize: "13px", color: "#666", lineHeight: 1.65, maxWidth: "680px", margin: "0 auto" }}>
+            This programme is part of DIEF&apos;s <strong>Dignity to Independence Programme (DIP)</strong>. Direct Impact Empowerment Foundation is a dual-registered NGO in Nigeria (CAC/IT/7420254) and Switzerland (CHE-415.427.651), independently vetted and Top-Ranked by{" "}
+            <Link
+              href="https://www.globalgiving.org/projects/76936"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() =>
+                trackGAEvent("outbound_link_click", {
+                  destination: "GlobalGiving",
+                  url: "https://www.globalgiving.org/projects/76936",
+                })
+              }
+              style={{ color: "#a81c1c", textDecoration: "none", fontWeight: 600 }}
+            >
+              GlobalGiving
+            </Link>.
+          </p>
+        </div>
       </footer>
+
     </div>
   );
 }
