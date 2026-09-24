@@ -155,7 +155,7 @@ export default function DignityToIndependencePage() {
             </div>
 
             {/* Card 2 */}
-            <div style={{ background: "#fff", border: "2px solid #a81c1c", borderRadius: "8px", padding: "24px", display: "flex", flexDirection: "column", justifyContent: "space-between", boxShadow: "0 4px 12px rgba(168,28,28,0.08)", relative: "relative" }}>
+            <div style={{ background: "#fff", border: "2px solid #a81c1c", borderRadius: "8px", padding: "24px", display: "flex", flexDirection: "column", justifyContent: "space-between", boxShadow: "0 4px 12px rgba(168,28,28,0.08)", position: "relative" }}>
               <div>
                 <span style={{ fontSize: "11px", fontWeight: 700, color: "#2e7d32", background: "#e8f5e9", padding: "4px 8px", borderRadius: "4px", textTransform: "uppercase" }}>Now Open</span>
                 <h3 style={{ fontSize: "18px", fontWeight: 700, marginTop: "12px", marginBottom: "8px" }}>Identity and Access Management (IAM) Engineering</h3>
@@ -179,7 +179,7 @@ export default function DignityToIndependencePage() {
             <div style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: "8px", padding: "24px", display: "flex", flexDirection: "column", justifyContent: "space-between", boxShadow: "0 2px 4px rgba(0,0,0,0.02)" }}>
               <div>
                 <span style={{ fontSize: "11px", fontWeight: 700, color: "#2e7d32", background: "#e8f5e9", padding: "4px 8px", borderRadius: "4px", textTransform: "uppercase" }}>Now Open</span>
-                <h3 style={{ fontSize: "18px", fontWeight 700, marginTop: "12px", marginBottom: "8px" }}>Governance, Risk and Compliance (GRC)</h3>
+                <h3 style={{ fontSize: "18px", fontWeight: 700, marginTop: "12px", marginBottom: "8px" }}>Governance, Risk and Compliance (GRC)</h3>
                 <p style={{ fontSize: "13px", color: "#555", lineHeight: 1.5, marginBottom: "16px" }}>
                   A structured GRC programme covering frameworks, risk assessment, and compliance operations. Prepares you for roles in risk management and organisational governance.
                 </p>
@@ -192,7 +192,7 @@ export default function DignityToIndependencePage() {
               </div>
               <div>
                 <div style={{ fontSize: "12px", color: "#888", textDecoration: "line-through" }}>Market value: over $1,300</div>
-                <div style={{ fontSize: "15px", fontWeight: 700, color: "#a81c1c" }}>✓ Fully Funded by DIEF</div>
+                <div style={{ fontSize: "15px", fontWeight 700, color: "#a81c1c" }}>✓ Fully Funded by DIEF</div>
               </div>
             </div>
 
@@ -239,7 +239,7 @@ export default function DignityToIndependencePage() {
             </div>
             <div>
               <div style={{ fontSize: "28px", marginBottom: "8px" }}>🤝</div>
-              <h4 style={{ fontSize: "15px", fontWeight: 700, marginBottom: "4px" }}>We Don't Fire and Forget</h4>
+              <h4 style={{ fontSize: "15px", fontWeight: 700, marginBottom: "4px" }}>We Don&apos;t Fire and Forget</h4>
               <p style={{ fontSize: "13px", color: "#666", margin: 0 }}>Support continues after training</p>
             </div>
           </div>
@@ -601,7 +601,7 @@ export default function DignityToIndependencePage() {
           <div style={{ display: "flex", justifyContent: "center", gap: "20px", marginBottom: "20px" }}>
             <span style={{ fontSize: "12px", color: "#2e7d32", fontWeight: 700 }}>✓ Vetted</span>
             <span style={{ fontSize: "12px", color: "#2e7d32", fontWeight: 700 }}>✓ Effective</span>
-            <span style={{ fontSize: "12px", color: "#2e7d32", fontWeight 700 }}>★ Top-Ranked</span>
+            <span style={{ fontSize: "12px", color: "#2e7d32", fontWeight: 700 }}>★ Top-Ranked</span>
           </div>
 
           <p style={{ fontSize: "13px", color: "#666", lineHeight: 1.65, maxWidth: "680px", margin: "0 auto" }}>
