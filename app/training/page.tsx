@@ -6,7 +6,8 @@ import Script from "next/script";
 
 declare global {
   interface Window {
-    gtag?: (...args: unknown[]) => void;
+    dataLayer?: Record<string, unknown>[];
+    gtag?: (...args: any[]) => void;
   }
 }
 
@@ -256,7 +257,7 @@ export default function SponsoredTrainingApplication(): React.ReactElement {
                 <span>Market value: over $1,300</span>
               </div>
             </div>
-            <span style={{ display: "inline-block", background: "var(--green-light)", color: "var(--green)", fontFamily: "Arial, sans-serif", fontSize: "11px", fontWeight 700, letterSpacing: "0.05em", textTransform: "uppercase", padding: "6px 14px", borderRadius: "20px" }}>
+            <span style={{ display: "inline-block", background: "var(--green-light)", color: "var(--green)", fontFamily: "Arial, sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase", padding: "6px 14px", borderRadius: "20px" }}>
               ✓ Fully Funded by DIEF
             </span>
           </div>
@@ -433,32 +434,10 @@ export default function SponsoredTrainingApplication(): React.ReactElement {
                   </select>
                 </div>
 
-                <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px" }}>
-                  <label htmlFor="digitalLevel" style={{ fontFamily: "Arial, sans-serif", fontSize: "13px", fontWeight: 600, color: "#1a1a1a" }}>
-                    How would you describe your current digital skills level? <span style={{ color: "var(--crimson)", marginLeft: "2px" }}>*</span>
-                  </label>
-                  <select id="digitalLevel" name="digitalLevel" required className="fg-input">
-                    <option value="">Select one</option>
-                    <option>Beginner: I use a phone and basic apps</option>
-                    <option>Intermediate: I am comfortable with computers and the internet</option>
-                    <option>Advanced: I have some technical background</option>
-                  </select>
-                </div>
-
-                {/* SECTION 3: Your Background */}
+                {/* SECTION 3: Motivation & Background */}
                 <p style={{ fontFamily: "Arial, sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--crimson)", paddingBottom: "8px", borderBottom: "2px solid var(--crimson-light)", marginBottom: "20px", marginTop: "34px" }}>
-                  Your Background
+                  Motivation & Background
                 </p>
-
-                <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px" }}>
-                  <label htmlFor="situation" style={{ fontFamily: "Arial, sans-serif", fontSize: "13px", fontWeight: 600, color: "#1a1a1a" }}>
-                    Tell us briefly about your current situation <span style={{ color: "var(--crimson)", marginLeft: "2px" }}>*</span>
-                    <span style={{ fontWeight: "normal", color: "var(--muted)", fontSize: "12px", display: "block", marginTop: "2px" }}>
-                      What is your life like right now? Are you employed, studying, or neither?
-                    </span>
-                  </label>
-                  <textarea id="situation" name="situation" required placeholder="Tell us a little about where you are right now..." className="fg-input" />
-                </div>
 
                 <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px" }}>
                   <label htmlFor="motivation" style={{ fontFamily: "Arial, sans-serif", fontSize: "13px", fontWeight: 600, color: "#1a1a1a" }}>

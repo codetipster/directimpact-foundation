@@ -5,10 +5,10 @@ import { Footer } from '@/components/Footer'
 import type { Metadata } from 'next'
 import Script from 'next/script'
 
-// Declare gtag globally with optional modifier to prevent TypeScript declaration merge conflicts
 declare global {
   interface Window {
-    gtag?: (...args: unknown[]) => void;
+    dataLayer?: Record<string, unknown>[];
+    gtag?: (...args: any[]) => void;
   }
 }
 
@@ -33,22 +33,22 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={inter.className}>
-        {/* Google Tag (gtag.js) - Google Ads & GA4 */}
+        {/* Google Tag (gtag.js) - Google Analytics 4 & Google Ads */}
         <Script
           strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-VS2Q62GNSR"
+          src="https://www.googletagmanager.com/gtag/js?id=G-XJ7K2Z5VLL"
         />
-        <Script id="google-tags" strategy="afterInteractive">
+        <Script id="google-tags-init" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
             /* Initialize Google Analytics 4 */
-            gtag('config', 'G-VS2Q62GNSR');
+            gtag('config', 'G-XJ7K2Z5VLL');
 
-            /* Initialize Google Ads Grant Conversion Tracking */
-            gtag('config', 'AW-18051879035');
+            /* Initialize Google Ads Conversion Tracking */
+            gtag('config', 'AW-3965857070');
           `}
         </Script>
 
