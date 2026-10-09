@@ -4,14 +4,10 @@ import React, { useState, useRef, CSSProperties, FormEvent } from "react";
 import Link from "next/link";
 import Script from "next/script";
 
-// TypeScript declaration for window.gtag without using 'any'
+// Declaration matching Next.js / standard @types/gtag signature to avoid type clashes
 declare global {
   interface Window {
-    gtag?: (
-      command: string,
-      targetId: string | Date,
-      config?: Record<string, unknown>
-    ) => void;
+    gtag?: (...args: unknown[]) => void;
   }
 }
 
@@ -54,7 +50,7 @@ export default function SponsoredTrainingApplication(): React.ReactElement {
       if (response.ok) {
         setSubmitted(true);
 
-        // Trigger Google Analytics & Ads Conversion Event
+        // Trigger Google Analytics & Ads Conversion Event safely
         if (typeof window !== "undefined" && typeof window.gtag === "function") {
           window.gtag("event", "training_form_submitted");
         }
@@ -397,7 +393,7 @@ export default function SponsoredTrainingApplication(): React.ReactElement {
             ) : (
               <form id="appForm" onSubmit={handleSubmit} style={{ padding: "34px" }}>
                 {/* SECTION 1: Personal Details */}
-                <p style={{ fontFamily: "Arial, sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--crimson)", paddingBottom: "8px", borderBottom: "2px solid var(--crimson-light)", marginBottom: "20px", marginTop: 0 }}>
+                <p style={{ fontFamily: "Arial, sans-serif", fontSize: "11px", fontWeight 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--crimson)", paddingBottom: "8px", borderBottom: "2px solid var(--crimson-light)", marginBottom: "20px", marginTop: 0 }}>
                   Personal Details
                 </p>
 
