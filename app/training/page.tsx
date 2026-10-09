@@ -4,10 +4,14 @@ import React, { useState, useRef, CSSProperties, FormEvent } from "react";
 import Link from "next/link";
 import Script from "next/script";
 
-// TypeScript declaration for window.gtag
+// TypeScript declaration for window.gtag without using 'any'
 declare global {
   interface Window {
-    gtag?: (...args: any[]) => void;
+    gtag?: (
+      command: string,
+      targetId: string | Date,
+      config?: Record<string, unknown>
+    ) => void;
   }
 }
 
