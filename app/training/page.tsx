@@ -4,7 +4,6 @@ import React, { useState, useRef, CSSProperties, FormEvent } from "react";
 import Link from "next/link";
 import Script from "next/script";
 
-// Declaration matching Next.js / standard @types/gtag signature to avoid type clashes
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
@@ -23,7 +22,6 @@ export default function SponsoredTrainingApplication(): React.ReactElement {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
 
-    // Check required checkboxes
     if (!consentData || !declaration) {
       setShowError(true);
       if (errBoxRef.current) {
@@ -50,7 +48,6 @@ export default function SponsoredTrainingApplication(): React.ReactElement {
       if (response.ok) {
         setSubmitted(true);
 
-        // Trigger Google Analytics & Ads Conversion Event safely
         if (typeof window !== "undefined" && typeof window.gtag === "function") {
           window.gtag("event", "training_form_submitted");
         }
@@ -90,9 +87,10 @@ export default function SponsoredTrainingApplication(): React.ReactElement {
     lineHeight: 1.6,
   } as CSSProperties;
 
+  const styleCss = `.fgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; } @media (max-width: 560px) { .fgrid { grid-template-columns: 1fr; } } .fg-input { font-family: Arial, sans-serif; font-size: 14px; color: #1a1a1a; border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px; width: 100%; transition: border-color 0.2s, box-shadow 0.2s; } .fg-input:focus { outline: none; border-color: var(--crimson); box-shadow: 0 0 0 3px rgba(123, 30, 30, 0.1); } .fg-input[readonly] { background: #f5f5f5; color: var(--muted); cursor: not-allowed; } textarea.fg-input { resize: vertical; min-height: 90px; }`;
+
   return (
     <div style={containerStyle}>
-      {/* GOOGLE ANALYTICS & GOOGLE ADS TAG INTEGRATION */}
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-XJ7K2Z5VLL"
         strategy="afterInteractive"
@@ -102,52 +100,12 @@ export default function SponsoredTrainingApplication(): React.ReactElement {
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-
-          // Config GA4 Measurement ID
           gtag('config', 'G-XJ7K2Z5VLL');
-
-          // Config Google Ads Tag ID
           gtag('config', 'AW-3965857070');
         `}
       </Script>
 
-      {/* Scoped CSS rules matching original layout */}
-      <style>{`
-        .fgrid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 16px;
-        }
-        @media (max-width: 560px) {
-          .fgrid {
-            grid-template-columns: 1fr;
-          }
-        }
-        .fg-input {
-          font-family: Arial, sans-serif;
-          font-size: 14px;
-          color: #1a1a1a;
-          border: 1px solid var(--border);
-          border-radius: 6px;
-          padding: 10px 14px;
-          width: 100%;
-          transition: border-color 0.2s, box-shadow 0.2s;
-        }
-        .fg-input:focus {
-          outline: none;
-          border-color: var(--crimson);
-          box-shadow: 0 0 0 3px rgba(123, 30, 30, 0.1);
-        }
-        .fg-input[readonly] {
-          background: #f5f5f5;
-          color: var(--muted);
-          cursor: not-allowed;
-        }
-        textarea.fg-input {
-          resize: vertical;
-          min-height: 90px;
-        }
-      `}</style>
+      <style dangerouslySetInnerHTML={{ __html: styleCss }} />
 
       {/* HERO */}
       <div style={{ background: "var(--crimson)", padding: "56px 24px 48px", textAlign: "center" }}>
@@ -298,7 +256,7 @@ export default function SponsoredTrainingApplication(): React.ReactElement {
                 <span>Market value: over $1,300</span>
               </div>
             </div>
-            <span style={{ display: "inline-block", background: "var(--green-light)", color: "var(--green)", fontFamily: "Arial, sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase", padding: "6px 14px", borderRadius: "20px" }}>
+            <span style={{ display: "inline-block", background: "var(--green-light)", color: "var(--green)", fontFamily: "Arial, sans-serif", fontSize: "11px", fontWeight 700, letterSpacing: "0.05em", textTransform: "uppercase", padding: "6px 14px", borderRadius: "20px" }}>
               ✓ Fully Funded by DIEF
             </span>
           </div>
@@ -393,7 +351,7 @@ export default function SponsoredTrainingApplication(): React.ReactElement {
             ) : (
               <form id="appForm" onSubmit={handleSubmit} style={{ padding: "34px" }}>
                 {/* SECTION 1: Personal Details */}
-                <p style={{ fontFamily: "Arial, sans-serif", fontSize: "11px", fontWeight 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--crimson)", paddingBottom: "8px", borderBottom: "2px solid var(--crimson-light)", marginBottom: "20px", marginTop: 0 }}>
+                <p style={{ fontFamily: "Arial, sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--crimson)", paddingBottom: "8px", borderBottom: "2px solid var(--crimson-light)", marginBottom: "20px", marginTop: 0 }}>
                   Personal Details
                 </p>
 
