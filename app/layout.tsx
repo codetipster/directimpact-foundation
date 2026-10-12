@@ -8,7 +8,7 @@ import Script from 'next/script'
 declare global {
   interface Window {
     dataLayer?: Record<string, unknown>[];
-    gtag?: (...args: any[]) => void;
+    gtag?: (...args: unknown[]) => void;
   }
 }
 
