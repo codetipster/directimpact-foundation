@@ -92,7 +92,7 @@ export default function SponsoredTrainingApplication(): React.ReactElement {
   return (
     <div style={containerStyle}>
       <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-XJ7K2Z5VLL"
+        src="https://www.googletagmanager.com/gtag/js?id=G-VS2Q62GNSR"
         strategy="afterInteractive"
       />
       <Script id="google-gtag-init" strategy="afterInteractive">
@@ -100,7 +100,7 @@ export default function SponsoredTrainingApplication(): React.ReactElement {
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'G-XJ7K2Z5VLL');
+          gtag('config', 'G-VS2Q62GNSR');
           gtag('config', 'AW-3965857070');
         `}
       </Script>
