@@ -2,11 +2,11 @@
 
 import React, { CSSProperties } from "react";
 import Head from "next/head";
-import TrainingHero from "../components/TrainingHero";
-import CoursesSection from "../components/CoursesSection";
-import WhatYouGet from "../components/WhatYouGet";
-import ApplicationForm from "../components/ApplicationForm";
-import FooterNote from "../components/FooterNote";
+import TrainingHero from "../../components/TrainingHero";
+import CoursesSection from "../../components/CoursesSection";
+import WhatYouGet from "../../components/WhatYouGet";
+import ApplicationForm from "../../components/ApplicationForm";
+import FooterNote from "../../components/FooterNote";
 
 export default function SponsoredTrainingApplication() {
   const containerStyle: CSSProperties = {
