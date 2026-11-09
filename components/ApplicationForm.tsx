@@ -40,11 +40,14 @@ export default function ApplicationForm() {
       if (response.ok) {
         setSubmitted(true);
         
-        // Fire Google Ads Conversion Event upon successful submission
-        if (typeof window !== "undefined" && (window as any).gtag) {
-          (window as any).gtag("event", "conversion", {
-            send_to: "AW-18051879035/O868CJW9mrUdEPug559D",
-          });
+        // Fire Google Ads Conversion Event upon successful submission cleanly without any type warnings
+        if (typeof window !== "undefined") {
+          const win = window as unknown as { gtag?: (...args: unknown[]) => void };
+          if (win.gtag) {
+            win.gtag("event", "conversion", {
+              send_to: "AW-18051879035/O868CJW9mrUdEPug559D",
+            });
+          }
         }
       } else {
         alert(
