@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { CSSProperties } from "react";
+import Head from "next/head";
 
 export default function PartnershipPage() {
   const [form, setForm] = useState({ name: '', email: '', org: '', type: '', message: '' });
@@ -44,6 +45,16 @@ export default function PartnershipPage() {
 
       if (response.ok) {
         setSubmitted(true);
+
+        // 🎯 FIRE GOOGLE ADS CONVERSION TAG FOR PARTNERSHIP FORM SUBMISSION
+        if (typeof window !== "undefined") {
+          const win = window as unknown as { gtag?: (...args: unknown[]) => void };
+          if (win.gtag) {
+            win.gtag('event', 'conversion', {
+              'send_to': 'AW-18051879035/sA9TCPDCyLUdEPug559D'
+            });
+          }
+        }
       } else {
         const errorData = await response.json();
         console.error("Formspree rejected submission:", errorData);
@@ -89,7 +100,6 @@ export default function PartnershipPage() {
     outcomeCard: { background: '#fff', border: '2px solid #7B1E1E', borderRadius: '12px', padding: '28px 24px' },
     outcomeAmount: { fontSize: '30px', fontWeight: 700, color: '#7B1E1E', fontFamily: 'Georgia, serif', marginBottom: '10px' },
     outcomeDesc: { fontSize: '14px', color: '#444', lineHeight: 1.65 },
-
     formCard: { background: '#f9f9f9', borderRadius: '12px', padding: '48px 40px', marginTop: '48px' },
     formTitle: { fontSize: '22px', fontWeight: 400, fontFamily: 'Georgia, serif', marginBottom: '8px' },
     formSub: { fontSize: '15px', color: '#666', marginBottom: '32px', lineHeight: 1.6 },
@@ -160,6 +170,21 @@ export default function PartnershipPage() {
 
   return (
     <div style={s.page}>
+      <Head>
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18051879035"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-18051879035');
+            `,
+          }}
+        />
+      </Head>
+
       <div style={s.hero}>
         <div style={s.tag}>Partner with Direct Impact</div>
         <h1 style={s.h1}>Help us reach further and walk longer alongside the people every other system has missed.</h1>

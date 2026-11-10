@@ -1,43 +1,70 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
+import React, { useEffect, useState } from "react";
+import Head from "next/head";
+import DonationHero from "../../components/donation/DonationHero";
+import DonationStory from "../../components/donation/DonationStory";
+import DonationImpact from "../../components/donation/DonationImpact";
+import DonationOptions from "../../components/donation/DonationOptions";
 
 export default function DonatePage() {
   const [showThankYou, setShowThankYou] = useState(false);
 
-  // Close modal and navigate to main website
   const handleCloseAndRedirect = () => {
     setShowThankYou(false);
-    window.location.href = 'https://www.directimpactempowerment.org/';
+    window.location.href = "https://www.directimpactempowerment.org/";
   };
 
-  // Checks URL parameters on load, triggers conversion tag & manages auto-close timer
+  // Google Ads conversion tracking helper function on button clicks
+  const handleDonateClick = (url: string) => {
+    if (typeof window !== "undefined") {
+      const win = window as unknown as {
+        gtag?: (...args: unknown[]) => void;
+      };
+
+      const callback = () => {
+        if (typeof url !== "undefined") {
+          window.location.href = url;
+        }
+      };
+
+      if (win.gtag) {
+        win.gtag("event", "conversion", {
+          send_to: "AW-18051879035/gaicCLmep7UdEPug559D",
+          value: 1.0,
+          currency: "USD",
+          transaction_id: "",
+          event_callback: callback,
+        });
+      } else {
+        callback();
+      }
+    }
+  };
+
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
-      if (params.get('status') === 'success' || params.get('success') === 'true') {
+      if (params.get("status") === "success" || params.get("success") === "true") {
         setShowThankYou(true);
 
-        // Safely access global window object properties using type casting
-        /* eslint-disable @typescript-eslint/no-explicit-any */
-        const win = window as any;
+        const win = window as unknown as {
+          gtag?: (...args: unknown[]) => void;
+          trackAdConversion?: () => void;
+        };
 
-        // 🎯 FIRE GOOGLE ADS CONVERSION TAG
-        if (typeof win.gtag === 'function') {
-          win.gtag('event', 'conversion', {
-            'send_to': 'AW-18051879035/_4ofCMbc19YcEPug559D'
+        if (typeof win.gtag === "function") {
+          win.gtag("event", "conversion", {
+            send_to: "AW-18051879035/_4ofCMbc19YcEPug559D",
           });
-        } else if (typeof win.trackAdConversion === 'function') {
+        } else if (typeof win.trackAdConversion === "function") {
           win.trackAdConversion();
         }
 
-        // Auto-close after 1 minute (60,000 ms) and redirect to main website
         const timer = setTimeout(() => {
           handleCloseAndRedirect();
         }, 60000);
 
-        // Clean up timer if component unmounts
         return () => clearTimeout(timer);
       }
     }
@@ -45,430 +72,214 @@ export default function DonatePage() {
 
   const s: Record<string, React.CSSProperties> = {
     page: {
-      fontFamily: 'Arial, sans-serif',
-      background: '#fff',
-      color: '#1a1a1a',
+      fontFamily: "Arial, sans-serif",
+      background: "#fff",
+      color: "#1a1a1a",
       margin: 0,
       padding: 0,
-      position: 'relative',
+      position: "relative",
     },
-    
-    /* ------------ THANK YOU MODAL STYLES ------------ */
     modalOverlay: {
-      position: 'fixed',
+      position: "fixed",
       top: 0,
       left: 0,
-      width: '100vw',
-      height: '100vh',
-      backgroundColor: 'rgba(0, 0, 0, 0.65)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
+      width: "100vw",
+      height: "100vh",
+      backgroundColor: "rgba(0, 0, 0, 0.65)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
       zIndex: 9999,
-      padding: '20px',
-      overflowY: 'auto',
+      padding: "20px",
+      overflowY: "auto",
     },
     modalCard: {
-      background: '#FCFAF6',
-      borderRadius: '8px',
-      padding: '48px 36px 36px',
-      maxWidth: '560px',
-      width: '100%',
-      textAlign: 'center' as const,
-      boxShadow: '0 20px 30px rgba(0, 0, 0, 0.15)',
-      position: 'relative' as const,
-      border: '1px solid #EAE5D9',
+      background: "#FCFAF6",
+      borderRadius: "8px",
+      padding: "48px 36px 36px",
+      maxWidth: "560px",
+      width: "100%",
+      textAlign: "center" as const,
+      boxShadow: "0 20px 30px rgba(0, 0, 0, 0.15)",
+      position: "relative" as const,
+      border: "1px solid #EAE5D9",
     },
     closeBtn: {
-      position: 'absolute' as const,
-      top: '16px',
-      right: '16px',
-      background: 'transparent',
-      border: 'none',
-      fontSize: '22px',
-      cursor: 'pointer',
-      color: '#888888',
+      position: "absolute" as const,
+      top: "16px",
+      right: "16px",
+      background: "transparent",
+      border: "none",
+      fontSize: "22px",
+      cursor: "pointer",
+      color: "#888888",
       lineHeight: 1,
-      padding: '8px',
-      borderRadius: '50%',
-      transition: 'color 0.2s',
+      padding: "8px",
+      borderRadius: "50%",
     },
     heartCircle: {
-      display: 'inline-flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: '44px',
-      height: '44px',
-      borderRadius: '50%',
-      border: '1px solid #C8972A',
-      color: '#C8972A',
-      fontSize: '18px',
-      marginBottom: '20px',
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      width: "44px",
+      height: "44px",
+      borderRadius: "50%",
+      border: "1px solid #C8972A",
+      color: "#C8972A",
+      fontSize: "18px",
+      marginBottom: "20px",
     },
     thankYouTitle: {
-      fontFamily: 'Georgia, serif',
-      fontSize: '38px',
-      color: '#1A2E26',
-      margin: '0 0 16px',
+      fontFamily: "Georgia, serif",
+      fontSize: "38px",
+      color: "#1A2E26",
+      margin: "0 0 16px",
       fontWeight: 400,
     },
     thankYouSub: {
-      fontSize: '15px',
-      color: '#4A4A4A',
+      fontSize: "15px",
+      color: "#4A4A4A",
       lineHeight: 1.6,
-      margin: '0 auto 24px',
-      maxWidth: '440px',
+      margin: "0 auto 24px",
+      maxWidth: "440px",
     },
     goldDivider: {
-      width: '48px',
-      height: '3px',
-      backgroundColor: '#C8972A',
-      margin: '0 auto 28px',
-      borderRadius: '2px',
+      width: "48px",
+      height: "3px",
+      backgroundColor: "#C8972A",
+      margin: "0 auto 28px",
+      borderRadius: "2px",
     },
     quoteBox: {
-      background: '#FFFFFF',
-      border: '1px solid #EAE5D9',
-      borderRadius: '4px',
-      padding: '20px 24px',
-      textAlign: 'left' as const,
-      position: 'relative' as const,
-      display: 'flex',
-      gap: '16px',
-      marginBottom: '32px',
+      background: "#FFFFFF",
+      border: "1px solid #EAE5D9",
+      borderRadius: "4px",
+      padding: "20px 24px",
+      textAlign: "left" as const,
+      position: "relative" as const,
+      display: "flex",
+      gap: "16px",
+      marginBottom: "32px",
     },
     quoteBar: {
-      width: '3px',
-      backgroundColor: '#C8972A',
-      borderRadius: '2px',
+      width: "3px",
+      backgroundColor: "#C8972A",
+      borderRadius: "2px",
       flexShrink: 0,
     },
     quoteText: {
-      fontFamily: 'Georgia, serif',
-      fontStyle: 'italic',
-      fontSize: '15px',
-      color: '#2A3B32',
+      fontFamily: "Georgia, serif",
+      fontStyle: "italic",
+      fontSize: "15px",
+      color: "#2A3B32",
       lineHeight: 1.6,
-      margin: '0 0 12px',
+      margin: "0 0 12px",
     },
     quoteAuthor: {
-      fontSize: '13px',
-      color: '#777777',
+      fontSize: "13px",
+      color: "#777777",
       margin: 0,
     },
     stageGrid: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(4, 1fr)',
-      gap: '8px',
-      marginBottom: '32px',
-      textAlign: 'center' as const,
+      display: "grid",
+      gridTemplateColumns: "repeat(4, 1fr)",
+      gap: "8px",
+      marginBottom: "32px",
+      textAlign: "center" as const,
     },
     stageActive: {
-      display: 'flex',
-      flexDirection: 'column' as const,
-      alignItems: 'center',
-      fontSize: '11px',
+      display: "flex",
+      flexDirection: "column" as const,
+      alignItems: "center",
+      fontSize: "11px",
       fontWeight: 700,
-      color: '#1A2E26',
+      color: "#1A2E26",
     },
     stageItem: {
-      display: 'flex',
-      flexDirection: 'column' as const,
-      alignItems: 'center',
-      fontSize: '11px',
+      display: "flex",
+      flexDirection: "column" as const,
+      alignItems: "center",
+      fontSize: "11px",
       fontWeight: 500,
-      color: '#888888',
+      color: "#888888",
     },
     stageLineActive: {
-      width: '100%',
-      height: '3px',
-      backgroundColor: '#C8972A',
-      marginBottom: '8px',
-      borderRadius: '2px',
+      width: "100%",
+      height: "3px",
+      backgroundColor: "#C8972A",
+      marginBottom: "8px",
+      borderRadius: "2px",
     },
     stageLine: {
-      width: '100%',
-      height: '2px',
-      backgroundColor: '#E5E0D8',
-      marginBottom: '8px',
-      borderRadius: '2px',
+      width: "100%",
+      height: "2px",
+      backgroundColor: "#E5E0D8",
+      marginBottom: "8px",
+      borderRadius: "2px",
     },
     seeGiftBtn: {
-      display: 'inline-block',
-      color: '#C8972A',
-      fontSize: '15px',
+      display: "inline-block",
+      color: "#C8972A",
+      fontSize: "15px",
       fontWeight: 600,
-      textDecoration: 'underline',
-      textUnderlineOffset: '6px',
-      cursor: 'pointer',
-      background: 'none',
-      border: 'none',
-      padding: '8px 16px',
-      transition: 'opacity 0.2s',
+      textDecoration: "underline",
+      textUnderlineOffset: "6px",
+      cursor: "pointer",
+      background: "none",
+      border: "none",
+      padding: "8px 16px",
     },
     modalFooter: {
-      fontSize: '11px',
-      color: '#8A8A8A',
-      marginTop: '28px',
+      fontSize: "11px",
+      color: "#8A8A8A",
+      marginTop: "28px",
       lineHeight: 1.6,
     },
-
-    /* ---------------- PAGE STYLES ---------------- */
-    hero: {
-      background: '#7B1E1E',
-      color: '#fff',
-      padding: '72px 24px 56px',
-      textAlign: 'center' as const,
-    },
-    heroTag: {
-      display: 'inline-block',
-      background: 'rgba(255,255,255,0.15)',
-      color: '#fff',
-      fontSize: '12px',
-      letterSpacing: '0.1em',
-      textTransform: 'uppercase' as const,
-      padding: '6px 16px',
-      borderRadius: '100px',
-      marginBottom: '20px',
-    },
-    heroH1: {
-      fontSize: 'clamp(26px, 4vw, 44px)',
-      fontWeight: 400,
-      lineHeight: 1.2,
-      maxWidth: '680px',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      fontFamily: 'Georgia, serif',
-      marginBottom: '20px',
-    },
-    heroP: {
-      fontSize: '17px',
-      color: 'rgba(255,255,255,0.85)',
-      maxWidth: '560px',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      lineHeight: 1.75,
-    },
-    trustStrip: {
-      background: '#FDF6F6',
-      borderBottom: '1px solid #E5E5E5',
-      padding: '20px 24px',
-    },
-    trustStripInner: {
-      maxWidth: '860px',
-      margin: '0 auto',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      gap: '32px',
-      flexWrap: 'wrap' as const,
-    },
-    trustLabel: {
-      fontSize: '14px',
-      fontWeight: 700,
-      color: '#7B1E1E',
-      margin: 0,
-    },
-    badgeGroup: {
-      display: 'flex',
-      alignItems: 'center',
-      gap: '24px',
-      flexWrap: 'wrap' as const,
-    },
-    trustBadgeItem: {
-      display: 'flex',
-      alignItems: 'center',
-      gap: '10px',
-      textDecoration: 'none',
-    },
-    trustBadgeText: {
-      fontSize: '14px',
-      fontWeight: 500,
-      color: '#333',
-    },
     inner: {
-      maxWidth: '920px',
-      margin: '0 auto',
-      padding: '64px 24px',
-    },
-    sectionTitle: {
-      fontSize: '26px',
-      fontWeight: 700,
-      color: '#1a1a1a',
-      marginBottom: '24px',
-      fontFamily: 'Georgia, serif',
+      maxWidth: "920px",
+      margin: "0 auto",
+      padding: "64px 24px",
     },
     divider: {
-      borderTop: '1px solid #eee',
-      margin: '48px 0',
-    },
-    storyGrid: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-      gap: '48px',
-      alignItems: 'center',
-      marginBottom: '48px',
-    },
-    storyP: {
-      fontSize: '16px',
-      color: '#333',
-      lineHeight: 1.85,
-      marginBottom: '16px',
-    },
-    videoWrap: {
-      position: 'relative' as const,
-      paddingBottom: '56.25%',
-      height: 0,
-      borderRadius: '12px',
-      overflow: 'hidden',
-    },
-    videoIframe: {
-      position: 'absolute' as const,
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      border: 0,
-    },
-    donationGrid: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(4, 1fr)',
-      gap: '16px',
-      margin: '32px 0',
-    },
-    donationCard: {
-      border: '2px solid #e5e5e5',
-      borderRadius: '12px',
-      padding: '24px 16px',
-      textAlign: 'center' as const,
-      display: 'flex',
-      flexDirection: 'column' as const,
-      justifyContent: 'flex-start',
-    },
-    donationCardFeatured: {
-      border: '2px solid #7B1E1E',
-      borderRadius: '12px',
-      padding: '24px 16px',
-      textAlign: 'center' as const,
-      background: '#fdf6f6',
-      position: 'relative' as const,
-      display: 'flex',
-      flexDirection: 'column' as const,
-      justifyContent: 'flex-start',
-    },
-    featuredBadge: {
-      position: 'absolute' as const,
-      top: '-12px',
-      left: '50%',
-      transform: 'translateX(-50%)',
-      background: '#7B1E1E',
-      color: '#fff',
-      fontSize: '10px',
-      fontWeight: 700,
-      letterSpacing: '0.5px',
-      textTransform: 'uppercase' as const,
-      padding: '3px 10px',
-      borderRadius: '100px',
-      whiteSpace: 'nowrap' as const,
-    },
-    donationAmount: {
-      fontSize: '32px',
-      fontWeight: 700,
-      color: '#7B1E1E',
-      marginBottom: '10px',
-      marginTop: '4px',
-    },
-    donationLabel: {
-      fontSize: '13px',
-      color: '#555',
-      lineHeight: 1.5,
-    },
-    btnRed: {
-      display: 'inline-flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      gap: '8px',
-      background: '#7B1E1E',
-      color: '#fff',
-      fontWeight: 600,
-      fontSize: '15px',
-      padding: '16px 40px',
-      borderRadius: '100px',
-      textDecoration: 'none',
-      marginRight: '12px',
-      marginBottom: '8px',
-    },
-    btnOutline: {
-      display: 'inline-flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      gap: '8px',
-      background: 'transparent',
-      color: '#7B1E1E',
-      fontWeight: 600,
-      fontSize: '15px',
-      padding: '16px 40px',
-      borderRadius: '100px',
-      textDecoration: 'none',
-      border: '2px solid #7B1E1E',
-      marginBottom: '8px',
-    },
-    btnOrange: {
-      display: 'inline-flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      gap: '8px',
-      background: '#B2BB1E',
-      color: '#fff',
-      fontWeight: 600,
-      fontSize: '15px',
-      padding: '16px 40px',
-      borderRadius: '100px',
-      textDecoration: 'none',
-      marginRight: '12px',
-      marginBottom: '8px',
-    },
-    paymentSection: {
-      background: '#f9f4f4',
-      borderRadius: '12px',
-      padding: '32px',
-    },
-    paymentTitle: {
-      fontSize: '18px',
-      fontWeight: 700,
-      marginBottom: '12px',
-      color: '#1a1a1a',
-    },
-    paymentP: {
-      fontSize: '15px',
-      color: '#555',
-      lineHeight: 1.7,
-      marginBottom: '20px',
+      borderTop: "1px solid #eee",
+      margin: "48px 0",
     },
     trustBar: {
-      background: '#1a1a1a',
-      color: '#fff',
-      padding: '32px 24px',
-      textAlign: 'center' as const,
+      background: "#1a1a1a",
+      color: "#fff",
+      padding: "32px 24px",
+      textAlign: "center" as const,
     },
     trustP: {
-      fontSize: '14px',
-      color: 'rgba(255,255,255,0.65)',
-      maxWidth: '600px',
-      margin: '0 auto',
+      fontSize: "14px",
+      color: "rgba(255,255,255,0.65)",
+      maxWidth: "600px",
+      margin: "0 auto",
       lineHeight: 1.7,
     },
   };
 
   return (
     <div style={s.page}>
+      <Head>
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18051879035"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-18051879035');
+            `,
+          }}
+        />
+      </Head>
 
-      {/* AUTOMATIC STRIPE REDIRECT THANK YOU MODAL */}
+      {/* Thank You Modal Overlay */}
       {showThankYou && (
         <div style={s.modalOverlay}>
           <div style={s.modalCard}>
-            
-            {/* Top Right Close Button */}
             <button 
               onClick={handleCloseAndRedirect} 
               style={s.closeBtn}
@@ -478,7 +289,6 @@ export default function DonatePage() {
               ✕
             </button>
 
-            {/* Golden Heart Outline Circle */}
             <div style={s.heartCircle}>
               <span>♡</span>
             </div>
@@ -491,7 +301,6 @@ export default function DonatePage() {
 
             <div style={s.goldDivider} />
 
-            {/* Quote Block */}
             <div style={s.quoteBox}>
               <div style={s.quoteBar} />
               <div>
@@ -504,7 +313,6 @@ export default function DonatePage() {
               </div>
             </div>
 
-            {/* 4-Stage Progress Line */}
             <div style={s.stageGrid}>
               <div style={s.stageActive}>
                 <div style={s.stageLineActive} />
@@ -524,7 +332,6 @@ export default function DonatePage() {
               </div>
             </div>
 
-            {/* "See where your gift goes" Button */}
             <div>
               <a
                 href="https://www.globalgiving.org/projects/a-christmas-lifeline-for-220-nigerian-families/"
@@ -536,9 +343,8 @@ export default function DonatePage() {
               </a>
             </div>
 
-            {/* Registration & Vetted Footer */}
             <div style={s.modalFooter}>
-              <p style={{ margin: '0 0 4px' }}>
+              <p style={{ margin: "0 0 4px" }}>
                 Direct Impact Empowerment Foundation · CAC/IT/7420254 · CHE-415.427.651
               </p>
               <p style={{ margin: 0 }}>
@@ -549,264 +355,14 @@ export default function DonatePage() {
         </div>
       )}
 
-      {/* Hero */}
-      <section style={s.hero}>
-        <div style={s.heroTag}>Support our work</div>
-        <h1 style={s.heroH1}>Your donation walks with someone from crisis to independence.</h1>
-        <p style={s.heroP}>
-          Every amount goes directly to the people we find in Nigeria&apos;s most vulnerable communities.
-          No overhead. No waste. Direct impact.
-        </p>
-      </section>
-
-      {/* Trust Strip */}
-      <div style={s.trustStrip}>
-        <div style={s.trustStripInner}>
-          <p style={s.trustLabel}>Trusted and verified on:</p>
-          <div style={s.badgeGroup}>
-            <a 
-              href="https://www.globalgiving.org/dy/v2/pe/dashboard/overview.html?organization.id=105967" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              style={s.trustBadgeItem}
-            >
-              <Image
-                src="/Globalgivingbadge.jpeg"
-                alt="GlobalGiving Vetted Organization 2026"
-                width={28}
-                height={28}
-                style={{ width: '28px', height: 'auto', display: 'block' }}
-                unoptimized
-              />
-              <span style={s.trustBadgeText}>GlobalGiving 2026</span>
-            </a>
-            <div style={{ width: '1px', height: '24px', background: '#E5E5E5' }} />
-            <a 
-              href="https://benevity.com" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              style={s.trustBadgeItem}
-            >
-              <Image
-                src="/benevity-logo.png"
-                alt="Listed on Benevity"
-                width={24}
-                height={24}
-                style={{ width: '24px', height: 'auto', display: 'block' }}
-                unoptimized
-              />
-              <span style={s.trustBadgeText}>Listed on Benevity</span>
-            </a>
-          </div>
-        </div>
-      </div>
+      {/* Modularized Sections */}
+      <DonationHero />
 
       <div style={s.inner}>
-
-        {/* Story */}
-        <section style={s.storyGrid}>
-          <div>
-            <h2 style={s.sectionTitle}>This is who you are helping</h2>
-            <p style={s.storyP}>
-              We found a grandmother sitting on the ground at six in the evening.
-              She had not eaten all day. She had lost both her children and was raising
-              her grandchildren alone. Nobody had stopped to ask if she was okay.
-            </p>
-            <p style={s.storyP}>
-              We stopped. We brought food, cooking oil, and capital to restart her life.
-              Weeks later we returned and found her granddaughter had been admitted to
-              hospital. She had not told us, she did not want to place the burden on us.
-              We followed her to the hospital and paid the bill.
-            </p>
-            <p style={s.storyP}>
-              Months later, when we went back again, she was standing. She was well.
-              She was earning. Her grandchildren were fed.
-            </p>
-            <p style={{ ...s.storyP, color: '#7B1E1E', fontStyle: 'italic' }}>
-              This is not an exceptional story. This is our model.
-            </p>
-          </div>
-          <div style={s.videoWrap}>
-            <iframe
-              style={s.videoIframe}
-              src="https://www.youtube.com/embed/iwCeWtDPlTw"
-              title="Grandmother full journey"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-        </section>
-
+        <DonationStory />
         <div style={s.divider} />
-
-        {/* Donation amounts */}
-        <section id="choose-how-to-help">
-          <h2 style={s.sectionTitle}>Choose how you want to help</h2>
-          <p style={{ fontSize: '16px', color: '#555', marginBottom: '24px' }}>
-            Every amount makes a measurable difference. Here is what your gift does on the ground.
-          </p>
-
-          <div style={s.donationGrid}>
-            <div style={s.donationCard}>
-              <div style={s.donationAmount}>$50</div>
-              <div style={s.donationLabel}>
-                Contribute toward a full journey. Every amount gets someone closer to independence.
-              </div>
-            </div>
-
-            <div style={s.donationCardFeatured}>
-              <div style={s.featuredBadge}>Most impactful</div>
-              <div style={s.donationAmount}>$200</div>
-              <div style={s.donationLabel}>
-                Full Dignity to Independence journey. Emergency relief package through to sustainable livelihood.
-              </div>
-            </div>
-
-            <div style={s.donationCard}>
-              <div style={s.donationAmount}>$70</div>
-              <div style={s.donationLabel}>
-                Emergency relief package. Food, water, and essential support for one person in crisis.
-              </div>
-            </div>
-
-            <div style={s.donationCard}>
-              <div style={s.donationAmount}>$</div>
-              <div style={s.donationLabel}>
-                Give the amount that feels right to you. Every contribution moves someone closer to independence.
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Buttons Selection Block */}
-        <div style={{ textAlign: 'center', margin: '32px 0 16px' }}>
-          <a href="https://buy.stripe.com/4gMaEXeHH5Hi6yDgfQ3cc00" target="_blank" rel="noopener noreferrer" style={s.btnRed}>
-            <span>💳</span> Donate by card
-          </a>
-          
-          <a href="https://www.globalgiving.org/donate/105967/direct-impact-empowerment-foundation/" target="_blank" rel="noopener noreferrer" style={s.btnOrange}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"></path>
-            </svg>
-            Donate via GlobalGiving
-          </a>
-
-          <a href="/bank-details" style={s.btnOutline}>
-            <span>🏡</span> Donate by bank transfer
-          </a>
-        </div>
-
-        {/* Employer Matching Callout */}
-        <div style={{
-          borderTop: '1px solid #e5e5e5',
-          paddingTop: '1.5rem',
-          marginTop: '1.5rem',
-          marginBottom: '2rem'
-        }}>
-          <p style={{
-            fontSize: '12px',
-            color: '#888',
-            textAlign: 'center',
-            margin: '0 0 12px',
-          }}>
-            Verified and trusted on
-          </p>
-
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '1rem',
-            flexWrap: 'wrap' as const,
-            marginBottom: '1.5rem',
-          }}>
-            <a
-              href="https://www.globalgiving.org/dy/v2/pe/dashboard/overview.html?organization.id=105967"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                background: '#f5f5f5',
-                padding: '8px 14px',
-                borderRadius: '8px',
-                textDecoration: 'none',
-              }}
-            >
-              <Image
-                src="/vetted.jpeg"
-                alt="GlobalGiving Vetted Organization 2026"
-                width={36}
-                height={36}
-                style={{ width: '36px', height: 'auto' }}
-                unoptimized
-              />
-              <span style={{ fontSize: '12px', fontWeight: 500, color: '#333' }}>
-                GlobalGiving 2026
-              </span>
-            </a>
-
-            <a
-              href="https://benevity.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                background: '#f5f5f5',
-                padding: '8px 14px',
-                borderRadius: '8px',
-                textDecoration: 'none',
-              }}
-            >
-              <Image
-                src="/benevity-logo.png"
-                alt="Listed on Benevity"
-                width={28}
-                height={28}
-                style={{ width: '28px', height: 'auto' }}
-                unoptimized
-              />
-              <span style={{ fontSize: '12px', fontWeight: 500, color: '#333' }}>
-                Listed on Benevity
-              </span>
-            </a>
-          </div>
-
-          <p style={{
-            fontSize: '13px',
-            color: '#111',
-            fontWeight: 600,
-            textAlign: 'center',
-            margin: '0 auto',
-            maxWidth: '650px',
-            lineHeight: 1.6,
-            background: '#fdf6f6',
-            padding: '12px 20px',
-            borderRadius: '8px',
-            border: '1px dashed #7B1E1E'
-          }}>
-            Does your employer offer donation matching? Search{' '}
-            <strong style={{ color: '#7B1E1E', fontWeight: 700 }}>Direct Impact Empowerment Foundation</strong>{' '}
-            on your company&apos;s Benevity portal.
-          </p>
-        </div>
-
-        <div style={s.divider} />
-
-        {/* Bank transfer */}
-        <section style={s.paymentSection}>
-          <h3 style={s.paymentTitle}>Prefer to donate by bank transfer?</h3>
-          <p style={s.paymentP}>
-            We have accounts in both Nigeria and Switzerland. If you prefer to donate
-            directly by bank transfer, our full account details are on our bank details page.
-            We accept donations in NGN, CHF, and USD.
-          </p>
-          <a href="/bank-details" style={s.btnRed}><span>🏡</span> View bank details</a>
-        </section>
-
+        <DonationImpact />
+        <DonationOptions onDonateClick={handleDonateClick} />
       </div>
 
       {/* Footer */}
@@ -817,7 +373,6 @@ export default function DonatePage() {
           self-funded since 2023 &mdash; your support changes that.
         </p>
       </footer>
-
     </div>
   );
 }

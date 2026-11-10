@@ -47,8 +47,8 @@ export default function RootLayout({
             /* Initialize Google Analytics 4 */
             gtag('config', 'G-XJ7K2Z5VLL');
 
-            /* Initialize Google Ads Conversion Tracking */
-            gtag('config', 'AW-3965857070');
+            /* Initialize Google Ads Conversion Tracking (Updated to AW-18051879035) */
+            gtag('config', 'AW-18051879035');
           `}
         </Script>
 

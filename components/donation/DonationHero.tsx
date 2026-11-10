@@ -1,45 +1,133 @@
-import { Button } from '@/components/ui/button'
-import { Heart } from 'lucide-react'
-import Link from 'next/link'
+import React from "react";
+import Image from "next/image";
 
-export function DonationHero() {
+export default function DonationHero() {
+  const s = {
+    hero: {
+      background: "#7B1E1E",
+      color: "#fff",
+      padding: "72px 24px 56px",
+      textAlign: "center" as const,
+    },
+    heroTag: {
+      display: "inline-block",
+      background: "rgba(255,255,255,0.15)",
+      color: "#fff",
+      fontSize: "12px",
+      letterSpacing: "0.1em",
+      textTransform: "uppercase" as const,
+      padding: "6px 16px",
+      borderRadius: "100px",
+      marginBottom: "20px",
+    },
+    heroH1: {
+      fontSize: "clamp(26px, 4vw, 44px)",
+      fontWeight: 400,
+      lineHeight: 1.2,
+      maxWidth: "680px",
+      marginLeft: "auto",
+      marginRight: "auto",
+      fontFamily: "Georgia, serif",
+      marginBottom: "20px",
+    },
+    heroP: {
+      fontSize: "17px",
+      color: "rgba(255,255,255,0.85)",
+      maxWidth: "560px",
+      marginLeft: "auto",
+      marginRight: "auto",
+      lineHeight: 1.75,
+    },
+    trustStrip: {
+      background: "#FDF6F6",
+      borderBottom: "1px solid #E5E5E5",
+      padding: "20px 24px",
+    },
+    trustStripInner: {
+      maxWidth: "860px",
+      margin: "0 auto",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: "32px",
+      flexWrap: "wrap" as const,
+    },
+    trustLabel: {
+      fontSize: "14px",
+      fontWeight: 700,
+      color: "#7B1E1E",
+      margin: 0,
+    },
+    badgeGroup: {
+      display: "flex",
+      alignItems: "center",
+      gap: "24px",
+      flexWrap: "wrap" as const,
+    },
+    trustBadgeItem: {
+      display: "flex",
+      alignItems: "center",
+      gap: "10px",
+      textDecoration: "none",
+    },
+    trustBadgeText: {
+      fontSize: "14px",
+      fontWeight: 500,
+      color: "#333",
+    },
+  };
+
   return (
-    <section className="relative py-20 bg-[#59B7E7]/5">
-      <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#59B7E7]/10 mb-6">
-            <Heart className="w-8 h-8 text-[#59B7E7]" />
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            DIRECT IMPACT EMPOWERMENT DONATIONS
-          </h1>
-          <div className="text-lg text-gray-600 mb-8 space-y-4">
-            <p>
-              At Direct Impact Empowerment, every act of giving helps us feed families, restore dignity, and empower lives across Nigeria and beyond.
-            </p>
-            <p>
-              We are a self-funded foundation, registered in both Switzerland 🇨🇭 and Nigeria 🇳🇬, doing what we can — one life at a time.
-            </p>
-            <p>
-              Your donation goes directly toward food aid, medical help, and small business support for struggling families.
-            </p>
-            <p className="text-xl font-semibold text-[#59B7E7]">
-              🌍 Together, we can make humanity our currency of kindness.
-            </p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              variant="outline"
-              size="lg"
-              className="border-[#59B7E7] text-[#59B7E7] hover:bg-[#59B7E7]/10"
+    <>
+      <section style={s.hero}>
+        <div style={s.heroTag}>Support our work</div>
+        <h1 style={s.heroH1}>Your donation walks with someone from crisis to independence.</h1>
+        <p style={s.heroP}>
+          Every amount goes directly to the people we find in Nigeria&apos;s most vulnerable communities.
+          No overhead. No waste. Direct impact.
+        </p>
+      </section>
+
+      <div style={s.trustStrip}>
+        <div style={s.trustStripInner}>
+          <p style={s.trustLabel}>Trusted and verified on:</p>
+          <div style={s.badgeGroup}>
+            <a 
+              href="https://www.globalgiving.org/dy/v2/pe/dashboard/overview.html?organization.id=105967" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              style={s.trustBadgeItem}
             >
-              <Link href="/volunteer">
-                Learn More About Us
-              </Link>
-            </Button>
+              <Image
+                src="/Globalgivingbadge.jpeg"
+                alt="GlobalGiving Vetted Organization 2026"
+                width={28}
+                height={28}
+                style={{ width: "28px", height: "auto", display: "block" }}
+                unoptimized
+              />
+              <span style={s.trustBadgeText}>GlobalGiving 2026</span>
+            </a>
+            <div style={{ width: "1px", height: "24px", background: "#E5E5E5" }} />
+            <a 
+              href="https://benevity.com" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              style={s.trustBadgeItem}
+            >
+              <Image
+                src="/benevity-logo.png"
+                alt="Listed on Benevity"
+                width={24}
+                height={24}
+                style={{ width: "24px", height: "auto", display: "block" }}
+                unoptimized
+              />
+              <span style={s.trustBadgeText}>Listed on Benevity</span>
+            </a>
           </div>
         </div>
       </div>
-    </section>
-  )
+    </>
+  );
 }

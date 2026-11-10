@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from 'next/image';
+import Head from 'next/head';
 
 export default function BecomeAVolunteer() {
   const [form, setForm] = useState({
@@ -16,7 +17,7 @@ export default function BecomeAVolunteer() {
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      await fetch('YOUR_FORMSPREE_ENDPOINT', {
+      await fetch('https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
@@ -25,12 +26,15 @@ export default function BecomeAVolunteer() {
       setSubmitted(true);
 
       // 🎯 FIRE GOOGLE ADS VOLUNTEER CONVERSION TAG
-      /* eslint-disable @typescript-eslint/no-explicit-any */
-      const win = window as any;
-      if (typeof win.gtag === 'function') {
-        win.gtag('event', 'conversion', {
-          'send_to': 'AW-18051879035/sT7OCKuNy8scEPug559D'
-        });
+      if (typeof window !== "undefined") {
+        const win = window as unknown as { gtag?: (...args: unknown[]) => void };
+        if (win.gtag) {
+          win.gtag('event', 'conversion', {
+            'send_to': 'AW-18051879035/OphTCMzMy7UdEPug559D',
+            'value': 1.0,
+            'currency': 'USD'
+          });
+        }
       }
     } catch {
       alert('Something went wrong. Please try again.');
@@ -93,11 +97,6 @@ export default function BecomeAVolunteer() {
       flexDirection: 'column' as const,
       gap: '12px',
     },
-    placeholderText: {
-      fontSize: '14px',
-      color: '#a07070',
-      fontStyle: 'italic' as const,
-    },
     sectionLabel: {
       fontSize: '12px',
       fontWeight: 700,
@@ -117,13 +116,6 @@ export default function BecomeAVolunteer() {
       lineHeight: 1.8,
       color: '#444',
       marginBottom: '16px',
-    },
-    standout: {
-      fontSize: '16px',
-      lineHeight: 1.8,
-      color: '#2a2a2a',
-      marginBottom: '16px',
-      fontWeight: 600,
     },
     cardsRow: {
       display: 'grid',
@@ -241,6 +233,21 @@ export default function BecomeAVolunteer() {
 
   return (
     <div style={s.page}>
+      <Head>
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18051879035"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-18051879035');
+            `,
+          }}
+        />
+      </Head>
+
       <div style={s.hero}>
         <div style={s.heroTag}>Volunteering</div>
         <h1 style={s.heroH1}>Join the DIEF Family</h1>
@@ -295,7 +302,7 @@ export default function BecomeAVolunteer() {
             </p>
           </div>
         ) : (
-          <>
+          <div>
             <div style={s.formTitle}>Tell us about yourself</div>
             <div style={s.formSub}>
               Fill in the form below and we will review your application and get back
@@ -333,7 +340,7 @@ export default function BecomeAVolunteer() {
             <button style={s.btnRed} onClick={handleSubmit} disabled={loading}>
               {loading ? 'Submitting...' : 'Submit my application'}
             </button>
-          </>
+          </div>
         )}
       </div>
     </div>
